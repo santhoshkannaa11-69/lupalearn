@@ -22,9 +22,11 @@ export const SCHOOLS = [
 ] as const
 
 export const NAV_ITEMS = [
+  { label: "Home", href: "/", icon: "home" },
   { label: "Dashboard", href: "/dashboard", icon: "layout-dashboard" },
   { label: "Explore", href: "/explore", icon: "search" },
   { label: "Schools", href: "/learn", icon: "graduation-cap" },
+  { label: "AI Roadmap", href: "/onboarding", icon: "wand" },
   { label: "Playground", href: "/playground", icon: "terminal" },
   { label: "AI Tutor", href: "/ai-tutor", icon: "bot" },
   { label: "Challenges", href: "/challenges", icon: "swords" },

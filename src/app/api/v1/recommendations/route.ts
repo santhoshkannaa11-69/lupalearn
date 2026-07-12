@@ -6,12 +6,10 @@ export async function GET(request: Request) {
   const userId = searchParams.get("userId") || "anonymous"
   const goal = searchParams.get("goal") || undefined
   const nodeSlug = searchParams.get("node")
-
   if (nodeSlug) {
     const content = await getRelatedContent(nodeSlug)
     return NextResponse.json(content)
   }
-
   const recommendations = await getRecommendations(userId, goal)
   return NextResponse.json({ categories: recommendations })
 }

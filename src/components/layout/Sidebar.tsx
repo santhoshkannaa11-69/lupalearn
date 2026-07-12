@@ -18,11 +18,14 @@ import {
   Briefcase,
   Settings,
   Search,
+  Home,
+  Wand,
   ChevronDown,
   ChevronRight,
 } from "lucide-react"
 
 const iconMap: Record<string, React.ElementType> = {
+  home: Home,
   "layout-dashboard": LayoutDashboard,
   "graduation-cap": GraduationCap,
   terminal: Terminal,
@@ -35,6 +38,7 @@ const iconMap: Record<string, React.ElementType> = {
   briefcase: Briefcase,
   settings: Settings,
   search: Search,
+  wand: Wand,
 }
 
 interface SidebarProps {
