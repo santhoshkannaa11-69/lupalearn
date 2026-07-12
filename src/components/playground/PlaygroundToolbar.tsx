@@ -63,6 +63,7 @@ function PlaygroundToolbar() {
       <button
         onClick={toggleCommandPalette}
         className="flex items-center gap-1 text-[10px] text-[#606060] hover:text-[#c0c0c0] font-mono border border-[#1e1e1e] px-2 py-1 bg-[#121212] transition-colors"
+        title="⌘K: Command Palette · ⌘Z: Undo · ⌘⇧Z: Redo"
       >
         <Command size={12} />
         <span className="hidden sm:inline">⌘K</span>
