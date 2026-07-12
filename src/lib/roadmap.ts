@@ -1,4 +1,5 @@
 import { prisma } from "./db"
+import { createHash } from "crypto"
 
 type NodeBasic = {
   id: string
@@ -21,9 +22,17 @@ export type GeneratedRoadmap = {
   steps: RoadmapStep[]
   estimatedHours: number
   difficulty: string
+  constraints: RoadmapConstraints
+  hash: string
 }
 
-// Knowledge graph goal → concept mapping
+export type RoadmapConstraints = {
+  timePerDay?: number
+  difficulty?: "beginner" | "intermediate" | "advanced"
+  maxSteps?: number
+  focus?: string[]
+}
+
 const GOAL_MAP: Record<string, string[]> = {
   "backend-developer": ["http", "rest-apis", "databases", "sql", "git", "linux", "variables", "functions", "oop"],
   "frontend-developer": ["javascript", "react", "git", "http", "rest-apis", "variables", "functions", "closures", "async-programming"],
@@ -59,15 +68,20 @@ const GOAL_ALIASES: Record<string, string> = {
   "js": "javascript-developer",
 }
 
-export async function generateRoadmap(goal: string): Promise<GeneratedRoadmap> {
-  // Normalize the goal
+function hashRoadmap(goal: string, constraints: RoadmapConstraints): string {
+  const input = JSON.stringify({ goal, constraints })
+  return createHash("sha256").update(input).digest("hex").slice(0, 12)
+}
+
+export async function generateRoadmap(
+  goal: string,
+  constraints: RoadmapConstraints = {}
+): Promise<GeneratedRoadmap> {
   const normalized = goal.toLowerCase().trim()
   const goalKey = GOAL_ALIASES[normalized] || normalized.replace(/\s+/g, "-")
 
-  // Find target concept slugs from the goal map
   let targetSlugs = GOAL_MAP[goalKey]
   if (!targetSlugs) {
-    // Try a fuzzy match — search nodes by name
     const matchingNodes = await prisma.node.findMany({
       where: {
         name: { contains: normalized },
@@ -78,23 +92,34 @@ export async function generateRoadmap(goal: string): Promise<GeneratedRoadmap> {
     if (matchingNodes.length > 0) {
       targetSlugs = matchingNodes.map((n) => n.slug)
     } else {
-      // Fallback to a default beginner path
       targetSlugs = ["variables", "data-types", "control-flow", "loops", "functions", "arrays", "git"]
     }
   }
 
-  // Get all target nodes
+  // Apply focus filter if provided
+  if (constraints.focus && constraints.focus.length > 0) {
+    targetSlugs = targetSlugs.filter((s) => constraints.focus!.includes(s))
+    if (targetSlugs.length === 0) targetSlugs = ["variables", "functions"]
+  }
+
+  // Apply difficulty filter
+  const difficultyLevels = { beginner: 1, intermediate: 2, advanced: 3 }
+  const maxDiff = constraints.difficulty ? difficultyLevels[constraints.difficulty] : 3
+
   const targetNodes = await prisma.node.findMany({
     where: { slug: { in: targetSlugs } },
   })
 
   if (targetNodes.length === 0) {
-    return { goal, steps: [], estimatedHours: 0, difficulty: "beginner" }
+    return {
+      goal, steps: [], estimatedHours: 0, difficulty: "beginner",
+      constraints, hash: hashRoadmap(goal, constraints),
+    }
   }
 
   const nodeMap = new Map(targetNodes.map((n) => [n.slug, n as NodeBasic]))
 
-  // BFS to collect all prerequisites
+  // BFS for prerequisites
   const visited = new Set<string>()
   const allNodes: NodeBasic[] = []
   const queue = [...targetSlugs]
@@ -107,14 +132,8 @@ export async function generateRoadmap(goal: string): Promise<GeneratedRoadmap> {
     const node = nodeMap.get(slug)
     if (node) allNodes.push(node)
 
-    // Convention: edge [dependent, prerequisite, "requires"]
-    // source = dependent, target = prerequisite
-    // For concept X, find edges where sourceId = X.id to get its prerequisites
     const prereqs = await prisma.edge.findMany({
-      where: {
-        sourceId: nodeMap.get(slug)?.id || "",
-        relationType: "requires",
-      },
+      where: { sourceId: nodeMap.get(slug)?.id || "", relationType: "requires" },
       include: { target: true },
     })
 
@@ -128,26 +147,19 @@ export async function generateRoadmap(goal: string): Promise<GeneratedRoadmap> {
     }
   }
 
-  // Topological sort based on prerequisites
+  // Topological sort
   const sorted: NodeBasic[] = []
   const tempMarked = new Set<string>()
 
   function visit(nodeSlug: string) {
     if (tempMarked.has(nodeSlug)) return
     tempMarked.add(nodeSlug)
-
     const node = nodeMap.get(nodeSlug)
-    if (!node) return
-
-    sorted.push(node)
+    if (node) sorted.push(node)
   }
 
-  // Process target concepts first, then prerequisites naturally
-  for (const slug of targetSlugs) {
-    visit(slug)
-  }
+  for (const slug of targetSlugs) visit(slug)
 
-  // Remove duplicates while preserving order
   const seen = new Set<string>()
   const deduped = sorted.filter((n) => {
     if (seen.has(n.slug)) return false
@@ -155,56 +167,90 @@ export async function generateRoadmap(goal: string): Promise<GeneratedRoadmap> {
     return true
   })
 
-  // Count lessons for each concept
-  const steps: RoadmapStep[] = []
-  for (let i = 0; i < deduped.length; i++) {
-    const node = deduped[i]
+  // Apply maxSteps constraint
+  const capped = constraints.maxSteps ? deduped.slice(0, constraints.maxSteps) : deduped
 
-    // Convention: edge [dependent, prerequisite, "requires"]
-    // source = dependent, target = prerequisite
-    // So for concept X, find edges where sourceId = X.id → target is the prerequisite
+  const steps: RoadmapStep[] = []
+  for (let i = 0; i < capped.length; i++) {
+    const node = capped[i]
+
     const prereqEdges = await prisma.edge.findMany({
-      where: {
-        sourceId: node.id,
-        relationType: "requires",
-      },
+      where: { sourceId: node.id, relationType: "requires" },
       include: { target: true },
     })
 
-    // Find lessons that teach this concept via the edge table
     const teachingEdges = await prisma.edge.findMany({
-      where: {
-        targetId: node.id,
-        relationType: "teaches",
-        source: { type: "lesson" },
-      },
+      where: { targetId: node.id, relationType: "teaches", source: { type: "lesson" } },
       include: { source: true },
     })
-    const lessonsCount = teachingEdges.length
     const lessonSlugs = teachingEdges.map((e) => e.source.slug.replace("lesson-", ""))
 
     steps.push({
       node,
       order: i + 1,
       prerequisites: prereqEdges.map((e) => e.target as NodeBasic),
-      lessonsCount,
+      lessonsCount: lessonSlugs.length,
       lessonSlugs,
     })
   }
 
-  const estimatedHours = steps.length * 2 // rough estimate: 2 hours per concept
+  // Time box based on constraint
+  const hoursPerStep = constraints.timePerDay
+    ? Math.max(1, Math.round(constraints.timePerDay / 60))
+    : 2
+  const estimatedHours = steps.length * hoursPerStep
   const difficulty = steps.length > 12 ? "advanced" : steps.length > 6 ? "intermediate" : "beginner"
 
-  return { goal, steps, estimatedHours, difficulty }
+  return {
+    goal,
+    steps,
+    estimatedHours,
+    difficulty,
+    constraints,
+    hash: hashRoadmap(goal, constraints),
+  }
+}
+
+// ─── Cached Roadmap Storage ───
+
+export async function saveGeneratedRoadmap(roadmap: GeneratedRoadmap) {
+  return prisma.roadmap.upsert({
+    where: { slug: `gen-${roadmap.hash}` },
+    update: {
+      title: `Roadmap: ${roadmap.goal}`,
+      description: `Generated roadmap for "${roadmap.goal}" with ${roadmap.steps.length} steps`,
+      type: "ai",
+      goal: roadmap.goal,
+      difficulty: roadmap.difficulty,
+      estimatedHours: roadmap.estimatedHours,
+      metadata: JSON.stringify(roadmap),
+    },
+    create: {
+      slug: `gen-${roadmap.hash}`,
+      title: `Roadmap: ${roadmap.goal}`,
+      description: `Generated roadmap for "${roadmap.goal}" with ${roadmap.steps.length} steps`,
+      type: "ai",
+      goal: roadmap.goal,
+      difficulty: roadmap.difficulty,
+      estimatedHours: roadmap.estimatedHours,
+      metadata: JSON.stringify(roadmap),
+    },
+  })
+}
+
+export async function getCachedRoadmap(hash: string) {
+  const roadmap = await prisma.roadmap.findUnique({
+    where: { slug: `gen-${hash}` },
+  })
+  if (!roadmap?.metadata) return null
+  return JSON.parse(roadmap.metadata) as GeneratedRoadmap
 }
 
 export async function getPrebuiltRoadmaps() {
   return prisma.roadmap.findMany({
+    where: { type: "system" },
     include: {
-      steps: {
-        orderBy: { order: "asc" },
-        include: { node: true },
-      },
+      steps: { orderBy: { order: "asc" }, include: { node: true } },
     },
   })
 }
@@ -213,9 +259,7 @@ export async function getUserRoadmaps(userId: string) {
   return prisma.userLearningPath.findMany({
     where: { userId },
     include: {
-      progress: {
-        include: { node: true },
-      },
+      progress: { include: { node: true } },
     },
     orderBy: { startedAt: "desc" },
   })

@@ -60,13 +60,13 @@ function Header({ onMenuToggle }: HeaderProps) {
 
       <div className="flex-1" />
 
-      <button className="flex items-center gap-2 text-xs text-[#606060] hover:text-[#c0c0c0] font-mono transition-colors">
+      <Link href="/explore" className="flex items-center gap-2 text-xs text-[#606060] hover:text-[#c0c0c0] font-mono transition-colors">
         <Search size={14} />
         <span className="hidden sm:inline">Search</span>
         <span className="hidden sm:inline text-[#606060] bg-[#121212] px-1.5 py-0.5 text-[10px] border border-[#1e1e1e]">
           ⌘K
         </span>
-      </button>
+      </Link>
 
       <button className="flex items-center gap-2 text-xs text-[#606060] hover:text-[#c0c0c0] font-mono transition-colors">
         <User size={14} />

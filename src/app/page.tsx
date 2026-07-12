@@ -61,7 +61,7 @@ export default function HomePage() {
             </p>
 
             <div className="flex items-center gap-4">
-              <Link href="/learn">
+              <Link href="/onboarding">
                 <Button variant="primary" size="lg">
                   <GraduationCap size={16} />
                   Start Learning
@@ -222,7 +222,7 @@ export default function HomePage() {
             hands-on projects, and a supportive community.
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Link href="/learn">
+            <Link href="/onboarding">
               <Button variant="primary" size="lg">
                 <GraduationCap size={16} />
                 Start Learning Free

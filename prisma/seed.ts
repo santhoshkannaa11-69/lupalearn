@@ -5,6 +5,21 @@ const prisma = new PrismaClient()
 async function main() {
   console.log("🌱 Seeding LupaLearn...")
 
+  // Clear existing data
+  await prisma.edge.deleteMany()
+  await prisma.roadmapStep.deleteMany()
+  await prisma.roadmap.deleteMany()
+  await prisma.lessonVersion.deleteMany()
+  await prisma.lessonCompletion.deleteMany()
+  await prisma.lesson.deleteMany()
+  await prisma.module.deleteMany()
+  await prisma.category.deleteMany()
+  await prisma.volume.deleteMany()
+  await prisma.node.deleteMany()
+  await prisma.project.deleteMany()
+  await prisma.challenge.deleteMany()
+  await prisma.quizQuestion.deleteMany()
+
   // ─── CONCEPT NODES ───
   const concepts = await Promise.all([
     // Programming fundamentals
@@ -45,8 +60,21 @@ async function main() {
     prisma.node.create({ data: { type: "concept", slug: "binary", name: "Binary Numbers", description: "Base-2 number system used by computers" } }),
     prisma.node.create({ data: { type: "concept", slug: "boolean-logic", name: "Boolean Logic", description: "AND, OR, NOT, truth tables, logic gates" } }),
     prisma.node.create({ data: { type: "concept", slug: "algorithms", name: "Algorithms", description: "Step-by-step procedures for solving problems" } }),
+    prisma.node.create({ data: { type: "concept", slug: "databases", name: "Databases", description: "Structured data storage and retrieval" } }),
+    prisma.node.create({ data: { type: "concept", slug: "sql", name: "SQL", description: "Structured Query Language for relational databases" } }),
+    prisma.node.create({ data: { type: "concept", slug: "http", name: "HTTP", description: "Hypertext Transfer Protocol" } }),
+    prisma.node.create({ data: { type: "concept", slug: "rest-apis", name: "REST APIs", description: "Representational State Transfer API design" } }),
+    prisma.node.create({ data: { type: "concept", slug: "networking", name: "Networking", description: "Computer networking fundamentals" } }),
+    prisma.node.create({ data: { type: "concept", slug: "cloud", name: "Cloud Computing", description: "Cloud infrastructure and services" } }),
+    prisma.node.create({ data: { type: "concept", slug: "ci-cd", name: "CI/CD", description: "Continuous integration and deployment" } }),
 
-    // Technologies & languages
+    // Higher-level programming concepts
+    prisma.node.create({ data: { type: "concept", slug: "async-programming", name: "Async Programming", description: "Handling concurrent operations without blocking" } }),
+    prisma.node.create({ data: { type: "concept", slug: "closures", name: "Closures", description: "Functions that remember their lexical scope" } }),
+    prisma.node.create({ data: { type: "concept", slug: "prototypes", name: "Prototypes", description: "JavaScript's inheritance mechanism" } }),
+    prisma.node.create({ data: { type: "concept", slug: "error-handling", name: "Error Handling", description: "Try/catch, exceptions, and defensive programming" } }),
+
+    // Languages
     prisma.node.create({ data: { type: "language", slug: "python", name: "Python", description: "High-level, interpreted programming language" } }),
     prisma.node.create({ data: { type: "language", slug: "javascript", name: "JavaScript", description: "Language of the web" } }),
     prisma.node.create({ data: { type: "language", slug: "typescript", name: "TypeScript", description: "Typed superset of JavaScript" } }),
@@ -63,15 +91,6 @@ async function main() {
     prisma.node.create({ data: { type: "tool", slug: "git", name: "Git", description: "Distributed version control system" } }),
     prisma.node.create({ data: { type: "tool", slug: "docker", name: "Docker", description: "Containerization platform" } }),
     prisma.node.create({ data: { type: "tool", slug: "linux", name: "Linux", description: "Open-source operating system kernel" } }),
-
-    // Higher-level concepts
-    prisma.node.create({ data: { type: "concept", slug: "async-programming", name: "Async Programming", description: "Handling concurrent operations without blocking" } }),
-    prisma.node.create({ data: { type: "concept", slug: "closures", name: "Closures", description: "Functions that remember their lexical scope" } }),
-    prisma.node.create({ data: { type: "concept", slug: "prototypes", name: "Prototypes", description: "JavaScript's inheritance mechanism" } }),
-    prisma.node.create({ data: { type: "concept", slug: "http", name: "HTTP", description: "Hypertext Transfer Protocol" } }),
-    prisma.node.create({ data: { type: "concept", slug: "rest-apis", name: "REST APIs", description: "Representational State Transfer API design" } }),
-    prisma.node.create({ data: { type: "concept", slug: "databases", name: "Databases", description: "Structured data storage and retrieval" } }),
-    prisma.node.create({ data: { type: "concept", slug: "sql", name: "SQL", description: "Structured Query Language for relational databases" } }),
   ])
 
   const nodeMap = Object.fromEntries(concepts.map(n => [n.slug, n.id]))
@@ -80,7 +99,7 @@ async function main() {
   // Convention: [dependent, prerequisite, "requires"]
   // source = dependent (learned later), target = prerequisite (learned first)
   const edges = [
-    // Programming fundamentals prerequisites
+    // Programming fundamentals
     ["data-types", "variables", "requires"],
     ["operators", "variables", "requires"],
     ["control-flow", "variables", "requires"],
@@ -93,8 +112,10 @@ async function main() {
     ["arrays", "variables", "requires"],
     ["strings", "variables", "requires"],
     ["strings", "arrays", "requires"],
+    ["error-handling", "control-flow", "requires"],
+    ["error-handling", "functions", "requires"],
 
-    // OOP prerequisites
+    // OOP
     ["oop", "functions", "requires"],
     ["classes", "oop", "requires"],
     ["inheritance", "classes", "requires"],
@@ -115,6 +136,18 @@ async function main() {
     ["sorting", "arrays", "requires"],
     ["complexity", "algorithms", "requires"],
 
+    // Advanced topics
+    ["async-programming", "functions", "requires"],
+    ["closures", "functions", "requires"],
+    ["prototypes", "oop", "requires"],
+    ["databases", "sql", "requires"],
+    ["rest-apis", "http", "requires"],
+    ["http", "networking", "requires"],
+    ["cloud", "networking", "requires"],
+    ["ci-cd", "git", "requires"],
+    ["docker", "linux", "requires"],
+    ["algorithms", "functions", "requires"],
+
     // Language → concepts
     ["python", "variables", "teaches"],
     ["python", "functions", "teaches"],
@@ -127,23 +160,25 @@ async function main() {
     ["rust", "variables", "teaches"],
     ["rust", "memory-management", "teaches"],
     ["rust", "pointers", "teaches"],
+    ["typescript", "javascript", "teaches"],
+    ["typescript", "variables", "teaches"],
+    ["go", "variables", "teaches"],
+    ["go", "functions", "teaches"],
+    ["java", "variables", "teaches"],
+    ["java", "oop", "teaches"],
 
     // Related concepts
     ["closures", "functions", "related_to"],
     ["async-programming", "functions", "related_to"],
     ["recursion", "functions", "related_to"],
     ["pointers", "memory-management", "related_to"],
+    ["sql", "databases", "related_to"],
   ]
 
   for (const [source, target, type] of edges) {
     if (nodeMap[source] && nodeMap[target]) {
       await prisma.edge.create({
-        data: {
-          sourceId: nodeMap[source],
-          targetId: nodeMap[target],
-          relationType: type,
-          strength: 8,
-        },
+        data: { sourceId: nodeMap[source], targetId: nodeMap[target], relationType: type, strength: 8 },
       })
     }
   }
@@ -153,33 +188,22 @@ async function main() {
     where: { number: 1 },
     update: {},
     create: {
-      number: 1,
-      slug: "computer-science",
-      title: "School of Computer Science",
-      subtitle: "CS Fundamentals",
+      number: 1, slug: "computer-science",
+      title: "School of Computer Science", subtitle: "CS Fundamentals",
       description: "Master the foundations of computer science.",
-      icon: "cpu",
-      color: "#00ff41",
-      status: "active",
-      order: 1,
+      icon: "cpu", color: "#00ff41", status: "active", order: 1,
     },
   })
 
-  // Course 7: Introduction to Programming
   const catProg = await prisma.category.create({
-    data: {
-      volumeId: v1.id,
-      slug: "programming-fundamentals",
-      title: "Programming Fundamentals",
-      order: 7,
-    },
+    data: { volumeId: v1.id, slug: "programming-fundamentals", title: "Programming Fundamentals", order: 7 },
   })
 
   const mod1 = await prisma.module.create({
     data: { categoryId: catProg.id, slug: "variables-data-types", title: "Variables & Data Types", order: 1 },
   })
 
-  // ─── SAMPLE LESSONS ───
+  // ─── LESSONS ───
   const lessonData = [
     { slug: "what-are-variables", title: "What Are Variables?", description: "Learn how computers store and reference data using variables.", contentPath: "lessons/volume-01/course-07/01-variables/01-what-are-variables.mdx", moduleId: mod1.id, order: 1, duration: 15, xpReward: 20, tags: JSON.stringify(["variables", "fundamentals", "memory"]) },
     { slug: "data-types-in-python", title: "Data Types in Python", description: "Explore Python's built-in types: int, float, str, bool, and more.", contentPath: "lessons/volume-01/course-07/01-variables/02-data-types.mdx", moduleId: mod1.id, order: 2, duration: 20, xpReward: 25, tags: JSON.stringify(["python", "data-types", "fundamentals"]) },
@@ -191,32 +215,26 @@ async function main() {
     { slug: "scope-closures", title: "Scope & Closures", description: "Understand variable visibility and how closures work.", contentPath: "lessons/volume-01/course-07/05-functions/02-scope-closures.mdx", moduleId: mod1.id, order: 8, duration: 30, xpReward: 40, tags: JSON.stringify(["scope", "closures", "javascript"]) },
     { slug: "recursion", title: "Recursion: Functions That Call Themselves", description: "Solve problems by breaking them into smaller versions of themselves.", contentPath: "lessons/volume-01/course-07/05-functions/03-recursion.mdx", moduleId: mod1.id, order: 9, duration: 30, xpReward: 45, tags: JSON.stringify(["recursion", "functions"]) },
     { slug: "binary-numbers", title: "Binary Numbers & Bit Manipulation", description: "How computers represent numbers in binary.", contentPath: "lessons/volume-01/course-02-number-systems/01-binary/binary-numbers.mdx", moduleId: mod1.id, order: 10, duration: 25, xpReward: 35, tags: JSON.stringify(["binary", "number-systems"]) },
+    { slug: "error-handling-basics", title: "Error Handling Basics", description: "Try/catch, exceptions, and writing defensive code.", contentPath: "lessons/volume-01/course-07/06-error-handling/01-error-handling.mdx", moduleId: mod1.id, order: 11, duration: 20, xpReward: 30, tags: JSON.stringify(["error-handling", "debugging"]) },
+    { slug: "intro-to-oop", title: "Introduction to OOP", description: "Understand object-oriented programming concepts.", contentPath: "lessons/volume-01/course-07/07-oop/01-intro-oop.mdx", moduleId: mod1.id, order: 12, duration: 25, xpReward: 35, tags: JSON.stringify(["oop", "classes"]) },
+    { slug: "git-basics", title: "Git Basics", description: "Version control fundamentals with Git.", contentPath: "lessons/volume-01/course-09/01-git/01-git-basics.mdx", moduleId: mod1.id, order: 13, duration: 30, xpReward: 40, tags: JSON.stringify(["git", "version-control"]) },
   ]
 
   const lessons = await Promise.all(
-    lessonData.map((l) =>
-      prisma.lesson.create({ data: l })
-    )
+    lessonData.map((l) => prisma.lesson.create({ data: l }))
   )
 
   const lessonMap = Object.fromEntries(lessons.map(l => [l.slug, l.id]))
 
-  // Create Node entries for each lesson (so Edges can reference them)
+  // Create nodes for each lesson
   const lessonNodes = await Promise.all(
     lessons.map((l) =>
       prisma.node.create({
-        data: {
-          type: "lesson",
-          slug: `lesson-${l.slug}`,
-          name: l.title,
-          description: l.description,
-        },
+        data: { type: "lesson", slug: `lesson-${l.slug}`, name: l.title, description: l.description },
       })
     )
   )
-  const lessonNodeMap = Object.fromEntries(
-    lessonNodes.map((n, i) => [lessons[i].slug, n.id])
-  )
+  const lessonNodeMap = Object.fromEntries(lessonNodes.map((n, i) => [lessons[i].slug, n.id]))
 
   // ─── CONNECT LESSONS TO CONCEPTS ───
   const lessonEdges = [
@@ -233,6 +251,10 @@ async function main() {
     ["scope-closures", "closures"],
     ["recursion", "recursion"],
     ["binary-numbers", "binary"],
+    ["error-handling-basics", "error-handling"],
+    ["intro-to-oop", "oop"],
+    ["intro-to-oop", "classes"],
+    ["git-basics", "git"],
   ]
 
   for (const [lessonSlug, conceptSlug] of lessonEdges) {
@@ -240,12 +262,7 @@ async function main() {
     const conceptId = nodeMap[conceptSlug]
     if (lessonNodeId && conceptId) {
       await prisma.edge.create({
-        data: {
-          sourceId: lessonNodeId,
-          targetId: conceptId,
-          relationType: "teaches",
-          strength: 10,
-        },
+        data: { sourceId: lessonNodeId, targetId: conceptId, relationType: "teaches", strength: 10 },
       })
     }
   }
@@ -256,14 +273,13 @@ async function main() {
       slug: "backend-developer",
       title: "Backend Developer Path",
       description: "Complete path from fundamentals to job-ready backend developer.",
-      type: "system",
-      goal: "Become a backend developer",
-      difficulty: "beginner",
-      estimatedHours: 200,
+      type: "system", goal: "Become a backend developer",
+      difficulty: "beginner", estimatedHours: 200,
     },
   })
 
-  const pathConcepts = ["variables", "data-types", "control-flow", "loops", "functions", "oop", "databases", "sql", "http", "rest-apis", "git", "linux"]
+  const pathConcepts = ["variables", "data-types", "control-flow", "loops", "functions",
+    "oop", "databases", "sql", "http", "rest-apis", "git", "linux"]
   for (let i = 0; i < pathConcepts.length; i++) {
     const nodeId = nodeMap[pathConcepts[i]]
     if (nodeId) {
@@ -273,19 +289,28 @@ async function main() {
     }
   }
 
+  // ─── VERIFICATION ───
+  const allConcepts = await prisma.node.findMany({ where: { type: "concept" } })
+  let orphanCount = 0
+  for (const concept of allConcepts) {
+    const incoming = await prisma.edge.count({
+      where: { targetId: concept.id, relationType: "teaches", source: { type: "lesson" } },
+    })
+    if (incoming === 0) {
+      console.log(`  ⚠ No lesson teaches: ${concept.name}`)
+      orphanCount++
+    }
+  }
+
   console.log("✅ Seed complete!")
   console.log(`   ${concepts.length} concept nodes`)
   console.log(`   ${edges.length} concept edges`)
-  console.log(`   ${lessonEdges.length} lesson edges`)
+  console.log(`   ${lessonEdges.length} lesson→concept edges`)
   console.log(`   ${lessons.length} lessons`)
   console.log(`   ${pathConcepts.length} roadmap steps`)
+  console.log(`   ${orphanCount} concepts without linked lessons`)
 }
 
 main()
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+  .catch((e) => { console.error(e); process.exit(1) })
+  .finally(async () => { await prisma.$disconnect() })
