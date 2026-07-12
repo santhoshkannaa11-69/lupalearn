@@ -1,0 +1,25 @@
+import type { TerminalTheme as TerminalThemeType } from "@/types"
+
+export const terminalTheme: TerminalThemeType = {
+  background: "#0a0a0a",
+  foreground: "#c0c0c0",
+  cursor: "#00ff41",
+  cursorAccent: "#000000",
+  selectionBackground: "#00ff4133",
+  black: "#000000",
+  red: "#ff3355",
+  green: "#00ff41",
+  yellow: "#ffb000",
+  blue: "#00aaff",
+  magenta: "#ff00aa",
+  cyan: "#00f0ff",
+  white: "#c0c0c0",
+  brightBlack: "#606060",
+  brightRed: "#ff6688",
+  brightGreen: "#33ff66",
+  brightYellow: "#ffcc33",
+  brightBlue: "#44bbff",
+  brightMagenta: "#ff44bb",
+  brightCyan: "#44ffff",
+  brightWhite: "#ffffff",
+}
