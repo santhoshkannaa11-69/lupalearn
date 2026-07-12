@@ -1,7 +1,18 @@
 import { prisma } from "./db"
+import { getNextSteps, getConceptMasterySummary } from "./progression"
 
-export async function getRecommendations(userId?: string) {
-  // Get trending concepts (most edges/connections)
+type Recommendation = {
+  type: "continue-learning" | "review-again" | "related-concepts" | "next-project" | "recommended-challenge" | "trending"
+  title: string
+  description: string
+  reason: string
+  href: string
+  priority: number // 1 = highest
+}
+
+// ─── TRENDING / POPULAR CONCEPTS ───
+
+export async function getTrendingConcepts() {
   const trending = await prisma.node.findMany({
     where: { type: { in: ["concept", "language", "framework", "tool"] } },
     include: {
@@ -14,7 +25,7 @@ export async function getRecommendations(userId?: string) {
     take: 8,
   })
 
-  const popularConcepts = trending.map((n) => ({
+  return trending.map((n) => ({
     id: n.id,
     slug: n.slug,
     name: n.name,
@@ -22,20 +33,16 @@ export async function getRecommendations(userId?: string) {
     description: n.description,
     connectionCount: n.incomingEdges.length + n.outgoingEdges.length,
   }))
-
-  return { popularConcepts }
 }
+
+// ─── RELATED CONTENT ───
 
 export async function getRelatedContent(nodeSlug: string) {
   const node = await prisma.node.findUnique({
     where: { slug: nodeSlug },
     include: {
-      outgoingEdges: {
-        include: { target: true },
-      },
-      incomingEdges: {
-        include: { source: true },
-      },
+      outgoingEdges: { include: { target: true } },
+      incomingEdges: { include: { source: true } },
     },
   })
 
@@ -57,23 +64,60 @@ export async function getRelatedContent(nodeSlug: string) {
     }
   }
 
-  // Find lessons that teach any of these related concepts
-  const relatedLessonNodes = await prisma.node.findMany({
-    where: {
-      type: "lesson",
-      slug: {
-        in: relatedNodes.map((n) => `lesson-${n.slug}`),
-      },
-    },
-  })
+  const lessonNodeSlugs = relatedNodes
+    .filter((n) => n.type === "lesson")
+    .map((n) => n.slug.replace("lesson-", ""))
 
-  const lessonSlugs = relatedLessonNodes.map((n) => n.slug.replace("lesson-", ""))
-  const relatedLessons = lessonSlugs.length > 0
-    ? await prisma.lesson.findMany({
-        where: { slug: { in: lessonSlugs } },
-        take: 5,
-      })
+  const relatedLessons = lessonNodeSlugs.length > 0
+    ? await prisma.lesson.findMany({ where: { slug: { in: lessonNodeSlugs } }, take: 5 })
     : []
 
   return { relatedNodes, relatedLessons }
+}
+
+// ─── FULL RECOMMENDATION ENGINE ───
+
+export async function getRecommendations(
+  userId: string,
+  goal?: string
+): Promise<Record<string, Recommendation[]>> {
+  const categories: Record<string, Recommendation[]> = {}
+
+  // 1. Continue Learning — next steps from progression engine
+  const nextSteps = await getNextSteps(userId, goal, 3)
+  categories["continue-learning"] = nextSteps.map((s, i) => ({
+    type: "continue-learning" as const,
+    title: s.concept.name,
+    description: s.concept.description || `Step ${s.order} in your learning path`,
+    reason: s.reason,
+    href: s.lessonSlugs[0]
+      ? `/learn/computer-science/programming-fundamentals/${s.lessonSlugs[0]}`
+      : `/explore?q=${s.concept.slug}`,
+    priority: i + 1,
+  }))
+
+  // 2. Review Again — low confidence concepts
+  const summary = await getConceptMasterySummary(userId)
+  const weakSorted = summary.weakAreas.sort((a, b) => a.confidence - b.confidence).slice(0, 3)
+  categories["review-again"] = weakSorted.map((w, i) => ({
+    type: "review-again" as const,
+    title: `Review: ${w.conceptName}`,
+    description: `Confidence: ${w.confidence}% — needs practice`,
+    reason: `Below mastery threshold. Review to improve retention.`,
+    href: `/explore?q=${w.conceptSlug}`,
+    priority: i + 1,
+  }))
+
+  // 3. Trending Concepts
+  const trending = await getTrendingConcepts()
+  categories["trending"] = trending.slice(0, 3).map((t, i) => ({
+    type: "trending" as const,
+    title: t.name,
+    description: t.description || `${t.type} with ${t.connectionCount} connections in the knowledge graph`,
+    reason: `Popular topic with ${t.connectionCount} related resources`,
+    href: `/explore?q=${t.slug}`,
+    priority: i + 1,
+  }))
+
+  return categories
 }
