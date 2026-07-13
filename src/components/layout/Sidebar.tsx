@@ -20,6 +20,7 @@ import {
   Search,
   Home,
   Wand,
+  Shield,
   ChevronDown,
   ChevronRight,
 } from "lucide-react"
@@ -39,6 +40,7 @@ const iconMap: Record<string, React.ElementType> = {
   settings: Settings,
   search: Search,
   wand: Wand,
+  shield: Shield,
 }
 
 interface SidebarProps {
@@ -80,6 +82,21 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
         })}
 
         {/* Divider */}
+        {/* Divider and Admin link */}
+        <div className="my-3 border-t border-[#1e1e1e]" />
+        <Link
+          href="/admin"
+          className={cn(
+            "flex items-center gap-3 px-3 py-2 text-xs font-mono transition-colors",
+            pathname.startsWith("/admin")
+              ? "text-[#ffb000] bg-[#121212] border-l-2 border-[#ffb000]"
+              : "text-[#606060] hover:text-[#ffb000] hover:bg-[#121212] border-l-2 border-transparent"
+          )}
+        >
+          <Shield size={14} />
+          <span>Admin Panel</span>
+        </Link>
+
         <div className="my-3 border-t border-[#1e1e1e]" />
 
         {/* Schools / Volumes */}

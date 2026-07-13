@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
+import ky from "ky"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -114,10 +115,19 @@ function AdminLayout({ children }: { children: ReactNode }) {
           })}
         </div>
 
-        <div className="p-3 border-t border-[#1e1e1e]">
+        <div className="p-3 border-t border-[#1e1e1e] space-y-2">
           <Link href="/" className="flex items-center gap-1 text-[10px] text-[#606060] font-mono hover:text-[#c0c0c0] transition-colors">
             ← Back to LupaLearn
           </Link>
+          <button
+            onClick={async () => {
+              await ky.post("/api/admin/auth", { json: { action: "logout" } })
+              window.location.href = "/admin/login"
+            }}
+            className="flex items-center gap-1 text-[10px] text-[#606060] font-mono hover:text-[#ff3355] transition-colors"
+          >
+            ⚡ Logout
+          </button>
         </div>
       </aside>
 

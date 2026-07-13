@@ -38,6 +38,8 @@ export const NAV_ITEMS = [
   { label: "Settings", href: "/settings", icon: "settings" },
 ] as const
 
+export const ADMIN_NAV_ITEM = { label: "Admin", href: "/admin", icon: "shield" } as const
+
 export const XP_PER_LEVEL = 500
 export const MAX_STREAK_MULTIPLIER = 5
 

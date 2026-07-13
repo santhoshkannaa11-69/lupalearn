@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import { Badge } from "@/components/ui/Badge"
@@ -9,7 +8,6 @@ import ky from "ky"
 import { Lock, Eye, EyeOff } from "lucide-react"
 
 export default function AdminLoginPage() {
-  const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -22,7 +20,7 @@ export default function AdminLoginPage() {
     setError("")
     try {
       await ky.post("/api/admin/auth", { json: { username, password }, timeout: 10000 })
-      router.push("/admin")
+      window.location.href = "/admin"
     } catch {
       setError("Invalid username or password")
     } finally {
