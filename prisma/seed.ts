@@ -175,78 +175,140 @@ async function main() {
     },
   })
 
-  const mod1 = await prisma.module.create({
-    data: { categoryId: catProg.id, slug: "variables-data-types", title: "Variables & Data Types", order: 1 },
-  })
+  // ─── 10 MODULES WITH 45 LESSONS ───
+  const modules = [
+    { slug: "what-is-programming", title: "What is Programming?", order: 1 },
+    { slug: "variables-data-types", title: "Variables & Data Types", order: 2 },
+    { slug: "operators-expressions", title: "Operators & Expressions", order: 3 },
+    { slug: "control-flow", title: "Control Flow", order: 4 },
+    { slug: "loops", title: "Loops", order: 5 },
+    { slug: "functions", title: "Functions", order: 6 },
+    { slug: "scope-closures", title: "Scope & Closures", order: 7 },
+    { slug: "recursion", title: "Recursion", order: 8 },
+    { slug: "error-handling", title: "Error Handling", order: 9 },
+    { slug: "projects", title: "Projects", order: 10 },
+  ]
 
-  // ─── SAMPLE LESSONS ───
+  const moduleRecords = await Promise.all(
+    modules.map((m) =>
+      prisma.module.create({ data: { categoryId: catProg.id, slug: m.slug, title: m.title, order: m.order } })
+    )
+  )
+  const modMap = Object.fromEntries(moduleRecords.map((m) => [m.slug, m.id]))
+
+  const BASE_PATH = "lessons/volume-01/course-07-programming-fundamentals"
+
+  // All 45 lessons organized by module
   const lessonData = [
-    { slug: "what-are-variables", title: "What Are Variables?", description: "Learn how computers store and reference data using variables.", contentPath: "lessons/volume-01/course-07/01-variables/01-what-are-variables.mdx", moduleId: mod1.id, order: 1, duration: 15, xpReward: 20, tags: JSON.stringify(["variables", "fundamentals", "memory"]) },
-    { slug: "data-types-in-python", title: "Data Types in Python", description: "Explore Python's built-in types: int, float, str, bool, and more.", contentPath: "lessons/volume-01/course-07/01-variables/02-data-types.mdx", moduleId: mod1.id, order: 2, duration: 20, xpReward: 25, tags: JSON.stringify(["python", "data-types", "fundamentals"]) },
-    { slug: "variables-in-javascript", title: "Variables in JavaScript", description: "var, let, const — understanding JavaScript variable declarations.", contentPath: "lessons/volume-01/course-07/01-variables/03-variables-js.mdx", moduleId: mod1.id, order: 3, duration: 20, xpReward: 25, tags: JSON.stringify(["javascript", "variables", "scope"]) },
-    { slug: "operators-expressions", title: "Operators & Expressions", description: "Arithmetic, comparison, logical, and assignment operators.", contentPath: "lessons/volume-01/course-07/02-operators/01-operators.mdx", moduleId: mod1.id, order: 4, duration: 20, xpReward: 25, tags: JSON.stringify(["operators", "expressions"]) },
-    { slug: "control-flow-if-else", title: "Control Flow: If/Else", description: "Make decisions in your code with conditionals.", contentPath: "lessons/volume-01/course-07/03-control-flow/01-if-else.mdx", moduleId: mod1.id, order: 5, duration: 20, xpReward: 30, tags: JSON.stringify(["control-flow", "conditionals"]) },
-    { slug: "loops-for-while", title: "Loops: For & While", description: "Repeat code efficiently using loops.", contentPath: "lessons/volume-01/course-07/04-loops/01-loops.mdx", moduleId: mod1.id, order: 6, duration: 25, xpReward: 30, tags: JSON.stringify(["loops", "iteration"]) },
-    { slug: "functions-basics", title: "Functions: The Building Blocks", description: "Write reusable code with functions.", contentPath: "lessons/volume-01/course-07/05-functions/01-functions-basics.mdx", moduleId: mod1.id, order: 7, duration: 25, xpReward: 35, tags: JSON.stringify(["functions", "reusability"]) },
-    { slug: "scope-closures", title: "Scope & Closures", description: "Understand variable visibility and how closures work.", contentPath: "lessons/volume-01/course-07/05-functions/02-scope-closures.mdx", moduleId: mod1.id, order: 8, duration: 30, xpReward: 40, tags: JSON.stringify(["scope", "closures", "javascript"]) },
-    { slug: "recursion", title: "Recursion: Functions That Call Themselves", description: "Solve problems by breaking them into smaller versions of themselves.", contentPath: "lessons/volume-01/course-07/05-functions/03-recursion.mdx", moduleId: mod1.id, order: 9, duration: 30, xpReward: 45, tags: JSON.stringify(["recursion", "functions"]) },
-    { slug: "binary-numbers", title: "Binary Numbers & Bit Manipulation", description: "How computers represent numbers in binary.", contentPath: "lessons/volume-01/course-02-number-systems/01-binary/binary-numbers.mdx", moduleId: mod1.id, order: 10, duration: 25, xpReward: 35, tags: JSON.stringify(["binary", "number-systems"]) },
+    // Module 1: What is Programming? (5)
+    { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
+    { slug: "how-computers-execute-code", title: "How Computers Execute Code", description: "Understand the fetch-decode-execute cycle.", contentPath: `${BASE_PATH}/01-what-is-programming/02-how-computers-execute-code.mdx`, moduleSlug: "what-is-programming", order: 2, duration: 15, xp: 20, tags: ["computers", "execution"], concepts: ["algorithms"] },
+    { slug: "programming-languages-overview", title: "Programming Languages Overview", description: "Explore different programming languages.", contentPath: `${BASE_PATH}/01-what-is-programming/03-programming-languages-overview.mdx`, moduleSlug: "what-is-programming", order: 3, duration: 15, xp: 15, tags: ["languages"], concepts: ["algorithms"] },
+    { slug: "your-development-environment", title: "Your Development Environment", description: "Set up and use the LupaLearn Playground.", contentPath: `${BASE_PATH}/01-what-is-programming/04-your-development-environment.mdx`, moduleSlug: "what-is-programming", order: 4, duration: 15, xp: 20, tags: ["tools", "setup"], concepts: ["algorithms"] },
+    { slug: "thinking-like-a-programmer", title: "Thinking Like a Programmer", description: "Learn problem-solving strategies.", contentPath: `${BASE_PATH}/01-what-is-programming/05-thinking-like-a-programmer.mdx`, moduleSlug: "what-is-programming", order: 5, duration: 20, xp: 25, tags: ["problem-solving", "mindset"], concepts: ["algorithms"] },
+
+    // Module 2: Variables & Data Types (1 golden + 5 more planned)
+    { slug: "variables-data-types", title: "Variables & Data Types", description: "Master variables and data types in programming.", contentPath: `${BASE_PATH}/02-variables-data-types/01-variables-data-types.mdx`, moduleSlug: "variables-data-types", order: 1, duration: 20, xp: 30, tags: ["variables", "data-types"], concepts: ["variables", "data-types"] },
+
+    // Module 3: Operators & Expressions (5)
+    { slug: "intro-to-operators", title: "Introduction to Operators", description: "Learn arithmetic operators and expressions.", contentPath: `${BASE_PATH}/03-operators-expressions/01-intro-to-operators.mdx`, moduleSlug: "operators-expressions", order: 1, duration: 15, xp: 20, tags: ["operators"], concepts: ["operators"] },
+    { slug: "comparison-operators", title: "Comparison Operators", description: "Compare values with comparison operators.", contentPath: `${BASE_PATH}/03-operators-expressions/02-comparison-operators.mdx`, moduleSlug: "operators-expressions", order: 2, duration: 15, xp: 20, tags: ["comparison"], concepts: ["operators"] },
+    { slug: "logical-operators", title: "Logical Operators", description: "Combine conditions with AND, OR, NOT.", contentPath: `${BASE_PATH}/03-operators-expressions/03-logical-operators.mdx`, moduleSlug: "operators-expressions", order: 3, duration: 15, xp: 25, tags: ["logic"], concepts: ["operators", "boolean-logic"] },
+    { slug: "operator-precedence", title: "Operator Precedence", description: "Understand the order of operations.", contentPath: `${BASE_PATH}/03-operators-expressions/04-operator-precedence.mdx`, moduleSlug: "operators-expressions", order: 4, duration: 15, xp: 20, tags: ["precedence"], concepts: ["operators"] },
+    { slug: "building-expressions", title: "Building Expressions", description: "Build complex expressions from simple ones.", contentPath: `${BASE_PATH}/03-operators-expressions/05-building-expressions.mdx`, moduleSlug: "operators-expressions", order: 5, duration: 20, xp: 30, tags: ["expressions"], concepts: ["operators"] },
+
+    // Module 4: Control Flow (5)
+    { slug: "if-else-basics", title: "If/Else Basics", description: "Make decisions in code with if/else.", contentPath: `${BASE_PATH}/04-control-flow/01-if-else-basics.mdx`, moduleSlug: "control-flow", order: 1, duration: 20, xp: 30, tags: ["conditionals"], concepts: ["control-flow"] },
+    { slug: "conditional-chaining", title: "Conditional Chaining", description: "Chain multiple conditions together.", contentPath: `${BASE_PATH}/04-control-flow/02-conditional-chaining.mdx`, moduleSlug: "control-flow", order: 2, duration: 15, xp: 25, tags: ["conditionals"], concepts: ["control-flow"] },
+    { slug: "switch-statements", title: "Switch Statements", description: "Use switch for fixed-value conditions.", contentPath: `${BASE_PATH}/04-control-flow/03-switch-statements.mdx`, moduleSlug: "control-flow", order: 3, duration: 15, xp: 25, tags: ["switch"], concepts: ["control-flow"] },
+    { slug: "ternary-operator", title: "Ternary Operator", description: "Shorthand if/else with the ternary operator.", contentPath: `${BASE_PATH}/04-control-flow/04-ternary-operator.mdx`, moduleSlug: "control-flow", order: 4, duration: 15, xp: 20, tags: ["ternary"], concepts: ["control-flow"] },
+    { slug: "nested-conditionals", title: "Nested Conditionals", description: "Nest if statements inside other if statements.", contentPath: `${BASE_PATH}/04-control-flow/05-nested-conditionals.mdx`, moduleSlug: "control-flow", order: 5, duration: 20, xp: 30, tags: ["nesting"], concepts: ["control-flow"] },
+
+    // Module 5: Loops (5)
+    { slug: "for-loops", title: "For Loops", description: "Repeat code with for loops.", contentPath: `${BASE_PATH}/05-loops/01-for-loops.mdx`, moduleSlug: "loops", order: 1, duration: 20, xp: 30, tags: ["for-loops"], concepts: ["loops"] },
+    { slug: "while-loops", title: "While Loops", description: "Use while loops for conditional repetition.", contentPath: `${BASE_PATH}/05-loops/02-while-loops.mdx`, moduleSlug: "loops", order: 2, duration: 15, xp: 25, tags: ["while-loops"], concepts: ["loops"] },
+    { slug: "loop-control", title: "Loop Control: Break and Continue", description: "Control loop execution with break and continue.", contentPath: `${BASE_PATH}/05-loops/03-loop-control.mdx`, moduleSlug: "loops", order: 3, duration: 15, xp: 25, tags: ["break-continue"], concepts: ["loops"] },
+    { slug: "nested-loops", title: "Nested Loops", description: "Nest loops inside other loops.", contentPath: `${BASE_PATH}/05-loops/04-nested-loops.mdx`, moduleSlug: "loops", order: 4, duration: 20, xp: 30, tags: ["nested-loops"], concepts: ["loops"] },
+    { slug: "loop-challenge", title: "Loop Challenge", description: "Apply loops to solve practical problems.", contentPath: `${BASE_PATH}/05-loops/05-loop-challenge.mdx`, moduleSlug: "loops", order: 5, duration: 25, xp: 45, tags: ["challenge"], concepts: ["loops"] },
+
+    // Module 6: Functions (6)
+    { slug: "function-basics-v2", title: "Function Basics", description: "Define and call functions.", contentPath: `${BASE_PATH}/06-functions/01-function-basics.mdx`, moduleSlug: "functions", order: 1, duration: 20, xp: 35, tags: ["functions"], concepts: ["functions"] },
+    { slug: "parameters-arguments", title: "Parameters and Arguments", description: "Work with function parameters.", contentPath: `${BASE_PATH}/06-functions/02-parameters-arguments.mdx`, moduleSlug: "functions", order: 2, duration: 15, xp: 25, tags: ["parameters"], concepts: ["functions"] },
+    { slug: "return-values", title: "Return Values", description: "Use return to send values from functions.", contentPath: `${BASE_PATH}/06-functions/03-return-values.mdx`, moduleSlug: "functions", order: 3, duration: 15, xp: 25, tags: ["return"], concepts: ["functions"] },
+    { slug: "function-expressions", title: "Function Expressions", description: "Store functions in variables.", contentPath: `${BASE_PATH}/06-functions/04-function-expressions.mdx`, moduleSlug: "functions", order: 4, duration: 15, xp: 25, tags: ["expressions"], concepts: ["functions"] },
+    { slug: "pure-functions", title: "Pure Functions", description: "Write predictable, testable functions.", contentPath: `${BASE_PATH}/06-functions/05-pure-functions.mdx`, moduleSlug: "functions", order: 5, duration: 15, xp: 25, tags: ["purity"], concepts: ["functions"] },
+    { slug: "function-challenge", title: "Function Challenge", description: "Apply functions to solve problems.", contentPath: `${BASE_PATH}/06-functions/06-function-challenge.mdx`, moduleSlug: "functions", order: 6, duration: 25, xp: 50, tags: ["challenge"], concepts: ["functions"] },
+
+    // Module 7: Scope & Closures (4)
+    { slug: "what-is-scope", title: "What Is Scope?", description: "Understand variable visibility in code.", contentPath: `${BASE_PATH}/07-scope-closures/01-what-is-scope.mdx`, moduleSlug: "scope-closures", order: 1, duration: 15, xp: 25, tags: ["scope"], concepts: ["scope"] },
+    { slug: "let-vs-var-vs-const", title: "Let vs Var vs Const", description: "Learn the differences between variable declarations.", contentPath: `${BASE_PATH}/07-scope-closures/02-let-vs-var-vs-const.mdx`, moduleSlug: "scope-closures", order: 2, duration: 20, xp: 30, tags: ["variables"], concepts: ["variables", "scope"] },
+    { slug: "closures-intro", title: "Closures", description: "Functions that remember their scope.", contentPath: `${BASE_PATH}/07-scope-closures/03-closures-intro.mdx`, moduleSlug: "scope-closures", order: 3, duration: 25, xp: 40, tags: ["closures"], concepts: ["closures", "scope"] },
+    { slug: "scope-challenge", title: "Scope Challenge", description: "Apply scope and closure concepts.", contentPath: `${BASE_PATH}/07-scope-closures/04-scope-challenge.mdx`, moduleSlug: "scope-closures", order: 4, duration: 20, xp: 40, tags: ["challenge"], concepts: ["scope", "closures"] },
+
+    // Module 8: Recursion (4)
+    { slug: "recursion-intro", title: "Recursion Introduction", description: "Learn what recursion is.", contentPath: `${BASE_PATH}/08-recursion/01-recursion-intro.mdx`, moduleSlug: "recursion", order: 1, duration: 25, xp: 40, tags: ["recursion"], concepts: ["recursion"] },
+    { slug: "recursion-vs-iteration", title: "Recursion vs Iteration", description: "Compare recursive and iterative solutions.", contentPath: `${BASE_PATH}/08-recursion/02-recursion-vs-iteration.mdx`, moduleSlug: "recursion", order: 2, duration: 20, xp: 35, tags: ["comparison"], concepts: ["recursion", "loops"] },
+    { slug: "recursion-patterns", title: "Common Recursion Patterns", description: "Recognize common recursion patterns.", contentPath: `${BASE_PATH}/08-recursion/03-recursion-patterns.mdx`, moduleSlug: "recursion", order: 3, duration: 25, xp: 40, tags: ["patterns"], concepts: ["recursion"] },
+    { slug: "recursion-challenge", title: "Recursion Challenge", description: "Apply recursion to complex problems.", contentPath: `${BASE_PATH}/08-recursion/04-recursion-challenge.mdx`, moduleSlug: "recursion", order: 4, duration: 30, xp: 50, tags: ["challenge"], concepts: ["recursion"] },
+
+    // Module 9: Error Handling (4)
+    { slug: "try-catch", title: "Try/Catch", description: "Handle errors gracefully with try/catch.", contentPath: `${BASE_PATH}/09-error-handling/01-try-catch.mdx`, moduleSlug: "error-handling", order: 1, duration: 20, xp: 30, tags: ["try-catch"], concepts: ["error-handling"] },
+    { slug: "error-types", title: "Error Types", description: "Recognize common JavaScript error types.", contentPath: `${BASE_PATH}/09-error-handling/02-error-types.mdx`, moduleSlug: "error-handling", order: 2, duration: 15, xp: 25, tags: ["error-types"], concepts: ["error-handling"] },
+    { slug: "defensive-programming", title: "Defensive Programming", description: "Write code that prevents errors.", contentPath: `${BASE_PATH}/09-error-handling/03-defensive-programming.mdx`, moduleSlug: "error-handling", order: 3, duration: 20, xp: 30, tags: ["defensive"], concepts: ["error-handling"] },
+    { slug: "error-handling-challenge", title: "Error Handling Challenge", description: "Apply error handling to real problems.", contentPath: `${BASE_PATH}/09-error-handling/04-error-handling-challenge.mdx`, moduleSlug: "error-handling", order: 4, duration: 25, xp: 45, tags: ["challenge"], concepts: ["error-handling"] },
+
+    // Module 10: Projects (6)
+    { slug: "project-number-guessing-game", title: "Project: Number Guessing Game", description: "Build a complete interactive game.", contentPath: `${BASE_PATH}/10-projects/01-number-guessing-game.mdx`, moduleSlug: "projects", order: 1, duration: 30, xp: 60, tags: ["game"], concepts: ["control-flow", "loops", "functions"] },
+    { slug: "project-todo-list", title: "Project: Todo List", description: "Build a todo list manager.", contentPath: `${BASE_PATH}/10-projects/02-todo-list.mdx`, moduleSlug: "projects", order: 2, duration: 30, xp: 65, tags: ["todo"], concepts: ["functions", "arrays"] },
+    { slug: "project-calculator-app", title: "Project: Calculator App", description: "Build a complete calculator application.", contentPath: `${BASE_PATH}/10-projects/03-calculator-app.mdx`, moduleSlug: "projects", order: 3, duration: 30, xp: 60, tags: ["calculator"], concepts: ["functions", "operators"] },
+    { slug: "project-grade-tracker", title: "Project: Grade Tracker", description: "Build a grade management system.", contentPath: `${BASE_PATH}/10-projects/04-grade-tracker.mdx`, moduleSlug: "projects", order: 4, duration: 30, xp: 65, tags: ["grades"], concepts: ["functions", "arrays"] },
+    { slug: "project-text-analyzer", title: "Project: Text Analyzer", description: "Build a text analysis tool.", contentPath: `${BASE_PATH}/10-projects/05-text-analyzer.mdx`, moduleSlug: "projects", order: 5, duration: 30, xp: 60, tags: ["text-analysis"], concepts: ["functions", "strings"] },
+    { slug: "project-weather-cli", title: "Capstone: Weather CLI Tool", description: "Build a complete weather CLI tool.", contentPath: `${BASE_PATH}/10-projects/06-capstone-weather-cli.mdx`, moduleSlug: "projects", order: 6, duration: 45, xp: 100, tags: ["capstone"], concepts: ["functions", "error-handling"] },
   ]
 
-  const lessons = await Promise.all(
+  // Create lessons with proper module mapping
+  const lessonRecords = await Promise.all(
     lessonData.map((l) =>
-      prisma.lesson.create({ data: l })
-    )
-  )
-
-  const lessonMap = Object.fromEntries(lessons.map(l => [l.slug, l.id]))
-
-  // Create Node entries for each lesson (so Edges can reference them)
-  const lessonNodes = await Promise.all(
-    lessons.map((l) =>
-      prisma.node.create({
+      prisma.lesson.create({
         data: {
-          type: "lesson",
-          slug: `lesson-${l.slug}`,
-          name: l.title,
+          slug: l.slug,
+          title: l.title,
           description: l.description,
+          contentPath: l.contentPath,
+          moduleId: modMap[l.moduleSlug],
+          order: l.order,
+          duration: l.duration,
+          xpReward: l.xp,
+          difficulty: "beginner",
+          tags: JSON.stringify(l.tags),
         },
       })
     )
   )
-  const lessonNodeMap = Object.fromEntries(
-    lessonNodes.map((n, i) => [lessons[i].slug, n.id])
-  )
 
-  // ─── CONNECT LESSONS TO CONCEPTS ───
-  const lessonEdges = [
-    ["what-are-variables", "variables"],
-    ["data-types-in-python", "data-types"],
-    ["data-types-in-python", "python"],
-    ["variables-in-javascript", "variables"],
-    ["variables-in-javascript", "javascript"],
-    ["operators-expressions", "operators"],
-    ["control-flow-if-else", "control-flow"],
-    ["loops-for-while", "loops"],
-    ["functions-basics", "functions"],
-    ["scope-closures", "scope"],
-    ["scope-closures", "closures"],
-    ["recursion", "recursion"],
-    ["binary-numbers", "binary"],
-  ]
+  const lessonSlugToId = Object.fromEntries(lessonRecords.map((l) => [l.slug, l.id]))
 
-  for (const [lessonSlug, conceptSlug] of lessonEdges) {
-    const lessonNodeId = lessonNodeMap[lessonSlug]
-    const conceptId = nodeMap[conceptSlug]
-    if (lessonNodeId && conceptId) {
-      await prisma.edge.create({
-        data: {
-          sourceId: lessonNodeId,
-          targetId: conceptId,
-          relationType: "teaches",
-          strength: 10,
-        },
+  // Create knowledge graph nodes for each lesson
+  const lessonGraphNodes = await Promise.all(
+    lessonRecords.map((l) =>
+      prisma.node.create({
+        data: { type: "lesson", slug: `lesson-${l.slug}`, name: l.title, description: l.description },
       })
+    )
+  )
+  const lessonNodeMap = Object.fromEntries(lessonGraphNodes.map((n, i) => [lessonRecords[i].slug, n.id]))
+
+  // Connect lessons to concepts via teaches edges
+  for (const lesson of lessonData) {
+    const lessonNodeId = lessonNodeMap[lesson.slug]
+    if (!lessonNodeId) continue
+    for (const conceptSlug of lesson.concepts) {
+      const conceptId = nodeMap[conceptSlug]
+      if (conceptId) {
+        await prisma.edge.create({
+          data: { sourceId: lessonNodeId, targetId: conceptId, relationType: "teaches", strength: 10 },
+        })
+      }
     }
   }
 
@@ -276,9 +338,8 @@ async function main() {
   console.log("✅ Seed complete!")
   console.log(`   ${concepts.length} concept nodes`)
   console.log(`   ${edges.length} concept edges`)
-  console.log(`   ${lessonEdges.length} lesson edges`)
-  console.log(`   ${lessons.length} lessons`)
-  console.log(`   ${pathConcepts.length} roadmap steps`)
+  console.log(`   ${lessonData.length} lessons`)
+  console.log(`   ${lessonData.reduce((s, l) => s + l.concepts.length, 0)} lesson→concept edges`)
 }
 
 main()
