@@ -86,8 +86,8 @@ export default function AdminLoginPage() {
             <p className="text-[10px] text-[#606060] font-mono text-center">
               Default: admin / lupalearn2024
             </p>
-            <p className="text-[10px] text-[#606060] font-mono text-center mt-1">
-              Set ADMIN_USERNAME & ADMIN_PASSWORD in .env.local for production
+            <p className="text-[10px] text-[#ffb000] font-mono text-center mt-1">
+              ⚠ Change ADMIN_USERNAME & ADMIN_PASSWORD in .env.local before production
             </p>
           </div>
         </div>
