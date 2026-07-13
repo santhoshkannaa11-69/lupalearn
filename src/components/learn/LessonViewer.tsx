@@ -128,11 +128,6 @@ function LessonViewer({ lesson, concepts, mdxContent }: LessonViewerProps) {
                 h2: ({ children }) => <h2 className="text-base font-bold text-[#ffffff] font-mono mt-5 mb-2">{children}</h2>,
                 h3: ({ children }) => <h3 className="text-sm font-bold text-[#00ff41] font-mono mt-4 mb-2">{children}</h3>,
                 p: ({ children }) => {
-                  // Check if children contain Terminal component placeholder
-                  const childrenStr = JSON.stringify(children)
-                  if (typeof children === "string" && children.includes("TERMINAL_BLOCK")) {
-                    return <>{children}</>
-                  }
                   return <p className="text-sm text-[#c0c0c0] leading-relaxed mb-3">{children}</p>
                 },
                 ul: ({ children }) => <ul className="list-disc list-inside text-[#c0c0c0] space-y-1 mb-3 text-sm">{children}</ul>,

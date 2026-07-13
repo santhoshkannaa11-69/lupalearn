@@ -152,10 +152,20 @@ export async function getConceptsForLesson(lessonSlug: string) {
     include: {
       outgoingEdges: {
         where: { relationType: "teaches" },
-        include: { target: true },
+        select: {
+          target: {
+            select: { id: true, slug: true, name: true, type: true, description: true },
+          },
+        },
       },
     },
   })
 
-  return lessonNode?.outgoingEdges.map((e) => e.target) ?? []
+  return (lessonNode?.outgoingEdges.map((e) => ({
+    id: e.target.id,
+    slug: e.target.slug,
+    name: e.target.name,
+    type: e.target.type,
+    description: e.target.description,
+  })) ?? [])
 }
