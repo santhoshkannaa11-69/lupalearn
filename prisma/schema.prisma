@@ -487,3 +487,11 @@ model Asset {
   userId String?
   user   User?    @relation(fields: [userId], references: [id])
 }
+
+model GraphRevision {
+  id        String   @id @default(cuid())
+  author    String
+  summary   String
+  changes   String   // JSON array of change descriptions
+  createdAt DateTime @default(now())
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useRef, useMemo } from "react"
+import { useCallback, useRef, useEffect } from "react"
 import Editor from "@monaco-editor/react"
 import { editorTheme } from "./EditorTheme"
 import { useEditorStore, getFileContent } from "@/stores/editorStore"
@@ -8,14 +8,10 @@ import type { editor } from "monaco-editor"
 
 function MonacoEditor() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
+  const internalChange = useRef(false)
   const activeFile = useEditorStore((s) => s.activeFile)
   const workspace = useEditorStore((s) => s.workspace)
   const setFileContent = useEditorStore((s) => s.setFileContent)
-
-  const fileContent = useMemo(
-    () => (activeFile ? getFileContent(workspace, activeFile) : ""),
-    [workspace, activeFile]
-  )
 
   const language = activeFile
     ? useEditorStore.getState().detectLanguage(activeFile.split("/").pop() || "")
@@ -32,12 +28,31 @@ function MonacoEditor() {
 
   const handleChange = useCallback(
     (value: string | undefined) => {
-      if (activeFile && value !== undefined) {
-        setFileContent(activeFile, value)
+      internalChange.current = true
+      const file = useEditorStore.getState().activeFile
+      if (file && value !== undefined) {
+        setFileContent(file, value)
       }
     },
-    [activeFile, setFileContent]
+    [setFileContent]
   )
+
+  // Sync editor from store only when switching files or external changes
+  useEffect(() => {
+    if (internalChange.current) {
+      internalChange.current = false
+      return
+    }
+    const ed = editorRef.current
+    if (!ed || !activeFile) return
+    const model = ed.getModel()
+    if (model) {
+      const expected = getFileContent(workspace, activeFile)
+      if (model.getValue() !== expected) {
+        model.setValue(expected)
+      }
+    }
+  }, [activeFile, workspace])
 
   if (!activeFile) {
     return (
@@ -50,10 +65,10 @@ function MonacoEditor() {
   return (
     <div className="flex-1 overflow-hidden">
       <Editor
-        key={`${activeFile}-${fileContent.length}`}
+        key={activeFile}
         height="100%"
         language={language}
-        value={fileContent}
+        defaultValue={getFileContent(workspace, activeFile)}
         theme="lupa-terminal"
         onChange={handleChange}
         onMount={handleMount}
@@ -79,6 +94,7 @@ function MonacoEditor() {
           renderWhitespace: "selection",
           bracketPairColorization: { enabled: true },
           guides: { bracketPairs: true, indentation: true },
+          readOnly: false,
         }}
       />
     </div>
