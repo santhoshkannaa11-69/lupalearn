@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useRef } from "react"
+import { useCallback, useRef, useMemo } from "react"
 import Editor from "@monaco-editor/react"
 import { editorTheme } from "./EditorTheme"
 import { useEditorStore, getFileContent } from "@/stores/editorStore"
@@ -12,20 +12,22 @@ function MonacoEditor() {
   const workspace = useEditorStore((s) => s.workspace)
   const setFileContent = useEditorStore((s) => s.setFileContent)
 
-  const fileContent = activeFile ? getFileContent(workspace, activeFile) : ""
+  const fileContent = useMemo(
+    () => (activeFile ? getFileContent(workspace, activeFile) : ""),
+    [workspace, activeFile]
+  )
+
   const language = activeFile
     ? useEditorStore.getState().detectLanguage(activeFile.split("/").pop() || "")
     : "plaintext"
 
+  const handleBeforeMount = useCallback((monaco: typeof import("monaco-editor")) => {
+    monaco.editor.defineTheme("lupa-terminal", editorTheme)
+  }, [])
+
   const handleMount = useCallback((ed: editor.IStandaloneCodeEditor) => {
     editorRef.current = ed
     ed.focus()
-    ed.getModel()?.setValue(fileContent)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleBeforeMount = useCallback((monaco: typeof import("monaco-editor")) => {
-    monaco.editor.defineTheme("lupa-terminal", editorTheme)
   }, [])
 
   const handleChange = useCallback(
@@ -48,7 +50,7 @@ function MonacoEditor() {
   return (
     <div className="flex-1 overflow-hidden">
       <Editor
-        key={activeFile}
+        key={`${activeFile}-${fileContent.length}`}
         height="100%"
         language={language}
         value={fileContent}
@@ -56,6 +58,11 @@ function MonacoEditor() {
         onChange={handleChange}
         onMount={handleMount}
         beforeMount={handleBeforeMount}
+        loading={
+          <div className="flex items-center justify-center h-full bg-[#0a0a0a]">
+            <p className="text-xs text-[#606060] font-mono">Loading editor...</p>
+          </div>
+        }
         options={{
           fontSize: 13,
           fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",

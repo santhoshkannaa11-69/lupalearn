@@ -1,191 +1,169 @@
 "use client"
 
-import { useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef } from "react"
 import { Terminal as XTerm } from "@xterm/xterm"
 import { FitAddon } from "@xterm/addon-fit"
-import { WebLinksAddon } from "@xterm/addon-web-links"
 import { terminalTheme } from "@/components/terminal/TerminalTheme"
 import { useEditorStore } from "@/stores/editorStore"
 import { TerminalShell } from "@/lib/editor-core/terminal-shell"
 import "@xterm/xterm/css/xterm.css"
 
 function PlaygroundTerminal() {
-  const terminalRef = useRef<HTMLDivElement>(null)
-  const xtermRef = useRef<XTerm | null>(null)
+  const elRef = useRef<HTMLDivElement>(null)
+  const termRef = useRef<XTerm | null>(null)
   const shellRef = useRef<TerminalShell | null>(null)
-  const inputBuffer = useRef("")
-  const commandHistory = useRef<string[]>([])
-  const historyIndex = useRef(-1)
-  const initialized = useRef(false)
-
-  const setFileContent = useEditorStore((s) => s.setFileContent)
-  const createFile = useEditorStore((s) => s.createFile)
-  const deleteFile = useEditorStore((s) => s.deleteFile)
-  const getWorkspaceFn = useCallback(() => useEditorStore.getState().workspace, [])
-
-  const writeToTerminal = useCallback((text: string) => {
-    xtermRef.current?.write(text)
-  }, [])
+  const bufRef = useRef("")
 
   useEffect(() => {
-    if (terminalRef.current && !initialized.current) {
-      initialized.current = true
-      const fitAddon = new FitAddon()
-      const xterm = new XTerm({
-        theme: terminalTheme,
-        fontSize: 13,
-        fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace",
-        cursorBlink: true,
-        cursorStyle: "block",
-        allowProposedApi: true,
-        cols: 80,
-        rows: 10,
-        disableStdin: false,
-      })
+    if (!elRef.current || termRef.current) return
 
-      xterm.loadAddon(fitAddon)
-      xterm.loadAddon(new WebLinksAddon())
-      xterm.open(terminalRef.current)
-      setTimeout(() => fitAddon.fit(), 50)
+    const fit = new FitAddon()
+    const term = new XTerm({
+      theme: terminalTheme,
+      fontSize: 13,
+      fontFamily: "'JetBrains Mono', monospace",
+      cursorBlink: true,
+      cursorStyle: "block",
+      cols: 80,
+      rows: 10,
+    })
 
-      const shell = new TerminalShell(getWorkspaceFn, setFileContent, createFile, deleteFile)
-      shell.onWrite = (text) => xterm.write(text)
-      shell.onClear = () => xterm.clear()
-      shell.onExit = () => {
-        xterm.write("\r\n\x1b[33m[Terminal closed. Refresh to restart]\x1b[0m\r\n")
+    term.loadAddon(fit)
+    term.open(elRef.current)
+    setTimeout(() => fit.fit(), 50)
+
+    const store = useEditorStore.getState
+    const shell = new TerminalShell(
+      () => store().workspace,
+      (p, c) => store().setFileContent(p, c),
+      (p, n, l) => store().createFile(p, n, l),
+      (p) => store().deleteFile(p),
+    )
+    shellRef.current = shell
+
+    term.writeln(`${"\x1b[32m"}Welcome to LupaLearn Terminal${"\x1b[0m"}`)
+    term.writeln(`${"\x1b[2m"}Type 'help' for commands. ↑↓ history. Tab complete.${"\x1b[0m"}`)
+    writePrompt(term, shell)
+
+    term.onData((data) => {
+      const s = shellRef.current!
+      const t = termRef.current!
+      if (!s || !t) return
+
+      // Ctrl+C
+      if (data === "\x03") {
+        bufRef.current = ""
+        t.write("^C\r\n")
+        writePrompt(t, s)
+        return
       }
-      shellRef.current = shell
 
-      // Welcome message
-      xterm.writeln("\x1b[32mWelcome to LupaLearn Terminal v0.1.0\x1b[0m")
-      xterm.writeln("\x1b[2mType 'help' for available commands. Up/Down for history. Tab for completion.\x1b[0m")
-      xterm.write(shell.prompt)
-      inputBuffer.current = ""
+      // Ctrl+L
+      if (data === "\x0c") {
+        t.clear()
+        writePrompt(t, s)
+        return
+      }
 
-      // Key handler
-      xterm.onData((data) => {
-        const s = shellRef.current
-        if (!s) return
+      // Ctrl+U
+      if (data === "\x15") {
+        clearLine(t, bufRef.current)
+        bufRef.current = ""
+        return
+      }
 
-        // Ctrl+C — interrupt
-        if (data === "\x03") {
-          inputBuffer.current = ""
-          xterm.write("^C\r\n")
-          xterm.write(s.prompt)
+      // Tab
+      if (data === "\t") {
+        const result = s.complete(bufRef.current)
+        if (!result) return
+        if (result.startsWith("--MULTI--")) {
+          t.write("\r\n" + result.slice(9) + "\r\n")
+          writePrompt(t, s)
+          t.write(bufRef.current)
           return
         }
+        bufRef.current += result
+        t.write(result)
+        return
+      }
 
-        // Tab — completion
-        if (data === "\t") {
-          const completions = s.getCompletions(inputBuffer.current)
-          if (completions.length === 1) {
-            inputBuffer.current += completions[0]
-            xterm.write(completions[0])
-          } else if (completions.length > 1) {
-            xterm.write("\r\n")
-            completions.forEach((c) => xterm.write(c + "  "))
-            xterm.write("\r\n" + s.prompt + inputBuffer.current)
-          }
-          return
-        }
+      // Enter
+      if (data === "\r") {
+        const line = bufRef.current
+        t.write("\r\n")
+        bufRef.current = ""
 
-        // Enter
-        if (data === "\r") {
-          const line = inputBuffer.current
-          xterm.write("\r\n")
-          if (line.trim()) {
-            commandHistory.current.push(line)
-            historyIndex.current = commandHistory.current.length
-            const result = s.execute(line)
-            if (result === "__CLEAR__") {
-              xterm.clear()
-            } else if (result) {
-              xterm.write(result)
-            }
-          }
-          inputBuffer.current = ""
-          xterm.write(s.prompt)
-          return
-        }
-
-        // Backspace
-        if (data === "\x7f") {
-          if (inputBuffer.current.length > 0) {
-            inputBuffer.current = inputBuffer.current.slice(0, -1)
-            xterm.write("\b \b")
-          }
-          return
-        }
-
-        // Up arrow — history back
-        if (data === "\x1b[A") {
-          if (historyIndex.current > 0) {
-            historyIndex.current--
-            const prev = commandHistory.current[historyIndex.current]
-            // Clear current line
-            const len = inputBuffer.current.length
-            for (let i = 0; i < len; i++) xterm.write("\b \b")
-            inputBuffer.current = prev
-            xterm.write(prev)
-          }
-          return
-        }
-
-        // Down arrow — history forward
-        if (data === "\x1b[B") {
-          if (historyIndex.current < commandHistory.current.length - 1) {
-            historyIndex.current++
-            const next = commandHistory.current[historyIndex.current]
-            const len = inputBuffer.current.length
-            for (let i = 0; i < len; i++) xterm.write("\b \b")
-            inputBuffer.current = next
-            xterm.write(next)
+        if (line.trim()) {
+          const { output, prompt } = s.exec(line)
+          if (output === "__CLEAR__") {
+            t.clear()
           } else {
-            historyIndex.current = commandHistory.current.length
-            const len = inputBuffer.current.length
-            for (let i = 0; i < len; i++) xterm.write("\b \b")
-            inputBuffer.current = ""
+            t.write(output)
           }
-          return
+          if (prompt) writePrompt(t, s)
+        } else {
+          writePrompt(t, s)
         }
-
-        // Ctrl+L — clear
-        if (data === "\x0c") {
-          xterm.clear()
-          xterm.write(s.prompt + inputBuffer.current)
-          return
-        }
-
-        // Ctrl+U — clear line
-        if (data === "\x15") {
-          const len = inputBuffer.current.length
-          for (let i = 0; i < len; i++) xterm.write("\b \b")
-          inputBuffer.current = ""
-          return
-        }
-
-        // Printable characters
-        if (data.length === 1 && data.charCodeAt(0) >= 32) {
-          inputBuffer.current += data
-          xterm.write(data)
-        }
-      })
-
-      xtermRef.current = xterm
-
-      const ro = new ResizeObserver(() => fitAddon.fit())
-      if (terminalRef.current) ro.observe(terminalRef.current)
-
-      return () => {
-        ro.disconnect()
-        xterm.dispose()
-        xtermRef.current = null
-        initialized.current = false
+        return
       }
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <div ref={terminalRef} className="h-full w-full" />
+      // Backspace
+      if (data === "\x7f") {
+        if (bufRef.current.length > 0) {
+          bufRef.current = bufRef.current.slice(0, -1)
+          t.write("\b \b")
+        }
+        return
+      }
+
+      // Up
+      if (data === "\x1b[A") {
+        const prev = s.getHistory("up")
+        if (prev !== undefined) {
+          clearLine(t, bufRef.current)
+          bufRef.current = prev
+          t.write(prev)
+        }
+        return
+      }
+
+      // Down
+      if (data === "\x1b[B") {
+        const next = s.getHistory("down")
+        clearLine(t, bufRef.current)
+        bufRef.current = next ?? ""
+        t.write(next ?? "")
+        return
+      }
+
+      // Printable
+      if (data.length === 1 && data.charCodeAt(0) >= 32) {
+        bufRef.current += data
+        t.write(data)
+      }
+    })
+
+    termRef.current = term
+    const ro = new ResizeObserver(() => fit.fit())
+    if (elRef.current) ro.observe(elRef.current)
+
+    return () => {
+      ro.disconnect()
+      term.dispose()
+      termRef.current = null
+    }
+  }, [])
+
+  return <div ref={elRef} className="h-full w-full" />
+}
+
+function writePrompt(term: XTerm, shell: TerminalShell) {
+  term.write("\r" + shell.prompt)
+}
+
+function clearLine(term: XTerm, current: string) {
+  const len = current.length + 10 // prompt length estimate
+  term.write("\r" + " ".repeat(len) + "\r")
 }
 
 export { PlaygroundTerminal }
