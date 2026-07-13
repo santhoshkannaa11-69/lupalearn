@@ -1,0 +1,88 @@
+---
+title: "Function Basics"
+slug: function-basics-v2
+module: "Functions"
+moduleOrder: 6
+lessonOrder: 1
+duration: 20
+xp: 35
+difficulty: beginner
+concepts: [functions]
+prerequisites: [for-loops]
+learningObjectives:
+  - Define and call functions
+  - Understand parameters and return values
+  - Write reusable code
+estimatedKnowledgeGain: 8
+tags: [functions, reusability, basics]
+---
+
+## 1. Why This Matters
+
+Functions are the building blocks of all code. They let you write a piece of logic once and use it everywhere.
+
+## 2. Explanation
+
+```javascript
+function functionName(parameter1, parameter2) {
+  // code to run
+  return result;
+}
+```
+
+| Part | Purpose |
+|------|---------|
+| `function` | Keyword that declares a function |
+| `functionName` | How you refer to the function |
+| `parameters` | Inputs the function receives |
+| `body` | The code that runs |
+| `return` | The output value |
+
+## 3. Code Example
+
+```javascript
+// Define a function
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+// Call the function
+let message = greet("Alice");
+console.log(message);  // Hello, Alice!
+
+// Function with multiple parameters
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(5, 3));  // 8
+console.log(add(10, 20)); // 30
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function double(n) {
+  return n * 2;
+}
+
+function isEven(n) {
+  return n % 2 === 0;
+}
+
+console.log(double(7));
+console.log(double(25));
+console.log(isEven(10));
+console.log(isEven(7));" />
+
+<Quiz question="What does this function return?\n\nfunction square(x) { return x * x; }\nsquare(4);"
+  options={["4", "8", "16", "undefined"]}
+  answer="2"
+  explanation="4 * 4 = 16. The function multiplies x by itself."
+/>
+
+## 5. Summary
+
+- Functions group code into reusable blocks
+- Parameters are inputs, return is output
+- Call a function by using its name + parentheses
+- Functions make code reusable and testable

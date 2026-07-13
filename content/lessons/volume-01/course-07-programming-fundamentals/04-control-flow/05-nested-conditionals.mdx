@@ -1,0 +1,86 @@
+---
+title: "Nested Conditionals"
+slug: nested-conditionals
+module: "Control Flow"
+moduleOrder: 4
+lessonOrder: 5
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [control-flow]
+prerequisites: [conditional-chaining]
+learningObjectives:
+  - Nest if statements inside other if statements
+  - Keep nested conditionals readable
+estimatedKnowledgeGain: 6
+tags: [control-flow, nested, structure]
+---
+
+## 1. Explanation
+
+Sometimes you need to check a condition inside another condition. This is called **nesting**.
+
+```javascript
+if (outerCondition) {
+  if (innerCondition) {
+    // Both conditions are true
+  }
+}
+```
+
+## 2. Code Example
+
+```javascript
+let isAuthenticated = true;
+let role = "admin";
+
+if (isAuthenticated) {
+  console.log("Welcome!");
+
+  if (role === "admin") {
+    console.log("You have admin access");
+  } else if (role === "editor") {
+    console.log("You can edit content");
+  } else {
+    console.log("You can view content");
+  }
+} else {
+  console.log("Please log in");
+}
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let isMember = true;
+let purchases = 5;
+let hasCoupon = false;
+
+if (isMember) {
+  if (purchases >= 10) {
+    console.log(&quot;Gold member — 20% off!&quot;);
+  } else if (purchases >= 5) {
+    console.log(&quot;Silver member — 10% off!&quot;);
+  } else {
+    console.log(&quot;Bronze member — 5% off!&quot;);
+  }
+
+  if (hasCoupon) {
+    console.log(&quot;Extra 15% off with coupon!&quot;);
+  }
+} else {
+  console.log(&quot;Sign up for membership benefits!&quot;);
+}" />
+
+## 4. Challenge
+
+Write code that checks if a number is positive, negative, or zero. Then, if it's positive, check if it's even or odd.
+
+<Terminal mode="challenge" language="javascript" initialCode="let num = 7;
+
+// Your code here" />
+
+## 5. Summary
+
+- Nest if statements to check multiple levels of conditions
+- Keep nesting shallow (max 2-3 levels)
+- Consider combining conditions with `&&` when possible

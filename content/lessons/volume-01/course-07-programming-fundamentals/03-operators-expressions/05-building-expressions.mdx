@@ -1,0 +1,85 @@
+---
+title: "Building Expressions"
+slug: building-expressions
+module: "Operators & Expressions"
+moduleOrder: 3
+lessonOrder: 5
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [operators]
+prerequisites: [operator-precedence]
+learningObjectives:
+  - Build complex expressions from simple ones
+  - Use expressions in real-world scenarios
+estimatedKnowledgeGain: 7
+tags: [operators, expressions, practice]
+---
+
+## 1. Explanation
+
+An **expression** is any piece of code that produces a value. You can build complex expressions by combining smaller ones.
+
+```javascript
+// Simple value → expression
+42
+
+// Variable → expression
+let age = 25;
+age
+
+// Operator → expression
+age + 5
+
+// Function call → expression
+Math.max(10, 20)
+
+// Combined
+let total = (price * quantity) + tax;
+```
+
+## 2. Code Example
+
+```javascript
+// Real-world: Shopping cart total
+let price = 29.99;
+let quantity = 3;
+let taxRate = 0.08;
+
+let subtotal = price * quantity;
+let tax = subtotal * taxRate;
+let total = subtotal + tax;
+
+console.log("Subtotal: $" + subtotal);
+console.log("Tax: $" + tax.toFixed(2));
+console.log("Total: $" + total.toFixed(2));
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Build a tip calculator
+let bill = 45.50;
+let tipPercent = 15;
+let people = 3;
+
+let tip = bill * (tipPercent / 100);
+let total = bill + tip;
+let perPerson = total / people;
+
+console.log(&quot;Tip: $&quot; + tip.toFixed(2));
+console.log(&quot;Total: $&quot; + total.toFixed(2));
+console.log(&quot;Per person: $&quot; + perPerson.toFixed(2));" />
+
+<Quiz
+  question="What is the value of this expression: (4 + 6) * 2 === 20 ?"
+  options={["true", "false", "20", "NaN"]}
+  answer="0"
+  explanation="(4+6)*2 = 10*2 = 20. Then 20 === 20 is true."
+/>
+
+## 4. Summary
+
+- Expressions produce values
+- Combine simple expressions to build complex ones
+- Parentheses make your intent clear
+- Practice by building real-world calculators

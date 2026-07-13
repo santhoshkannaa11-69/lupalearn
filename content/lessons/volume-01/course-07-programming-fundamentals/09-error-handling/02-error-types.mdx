@@ -1,0 +1,79 @@
+---
+title: "Error Types"
+slug: error-types
+module: "Error Handling"
+moduleOrder: 9
+lessonOrder: 2
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [error-handling]
+prerequisites: [try-catch]
+learningObjectives:
+  - Recognize common JavaScript error types
+  - Handle different errors differently
+estimatedKnowledgeGain: 5
+tags: [error-handling, types, debugging]
+---
+
+## 1. Explanation
+
+JavaScript has several built-in error types. Catching specific types lets you handle each appropriately.
+
+| Error Type | What It Means | Example |
+|-----------|---------------|---------|
+| `ReferenceError` | Variable doesn't exist | `console.log(x)` where x is undefined |
+| `TypeError` | Wrong type operation | `null.length` |
+| `SyntaxError` | Invalid code syntax | `JSON.parse("{bad}")` |
+| `RangeError` | Value out of range | `new Array(-1)` |
+| `Error` | Generic error | `throw new Error("message")` |
+
+## 2. Code Example
+
+```javascript
+try {
+  // Try different errors by uncommenting:
+  // console.log(undefinedVariable);    // ReferenceError
+  // null.length;                       // TypeError
+  JSON.parse("{bad}");               // SyntaxError
+} catch (error) {
+  if (error instanceof ReferenceError) {
+    console.log("Reference Error:", error.message);
+  } else if (error instanceof TypeError) {
+    console.log("Type Error:", error.message);
+  } else if (error instanceof SyntaxError) {
+    console.log("Syntax Error:", error.message);
+  } else {
+    console.log("Unknown Error:", error.message);
+  }
+}
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function safeDivide(a, b) {
+  if (typeof a !== &quot;number&quot; || typeof b !== &quot;number&quot;) {
+    throw new TypeError(&quot;Both arguments must be numbers&quot;);
+  }
+  if (b === 0) {
+    throw new Error(&quot;Division by zero&quot;);
+  }
+  return a / b;
+}
+
+try {
+  console.log(safeDivide(10, &quot;hi&quot;));
+} catch (e) {
+  if (e instanceof TypeError) {
+    console.log(&quot;Type error:&quot;, e.message);
+  } else {
+    console.log(&quot;Error:&quot;, e.message);
+  }
+}" />
+
+## 4. Summary
+
+- Different errors have different types
+- Use `instanceof` to check error types
+- Handle each error type appropriately
+- Always provide meaningful error messages

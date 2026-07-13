@@ -1,0 +1,68 @@
+---
+title: "Ternary Operator"
+slug: ternary-operator
+module: "Control Flow"
+moduleOrder: 4
+lessonOrder: 4
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [control-flow]
+prerequisites: [if-else-basics]
+learningObjectives:
+  - Use the ternary operator for simple conditional assignments
+  - Know when to use ternary vs if/else
+estimatedKnowledgeGain: 5
+tags: [control-flow, ternary, shorthand]
+---
+
+## 1. Explanation
+
+The **ternary operator** is a shorthand for simple if/else statements. It takes three parts:
+
+```javascript
+condition ? valueIfTrue : valueIfFalse
+```
+
+## 2. Code Example
+
+```javascript
+let age = 20;
+
+// If/else version
+let message;
+if (age >= 18) {
+  message = "Adult";
+} else {
+  message = "Minor";
+}
+
+// Ternary version (same logic)
+let message2 = age >= 18 ? "Adult" : "Minor";
+
+console.log(message);   // Adult
+console.log(message2);  // Adult
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let score = 85;
+let grade = score >= 70 ? &quot;Pass&quot; : &quot;Fail&quot;;
+console.log(&quot;Result:&quot;, grade);
+
+// Nested ternary (use sparingly)
+let rating = score >= 90 ? &quot;A&quot; : score >= 80 ? &quot;B&quot; : score >= 70 ? &quot;C&quot; : &quot;F&quot;;
+console.log(&quot;Grade:&quot;, rating);" />
+
+<Quiz question="What does this output?\n\nlet x = 10;\nlet result = x > 5 ? 'big' : 'small';\nconsole.log(result);"
+  options={["big", "small", "true", "undefined"]}
+  answer="0"
+  explanation="10 > 5 is true, so the ternary returns 'big'."
+/>
+
+## 4. Summary
+
+- Ternary is shorthand for simple if/else
+- Format: `condition ? value1 : value2`
+- Use for simple assignments, not complex logic
+- Don't nest ternaries — it hurts readability

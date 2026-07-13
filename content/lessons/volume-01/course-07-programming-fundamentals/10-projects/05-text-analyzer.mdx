@@ -1,0 +1,56 @@
+---
+title: "Project: Text Analyzer"
+slug: project-text-analyzer
+module: "Projects"
+moduleOrder: 10
+lessonOrder: 5
+duration: 30
+xp: 60
+difficulty: intermediate
+concepts: [functions, strings, arrays]
+prerequisites: [function-challenge]
+learningObjectives:
+  - Build a text analysis tool
+  - Work with strings, arrays, and statistical calculations
+estimatedKnowledgeGain: 9
+tags: [project, text-analysis, strings, arrays]
+---
+
+## 1. Project Brief
+
+Build a text analyzer that reads text and produces statistics about it.
+
+## 2. Requirements
+
+1. `wordCount(text)` — number of words
+2. `charCount(text)` — number of characters (including/excluding spaces)
+3. `sentenceCount(text)` — number of sentences
+4. `mostFrequentWords(text, n)` — top N most frequent words
+5. `averageWordLength(text)` — average word length
+6. `readingTime(text)` — estimated reading time (200 words/min)
+
+## 3. Starter Code
+
+<Terminal mode="challenge" language="javascript" initialCode="// Text Analyzer
+
+function wordCount(text) { }
+function charCount(text) { }
+function sentenceCount(text) { }
+function mostFrequentWords(text, n) { }
+function averageWordLength(text) { }
+function readingTime(text) { }
+
+// Test:
+const sample = &quot;The quick brown fox jumps over the lazy dog. The fox was quick!&quot;;
+console.log(&quot;Words:&quot;, wordCount(sample));
+console.log(&quot;Sentences:&quot;, sentenceCount(sample));
+console.log(&quot;Avg word length:&quot;, averageWordLength(sample));
+console.log(&quot;Reading time:&quot;, readingTime(sample) + &quot; min&quot;);
+console.log(&quot;Top words:&quot;, mostFrequentWords(sample, 3));" />
+
+## 4. Summary
+
+- Text processing is a common programming task
+- String methods (split, trim, toLowerCase) are essential
+- Frequency analysis is useful for many applications
+- Combine multiple functions for a complete tool

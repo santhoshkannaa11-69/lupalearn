@@ -1,0 +1,88 @@
+---
+title: "Recursion Introduction"
+slug: recursion-intro
+module: "Recursion"
+moduleOrder: 8
+lessonOrder: 1
+duration: 25
+xp: 40
+difficulty: intermediate
+concepts: [recursion]
+prerequisites: [function-basics-v2]
+learningObjectives:
+  - Explain what recursion is
+  - Identify the base case and recursive case
+estimatedKnowledgeGain: 7
+tags: [recursion, functions, problem-solving]
+---
+
+## 1. Why This Matters
+
+Some problems are naturally recursive — the solution contains a smaller version of itself. Recursion lets you solve these problems elegantly.
+
+## 2. Explanation
+
+**Recursion** is when a function calls itself. Every recursive function needs two parts:
+
+1. **Base case** — the condition that stops the recursion
+2. **Recursive case** — the function calling itself with a smaller input
+
+```javascript
+function countdown(n) {
+  // Base case
+  if (n <= 0) {
+    console.log("Done!");
+    return;
+  }
+  // Recursive case
+  console.log(n);
+  countdown(n - 1);
+}
+```
+
+## 3. Code Example
+
+```javascript
+// Factorial: n! = n × (n-1) × (n-2) × ... × 1
+function factorial(n) {
+  // Base case
+  if (n <= 1) return 1;
+  // Recursive case
+  return n * factorial(n - 1);
+}
+
+console.log(factorial(5));  // 120 (5×4×3×2×1)
+
+// Visual trace of factorial(5):
+// factorial(5) → 5 * factorial(4)
+//             → 5 * 4 * factorial(3)
+//             → 5 * 4 * 3 * factorial(2)
+//             → 5 * 4 * 3 * 2 * factorial(1)
+//             → 5 * 4 * 3 * 2 * 1 = 120
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function countdown(n) {
+  if (n <= 0) {
+    console.log(&quot;🎉 Done!&quot;);
+    return;
+  }
+  console.log(n);
+  countdown(n - 1);
+}
+
+countdown(5);" />
+
+<Quiz question="What is the base case in the factorial function?"
+  options={["n <= 1", "n * factorial(n-1)", "return", "console.log"]}
+  answer="0"
+  explanation="When n <= 1, the function returns 1 instead of calling itself again. This stops the recursion."
+/>
+
+## 5. Summary
+
+- Recursion = a function calling itself
+- Always need a base case (stops) and recursive case (continues)
+- Start with the base case when writing recursive functions
+- Recursion is elegant for tree-like problems

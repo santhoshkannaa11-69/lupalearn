@@ -1,0 +1,76 @@
+---
+title: "Project: Grade Tracker"
+slug: project-grade-tracker
+module: "Projects"
+moduleOrder: 10
+lessonOrder: 4
+duration: 30
+xp: 65
+difficulty: intermediate
+concepts: [functions, arrays, objects]
+prerequisites: [function-challenge]
+learningObjectives:
+  - Build a grade management system
+  - Work with arrays of objects
+estimatedKnowledgeGain: 9
+tags: [project, grades, arrays, objects]
+---
+
+## 1. Project Brief
+
+Build a grade tracker that manages students, assignments, and calculates final grades.
+
+## 2. Requirements
+
+1. `addStudent(name)` — adds a student
+2. `addGrade(studentName, subject, score)` — records a grade
+3. `getAverage(studentName)` — calculates average
+4. `getLetterGrade(score)` — converts number to letter
+5. `getClassAverage(subject)` — class average per subject
+6. `getRankings()` — students sorted by average
+
+## 3. Starter Code
+
+<Terminal mode="challenge" language="javascript" initialCode="// Grade Tracker
+let students = [];
+
+function addStudent(name) {
+  // Your code here
+}
+
+function addGrade(studentName, subject, score) {
+  // Your code here
+}
+
+function getAverage(studentName) {
+  // Your code here
+}
+
+function getLetterGrade(score) {
+  // A: >= 90, B: >= 80, C: >= 70, D: >= 60, F: < 60
+}
+
+function getClassAverage(subject) {
+  // Your code here
+}
+
+function getRankings() {
+  // Your code here
+}
+
+// Test:
+addStudent(&quot;Alice&quot;);
+addStudent(&quot;Bob&quot;);
+addGrade(&quot;Alice&quot;, &quot;Math&quot;, 95);
+addGrade(&quot;Alice&quot;, &quot;Science&quot;, 88);
+addGrade(&quot;Bob&quot;, &quot;Math&quot;, 78);
+console.log(getAverage(&quot;Alice&quot;));      // 91.5
+console.log(getLetterGrade(91.5));     // A
+console.log(getClassAverage(&quot;Math&quot;));  // 86.5" />
+
+## 4. Summary
+
+- Real-world apps manage collections of data
+- Arrays of objects are a common pattern
+- Calculate derived data (averages, grades) from raw data
+- Sorting and filtering are essential operations

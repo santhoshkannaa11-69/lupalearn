@@ -1,0 +1,85 @@
+---
+title: "Try/Catch"
+slug: try-catch
+module: "Error Handling"
+moduleOrder: 9
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [error-handling]
+prerequisites: [function-basics-v2]
+learningObjectives:
+  - Use try/catch to handle errors gracefully
+  - Prevent crashes from unexpected situations
+estimatedKnowledgeGain: 7
+tags: [error-handling, try-catch, debugging]
+---
+
+## 1. Why This Matters
+
+Programs encounter errors: files that don't exist, network failures, invalid input. Without error handling, these crash your program. With try/catch, you handle them gracefully.
+
+## 2. Explanation
+
+```javascript
+try {
+  // Code that might fail
+  let result = riskyOperation();
+  console.log(result);
+} catch (error) {
+  // Runs if an error occurs
+  console.log("Something went wrong:", error.message);
+} finally {
+  // Always runs (optional)
+  console.log("Cleanup");
+}
+```
+
+## 3. Code Example
+
+```javascript
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Division by zero!");
+  }
+  return a / b;
+}
+
+try {
+  console.log(divide(10, 2));  // 5
+  console.log(divide(10, 0));  // Throws error
+  console.log("This won't run");  // Skipped
+} catch (error) {
+  console.log("Error:", error.message);
+} finally {
+  console.log("Done");  // Always runs
+}
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function parseJSON(text) {
+  try {
+    const data = JSON.parse(text);
+    console.log(&quot;Valid JSON:&quot;, data);
+  } catch (error) {
+    console.log(&quot;Invalid JSON:&quot;, error.message);
+  }
+}
+
+parseJSON('{&quot;name&quot;: &quot;Alice&quot;}');  // Valid
+parseJSON('{not json}');               // Invalid" />
+
+<Quiz question="What happens when an error occurs inside a try block?"
+  options={["The program crashes", "Execution jumps to catch", "The error is ignored", "try retries automatically"]}
+  answer="1"
+  explanation="When an error occurs, execution immediately jumps to the catch block."
+/>
+
+## 5. Summary
+
+- `try` wraps code that might fail
+- `catch` handles errors if they occur
+- `finally` always runs (cleanup)
+- Use `throw new Error()` to create your own errors

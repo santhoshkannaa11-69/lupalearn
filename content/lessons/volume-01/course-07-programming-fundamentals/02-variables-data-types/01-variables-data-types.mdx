@@ -1,0 +1,201 @@
+---
+title: "Variables & Data Types"
+slug: variables-data-types
+module: "Variables & Data Types"
+moduleOrder: 2
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [variables, data-types]
+prerequisites: []
+learningObjectives:
+  - Explain what a variable is and why it's used
+  - Declare and assign values to variables
+  - Identify common data types: int, float, string, boolean
+  - Choose the right data type for a value
+  - Modify variable values during program execution
+estimatedKnowledgeGain: 8
+conceptWeight:
+  variables: 1.0
+  data-types: 0.8
+tags: [variables, data-types, fundamentals, memory]
+---
+
+## 1. Learning Objective
+
+By the end of this lesson, you will be able to:
+
+- **Define** what a variable is in programming terms
+- **Declare** variables and **assign** values to them
+- **Identify** the four most common data types
+- **Choose** the correct data type for different kinds of information
+- **Modify** a variable's value as your program runs
+
+## 2. Why This Matters
+
+Every program you will ever write needs to **store** and **manipulate** data. Whether it's a simple calculator, a video game, or a web application — variables are how you tell the computer "keep this value, I'll need it later."
+
+Think of variables as **labeled boxes** in the computer's memory. Without them, you'd have to type every number, name, or result manually each time. Variables make your code **dynamic**, **flexible**, and **reusable**.
+
+## 3. Explanation
+
+### What Is a Variable?
+
+A **variable** is a named container that holds a value in the computer's memory. Every variable has three properties:
+
+| Property | Meaning | Example |
+|----------|---------|---------|
+| **Name** | How you refer to the variable | `age`, `username`, `total` |
+| **Value** | The data stored inside | `25`, `"Alice"`, `true` |
+| **Type** | What kind of data it holds | number, string, boolean |
+
+### Common Data Types
+
+Different kinds of data need different types. Here are the four you'll use most:
+
+| Type | What It Stores | Examples |
+|------|---------------|----------|
+| **int** | Whole numbers | `42`, `0`, `-7`, `1000` |
+| **float** | Decimal numbers | `3.14`, `-0.5`, `99.99` |
+| **string** | Text (in quotes) | `"hello"`, `"Alice"`, `"123"` |
+| **bool** | True or false | `true`, `false` |
+
+> **Pro tip:** Use the right type for the right job. Storing a phone number as a *number* loses leading zeros (`021` becomes `21`). Store it as a *string* instead.
+
+## 4. Visual Mental Model
+
+Imagine the computer's memory as a row of empty boxes, each with a unique address:
+
+```
+┌──────┬──────┬──────┬──────┬──────┐
+│      │      │  25  │      │      │
+│  0x1 │  0x2 │  0x3 │  0x4 │  0x5 │
+│      │      │  age │      │      │
+└──────┴──────┴──────┴──────┴──────┘
+```
+
+When you write `let age = 25;`, the computer:
+1. Finds an empty box at address `0x3`
+2. Labels it with the name `age`
+3. Stores the value `25` inside
+
+Now whenever you use `age` in your code, the computer looks in that box.
+
+## 5. Code Example
+
+```javascript
+// Declaring variables with different data types
+let name = "Alice";       // string — text inside quotes
+let age = 25;             // number (int) — whole number
+let height = 1.68;        // number (float) — decimal
+let isStudent = true;     // boolean — true or false
+
+// Reading variables
+console.log(name);        // Output: Alice
+console.log(age);         // Output: 25
+
+// Modifying variables
+age = 26;                 // age is now 26
+console.log(age);         // Output: 26
+```
+
+## 6. Interactive Terminal
+
+Run this code in the terminal below. Try changing the values and see what happens.
+
+<Terminal mode="interactive" language="javascript" initialCode="// Your turn! Create your own variables
+let myName = &quot;Your Name&quot;;
+let myAge = 20;
+let myHeight = 1.75;
+let lovesCoding = true;
+
+console.log(&quot;Name:&quot;, myName);
+console.log(&quot;Age:&quot;, myAge);
+console.log(&quot;Height:&quot;, myHeight);
+console.log(&quot;Loves coding:&quot;, lovesCoding);
+
+// Now modify age
+myAge = myAge + 1;
+console.log(&quot;Next year I'll be:&quot;, myAge);" />
+
+## 7. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct |
+|---------|---------------|---------|
+| `let 1stPlace = "Alice";` | Variable names can't start with a number | `let firstPlace = "Alice";` |
+| `let my-name = "Bob";` | Hyphens are not allowed in names | `let myName = "Bob";` (use camelCase) |
+| `console.log(age)` before declaring `let age` | Variables must exist before you use them | Declare with `let` first |
+| `let count = "five";` then `count + 1` | Can't do math on strings | Use `let count = 5;` |
+
+## 8. Quiz
+
+<Quiz
+  question="Which data type should you use to store a person's name?"
+  options={[
+    "int",
+    "float",
+    "string",
+    "boolean"
+  ]}
+  answer="2"
+  explanation="Names are text, so they should be stored as strings (in quotes)."
+/>
+
+<Quiz
+  question="What will `console.log(age)` output after this code?\n\nlet age = 20;\nage = age + 5;"
+  options={[
+    "20",
+    "25",
+    "age",
+    "undefined"
+  ]}
+  answer="1"
+  explanation="age starts at 20, then we add 5, making it 25."
+/>
+
+<Quiz
+  question="Which of these is NOT a valid variable name in JavaScript?"
+  options={[
+    "let userName = 'Alice';",
+    "let 2ndUser = 'Bob';",
+    "let _count = 5;",
+    "let $total = 100;"
+  ]}
+  answer="1"
+  explanation="Variable names cannot start with a number. '2ndUser' starts with '2'."
+/>
+
+## 9. Challenge
+
+Write a program that:
+
+1. Creates a variable called `city` with the name of your favorite city
+2. Creates a variable called `population` with a number (realistic or made up)
+3. Creates a variable called `isCapital` with a boolean
+4. Prints all three variables to the console
+5. Then adds 100,000 to the population and prints it again
+
+<Terminal mode="challenge" language="javascript" initialCode="// Write your solution here
+
+" />
+
+## 10. Try It Yourself
+
+Open the **Playground** — create an `index.js` file and experiment with variables and data types. Try:
+
+- Mixing strings and numbers with `+`
+- Using `const` instead of `let` and see what happens when you try to reassign
+- Creating variables with different data types and printing them
+
+## 11. Summary
+
+- **Variables** are named containers that store values in memory
+- **Data types** define what kind of data a variable holds
+- Use `let` to declare variables that can change
+- Choose the right type: `int`, `float`, `string`, or `boolean`
+- Variable names must start with a letter, `_`, or `$`
+
+## 12. What's Next
+
+Now that you understand variables and data types, you're ready to learn about **operators** — how to perform calculations and comparisons with your data.

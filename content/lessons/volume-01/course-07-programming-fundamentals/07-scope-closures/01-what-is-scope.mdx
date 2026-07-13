@@ -1,0 +1,78 @@
+---
+title: "What Is Scope?"
+slug: what-is-scope
+module: "Scope & Closures"
+moduleOrder: 7
+lessonOrder: 1
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [scope]
+prerequisites: [function-basics-v2]
+learningObjectives:
+  - Understand what scope means
+  - Differentiate global vs local scope
+estimatedKnowledgeGain: 6
+tags: [scope, variables, visibility]
+---
+
+## 1. Explanation
+
+**Scope** determines where a variable is accessible in your code. Think of it as "visibility" — some variables are visible everywhere, others only in specific blocks.
+
+```javascript
+// Global scope — visible everywhere
+let globalVar = "I'm global";
+
+function example() {
+  // Local scope — only visible inside this function
+  let localVar = "I'm local";
+  console.log(globalVar);  // ✅ Works
+  console.log(localVar);   // ✅ Works
+}
+
+console.log(globalVar);    // ✅ Works
+// console.log(localVar);  // ❌ Error: not defined
+```
+
+## 2. Code Example
+
+```javascript
+let message = "Hello";  // Global scope
+
+function greet() {
+  let name = "Alice";   // Local to greet()
+  console.log(message + " " + name);  // Works
+}
+
+greet();                 // Hello Alice
+console.log(message);    // Hello
+// console.log(name);    // ❌ ReferenceError
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let x = 10;
+
+function outer() {
+  let y = 20;
+
+  function inner() {
+    let z = 30;
+    console.log(&quot;Inner:&quot;, x, y, z);  // All visible
+  }
+
+  inner();
+  console.log(&quot;Outer:&quot;, x, y);
+  // console.log(z);  // Would error — z is inside inner
+}
+
+outer();
+console.log(&quot;Global:&quot;, x);" />
+
+## 4. Summary
+
+- Scope determines where variables are accessible
+- Global scope = visible everywhere
+- Local scope = visible only in a specific block/function
+- Inner functions can access outer variables, but not vice versa

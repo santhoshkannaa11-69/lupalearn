@@ -1,0 +1,83 @@
+---
+title: "Switch Statements"
+slug: switch-statements
+module: "Control Flow"
+moduleOrder: 4
+lessonOrder: 3
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [control-flow]
+prerequisites: [if-else-basics]
+learningObjectives:
+  - Use switch for multiple fixed-value conditions
+  - Understand when switch is better than if/else
+estimatedKnowledgeGain: 5
+tags: [control-flow, switch]
+---
+
+## 1. Explanation
+
+When you're checking a single variable against many possible values, `switch` is cleaner than a long `if/else if` chain.
+
+```javascript
+switch (variable) {
+  case value1:
+    // runs if variable === value1
+    break;
+  case value2:
+    // runs if variable === value2
+    break;
+  default:
+    // runs if no case matches
+}
+```
+
+## 2. Code Example
+
+```javascript
+let day = 3;
+let dayName;
+
+switch (day) {
+  case 1: dayName = "Monday"; break;
+  case 2: dayName = "Tuesday"; break;
+  case 3: dayName = "Wednesday"; break;
+  case 4: dayName = "Thursday"; break;
+  case 5: dayName = "Friday"; break;
+  case 6: dayName = "Saturday"; break;
+  case 7: dayName = "Sunday"; break;
+  default: dayName = "Invalid day";
+}
+
+console.log("Day:", dayName);
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let grade = &quot;B&quot;;
+
+switch (grade) {
+  case &quot;A&quot;:
+    console.log(&quot;Excellent!&quot;);
+    break;
+  case &quot;B&quot;:
+    console.log(&quot;Good job!&quot;);
+    break;
+  case &quot;C&quot;:
+    console.log(&quot;Fair&quot;);
+    break;
+  case &quot;D&quot;:
+  case &quot;F&quot;:
+    console.log(&quot;Needs improvement&quot;);
+    break;
+  default:
+    console.log(&quot;Invalid grade&quot;);
+}" />
+
+## 4. Summary
+
+- Switch compares one value against multiple cases
+- Always include `break` to prevent fall-through
+- Use `default` for unmatched values
+- Switch is cleaner than long if/else chains for fixed values

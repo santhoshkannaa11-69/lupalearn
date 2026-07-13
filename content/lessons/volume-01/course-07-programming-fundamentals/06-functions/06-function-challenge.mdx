@@ -1,0 +1,53 @@
+---
+title: "Function Challenge"
+slug: function-challenge
+module: "Functions"
+moduleOrder: 6
+lessonOrder: 6
+duration: 25
+xp: 50
+difficulty: beginner
+concepts: [functions]
+prerequisites: [pure-functions]
+learningObjectives:
+  - Apply functions to solve practical problems
+  - Compose functions together
+estimatedKnowledgeGain: 9
+tags: [functions, challenge, practice]
+---
+
+## 1. Challenge: Calculator
+
+Write functions for a simple calculator:
+
+- `add(a, b)` — returns a + b
+- `subtract(a, b)` — returns a - b
+- `multiply(a, b)` — returns a * b
+- `divide(a, b)` — returns a / b (handle division by zero)
+- `calculate(a, operator, b)` — uses the functions above
+
+<Terminal mode="challenge" language="javascript" initialCode="// Write your functions here
+
+function add(a, b) { return a + b; }
+
+// Then test:
+console.log(calculate(10, &quot;+&quot;, 5));
+console.log(calculate(10, &quot;*&quot;, 5));
+console.log(calculate(10, &quot;/&quot;, 0));" />
+
+## 2. Challenge: Temperature Converter
+
+Write a program that converts between Celsius, Fahrenheit, and Kelvin.
+
+<Terminal mode="challenge" language="javascript" initialCode="function celsiusToFahrenheit(c) { /* your code */ }
+function fahrenheitToCelsius(f) { /* your code */ }
+function celsiusToKelvin(c) { /* your code */ }
+
+console.log(celsiusToFahrenheit(100));  // Should print 212
+console.log(celsiusToKelvin(100));      // Should print 373.15" />
+
+## 3. Summary
+
+- Functions encapsulate logic
+- Pure functions are predictable
+- Compose small functions to build complex behavior

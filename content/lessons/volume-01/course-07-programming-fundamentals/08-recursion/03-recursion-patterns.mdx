@@ -1,0 +1,79 @@
+---
+title: "Common Recursion Patterns"
+slug: recursion-patterns
+module: "Recursion"
+moduleOrder: 8
+lessonOrder: 3
+duration: 25
+xp: 40
+difficulty: intermediate
+concepts: [recursion]
+prerequisites: [recursion-vs-iteration]
+learningObjectives:
+  - Recognize common recursion patterns
+  - Apply recursion to real problems
+estimatedKnowledgeGain: 8
+tags: [recursion, patterns, problem-solving]
+---
+
+## 1. Pattern 1: Single Branch (Linear Recursion)
+
+One recursive call per step — like counting down or factorial.
+
+```javascript
+function linear(n) {
+  if (n <= 0) return;
+  console.log(n);
+  linear(n - 1);  // One call
+}
+```
+
+## 2. Pattern 2: Multiple Branches (Tree Recursion)
+
+Multiple recursive calls — like Fibonacci or tree traversal.
+
+```javascript
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);  // Two calls
+}
+```
+
+## 3. Pattern 3: Divide and Conquer
+
+Split the problem in half, solve each half recursively.
+
+```javascript
+function binarySearch(arr, target, left, right) {
+  if (left > right) return -1;  // Base case: not found
+
+  let mid = Math.floor((left + right) / 2);
+
+  if (arr[mid] === target) return mid;  // Found!
+  if (arr[mid] > target)
+    return binarySearch(arr, target, left, mid - 1);
+  return binarySearch(arr, target, mid + 1, right);
+}
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Tower of Hanoi — classic recursion problem
+function hanoi(n, from, to, aux) {
+  if (n === 1) {
+    console.log(&quot;Move disk 1 from &quot; + from + &quot; to &quot; + to);
+    return;
+  }
+  hanoi(n - 1, from, aux, to);
+  console.log(&quot;Move disk &quot; + n + &quot; from &quot; + from + &quot; to &quot; + to);
+  hanoi(n - 1, aux, to, from);
+}
+
+hanoi(3, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;);" />
+
+## 5. Summary
+
+- Linear recursion: one branch (factorial)
+- Tree recursion: multiple branches (fibonacci)
+- Divide and conquer: split in half (binary search)
+- Each pattern has different use cases

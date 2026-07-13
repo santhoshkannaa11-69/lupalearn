@@ -1,0 +1,58 @@
+---
+title: "Error Handling Challenge"
+slug: error-handling-challenge
+module: "Error Handling"
+moduleOrder: 9
+lessonOrder: 4
+duration: 25
+xp: 45
+difficulty: intermediate
+concepts: [error-handling]
+prerequisites: [defensive-programming]
+learningObjectives:
+  - Apply error handling to real problems
+  - Build robust functions
+estimatedKnowledgeGain: 8
+tags: [error-handling, challenge]
+---
+
+## 1. Challenge: Safe Calculator
+
+Build a calculator that handles all edge cases gracefully:
+
+- Division by zero → return "Cannot divide by zero"
+- Invalid operators → return "Unknown operator"
+- Non-numeric inputs → return "Invalid input"
+- Overflow → return "Number too large"
+
+<Terminal mode="challenge" language="javascript" initialCode="function safeCalculate(a, operator, b) {
+  // Your code here
+}
+
+// Test cases
+console.log(safeCalculate(10, &quot;+&quot;, 5));     // 15
+console.log(safeCalculate(10, &quot;/&quot;, 0));     // Cannot divide by zero
+console.log(safeCalculate(10, &quot;^&quot;, 2));     // Unknown operator
+console.log(safeCalculate(&quot;ten&quot;, &quot;+&quot;, 5));  // Invalid input" />
+
+## 2. Challenge: Parse User Data
+
+Write a function that safely parses a user JSON string and returns default values for missing fields.
+
+<Terminal mode="challenge" language="javascript" initialCode="function parseUser(jsonString) {
+  // Return { name, age, email } with defaults for missing fields
+  // Default name: &quot;Guest&quot;, age: 0, email: &quot;unknown@example.com&quot;
+}
+
+console.log(parseUser('{&quot;name&quot;: &quot;Alice&quot;}'));
+// { name: &quot;Alice&quot;, age: 0, email: &quot;unknown@example.com&quot; }
+
+console.log(parseUser(&quot;invalid json&quot;));
+// Falls back to all defaults" />
+
+## 3. Summary
+
+- Robust programs handle unexpected inputs
+- Always validate before processing
+- Fail gracefully with clear error messages
+- Defensive programming builds user trust

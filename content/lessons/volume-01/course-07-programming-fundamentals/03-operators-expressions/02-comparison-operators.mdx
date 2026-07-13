@@ -1,0 +1,59 @@
+---
+title: "Comparison Operators"
+slug: comparison-operators
+module: "Operators & Expressions"
+moduleOrder: 3
+lessonOrder: 2
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [operators]
+prerequisites: [intro-to-operators]
+learningObjectives:
+  - Use comparison operators (===, !==, >, <, >=, <=)
+  - Understand boolean results
+  - Compare numbers and strings
+estimatedKnowledgeGain: 6
+tags: [operators, comparison, booleans]
+---
+
+## 1. Explanation
+
+**Comparison operators** compare two values and return a boolean (`true` or `false`).
+
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| `===` | Strict equal | `5 === 5` | `true` |
+| `!==` | Strict not equal | `5 !== 3` | `true` |
+| `>` | Greater than | `5 > 3` | `true` |
+| `<` | Less than | `5 < 3` | `false` |
+| `>=` | Greater or equal | `5 >= 5` | `true` |
+| `<=` | Less or equal | `5 <= 4` | `false` |
+
+## 2. Code Example
+
+```javascript
+console.log(10 === 10);  // true
+console.log(10 === 5);   // false
+console.log(10 !== 5);   // true
+console.log(10 > 5);     // true
+console.log(10 < 5);     // false
+console.log(10 >= 10);   // true
+console.log(10 <= 9);    // false
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let score = 85;
+let passing = 70;
+
+console.log(&quot;Score:&quot;, score);
+console.log(&quot;Passing:&quot;, passing);
+console.log(&quot;Passed?&quot;, score >= passing);
+console.log(&quot;Perfect?&quot;, score === 100);" />
+
+## 4. Summary
+
+- Comparisons always return `true` or `false`
+- `===` checks equality, `!==` checks inequality
+- `>` `<` `>=` `<=` check order (greater/less)

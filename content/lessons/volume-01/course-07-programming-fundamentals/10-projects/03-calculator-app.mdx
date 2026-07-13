@@ -1,0 +1,66 @@
+---
+title: "Project: Calculator App"
+slug: project-calculator-app
+module: "Projects"
+moduleOrder: 10
+lessonOrder: 3
+duration: 30
+xp: 60
+difficulty: intermediate
+concepts: [functions, operators, control-flow]
+prerequisites: [building-expressions, error-handling-challenge]
+learningObjectives:
+  - Build a complete calculator application
+  - Handle edge cases and errors
+estimatedKnowledgeGain: 9
+tags: [project, calculator, functions, operators]
+---
+
+## 1. Project Brief
+
+Build a calculator that can evaluate expressions with +, -, *, /, handle multiple operations, and manage errors gracefully.
+
+## 2. Requirements
+
+1. Support basic operations: +, -, *, /
+2. Handle decimal numbers
+3. Prevent division by zero
+4. Show a history of calculations
+5. Keyboard input support
+
+## 3. Starter Code
+
+<Terminal mode="challenge" language="javascript" initialCode="// Calculator App
+let history = [];
+
+function calculate(a, operator, b) {
+  // Your code here
+}
+
+function showHistory() {
+  // Your code here
+}
+
+function clearHistory() {
+  // Your code here
+}
+
+// Test:
+console.log(calculate(10, &quot;+&quot;, 5));      // 15
+console.log(calculate(100, &quot;/&quot;, 0));     // Error
+console.log(calculate(2.5, &quot;*&quot;, 3));      // 7.5
+showHistory();" />
+
+## 4. Extensions
+
+- Add exponentiation (^)
+- Add memory (M+, M-, MR, MC)
+- Add percentage calculation
+- Support chained operations: 5 + 3 * 2
+
+## 5. Summary
+
+- Calculators combine all the concepts you've learned
+- History is a great feature for any app
+- Error handling matters in user-facing apps
+- Test with edge cases (zero, decimals, negatives)

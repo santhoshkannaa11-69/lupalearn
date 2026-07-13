@@ -1,0 +1,63 @@
+---
+title: "Conditional Chaining"
+slug: conditional-chaining
+module: "Control Flow"
+moduleOrder: 4
+lessonOrder: 2
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [control-flow]
+prerequisites: [if-else-basics]
+learningObjectives:
+  - Chain multiple conditions effectively
+  - Use logical operators inside conditions
+estimatedKnowledgeGain: 6
+tags: [control-flow, conditionals, chaining]
+---
+
+## 1. Explanation
+
+You can combine multiple conditions using logical operators (`&&`, `||`, `!`) inside your if statements.
+
+```javascript
+if (age >= 18 && hasLicense) {
+  console.log("You can drive");
+}
+```
+
+## 2. Code Example
+
+```javascript
+let age = 22;
+let hasID = true;
+let isVIP = false;
+
+// Both conditions must be true
+if (age >= 21 && hasID) {
+  console.log("Welcome to the venue!");
+}
+
+// At least one condition must be true
+if (isVIP || (age >= 18 && hasID)) {
+  console.log("Entry granted");
+}
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let isLoggedIn = true;
+let isAdmin = false;
+let hasPermission = true;
+
+if (isAdmin || (isLoggedIn && hasPermission)) {
+  console.log(&quot;Access granted to dashboard&quot;);
+} else {
+  console.log(&quot;Access denied&quot;);
+}" />
+
+## 4. Summary
+
+- Combine conditions with `&&` (AND) and `||` (OR)
+- Use parentheses to group conditions
+- `else` catches everything that doesn't match

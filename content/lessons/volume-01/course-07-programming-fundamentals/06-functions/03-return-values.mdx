@@ -1,0 +1,75 @@
+---
+title: "Return Values"
+slug: return-values
+module: "Functions"
+moduleOrder: 6
+lessonOrder: 3
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [functions]
+prerequisites: [function-basics-v2]
+learningObjectives:
+  - Use return to send values out of functions
+  - Understand functions without return
+estimatedKnowledgeGain: 6
+tags: [functions, return]
+---
+
+## 1. Explanation
+
+The `return` statement sends a value back to where the function was called. Without `return`, a function returns `undefined`.
+
+```javascript
+function withReturn() {
+  return 42;
+}
+
+function withoutReturn() {
+  console.log("I run but return nothing");
+}
+
+console.log(withReturn());     // 42
+console.log(withoutReturn());  // undefined
+```
+
+## 2. Code Example
+
+```javascript
+// Return stops execution immediately
+function checkAge(age) {
+  if (age < 0) return "Invalid age";
+  if (age < 18) return "Minor";
+  return "Adult";
+}
+
+console.log(checkAge(25));   // Adult
+console.log(checkAge(-5));   // Invalid age
+
+// Functions can call other functions
+function double(n) { return n * 2; }
+function quadruple(n) { return double(double(n)); }
+
+console.log(quadruple(5));   // 20
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function celsiusToFahrenheit(c) {
+  return (c * 9/5) + 32;
+}
+
+function fahrenheitToCelsius(f) {
+  return (f - 32) * 5/9;
+}
+
+console.log(&quot;0°C =&quot;, celsiusToFahrenheit(0), &quot;°F&quot;);
+console.log(&quot;100°C =&quot;, celsiusToFahrenheit(100), &quot;°F&quot;);
+console.log(&quot;98.6°F =&quot;, fahrenheitToCelsius(98.6).toFixed(1), &quot;°C&quot;);" />
+
+## 4. Summary
+
+- `return` sends a value back to the caller
+- `return` also stops the function immediately
+- Without `return`, a function returns `undefined`
+- Functions can use results from other functions

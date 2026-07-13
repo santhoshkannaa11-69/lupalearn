@@ -1,0 +1,57 @@
+---
+title: "Scope Challenge"
+slug: scope-challenge
+module: "Scope & Closures"
+moduleOrder: 7
+lessonOrder: 4
+duration: 20
+xp: 40
+difficulty: intermediate
+concepts: [scope, closures]
+prerequisites: [closures-intro]
+learningObjectives:
+  - Apply scope and closure concepts
+  - Debug scope-related issues
+estimatedKnowledgeGain: 8
+tags: [scope, closures, challenge]
+---
+
+## 1. Challenge: Create a Bank Account
+
+Write a function `createAccount(initialBalance)` that returns an object with methods:
+
+- `deposit(amount)` — adds money
+- `withdraw(amount)` — subtracts money (don't allow negative balance)
+- `getBalance()` — returns the current balance
+
+The balance should be private (cannot be accessed directly).
+
+<Terminal mode="challenge" language="javascript" initialCode="function createAccount(initialBalance) {
+  // Your code here
+}
+
+const account = createAccount(100);
+account.deposit(50);
+account.withdraw(30);
+console.log(account.getBalance());  // Should be 120
+console.log(account.balance);       // Should be undefined" />
+
+## 2. Challenge: Rate Limiter
+
+Write a function `createRateLimiter(limit, windowMs)` that limits how many times a function can be called within a time window.
+
+<Terminal mode="challenge" language="javascript" initialCode="function createRateLimiter(limit, windowMs) {
+  // Your code here
+}
+
+const limiter = createRateLimiter(3, 1000);
+console.log(limiter());  // true (allowed)
+console.log(limiter());  // true (allowed)
+console.log(limiter());  // true (allowed)
+console.log(limiter());  // false (rate limited)" />
+
+## 3. Summary
+
+- Closures enable data privacy
+- Use closures for stateful functions
+- Practice builds intuition for scope

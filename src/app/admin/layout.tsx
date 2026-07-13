@@ -1,13 +1,4 @@
-import { redirect } from "next/navigation"
-import { getSession } from "@/lib/admin-auth"
-import { AdminLayout } from "@/components/admin/AdminLayout"
-
-export default async function Layout({ children }: { children: React.ReactNode }) {
-  const session = await getSession()
-
-  if (!session.authenticated) {
-    redirect("/admin/login")
-  }
-
-  return <AdminLayout>{children}</AdminLayout>
+// Root admin layout — minimal, no auth (login page needs to be accessible)
+export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
+  return children
 }

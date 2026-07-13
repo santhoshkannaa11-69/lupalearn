@@ -1,0 +1,54 @@
+---
+title: "Recursion Challenge"
+slug: recursion-challenge
+module: "Recursion"
+moduleOrder: 8
+lessonOrder: 4
+duration: 30
+xp: 50
+difficulty: intermediate
+concepts: [recursion]
+prerequisites: [recursion-patterns]
+learningObjectives:
+  - Apply recursion to complex problems
+  - Debug recursive functions
+estimatedKnowledgeGain: 9
+tags: [recursion, challenge, problem-solving]
+---
+
+## 1. Challenge: Flatten an Array
+
+Write a recursive function `flatten(arr)` that takes a nested array and returns a flat array with all values.
+
+```javascript
+flatten([1, [2, 3], [4, [5, 6]]]);
+// Should return: [1, 2, 3, 4, 5, 6]
+```
+
+<Terminal mode="challenge" language="javascript" initialCode="function flatten(arr) {
+  // Your recursive code here
+}
+
+console.log(flatten([1, [2, 3], [4, [5, 6]]]));
+console.log(flatten([[1, 2], [3, [4, 5]]]));" />
+
+## 2. Challenge: Deep Clone
+
+Write a recursive function `deepClone(obj)` that creates a complete copy of an object, including nested objects.
+
+<Terminal mode="challenge" language="javascript" initialCode="function deepClone(obj) {
+  // Your recursive code here
+}
+
+const original = { a: 1, b: { c: 2, d: { e: 3 } } };
+const cloned = deepClone(original);
+cloned.b.c = 99;
+console.log(original.b.c);  // Should still be 2
+console.log(cloned.b.c);    // Should be 99" />
+
+## 3. Summary
+
+- Recursion shines with nested data structures
+- Always handle the base case first
+- Test with simple cases before complex ones
+- Every recursive problem has an iterative solution too

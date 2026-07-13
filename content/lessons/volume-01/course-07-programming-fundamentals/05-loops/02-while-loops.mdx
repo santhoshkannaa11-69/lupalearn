@@ -1,0 +1,67 @@
+---
+title: "While Loops"
+slug: while-loops
+module: "Loops"
+moduleOrder: 5
+lessonOrder: 2
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [loops]
+prerequisites: [for-loops]
+learningObjectives:
+  - Use while loops when you don't know the count in advance
+  - Avoid infinite loops
+estimatedKnowledgeGain: 6
+tags: [loops, while, iteration]
+---
+
+## 1. Explanation
+
+A `while` loop runs as long as a condition is true. Use it when you don't know exactly how many iterations you need.
+
+```javascript
+while (condition) {
+  // code to repeat
+}
+```
+
+## 2. Code Example
+
+```javascript
+// Keep halving until we get below 1
+let n = 100;
+while (n > 1) {
+  console.log(n);
+  n = n / 2;
+}
+// Output: 100, 50, 25, 12.5, 6.25, 3.125, 1.5625
+
+// Reading until a condition is met
+let attempts = 0;
+let maxAttempts = 5;
+while (attempts < maxAttempts) {
+  console.log("Attempt:", attempts + 1);
+  attempts++;
+}
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Countdown — while version
+let count = 5;
+while (count > 0) {
+  console.log(count);
+  count--;
+}
+console.log(&quot;Liftoff!&quot;);
+
+// ⚠️ Always make sure your condition will eventually become false!
+// Otherwise you'll get an infinite loop." />
+
+## 4. Summary
+
+- While loops run while a condition is true
+- Use when you don't know the iteration count
+- Always ensure the condition eventually becomes false
+- `for` loops are better when you know the count

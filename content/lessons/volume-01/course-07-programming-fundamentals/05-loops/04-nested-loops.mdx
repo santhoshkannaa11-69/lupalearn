@@ -1,0 +1,65 @@
+---
+title: "Nested Loops"
+slug: nested-loops
+module: "Loops"
+moduleOrder: 5
+lessonOrder: 4
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [loops]
+prerequisites: [for-loops]
+learningObjectives:
+  - Nest loops inside other loops
+  - Understand how nested iterations multiply
+estimatedKnowledgeGain: 7
+tags: [loops, nested, iteration]
+---
+
+## 1. Explanation
+
+A loop inside another loop is called **nesting**. For each outer iteration, the inner loop runs completely.
+
+```javascript
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 2; j++) {
+    // Runs 6 times (3 × 2)
+  }
+}
+```
+
+## 2. Code Example
+
+```javascript
+// Multiplication table
+for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 3; j++) {
+    console.log(i + " × " + j + " = " + (i * j));
+  }
+}
+
+// Clock: hours and minutes
+for (let h = 0; h < 3; h++) {
+  for (let m = 0; m < 60; m += 15) {
+    console.log(h + ":" + String(m).padStart(2, "0"));
+  }
+}
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Draw a simple pattern
+for (let row = 1; row <= 5; row++) {
+  let line = &quot;&quot;;
+  for (let col = 1; col <= row; col++) {
+    line += &quot;*&quot;;
+  }
+  console.log(line);
+}" />
+
+## 4. Summary
+
+- Nested loops have an outer and inner loop
+- Inner loop runs fully for each outer iteration
+- Total iterations = outer × inner
+- Useful for tables, grids, and patterns

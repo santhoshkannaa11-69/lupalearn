@@ -1,0 +1,71 @@
+---
+title: "Introduction to Operators"
+slug: intro-to-operators
+module: "Operators & Expressions"
+moduleOrder: 3
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [operators]
+prerequisites: [variables-data-types]
+learningObjectives:
+  - Use arithmetic operators (+, -, *, /)
+  - Combine variables and operators into expressions
+  - Understand operator precedence
+estimatedKnowledgeGain: 6
+tags: [operators, expressions, arithmetic]
+---
+
+## 1. Learning Objective
+
+Learn how to perform calculations and combine values using operators.
+
+## 2. Explanation
+
+**Operators** are symbols that perform operations on values. The most common are **arithmetic operators**:
+
+| Operator | Name | Example | Result |
+|----------|------|---------|--------|
+| `+` | Addition | `5 + 3` | `8` |
+| `-` | Subtraction | `10 - 4` | `6` |
+| `*` | Multiplication | `3 * 4` | `12` |
+| `/` | Division | `15 / 3` | `5` |
+| `%` | Modulus (remainder) | `10 % 3` | `1` |
+
+An **expression** is any combination of values, variables, and operators that produces a result.
+
+## 3. Code Example
+
+```javascript
+let a = 10;
+let b = 3;
+
+console.log("Addition:", a + b);      // 13
+console.log("Subtraction:", a - b);   // 7
+console.log("Multiplication:", a * b); // 30
+console.log("Division:", a / b);      // 3.333...
+console.log("Remainder:", a % b);     // 1
+
+// Expressions can use variables
+let total = a * b + 5;
+console.log("Total:", total);         // 35
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let x = 15;
+let y = 4;
+
+console.log(&quot;x + y =&quot;, x + y);
+console.log(&quot;x - y =&quot;, x - y);
+console.log(&quot;x * y =&quot;, x * y);
+console.log(&quot;x / y =&quot;, x / y);
+console.log(&quot;x % y =&quot;, x % y);" />
+
+## 5. Summary
+
+- Operators perform actions on values
+- Arithmetic: `+`, `-`, `*`, `/`, `%`
+- An expression combines values and operators
+- You can use variables inside expressions

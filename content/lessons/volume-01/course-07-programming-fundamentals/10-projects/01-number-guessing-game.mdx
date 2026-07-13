@@ -1,0 +1,70 @@
+---
+title: "Project: Number Guessing Game"
+slug: project-number-guessing-game
+module: "Projects"
+moduleOrder: 10
+lessonOrder: 1
+duration: 30
+xp: 60
+difficulty: intermediate
+concepts: [control-flow, loops, functions]
+prerequisites: [loop-challenge, if-else-basics]
+learningObjectives:
+  - Build a complete interactive game
+  - Combine loops, conditions, and user input
+estimatedKnowledgeGain: 9
+tags: [project, game, loops, conditions]
+---
+
+## 1. Project Brief
+
+Build a number guessing game where the computer picks a random number, and the player tries to guess it.
+
+## 2. Requirements
+
+1. Computer picks a random number between 1 and 100
+2. Player enters guesses
+3. After each guess, tell "Too high", "Too low", or "Correct!"
+4. Track the number of attempts
+5. Allow the player to play again
+
+## 3. Starter Code
+
+<Terminal mode="challenge" language="javascript" initialCode="// Number Guessing Game
+// Your code here" />
+
+## 4. Hints
+
+- Use `Math.random()` and `Math.floor()` to generate a random number
+- Use a `while` loop to keep asking until the player guesses correctly
+- Use `prompt()` to get user input (Node.js: use readline)
+- Track attempts with a counter variable
+
+## 5. Solution Approach
+
+```javascript
+const secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+let guessed = false;
+
+while (!guessed) {
+  let guess = parseInt(prompt("Guess a number (1-100):"));
+  attempts++;
+
+  if (guess === secretNumber) {
+    console.log("Correct! You got it in " + attempts + " attempts!");
+    guessed = true;
+  } else if (guess > secretNumber) {
+    console.log("Too high!");
+  } else {
+    console.log("Too low!");
+  }
+}
+```
+
+## 6. Summary
+
+- Games are great practice projects
+- Combine loops and conditions for game logic
+- Track state with variables
+- Test edge cases (0, 101, non-numbers)

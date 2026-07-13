@@ -1,0 +1,73 @@
+---
+title: "Defensive Programming"
+slug: defensive-programming
+module: "Error Handling"
+moduleOrder: 9
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [error-handling]
+prerequisites: [error-types]
+learningObjectives:
+  - Write defensive code that prevents errors
+  - Validate inputs before processing
+estimatedKnowledgeGain: 7
+tags: [error-handling, defensive, validation]
+---
+
+## 1. Explanation
+
+**Defensive programming** means anticipating problems before they happen. Validate inputs, check for edge cases, and fail gracefully.
+
+```javascript
+function getUserName(user) {
+  // Defensive: check if user exists
+  if (!user) return "Guest";
+  return user.name || "Unknown";
+}
+```
+
+## 2. Code Example
+
+```javascript
+function calculateTotal(price, quantity, taxRate) {
+  // Validate all inputs
+  if (typeof price !== "number" || price < 0) {
+    return 0;
+  }
+  if (typeof quantity !== "number" || quantity < 0) {
+    quantity = 1;
+  }
+  if (typeof taxRate !== "number" || taxRate < 0) {
+    taxRate = 0;
+  }
+
+  return price * quantity * (1 + taxRate);
+}
+
+console.log(calculateTotal(10, 2, 0.08));   // 21.6
+console.log(calculateTotal(-5, 2, 0.08));    // 0
+console.log(calculateTotal(10, "abc", 0.08)); // 10 (quantity defaulted to 1)
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function getFirstElement(arr) {
+  // Defensive: handle arrays, null, undefined, non-arrays
+  if (!Array.isArray(arr)) return null;
+  if (arr.length === 0) return null;
+  return arr[0];
+}
+
+console.log(getFirstElement([1, 2, 3]));  // 1
+console.log(getFirstElement([]));          // null
+console.log(getFirstElement(null));        // null
+console.log(getFirstElement(&quot;hello&quot;));    // null" />
+
+## 4. Summary
+
+- Defensive programming prevents errors before they happen
+- Validate all inputs from external sources
+- Use early returns for invalid cases
+- Never trust user input — always validate

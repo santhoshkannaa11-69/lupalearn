@@ -1,0 +1,71 @@
+---
+title: "Parameters and Arguments"
+slug: parameters-arguments
+module: "Functions"
+moduleOrder: 6
+lessonOrder: 2
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [functions]
+prerequisites: [function-basics-v2]
+learningObjectives:
+  - Understand the difference between parameters and arguments
+  - Use default parameters
+estimatedKnowledgeGain: 6
+tags: [functions, parameters]
+---
+
+## 1. Explanation
+
+**Parameters** are the names listed in the function definition. **Arguments** are the actual values passed when calling the function.
+
+```javascript
+// name is a PARAMETER
+function greet(name) {
+  return "Hi, " + name;
+}
+
+// "Alice" is an ARGUMENT
+greet("Alice");
+```
+
+## 2. Code Example
+
+```javascript
+// Default parameters
+function greet(name = "Guest") {
+  return "Hello, " + name;
+}
+
+console.log(greet("Alice"));  // Hello, Alice
+console.log(greet());         // Hello, Guest
+
+// Multiple parameters with defaults
+function makeBooking(room, nights = 1, breakfast = false) {
+  console.log(room + " for " + nights + " nights");
+  if (breakfast) console.log("Includes breakfast");
+}
+
+makeBooking("Suite", 3, true);
+makeBooking("Standard");  // Uses defaults
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="function calculateTotal(price, taxRate = 0.08, discount = 0) {
+  let tax = price * taxRate;
+  let total = price + tax - discount;
+  return total;
+}
+
+console.log(&quot;$&quot; + calculateTotal(100));
+console.log(&quot;$&quot; + calculateTotal(100, 0.1));
+console.log(&quot;$&quot; + calculateTotal(100, 0.08, 15));" />
+
+## 4. Summary
+
+- Parameters are the placeholders (definition)
+- Arguments are the actual values (call)
+- Default parameters make functions flexible
+- Order matters — arguments match parameters positionally

@@ -1,0 +1,88 @@
+---
+title: "If/Else Basics"
+slug: if-else-basics
+module: "Control Flow"
+moduleOrder: 4
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [control-flow]
+prerequisites: [comparison-operators]
+learningObjectives:
+  - Use if/else to make decisions in code
+  - Write conditions that evaluate to true or false
+  - Handle multiple conditions with else if
+estimatedKnowledgeGain: 8
+tags: [control-flow, conditionals, decision-making]
+---
+
+## 1. Why This Matters
+
+Programs need to make decisions. "If the user is logged in, show the dashboard. Otherwise, show the login page." The `if` statement is how you do this.
+
+## 2. Explanation
+
+```javascript
+if (condition) {
+  // Runs if condition is true
+} else {
+  // Runs if condition is false
+}
+```
+
+The condition is any expression that produces a boolean. If it's `true`, the first block runs. If it's `false`, the `else` block runs.
+
+## 3. Code Example
+
+```javascript
+let age = 20;
+
+if (age >= 18) {
+  console.log("You can vote!");
+} else {
+  console.log("Too young to vote.");
+}
+
+// Multiple conditions with else if
+let score = 85;
+
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 80) {
+  console.log("Grade: B");
+} else if (score >= 70) {
+  console.log("Grade: C");
+} else {
+  console.log("Grade: F");
+}
+```
+
+## 4. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let temperature = 75;
+
+if (temperature > 80) {
+  console.log(&quot;It's hot outside!&quot;);
+} else if (temperature > 60) {
+  console.log(&quot;Perfect weather!&quot;);
+} else if (temperature > 40) {
+  console.log(&quot;A bit chilly.&quot;);
+} else {
+  console.log(&quot;It's cold!&quot;);
+}
+
+// Try changing the temperature value!" />
+
+<Quiz question="What will this output?\n\nlet x = 10;\nif (x > 5) {\n  console.log('yes');\n} else {\n  console.log('no');\n}"
+  options={["yes", "no", "undefined", "Error"]}
+  answer="0"
+  explanation="10 > 5 is true, so the if block runs and prints 'yes'."
+/>
+
+## 5. Summary
+
+- `if` runs code when a condition is true
+- `else` runs when the condition is false
+- `else if` lets you check multiple conditions
+- Conditions are boolean expressions

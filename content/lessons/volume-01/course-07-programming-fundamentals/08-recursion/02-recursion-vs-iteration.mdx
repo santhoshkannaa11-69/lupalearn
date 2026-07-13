@@ -1,0 +1,78 @@
+---
+title: "Recursion vs Iteration"
+slug: recursion-vs-iteration
+module: "Recursion"
+moduleOrder: 8
+lessonOrder: 2
+duration: 20
+xp: 35
+difficulty: intermediate
+concepts: [recursion, loops]
+prerequisites: [recursion-intro, for-loops]
+learningObjectives:
+  - Compare recursive and iterative solutions
+  - Choose the right approach for different problems
+estimatedKnowledgeGain: 7
+tags: [recursion, iteration, comparison]
+---
+
+## 1. Explanation
+
+Many problems can be solved with either recursion or iteration (loops). Each has trade-offs.
+
+| Aspect | Recursion | Iteration |
+|--------|-----------|-----------|
+| **Code** | More concise for tree problems | Usually simpler |
+| **Memory** | Uses call stack (can overflow) | Uses less memory |
+| **Speed** | Slower (function call overhead) | Faster |
+| **Best for** | Trees, graphs, divide-and-conquer | Simple repetitions |
+
+## 2. Code Example
+
+```javascript
+// Sum 1 to n — iterative
+function sumIterative(n) {
+  let total = 0;
+  for (let i = 1; i <= n; i++) {
+    total += i;
+  }
+  return total;
+}
+
+// Sum 1 to n — recursive
+function sumRecursive(n) {
+  if (n <= 1) return n;
+  return n + sumRecursive(n - 1);
+}
+
+console.log(sumIterative(10));  // 55
+console.log(sumRecursive(10));  // 55
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Fibonacci — iterative
+function fibIterative(n) {
+  if (n <= 1) return n;
+  let a = 0, b = 1;
+  for (let i = 2; i <= n; i++) {
+    [a, b] = [b, a + b];
+  }
+  return b;
+}
+
+// Fibonacci — recursive (elegant but slow for large n)
+function fibRecursive(n) {
+  if (n <= 1) return n;
+  return fibRecursive(n - 1) + fibRecursive(n - 2);
+}
+
+console.log(&quot;Iterative:&quot;, fibIterative(10));
+console.log(&quot;Recursive:&quot;, fibRecursive(10));" />
+
+## 4. Summary
+
+- Use iteration for simple linear problems
+- Use recursion for tree, graph, and divide-and-conquer
+- Recursion has call stack limits (can overflow)
+- Both approaches can solve the same problems

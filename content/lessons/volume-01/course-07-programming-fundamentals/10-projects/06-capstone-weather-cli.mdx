@@ -1,0 +1,92 @@
+---
+title: "Capstone: Weather CLI Tool"
+slug: project-weather-cli
+module: "Projects"
+moduleOrder: 10
+lessonOrder: 6
+duration: 45
+xp: 100
+difficulty: advanced
+concepts: [functions, error-handling, async-programming]
+prerequisites: [error-handling-challenge, project-todo-list, project-number-guessing-game, project-calculator-app, project-grade-tracker, project-text-analyzer]
+learningObjectives:
+  - Build a complete CLI tool
+  - Combine all concepts from the course
+  - Handle real-world edge cases
+estimatedKnowledgeGain: 10
+tags: [project, capstone, cli, error-handling]
+---
+
+## 1. Capstone Project
+
+Build a complete weather CLI tool that demonstrates everything you've learned. This is the final project that ties together the entire course.
+
+## 2. Requirements
+
+1. **Data Storage** — store weather data for multiple cities
+2. **CRUD Operations** — add, list, update, delete city data
+3. **Analysis** — calculate averages, find extremes, trends
+4. **Reporting** — formatted output with statistics
+5. **Error Handling** — validate all inputs, handle edge cases
+6. **File Persistence** — save/load data (using localStorage concept)
+
+## 3. Features to Implement
+
+```javascript
+// Data structure
+// { city: string, temperature: number, humidity: number, condition: string, date: string }
+
+// Functions to implement:
+// addReading(city, temp, humidity, condition) — adds a weather reading
+// getCityData(city) — returns all readings for a city
+// getAverageTemp(city) — average temperature for a city
+// getHottestDay(city) — returns the hottest reading
+// getCitySummary(city) — formatted summary of all data
+// getAllCities() — list all cities with data
+// removeCity(city) — removes a city and its data
+// compareCities(city1, city2) — compares two cities
+```
+
+## 4. Starter Code
+
+<Terminal mode="challenge" language="javascript" initialCode="// Capstone: Weather CLI Tool
+let weatherData = [];
+
+function addReading(city, temp, humidity, condition) {
+  // Validate inputs
+  // Add reading with date
+}
+
+function getCityData(city) {
+  // Return all readings for a city
+}
+
+function getAverageTemp(city) {
+  // Calculate average temperature
+}
+
+function getCitySummary(city) {
+  // Return formatted summary
+}
+
+// Test your tool:
+addReading(&quot;New York&quot;, 72, 65, &quot;Sunny&quot;);
+addReading(&quot;New York&quot;, 68, 70, &quot;Cloudy&quot;);
+addReading(&quot;London&quot;, 55, 80, &quot;Rainy&quot;);
+console.log(getCitySummary(&quot;New York&quot;));
+console.log(getAverageTemp(&quot;New York&quot;));
+console.log(getAllCities());" />
+
+## 5. Extensions
+
+- Add temperature conversion (C/F)
+- Add weather alerts (extreme temps)
+- Add search by condition
+- Add sort by temperature
+
+## 6. Summary
+
+- This capstone uses everything from the course
+- Functions, arrays, objects, conditionals, loops, error handling
+- Real applications combine multiple features
+- You're now ready for more advanced programming!

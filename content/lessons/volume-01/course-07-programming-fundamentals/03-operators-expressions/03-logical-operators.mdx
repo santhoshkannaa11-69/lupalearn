@@ -1,0 +1,77 @@
+---
+title: "Logical Operators"
+slug: logical-operators
+module: "Operators & Expressions"
+moduleOrder: 3
+lessonOrder: 3
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [operators, boolean-logic]
+prerequisites: [comparison-operators]
+learningObjectives:
+  - Combine conditions with AND (&&), OR (||), NOT (!)
+  - Build complex logical expressions
+estimatedKnowledgeGain: 7
+tags: [operators, logic, booleans]
+---
+
+## 1. Explanation
+
+**Logical operators** combine multiple conditions into one true/false result.
+
+| Operator | Name | True When |
+|----------|------|-----------|
+| `&&` | AND | Both sides are true |
+| `\|\|` | OR | At least one side is true |
+| `!` | NOT | The value is false (flips it) |
+
+### Truth Tables
+
+```
+AND (&&):        OR (||):         NOT (!):
+T && T = T       T || T = T       !T = F
+T && F = F       T || F = T       !F = T
+F && T = F       F || T = T
+F && F = F       F || F = F
+```
+
+## 2. Code Example
+
+```javascript
+let age = 20;
+let hasLicense = true;
+
+// AND — both must be true
+console.log(age >= 18 && hasLicense);  // true
+
+let isWeekend = false;
+let isHoliday = true;
+
+// OR — at least one must be true
+console.log(isWeekend || isHoliday);   // true
+
+// NOT — flips the value
+console.log(!isWeekend);               // true
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="let temperature = 75;
+let isRaining = false;
+let isSunny = true;
+
+// Can we go outside?
+let goodWeather = temperature > 60 && !isRaining;
+console.log(&quot;Good weather?&quot;, goodWeather);
+
+// Should we bring an umbrella?
+let needUmbrella = isRaining || (!isSunny && temperature < 50);
+console.log(&quot;Need umbrella?&quot;, needUmbrella);" />
+
+## 4. Summary
+
+- `&&` requires both conditions to be true
+- `||` requires at least one condition to be true
+- `!` flips true to false and false to true
+- Combine logical operators to build complex conditions

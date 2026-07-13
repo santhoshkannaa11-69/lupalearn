@@ -1,0 +1,79 @@
+---
+title: "Pure Functions"
+slug: pure-functions
+module: "Functions"
+moduleOrder: 6
+lessonOrder: 5
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [functions]
+prerequisites: [function-expressions]
+learningObjectives:
+  - Understand what makes a function "pure"
+  - Write predictable, testable functions
+estimatedKnowledgeGain: 6
+tags: [functions, purity, best-practices]
+---
+
+## 1. Explanation
+
+A **pure function** is a function that:
+1. Given the same input, always returns the same output
+2. Has no side effects (doesn't modify anything outside itself)
+
+```javascript
+// Pure — same input always gives same output
+function add(a, b) { return a + b; }
+
+// Impure — depends on external value
+let taxRate = 0.08;
+function calculateTax(price) {
+  return price * taxRate;  // taxRate could change!
+}
+
+// Impure — modifies external state
+let total = 0;
+function addToTotal(amount) {
+  total += amount;  // Modifies external variable
+}
+```
+
+## 2. Code Example
+
+```javascript
+// Pure functions are predictable
+function double(n) { return n * 2; }
+
+console.log(double(5));  // Always 10
+console.log(double(5));  // Always 10
+
+// Impure functions can surprise you
+let multiplier = 2;
+function multiply(n) {
+  return n * multiplier;
+}
+
+multiplier = 3;
+console.log(multiply(5));  // Now 15, not 10!
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="// Make this function pure:
+let discount = 0.1;
+
+function applyDiscount(price) {
+  return price - (price * discount);
+}
+
+console.log(applyDiscount(100));
+
+// How would you rewrite it to be pure?" />
+
+## 4. Summary
+
+- Pure functions: same input → same output, no side effects
+- Impure functions depend on external state
+- Pure functions are easier to test and reason about
+- Prefer pure functions when possible

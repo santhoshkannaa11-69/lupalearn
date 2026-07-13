@@ -1,0 +1,56 @@
+---
+title: "How Computers Execute Code"
+slug: how-computers-execute-code
+module: "What is Programming?"
+moduleOrder: 1
+lessonOrder: 2
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [algorithms]
+prerequisites: [what-is-a-program]
+learningObjectives:
+  - Explain the fetch-decode-execute cycle
+  - Understand that code runs line by line
+  - Distinguish between source code and machine code
+estimatedKnowledgeGain: 5
+tags: [programming, computers, execution]
+---
+
+## 1. Learning Objective
+
+Understand what happens when you press "Run" — how your code becomes action.
+
+## 2. Explanation
+
+Computers don't understand JavaScript, Python, or any high-level language directly. They understand **machine code** — binary instructions (0s and 1s).
+
+Your code goes through a pipeline:
+
+```
+Source Code ──→ Compiler/Interpreter ──→ Machine Code ──→ Execution
+```
+
+JavaScript uses an **interpreter** (inside your browser or Node.js) that reads your code line by line and executes it immediately.
+
+### The Execution Order
+
+```javascript
+console.log("First");   // ← Runs first
+console.log("Second");  // ← Runs second
+console.log("Third");   // ← Runs third
+```
+
+Code runs **top to bottom**, **left to right**.
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="console.log(&quot;This runs first&quot;);
+console.log(&quot;This runs second&quot;);
+console.log(&quot;This runs third&quot;);" />
+
+## 4. Summary
+
+- Computers understand machine code (binary)
+- JavaScript is interpreted line by line
+- Code executes from top to bottom

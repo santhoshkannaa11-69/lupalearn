@@ -1,0 +1,69 @@
+---
+title: "Operator Precedence"
+slug: operator-precedence
+module: "Operators & Expressions"
+moduleOrder: 3
+lessonOrder: 4
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [operators]
+prerequisites: [logical-operators]
+learningObjectives:
+  - Understand the order in which operators are evaluated
+  - Use parentheses to control evaluation order
+estimatedKnowledgeGain: 6
+tags: [operators, expressions, order-of-operations]
+---
+
+## 1. Explanation
+
+When an expression has multiple operators, JavaScript follows a specific **precedence** order — just like in math class.
+
+| Precedence | Operators | Notes |
+|-----------|-----------|-------|
+| 1 (highest) | `()` | Parentheses first |
+| 2 | `!`, `++`, `--` | Unary operators |
+| 3 | `*`, `/`, `%` | Multiplication, division |
+| 4 | `+`, `-` | Addition, subtraction |
+| 5 | `<`, `>`, `<=`, `>=` | Comparisons |
+| 6 | `===`, `!==` | Equality |
+| 7 | `&&` | Logical AND |
+| 8 (lowest) | `\|\|` | Logical OR |
+
+## 2. Code Example
+
+```javascript
+// Without parentheses — follows precedence
+let result = 5 + 3 * 2;     // 11 (multiplication first)
+let result2 = (5 + 3) * 2;   // 16 (parentheses first)
+
+console.log(result);   // 11
+console.log(result2);  // 16
+
+// Combining with logical operators
+let a = 10, b = 5, c = 20;
+let check = a > b && c > a || b === 5;
+// Step 1: a > b → true
+// Step 2: c > a → true
+// Step 3: true && true → true
+// Step 4: b === 5 → true
+// Step 5: true || true → true
+```
+
+## 3. Interactive Terminal
+
+<Terminal mode="interactive" language="javascript" initialCode="console.log(&quot;Without parens:&quot;, 2 + 3 * 4);
+console.log(&quot;With parens:&quot;, (2 + 3) * 4);
+
+// Make this expression return true
+let x = 5, y = 10, z = 3;
+// Try changing this line:
+let isCorrect = x < y && z > 1;
+console.log(&quot;Result:&quot;, isCorrect);" />
+
+## 4. Summary
+
+- Operator precedence determines evaluation order
+- Use parentheses `()` to control which parts run first
+- When in doubt, add parentheses — they make your code clearer
