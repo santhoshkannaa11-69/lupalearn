@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import path from "path"
+import fs from "fs"
 import { getLessonBySlug, getConceptsForLesson } from "@/lib/graph"
 import { LessonViewer } from "@/components/learn/LessonViewer"
 
@@ -16,6 +18,20 @@ export default async function LessonPage({
   }
 
   const concepts = await getConceptsForLesson(lessonSlug)
+
+  // Read MDX content from file system
+  let mdxContent = ""
+  try {
+    // contentPath is like: lessons/volume-01/course-07-programming-fundamentals/02-variables-data-types/01-variables-data-types.mdx
+    const fullPath = path.join(process.cwd(), "content", lesson.contentPath)
+    if (fs.existsSync(fullPath)) {
+      mdxContent = fs.readFileSync(fullPath, "utf-8")
+      // Strip frontmatter (content between --- delimiters)
+      mdxContent = mdxContent.replace(/^---[\s\S]*?---\n?/, "")
+    }
+  } catch (e) {
+    console.error("Failed to load lesson content:", e)
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -51,6 +67,7 @@ export default async function LessonPage({
           moduleId: lesson.moduleId,
         }}
         concepts={concepts}
+        mdxContent={mdxContent}
       />
     </div>
   )
