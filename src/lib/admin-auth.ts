@@ -3,11 +3,16 @@ import { redirect } from "next/navigation"
 import crypto from "crypto"
 
 const SESSION_COOKIE = "lupa_admin_session"
-const SESSION_DURATION_MS = 8 * 60 * 60 * 1000
+const SESSION_DURATION_MS = 4 * 60 * 60 * 1000 // 4 hours (reduced from 8)
 
 function getKey(): Buffer {
-  const secret = process.env.ADMIN_SECRET || "lupa-learn-admin-dev-secret-min-32-chars!!"
-  return Buffer.from(secret.padEnd(32).slice(0, 32))
+  const secret = process.env.ADMIN_SECRET
+  if (!secret || secret.length < 32) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("ADMIN_SECRET must be at least 32 characters in production")
+    }
+  }
+  return Buffer.from((secret || "dev-secret-min-32-chars-for-dev-only!!").padEnd(32).slice(0, 32))
 }
 
 function encrypt(text: string): string {
@@ -83,7 +88,16 @@ export async function clearSession() {
 }
 
 export function validateCredentials(username: string, password: string): boolean {
-  const adminUser = process.env.ADMIN_USERNAME || "admin"
-  const adminPass = process.env.ADMIN_PASSWORD || "lupalearn2024"
-  return username === adminUser && password === adminPass
+  // In production, ADMIN_USERNAME and ADMIN_PASSWORD must be set via environment variables
+  const adminUser = process.env.ADMIN_USERNAME
+  const adminPass = process.env.ADMIN_PASSWORD
+
+  if (process.env.NODE_ENV === "production") {
+    // Production: only allow env-var-based auth
+    if (!adminUser || !adminPass) return false
+    return username === adminUser && password === adminPass
+  }
+
+  // Dev: fallback to defaults if not configured
+  return username === (adminUser || "admin") && password === (adminPass || "lupalearn2024")
 }

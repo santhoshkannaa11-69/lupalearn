@@ -4,9 +4,7 @@ const commands = new Map<string, Command>()
 const aliasMap = new Map<string, string>() // alias → command id
 
 export function registerCommand(cmd: Command): void {
-  if (commands.has(cmd.id)) {
-    console.warn(`Command "${cmd.id}" already registered — overwriting`)
-  }
+  if (commands.has(cmd.id)) return // Already registered — skip
   commands.set(cmd.id, cmd)
   for (const alias of cmd.aliases) {
     aliasMap.set(alias.toLowerCase(), cmd.id)
