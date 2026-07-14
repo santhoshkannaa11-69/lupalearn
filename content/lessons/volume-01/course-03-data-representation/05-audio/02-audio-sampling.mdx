@@ -1,0 +1,60 @@
+---
+title: "Sampling"
+slug: audio-sampling
+module: "Representing Audio"
+moduleOrder: 5
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [sound-as-waves]
+learningObjectives:
+  - Understand sample rate and bit depth
+  - Apply the Nyquist theorem
+estimatedKnowledgeGain: 8
+tags: [audio, sampling, nyquist]
+---
+
+## 1. Hook
+
+CD-quality audio captures 44,100 snapshots of sound every second. Each snapshot uses 16 bits. That's 705,600 bits per second of audio — just to reproduce sounds you can hear.
+
+## 2. Core Concepts
+
+### Sample Rate
+
+How many times per second the sound wave is measured.
+
+| Quality | Sample Rate | Highest Frequency |
+|---------|-------------|-------------------|
+| **Phone** | 8,000 Hz | 4 kHz |
+| **CD** | 44,100 Hz | 22 kHz |
+| **Studio** | 96,000 Hz | 48 kHz |
+
+### Bit Depth
+
+How many bits per sample.
+
+| Bit Depth | Dynamic Range | Levels |
+|-----------|---------------|--------|
+| **8-bit** | 48 dB | 256 |
+| **16-bit** | 96 dB | 65,536 |
+| **24-bit** | 144 dB | 16.7 million |
+
+## 3. The Nyquist Theorem
+
+To accurately capture a frequency, you must sample at **at least 2× that frequency**.
+
+Human hearing: ~20 kHz → CD sample rate: 44.1 kHz
+
+## 4. Summary
+
+- **Sample rate**: how many measurements per second
+- **Bit depth**: precision of each measurement
+- **Nyquist theorem**: sample at 2× the highest frequency
+- Higher rates = better quality = larger files
+
+## 5. What's Next
+
+Next: **Audio Formats** — comparing how audio is stored.

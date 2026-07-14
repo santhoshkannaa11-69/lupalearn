@@ -1,0 +1,53 @@
+---
+title: "Audio Compression"
+slug: audio-compression
+module: "Representing Audio"
+moduleOrder: 5
+lessonOrder: 4
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [audio-formats]
+learningObjectives:
+  - Understand how audio compression works
+  - Know the trade-offs in audio quality
+estimatedKnowledgeGain: 6
+tags: [audio, compression, streaming]
+---
+
+## 1. Hook
+
+Spotify streams about 40 MB per hour of music. Without compression, that same hour would be 600 MB. Compression makes streaming services possible.
+
+## 2. Audio Compression Pipeline
+
+```
+1. Convert to frequency domain
+   (FFT — Fast Fourier Transform)
+2. Apply psychoacoustic model
+   (remove frequencies humans don't hear well)
+3. Quantize
+   (reduce precision of remaining frequencies)
+4. Huffman encode
+   (compress the result)
+```
+
+## 3. Bitrate Comparison
+
+| Bitrate | Quality | File Size (3 min) | Use Case |
+|---------|---------|-------------------|----------|
+| **320 kbps** | Excellent | ~7 MB | High-quality MP3 |
+| **256 kbps** | Very good | ~5.5 MB | AAC (typical) |
+| **192 kbps** | Good | ~4 MB | Streaming standard |
+| **128 kbps** | Fair | ~3 MB | Podcasts, speech |
+
+## 4. Summary
+
+- Audio compression uses **psychoacoustic models** to discard inaudible data
+- Lower **bitrate** = smaller files = lower quality
+- Streaming services use adaptive bitrate for varying network conditions
+
+## 5. What's Next
+
+Next module: **Representing Video** — combining images and audio over time.

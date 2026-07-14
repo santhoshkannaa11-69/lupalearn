@@ -1,0 +1,45 @@
+---
+title: "Character Encoding"
+slug: character-encoding-overview
+module: "Representing Text"
+moduleOrder: 3
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [binary]
+prerequisites: [floating-point-errors]
+learningObjectives:
+  - Understand the need for character encoding
+  - Know the history of text encoding
+estimatedKnowledgeGain: 6
+tags: [encoding, text, ascii, unicode]
+---
+
+## 1. Hook
+
+When you type "Hello," your computer doesn't store the shapes of the letters. It stores numbers — 72, 101, 108, 108, 111. The mapping from numbers to characters is called character encoding.
+
+## 2. Core Concept
+
+**Character encoding** maps characters to numeric codes.
+
+```
+Text:   H     e     l     l     o
+Codes:  72   101   108   108   111
+Binary: 01001000 01100101 01101100 01101100 01101111
+```
+
+## 3. The Encoding Problem
+
+Without a standard encoding, different computers would interpret the same bytes differently — leading to garbled text (mojibake).
+
+## 4. Summary
+
+- **Character encoding** maps characters to numbers
+- Different encodings use different mappings
+- Standardization was essential for global computing
+
+## 5. What's Next
+
+Next: **ASCII** — the first widely-adopted character encoding.

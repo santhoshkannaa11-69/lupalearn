@@ -1,0 +1,65 @@
+---
+title: "Color Models"
+slug: color-models
+module: "Representing Images"
+moduleOrder: 4
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [pixels-resolution]
+learningObjectives:
+  - Understand RGB, RGBA, and hex color models
+  - Calculate color depth
+estimatedKnowledgeGain: 7
+tags: [color, rgb, hex]
+---
+
+## 1. Hook
+
+`#00FF41` — that's LupaLearn green. It means Red=0, Green=255, Blue=65. Every color on your screen is a combination of these three values, and hex is just a compact way to write them.
+
+## 2. Color Models
+
+| Model | Bits Per Pixel | Colors |
+|-------|---------------|--------|
+| **Grayscale** | 8 | 256 |
+| **RGB (True Color)** | 24 | 16,777,216 |
+| **RGBA** | 32 | 16.7M + transparency |
+
+### How Hex Colors Work
+
+```
+# 00  FF  41
+  R   G   B
+  0   255 65
+```
+
+### Memory Required
+
+```
+1,920 × 1,080 at 24-bit RGB = 6.22 MB (uncompressed)
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function hexToRGB(hex) {
+  let r = parseInt(hex.slice(1,3), 16);
+  let g = parseInt(hex.slice(3,5), 16);
+  let b = parseInt(hex.slice(5,7), 16);
+  console.log(`${hex} → RGB(${r}, ${g}, ${b})`);
+}
+hexToRGB(&quot;#00FF41&quot;); // LupaLearn green
+hexToRGB(&quot;#FF5733&quot;); // Orange
+hexToRGB(&quot;#0044FF&quot;); // Blue" />
+
+## 4. Summary
+
+- **RGB** = 3 channels × 8 bits = 24 bits per pixel
+- **Hex colors** are RGB values in base-16
+- More bits per pixel = more colors = larger files
+
+## 5. What's Next
+
+Next: **Image Formats** — how images are compressed and stored.

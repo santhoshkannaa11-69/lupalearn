@@ -1,0 +1,57 @@
+---
+title: "Streaming Video"
+slug: streaming-video
+module: "Representing Video"
+moduleOrder: 6
+lessonOrder: 4
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [codecs-containers]
+learningObjectives:
+  - Understand how video streaming works
+  - Know about adaptive bitrate streaming
+estimatedKnowledgeGain: 6
+tags: [video, streaming, buffering]
+---
+
+## 1. Hook
+
+When you watch a YouTube video, the first few seconds buffer while the video quality adjusts to your internet speed. This is **adaptive bitrate streaming** — the video player picks the best quality your connection can handle.
+
+## 2. How Streaming Works
+
+```
+Video file (server)
+    ↓
+Split into small chunks (~2-10 seconds each)
+    ↓
+Encoded at multiple bitrates (360p, 720p, 1080p, 4K)
+    ↓
+Player requests chunks adaptively
+    ↓
+Player buffer (a few seconds ahead)
+    ↓
+Rendered on screen
+```
+
+## 3. Adaptive Bitrate
+
+| Network Speed | Best Quality |
+|--------------|--------------|
+| **5 Mbps+** | 1080p |
+| **25 Mbps+** | 4K |
+| **Under 2 Mbps** | 480p |
+
+The player constantly monitors your connection and switches quality seamlessly.
+
+## 4. Summary
+
+- Streaming splits video into **small chunks**
+- **Adaptive bitrate** picks the right quality for your connection
+- **Buffering** prevents interruptions when the network fluctuates
+
+## 5. What's Next
+
+Next module: **Files & Storage** — how operating systems organize data.

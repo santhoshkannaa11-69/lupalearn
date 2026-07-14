@@ -1,0 +1,52 @@
+---
+title: "Image Formats"
+slug: image-formats
+module: "Representing Images"
+moduleOrder: 4
+lessonOrder: 3
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [color-models]
+learningObjectives:
+  - Compare common image formats
+  - Understand when to use each format
+estimatedKnowledgeGain: 7
+tags: [images, formats, compression]
+---
+
+## 1. Hook
+
+A photo from your phone might be 4 MB as a JPEG. The same photo as a RAW file could be 25 MB. As a BMP, it would be 18 MB. Same pixels, different formats — different trade-offs.
+
+## 2. Image Format Comparison
+
+| Format | Type | Compression | Transparency | Best For |
+|--------|------|-------------|--------------|----------|
+| **PNG** | Raster | Lossless | ✅ | Screenshots, logos, diagrams |
+| **JPEG** | Raster | Lossy | ❌ | Photographs |
+| **GIF** | Raster | Lossless | ✅ (binary) | Simple animations |
+| **WebP** | Raster | Both | ✅ | Web (smaller than PNG/JPEG) |
+| **SVG** | Vector | None | ✅ | Icons, illustrations |
+| **BMP** | Raster | None | ✅ | Raw image data |
+
+## 3. Lossless vs Lossy
+
+| Aspect | Lossless (PNG) | Lossy (JPEG) |
+|--------|----------------|--------------|
+| **Quality** | Exact original | Degraded |
+| **File size** | Larger | Smaller (often 10×) |
+| **Use case** | Text, diagrams | Photos |
+| **Editable** | Yes, repeatedly | No, quality drops each save |
+
+## 4. Summary
+
+- **PNG**: lossless, great for text/UI
+- **JPEG**: lossy, great for photos
+- **SVG**: vector, resolution-independent
+- **WebP**: modern replacement for both PNG and JPEG
+
+## 5. What's Next
+
+Next: **Compression** — how image compression works at the binary level.

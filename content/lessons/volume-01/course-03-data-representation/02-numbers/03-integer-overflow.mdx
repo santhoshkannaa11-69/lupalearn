@@ -1,0 +1,65 @@
+---
+title: "Integer Overflow"
+slug: integer-overflow
+module: "Representing Numbers"
+moduleOrder: 2
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [signed-integers]
+learningObjectives:
+  - Explain integer overflow
+  - Identify real-world examples of overflow
+estimatedKnowledgeGain: 7
+tags: [overflow, errors, bugs]
+---
+
+## 1. Hook
+
+In 2014, a Boeing 787 had to be rebooted every 248 days because its software counter overflowed. In the original Super Mario Bros., a glitch caused by overflow kills Mario at level 22. Integer overflow has caused plane crashes, financial losses, and countless game bugs.
+
+## 2. Core Concept
+
+**Integer overflow** occurs when a calculation produces a value beyond the representable range.
+
+```
+8-bit unsigned max = 255
+255 + 1 = ? → wraps to 0
+
+8-bit signed max = 127
+127 + 1 = ? → wraps to -128
+```
+
+## 3. Real-World Examples
+
+| Incident | Cause |
+|----------|-------|
+| **Boeing 787** | Counter overflow after 248 days of uptime |
+| **Ariane 5 rocket** | 64-bit float to 16-bit int conversion (crashed, $370M lost) |
+| **Mario Bros. glitch** | Level 22 scroll overflow |
+| **Y2K bug** | 2-digit year overflow |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// See overflow in action
+let max8 = 255;
+console.log(&quot;255 + 1 =&quot;, max8 + 1); // JavaScript auto-promotes to larger type
+
+// But in lower-level languages:
+let buffer = new Uint8Array(1);
+buffer[0] = 255;
+console.log(&quot;255 + 1 (uint8):&quot;, (buffer[0] + 1) % 256); // 0
+buffer[0] = buffer[0] + 1;
+console.log(&quot;After wrap:&quot;, buffer[0]); // 0" />
+
+## 5. Summary
+
+- **Overflow** happens when a value exceeds its representable range
+- It can cause **wraparound** to the minimum value
+- Critical for safety in aviation, finance, and security software
+
+## 6. What's Next
+
+Next: **Floating Point Numbers** — representing decimals in binary.

@@ -1,0 +1,53 @@
+---
+title: "Video Compression"
+slug: video-compression
+module: "Representing Video"
+moduleOrder: 6
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [video-frames]
+learningObjectives:
+  - Understand how video codecs work
+  - Know keyframe and delta frame encoding
+estimatedKnowledgeGain: 7
+tags: [video, compression, codecs]
+---
+
+## 1. Hook
+
+Videos are sequences of images. Instead of storing every pixel of every frame, video compression stores the full first frame (keyframe) and then only the *changes* for subsequent frames (delta frames). This reduces the size by 99% or more.
+
+## 2. How Video Compression Works
+
+```
+Keyframe (I-frame):     Stores the complete image
+Delta frame (P-frame):  Stores only pixels that changed
+Delta frame (P-frame):  Stores only pixels that changed
+Delta frame (P-frame):  Stores only pixels that changed
+Keyframe (I-frame):     New complete reference
+```
+
+Typical pattern: one keyframe every 1-2 seconds, with delta frames in between.
+
+## 3. Compression Ratio
+
+| Stage | Bitrate | Relative Size |
+|-------|---------|---------------|
+| Uncompressed 1080p | ~1.5 Gbps | 1× |
+| ProRes (professional) | ~200 Mbps | ~7× smaller |
+| H.264/AVC | ~8 Mbps | ~180× smaller |
+| H.265/HEVC | ~5 Mbps | ~300× smaller |
+| AV1 | ~4 Mbps | ~375× smaller |
+
+## 4. Summary
+
+- **Keyframes** store full images; **delta frames** store only changes
+- Modern codecs achieve **100-400× compression**
+- Better compression = more computation needed to decode
+
+## 5. What's Next
+
+Next: **Codecs & Containers** — how video codecs differ from file formats.

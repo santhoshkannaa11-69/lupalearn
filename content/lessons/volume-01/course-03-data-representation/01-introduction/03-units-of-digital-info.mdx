@@ -1,0 +1,53 @@
+---
+title: "Units of Digital Information"
+slug: units-of-digital-info
+module: "Introduction to Data Representation"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [binary]
+prerequisites: [how-computers-see-world]
+learningObjectives:
+  - Know the hierarchy of digital storage units
+  - Understand binary vs decimal prefixes
+estimatedKnowledgeGain: 7
+tags: [bits, bytes, storage-units]
+---
+
+## 1. Hook
+
+A kilobyte should be 1,000 bytes, right? Not exactly — to a computer, it's 1,024. That 24-byte difference adds up fast: a "1 TB" drive might actually have room for only 931 GB.
+
+## 2. The Storage Hierarchy
+
+| Unit | Bits | Bytes | Rough Equivalent |
+|------|------|-------|------------------|
+| **Bit** | 1 | — | A single 0 or 1 |
+| **Nibble** | 4 | ½ | One hex digit |
+| **Byte** | 8 | 1 | One character |
+| **Kilobyte (KB)** | 8,192 | 1,024 | A paragraph |
+| **Megabyte (MB)** | 8,388,608 | 1,048,576 | A photo |
+| **Gigabyte (GB)** | ~8.6 billion | ~1 billion | A movie |
+| **Terabyte (TB)** | ~8.8 trillion | ~1 trillion | A hard drive |
+
+## 3. Binary vs Decimal Confusion
+
+| Prefix | Binary (JEDEC) | Decimal (SI) |
+|--------|----------------|--------------|
+| **KB** | 1,024 | 1,000 |
+| **MB** | 1,048,576 | 1,000,000 |
+| **GB** | 1,073,741,824 | 1,000,000,000 |
+
+This is why a "500 GB" hard drive shows as ~465 GB on your computer.
+
+## 4. Summary
+
+- **Bit** = smallest unit, **Byte** = 8 bits
+- Storage units: KB, MB, GB, TB (each 1,024× the previous)
+- Binary (1,024) vs decimal (1,000) causes the "missing space" problem
+
+## 5. What's Next
+
+Next: **Why Representation Matters** — accuracy, storage, performance, compatibility.

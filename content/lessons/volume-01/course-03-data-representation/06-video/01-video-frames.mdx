@@ -1,0 +1,51 @@
+---
+title: "Video Frames"
+slug: video-frames
+module: "Representing Video"
+moduleOrder: 6
+lessonOrder: 1
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [audio-compression]
+learningObjectives:
+  - Understand video as a sequence of images
+  - Know frame rates and keyframes
+estimatedKnowledgeGain: 6
+tags: [video, frames, fps]
+---
+
+## 1. Hook
+
+A video is a sequence of still images displayed fast enough to create the illusion of motion. At 24 frames per second, your brain blends the images into continuous movement.
+
+## 2. Key Concepts
+
+| Term | Definition | Examples |
+|------|------------|----------|
+| **Frame** | A single still image in the sequence | 1920 × 1080 pixels |
+| **Frame rate (FPS)** | How many frames per second | 24 (film), 30 (TV), 60 (smooth) |
+| **Keyframe** | A full frame (reference) | Every ~1-2 seconds |
+| **Delta frame** | Only the changes from the last frame | 95% smaller than a keyframe |
+
+### File Size (Uncompressed)
+
+```
+1080p × 24-bit × 30 fps = 6.22 MB × 30 = 186 MB/s
+186 MB/s × 60 = ~11 GB/minute
+```
+
+## 3. Why Compression Is Essential
+
+Without compression, a 2-hour movie at 1080p would be ~1.3 TB. With H.264 compression, it's ~4 GB. That's 300× smaller.
+
+## 4. Summary
+
+- Video = **sequence of frames** at a rate (fps)
+- **Keyframes** are full images; **delta frames** store only changes
+- Uncompressed video is **enormous** — compression is essential
+
+## 5. What's Next
+
+Next: **Video Compression** — how codecs shrink video data.

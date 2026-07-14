@@ -1,0 +1,57 @@
+---
+title: "Emojis & International Languages"
+slug: emojis-international
+module: "Representing Text"
+moduleOrder: 3
+lessonOrder: 4
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [unicode-standard]
+learningObjectives:
+  - Understand how emojis are encoded
+  - See why UTF-8 dominates global computing
+estimatedKnowledgeGain: 6
+tags: [emojis, international, unicode]
+---
+
+## 1. Hook
+
+The smiley emoji 😀 has a Unicode code point: U+1F600. When you send it in a message, your phone sends 4 bytes: 11110000 10011111 10011000 10000000. That's how emojis travel across the world in milliseconds.
+
+## 2. How Emojis Work
+
+Emojis are Unicode characters, just like letters and digits.
+
+| Emoji | Code Point | UTF-8 Bytes |
+|-------|-----------|-------------|
+| 😀 | U+1F600 | 4 bytes |
+| ❤️ | U+2764 | 3 bytes |
+| 🚀 | U+1F680 | 4 bytes |
+
+### Emoji Modifiers
+
+```
+👍 (U+1F44D) + 🏽 (U+1F3FD) = 👍🏽 (thumbs up: medium skin tone)
+```
+
+## 3. Why UTF-8 Won
+
+| Encoding | Advantages | Disadvantages |
+|----------|-----------|---------------|
+| **UTF-8** | ASCII-compatible, space-efficient | Variable-length is slower to process |
+| **UTF-16** | Fixed-width for most characters | Not ASCII-compatible, wasteful for English |
+| **UTF-32** | Fixed-width, simple | 4× the size of UTF-8 for ASCII |
+
+Over 98% of websites use UTF-8.
+
+## 4. Summary
+
+- Emojis are **Unicode characters** (U+1F600+)
+- **UTF-8** dominates because it's backward-compatible with ASCII
+- Internationalization is built into modern computing through Unicode
+
+## 5. What's Next
+
+Next module: **Representing Images** — pixels, colors, and compression.

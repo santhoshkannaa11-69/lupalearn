@@ -1,0 +1,59 @@
+---
+title: "Compression"
+slug: image-compression
+module: "Representing Images"
+moduleOrder: 4
+lessonOrder: 4
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [image-formats]
+learningObjectives:
+  - Understand lossless vs lossy compression
+  - Know how run-length encoding and JPEG compression work
+estimatedKnowledgeGain: 7
+tags: [compression, lossless, lossy]
+---
+
+## 1. Hook
+
+A 6 MB raw image can become a 300 KB JPEG — 20× smaller. The trade-off? Some data is discarded forever. This is the fundamental trade-off of compression: size vs quality.
+
+## 2. Compression Types
+
+### Lossless
+
+Every bit of original data is preserved. Used for: text, code, medical images, archives.
+
+### Lossy
+
+Some data is discarded to save space. Used for: photos, music, streaming video.
+
+| Aspect | Lossless | Lossy |
+|--------|----------|-------|
+| **Data integrity** | Perfect | Approximate |
+| **Compression ratio** | 2-3× | 10-100× |
+| **Reversible** | Yes | No |
+
+## 3. JPEG Compression Pipeline
+
+```
+1. Split into 8×8 blocks
+2. Convert to frequency domain (DCT)
+3. Quantize (discard high-frequency detail)
+4. Run-length encode
+5. Huffman encode
+```
+
+Each step reduces the size, with most of the reduction coming from step 3 — discarding subtle color variations the human eye barely notices.
+
+## 4. Summary
+
+- **Lossless**: no data lost (PNG, ZIP, FLAC)
+- **Lossy**: data discarded (JPEG, MP3, MP4)
+- Compression makes modern media streaming practical
+
+## 5. What's Next
+
+Next: **Metadata** — data about data (EXIF, file information).

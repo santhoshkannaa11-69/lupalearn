@@ -1,0 +1,70 @@
+---
+title: "Signed Integers"
+slug: signed-integers
+module: "Representing Numbers"
+moduleOrder: 2
+lessonOrder: 2
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [binary]
+prerequisites: [unsigned-integers]
+learningObjectives:
+  - Represent negative integers in binary
+  - Understand two's complement
+estimatedKnowledgeGain: 9
+tags: [integers, signed, twos-complement]
+---
+
+## 1. Hook
+
+How do you represent -5 in binary? You can't just put a minus sign in front — computers only have 0s and 1s. The most common solution is **two's complement**, and it's elegant.
+
+## 2. Three Approaches
+
+| Method | Description | Problem |
+|--------|-------------|---------|
+| **Sign-magnitude** | First bit = sign, rest = value | Two zeros (+0 and -0) |
+| **One's complement** | Invert all bits | Still two zeros |
+| **Two's complement** | Invert + add 1 | One zero, works with addition |
+
+## 3. Two's Complement
+
+### How It Works
+
+```
+Positive 5:   00000101
+Invert bits:  11111010
+Add 1:        11111011  (= -5 in two's complement)
+```
+
+### Range
+
+| Bits | Signed Range |
+|------|-------------|
+| 8 | -128 to 127 |
+| 16 | -32,768 to 32,767 |
+| 32 | ~-2.1 billion to ~2.1 billion |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Two's complement demonstration
+function toTwosComplement(value, bits) {
+  if (value >= 0) return value.toString(2).padStart(bits, &quot;0&quot;);
+  let positive = -value;
+  let inverted = ((1 << bits) - 1) ^ positive;
+  let result = inverted + 1;
+  return (result >>> 0).toString(2).slice(-bits);
+}
+console.log(&quot;5:  &quot; + toTwosComplement(5, 8));
+console.log(&quot;-5: &quot; + toTwosComplement(-5, 8));" />
+
+## 5. Summary
+
+- **Two's complement** is the standard way to represent signed integers
+- The MSB indicates the sign (1 = negative)
+- Range is asymmetrical: **-2ⁿ⁻¹ to 2ⁿ⁻¹ - 1**
+
+## 6. What's Next
+
+Next: **Integer Overflow** — what happens when numbers exceed their range.

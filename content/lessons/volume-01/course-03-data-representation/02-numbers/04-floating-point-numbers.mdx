@@ -1,0 +1,70 @@
+---
+title: "Floating Point Numbers"
+slug: floating-point-numbers
+module: "Representing Numbers"
+moduleOrder: 2
+lessonOrder: 4
+duration: 25
+xp: 35
+difficulty: intermediate
+concepts: [binary]
+prerequisites: [integer-overflow]
+learningObjectives:
+  - Understand how decimal numbers are stored in binary
+  - Know the IEEE-754 standard basics
+estimatedKnowledgeGain: 8
+tags: [floating-point, ieee-754, decimals]
+---
+
+## 1. Hook
+
+Your computer can calculate 1/3 with remarkable precision, yet 0.1 + 0.2 doesn't equal 0.3. This isn't a bug — it's a fundamental property of how floating-point numbers work.
+
+## 2. Core Concept
+
+### Scientific Notation Review
+
+```
+1,234,567 = 1.234567 × 10⁶
+    ↑          ↑        ↑
+  value     mantissa  exponent
+```
+
+### IEEE-754 Floating Point
+
+A 32-bit float has three parts:
+
+| Part | Bits | Purpose |
+|------|------|---------|
+| **Sign** | 1 | Positive or negative |
+| **Exponent** | 8 | Magnitude |
+| **Mantissa** | 23 | Precision digits |
+
+```
+Example: -3.14 × 10² = -314
+```
+
+## 3. Precision Limits
+
+| Type | Bits | Significant Digits | Range |
+|------|------|-------------------|-------|
+| **Float (32-bit)** | 32 | ~7 | ±3.4 × 10³⁸ |
+| **Double (64-bit)** | 64 | ~15 | ±1.8 × 10³⁰⁸ |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// See floating point precision limits
+console.log(&quot;0.1 + 0.2 =&quot;, 0.1 + 0.2);
+console.log(&quot;1/3 =&quot;, 1/3);
+console.log(&quot;Large number:&quot;, 10000000000000000 + 1);
+console.log(&quot;Precision check:&quot;, 0.1 + 0.2 === 0.3); // false!" />
+
+## 5. Summary
+
+- **Floating-point** stores numbers using scientific notation in binary
+- **IEEE-754** is the universal standard
+- Limited precision means some decimal numbers can't be represented exactly
+
+## 6. What's Next
+
+Next: **Floating Point Errors** — why precision loss happens and how to handle it.

@@ -1,0 +1,60 @@
+---
+title: "Unsigned Integers"
+slug: unsigned-integers
+module: "Representing Numbers"
+moduleOrder: 2
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [why-representation-matters]
+learningObjectives:
+  - Represent positive integers in binary
+  - Calculate the range of unsigned integers
+estimatedKnowledgeGain: 8
+tags: [integers, unsigned, binary]
+---
+
+## 1. Hook
+
+An 8-bit unsigned integer can store values from 0 to 255. A 16-bit can store 0 to 65,535. A 32-bit can store 0 to 4,294,967,295. The range doubles with every additional bit.
+
+## 2. Core Concept
+
+**Unsigned integers** can only represent non-negative values (0 and positive).
+
+| Bits | Minimum | Maximum | Formula |
+|------|---------|---------|---------|
+| 8 | 0 | 255 | 2⁸ - 1 |
+| 16 | 0 | 65,535 | 2¹⁶ - 1 |
+| 32 | 0 | 4,294,967,295 | 2³² - 1 |
+| n | 0 | 2ⁿ - 1 | 2ⁿ - 1 |
+
+## 3. Range Visualization
+
+```
+8-bit: [0────────────────────────────255]
+16-bit: [0────────────────────────────────────────────65535]
+32-bit: [0────────────────────────────────────────────────────────4,294,967,295]
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function uintRange(bits) {
+  let max = Math.pow(2, bits) - 1;
+  console.log(`${bits}-bit unsigned: 0 to ${max}`);
+}
+uintRange(8);
+uintRange(16);
+uintRange(32);" />
+
+## 5. Summary
+
+- **Unsigned integers** = non-negative only
+- Range = **0 to 2ⁿ - 1**
+- More bits = larger range
+
+## 6. What's Next
+
+Next: **Signed Integers** — representing negative numbers in binary.

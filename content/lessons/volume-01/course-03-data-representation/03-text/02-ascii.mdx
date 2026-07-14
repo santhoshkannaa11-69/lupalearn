@@ -1,0 +1,66 @@
+---
+title: "ASCII"
+slug: ascii-encoding
+module: "Representing Text"
+moduleOrder: 3
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [character-encoding-overview]
+learningObjectives:
+  - Understand the ASCII standard
+  - Read and interpret ASCII codes
+estimatedKnowledgeGain: 7
+tags: [ascii, encoding]
+---
+
+## 1. Hook
+
+The letter 'A' is stored as 65. 'a' is 97. The difference between uppercase and lowercase is exactly 32. This wasn't random — it was designed so that flipping one bit changes case.
+
+## 2. ASCII Table (7-bit, 128 characters)
+
+| Code Range | Category | Examples |
+|-----------|----------|----------|
+| 0-31 | Control characters | Null, Bell, Tab, Enter |
+| 32 | Space | |
+| 48-57 | Digits | 0-9 |
+| 65-90 | Uppercase | A-Z |
+| 97-122 | Lowercase | a-z |
+
+### Key Values to Remember
+
+| Character | Decimal | Binary |
+|-----------|---------|--------|
+| A | 65 | 01000001 |
+| a | 97 | 01100001 |
+| 0 | 48 | 00110000 |
+
+## 3. ASCII's Limitation
+
+128 characters was enough for English, but not for:
+- Accented characters (é, ñ, ü)
+- Non-Latin scripts (Cyrillic, Arabic, Chinese)
+- Emojis
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function showASCII(text) {
+  for (let c of text) {
+    console.log(`${c} → ${c.charCodeAt(0)} → ${c.charCodeAt(0).toString(2)}`);
+  }
+}
+showASCII(&quot;Hello&quot;);
+showASCII(&quot;A a Z z&quot;);" />
+
+## 5. Summary
+
+- **ASCII** uses 7 bits for 128 characters
+- Designed for English — uppercase, lowercase, digits, punctuation
+- Insufficient for global computing
+
+## 6. What's Next
+
+Next: **Unicode** — the universal character encoding standard.

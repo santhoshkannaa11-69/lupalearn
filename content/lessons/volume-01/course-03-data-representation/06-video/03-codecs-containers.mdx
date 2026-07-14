@@ -1,0 +1,48 @@
+---
+title: "Codecs & Containers"
+slug: codecs-containers
+module: "Representing Video"
+moduleOrder: 6
+lessonOrder: 3
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [video-compression]
+learningObjectives:
+  - Differentiate codecs from containers
+  - Compare H.264, H.265, AV1, and others
+estimatedKnowledgeGain: 7
+tags: [video, codecs, containers]
+---
+
+## 1. Hook
+
+A video file ending in .mp4 tells you the container, not the codec. An MP4 can contain H.264 video or H.265 video. The codec is what actually compresses the video; the container is just the wrapper.
+
+## 2. Codecs vs Containers
+
+| Layer | What It Does | Examples |
+|-------|-------------|----------|
+| **Codec** | Compresses/decompresses video | H.264, H.265, AV1, VP9 |
+| **Container** | Wraps video + audio + metadata | MP4, MKV, WebM, AVI |
+
+## 3. Video Codec Comparison
+
+| Codec | Efficiency | Hardware Support | Licensing |
+|-------|-----------|-----------------|-----------|
+| **H.264 (AVC)** | Good | Universal | Patented |
+| **H.265 (HEVC)** | Better (~50% smaller) | Modern devices | Patented, complex |
+| **VP9** | Better | Most browsers | Royalty-free |
+| **AV1** | Best (~30% better than H.265) | Newer devices | Royalty-free |
+| **AVC2** | Emerging | Very new | Royalty-free |
+
+## 4. Summary
+
+- **Codec** = compression algorithm; **Container** = file format
+- H.264 is the most widely compatible codec
+- AV1 is the next generation — smaller files, royalty-free
+
+## 5. What's Next
+
+Next: **Streaming Video** — how video travels over the Internet.

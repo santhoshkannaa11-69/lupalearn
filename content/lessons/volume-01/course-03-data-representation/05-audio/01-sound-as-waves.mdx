@@ -1,0 +1,63 @@
+---
+title: "Sound as Waves"
+slug: sound-as-waves
+module: "Representing Audio"
+moduleOrder: 5
+lessonOrder: 1
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [image-metadata]
+learningObjectives:
+  - Understand sound wave properties
+  - See how analog sound is measured
+estimatedKnowledgeGain: 7
+tags: [audio, sound, waves]
+---
+
+## 1. Hook
+
+Sound is a wave moving through air. When you speak, your vocal cords vibrate the air, creating waves that travel to a listener's ear. A microphone captures these waves and converts them to an electrical signal — which the computer then samples into numbers.
+
+## 2. Sound Wave Properties
+
+| Property | What It Determines | Measured In |
+|----------|-------------------|-------------|
+| **Frequency** | Pitch (high/low) | Hertz (Hz) |
+| **Amplitude** | Volume (loud/quiet) | Decibels (dB) |
+| **Wavelength** | Distance between peaks | Meters |
+
+### Visualizing a Sound Wave
+
+```
+Amplitude
+    ↑   /\      /\      /\
+    |  /  \    /  \    /  \
+    | /    \  /    \  /    \  → Time
+    |/      \/      \/
+```
+
+## 3. The Digital Conversion
+
+```
+Analog sound wave (continuous)
+    ↓
+Microphone converts to electrical signal
+    ↓
+ADC (Analog to Digital Converter) samples at regular intervals
+    ↓
+Discrete digital values (numbers)
+    ↓
+Stored as binary
+```
+
+## 4. Summary
+
+- Sound is a **wave** with frequency (pitch) and amplitude (volume)
+- Computers convert analog waves to digital by **sampling**
+- Higher frequencies require faster sampling
+
+## 5. What's Next
+
+Next: **Sampling** — how often to measure sound waves.

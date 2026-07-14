@@ -1,0 +1,54 @@
+---
+title: "File Systems"
+slug: file-systems
+module: "Files & Storage"
+moduleOrder: 7
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [binary]
+prerequisites: [streaming-video]
+learningObjectives:
+  - Understand file system structure
+  - Know how files are organized
+estimatedKnowledgeGain: 6
+tags: [files, filesystems, storage]
+---
+
+## 1. Hook
+
+When you save a file, the operating system doesn't just write it to a blank disk. It allocates space in blocks, updates a directory table, and logs when the file was created. All of this is managed by the **file system**.
+
+## 2. File System Structure
+
+```
+┌─────────────────────────────────┐
+│  Master Boot Record (partition) │
+├─────────────────────────────────┤
+│  Directory Table                 │
+│  filename → block location       │
+├─────────────────────────────────┤
+│  File Data (blocks/clusters)    │
+│  [Block 1] [Block 2] [Block 3] │
+└─────────────────────────────────┘
+```
+
+## 3. File Systems Compared
+
+| System | OS | Max File Size | Features |
+|--------|----|---------------|----------|
+| **NTFS** | Windows | 16 EB | Compression, encryption, permissions |
+| **APFS** | macOS | 8 EB | Snapshots, cloning, encryption |
+| **ext4** | Linux | 16 TB | Journaling, backward compatible |
+| **FAT32** | Universal | 4 GB | Maximum compatibility |
+
+## 4. Summary
+
+- A **file system** organizes how data is stored and retrieved
+- Different OSs use different file systems
+- File systems manage: **allocation, naming, permissions, metadata**
+
+## 5. What's Next
+
+Next: **How OSs Store Files** — blocks, clusters, and HDD vs SSD.

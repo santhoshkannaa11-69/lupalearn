@@ -189,7 +189,7 @@ async function main() {
       { slug: "why-binary", title: "Why Computers Use Binary", order: 1 }, { slug: "binary-numbers", title: "Binary Numbers", order: 2 }, { slug: "other-num-systems", title: "Other Number Systems", order: 3 }, { slug: "binary-arithmetic", title: "Binary Arithmetic", order: 4 }, { slug: "data-rep", title: "Data Representation", order: 5 },
     ]},
     { slug: "data-representation", title: "Data Representation", order: 3, modules: [
-      { slug: "bits-and-bytes", title: "Bits & Bytes", order: 1 }, { slug: "character-encoding", title: "Character Encoding", order: 2 }, { slug: "image-representation", title: "Image Representation", order: 3 }, { slug: "audio-representation", title: "Audio Representation", order: 4 }, { slug: "compression", title: "Compression", order: 5 },
+      { slug: "intro-data-repr", title: "Introduction to Data Representation", order: 1 }, { slug: "repr-numbers", title: "Representing Numbers", order: 2 }, { slug: "repr-text", title: "Representing Text", order: 3 }, { slug: "repr-images", title: "Representing Images", order: 4 }, { slug: "repr-audio", title: "Representing Audio", order: 5 }, { slug: "repr-video", title: "Representing Video", order: 6 }, { slug: "files-storage", title: "Files & Storage", order: 7 },
     ]},
     { slug: "logic-boolean-algebra", title: "Logic & Boolean Algebra", order: 4, modules: [
       { slug: "boolean-basics", title: "Boolean Algebra Basics", order: 1 }, { slug: "logic-gates", title: "Logic Gates", order: 2 }, { slug: "boolean-laws", title: "Boolean Laws", order: 3 }, { slug: "karnaugh-maps", title: "Karnaugh Maps", order: 4 }, { slug: "logic-simplification", title: "Logic Simplification", order: 5 },
@@ -237,6 +237,7 @@ async function main() {
   // All 45 lessons organized by module
   const C1 = "lessons/volume-01/course-01-introduction-to-computing"
   const C2 = "lessons/volume-01/course-02-number-systems"
+  const C3 = "lessons/volume-01/course-03-data-representation"
   const lessonData = [
     // Module 1: What is Programming? (5)
     { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
@@ -373,9 +374,42 @@ async function main() {
     { slug: "storing-text-ascii-unicode", title: "How Computers Store Text", description: "ASCII, Unicode, UTF-8.", contentPath: `${C2}/05-data-representation/01-storing-text.mdx`, moduleSlug: "data-rep", order: 1, duration: 20, xp: 30, tags: ["text", "encoding"], concepts: ["binary"] },
     { slug: "storing-images-audio-video", title: "Images, Audio & Video", description: "Pixels, samples, frames, compression.", contentPath: `${C2}/05-data-representation/02-storing-images-audio-video.mdx`, moduleSlug: "data-rep", order: 2, duration: 20, xp: 30, tags: ["media"], concepts: ["binary"] },
 
-    // ─── COURSE 3: Data Representation (sample lessons) ───
-    { slug: "bits-and-bytes", title: "Bits & Bytes", description: "Understand the fundamental units of digital data.", contentPath: "lessons/volume-01/course-03-data-representation/bits-bytes.mdx", moduleSlug: "bits-and-bytes", order: 1, duration: 15, xp: 20, tags: ["data"], concepts: ["binary"] },
-    { slug: "character-encoding", title: "Character Encoding", description: "Learn how text is represented in computers.", contentPath: "lessons/volume-01/course-03-data-representation/encoding.mdx", moduleSlug: "character-encoding", order: 1, duration: 20, xp: 25, tags: ["encoding"], concepts: ["binary"] },
+    // ─── COURSE 3: Data Representation (28 lessons, 7 modules) ───
+    // Module 1: Introduction (4)
+    { slug: "what-is-data-repr", title: "What Is Data?", description: "Analog vs digital, data representation basics.", contentPath: `${C3}/01-introduction/01-what-is-data.mdx`, moduleSlug: "intro-data-repr", order: 1, duration: 15, xp: 20, tags: ["data"], concepts: ["binary"] },
+    { slug: "how-computers-see-world", title: "How Computers See the World", description: "Everything becomes binary.", contentPath: `${C3}/01-introduction/02-how-computers-see-world.mdx`, moduleSlug: "intro-data-repr", order: 2, duration: 15, xp: 20, tags: ["binary"], concepts: ["binary"] },
+    { slug: "units-of-digital-info", title: "Units of Digital Information", description: "Bit, nibble, byte, KB, MB, GB, TB.", contentPath: `${C3}/01-introduction/03-units-of-digital-info.mdx`, moduleSlug: "intro-data-repr", order: 3, duration: 15, xp: 20, tags: ["units"], concepts: ["binary"] },
+    { slug: "why-representation-matters", title: "Why Representation Matters", description: "Accuracy, storage, performance, compatibility.", contentPath: `${C3}/01-introduction/04-why-representation-matters.mdx`, moduleSlug: "intro-data-repr", order: 4, duration: 15, xp: 20, tags: ["representation"], concepts: ["binary"] },
+    // Module 2: Numbers (5)
+    { slug: "unsigned-integers", title: "Unsigned Integers", description: "Positive number representation and range.", contentPath: `${C3}/02-numbers/01-unsigned-integers.mdx`, moduleSlug: "repr-numbers", order: 1, duration: 20, xp: 30, tags: ["integers"], concepts: ["binary"] },
+    { slug: "signed-integers", title: "Signed Integers", description: "Two's complement, sign-magnitude.", contentPath: `${C3}/02-numbers/02-signed-integers.mdx`, moduleSlug: "repr-numbers", order: 2, duration: 25, xp: 35, tags: ["integers"], concepts: ["binary"] },
+    { slug: "integer-overflow", title: "Integer Overflow", description: "Real-world overflow examples.", contentPath: `${C3}/02-numbers/03-integer-overflow.mdx`, moduleSlug: "repr-numbers", order: 3, duration: 20, xp: 30, tags: ["overflow"], concepts: ["binary"] },
+    { slug: "floating-point-numbers", title: "Floating Point Numbers", description: "IEEE-754 standard, precision.", contentPath: `${C3}/02-numbers/04-floating-point-numbers.mdx`, moduleSlug: "repr-numbers", order: 4, duration: 25, xp: 35, tags: ["float"], concepts: ["binary"] },
+    { slug: "floating-point-errors", title: "Floating Point Errors", description: "Why 0.1+0.2≠0.3, precision handling.", contentPath: `${C3}/02-numbers/05-floating-point-errors.mdx`, moduleSlug: "repr-numbers", order: 5, duration: 20, xp: 30, tags: ["float"], concepts: ["binary"] },
+    // Module 3: Text (4)
+    { slug: "character-encoding-overview", title: "Character Encoding", description: "Why text needs encoding standards.", contentPath: `${C3}/03-text/01-character-encoding.mdx`, moduleSlug: "repr-text", order: 1, duration: 15, xp: 20, tags: ["encoding"], concepts: ["binary"] },
+    { slug: "ascii-encoding", title: "ASCII", description: "7-bit ASCII table and limitations.", contentPath: `${C3}/03-text/02-ascii.mdx`, moduleSlug: "repr-text", order: 2, duration: 20, xp: 25, tags: ["ascii"], concepts: ["binary"] },
+    { slug: "unicode-standard", title: "Unicode", description: "UTF-8, UTF-16, code points.", contentPath: `${C3}/03-text/03-unicode.mdx`, moduleSlug: "repr-text", order: 3, duration: 25, xp: 35, tags: ["unicode"], concepts: ["binary"] },
+    { slug: "emojis-international", title: "Emojis & International Languages", description: "Emoji encoding, UTF-8 dominance.", contentPath: `${C3}/03-text/04-emojis-international.mdx`, moduleSlug: "repr-text", order: 4, duration: 20, xp: 25, tags: ["emoji"], concepts: ["binary"] },
+    // Module 4: Images (5)
+    { slug: "pixels-resolution", title: "Pixels and Resolution", description: "Pixel grids, resolution, image size calculations.", contentPath: `${C3}/04-images/01-pixels-resolution.mdx`, moduleSlug: "repr-images", order: 1, duration: 20, xp: 25, tags: ["pixels"], concepts: ["binary"] },
+    { slug: "color-models", title: "Color Models", description: "RGB, RGBA, hex colors, color depth.", contentPath: `${C3}/04-images/02-color-models.mdx`, moduleSlug: "repr-images", order: 2, duration: 20, xp: 25, tags: ["color"], concepts: ["binary"] },
+    { slug: "image-formats", title: "Image Formats", description: "PNG, JPEG, GIF, SVG, WebP.", contentPath: `${C3}/04-images/03-image-formats.mdx`, moduleSlug: "repr-images", order: 3, duration: 20, xp: 25, tags: ["formats"], concepts: ["binary"] },
+    { slug: "image-compression", title: "Compression", description: "Lossless vs lossy, JPEG pipeline.", contentPath: `${C3}/04-images/04-compression.mdx`, moduleSlug: "repr-images", order: 4, duration: 20, xp: 25, tags: ["compression"], concepts: ["binary"] },
+    { slug: "image-metadata", title: "Image Metadata", description: "EXIF, GPS data, privacy implications.", contentPath: `${C3}/04-images/05-metadata.mdx`, moduleSlug: "repr-images", order: 5, duration: 15, xp: 20, tags: ["metadata"], concepts: ["binary"] },
+    // Module 5: Audio (4)
+    { slug: "sound-as-waves", title: "Sound as Waves", description: "Frequency, amplitude, analog to digital.", contentPath: `${C3}/05-audio/01-sound-as-waves.mdx`, moduleSlug: "repr-audio", order: 1, duration: 20, xp: 25, tags: ["audio"], concepts: ["binary"] },
+    { slug: "audio-sampling", title: "Sampling", description: "Sample rate, bit depth, Nyquist theorem.", contentPath: `${C3}/05-audio/02-audio-sampling.mdx`, moduleSlug: "repr-audio", order: 2, duration: 20, xp: 30, tags: ["audio"], concepts: ["binary"] },
+    { slug: "audio-formats", title: "Audio Formats", description: "WAV, FLAC, MP3, AAC, OGG.", contentPath: `${C3}/05-audio/03-audio-formats.mdx`, moduleSlug: "repr-audio", order: 3, duration: 20, xp: 25, tags: ["audio"], concepts: ["binary"] },
+    { slug: "audio-compression", title: "Audio Compression", description: "Psychoacoustic models, bitrate.", contentPath: `${C3}/05-audio/04-audio-compression.mdx`, moduleSlug: "repr-audio", order: 4, duration: 20, xp: 25, tags: ["audio"], concepts: ["binary"] },
+    // Module 6: Video (4)
+    { slug: "video-frames", title: "Video Frames", description: "Frame rate, keyframes, delta frames.", contentPath: `${C3}/06-video/01-video-frames.mdx`, moduleSlug: "repr-video", order: 1, duration: 20, xp: 25, tags: ["video"], concepts: ["binary"] },
+    { slug: "video-compression", title: "Video Compression", description: "Keyframe/delta encoding, compression ratios.", contentPath: `${C3}/06-video/02-video-compression.mdx`, moduleSlug: "repr-video", order: 2, duration: 20, xp: 25, tags: ["video"], concepts: ["binary"] },
+    { slug: "codecs-containers", title: "Codecs & Containers", description: "H.264, H.265, AV1, MP4, MKV.", contentPath: `${C3}/06-video/03-codecs-containers.mdx`, moduleSlug: "repr-video", order: 3, duration: 20, xp: 25, tags: ["video"], concepts: ["binary"] },
+    { slug: "streaming-video", title: "Streaming Video", description: "Adaptive bitrate, buffering.", contentPath: `${C3}/06-video/04-streaming-video.mdx`, moduleSlug: "repr-video", order: 4, duration: 20, xp: 25, tags: ["video"], concepts: ["binary"] },
+    // Module 7: Files (2)
+    { slug: "file-systems", title: "File Systems", description: "NTFS, APFS, ext4, FAT32.", contentPath: `${C3}/07-files/01-file-systems.mdx`, moduleSlug: "files-storage", order: 1, duration: 15, xp: 20, tags: ["files"], concepts: ["binary"] },
+    { slug: "how-oss-store-files", title: "How OSs Store Files", description: "Blocks, clusters, fragmentation.", contentPath: `${C3}/07-files/02-how-oss-store-files.mdx`, moduleSlug: "files-storage", order: 2, duration: 20, xp: 25, tags: ["storage"], concepts: ["binary"] },
 
     // ─── COURSE 4: Logic & Boolean Algebra (sample lessons) ───
     { slug: "boolean-algebra", title: "Boolean Algebra Basics", description: "Learn the fundamental laws of boolean logic.", contentPath: "lessons/volume-01/course-04-logic-boolean-algebra/boolean-algebra.mdx", moduleSlug: "boolean-basics", order: 1, duration: 20, xp: 30, tags: ["logic"], concepts: ["boolean-logic"] },
