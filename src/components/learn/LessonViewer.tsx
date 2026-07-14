@@ -119,74 +119,67 @@ function LessonViewer({ lesson, concepts, mdxContent, navigation }: LessonViewer
     registerLessonCommands()
   }, [])
 
-  // Global keyboard handler
+  // Global keyboard handler — attached to document for reliable capture
   useEffect(() => {
     const el = contentRef.current
-    if (!el) return
+    let gCount = 0
+    let gTimer: ReturnType<typeof setTimeout> | null = null
 
     const handler = (e: KeyboardEvent) => {
       // Don't handle if typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
 
       // `:` — open command bar
-      if (e.key === ":" && !e.ctrlKey && !e.metaKey) {
+      if (e.key === ":" && !e.ctrlKey && !e.metaKey && !commandMode) {
         e.preventDefault()
         setCommandMode(true)
         return
       }
 
       // `?` — show help
-      if (e.key === "?" && e.shiftKey) {
+      if (e.key === "?" && e.shiftKey && !commandMode) {
         e.preventDefault()
-        setHelpOpen(true)
+        setHelpOpen((prev) => !prev)
         return
       }
 
-      // Esc — close command bar / help
+      // Esc — close overlays
       if (e.key === "Escape") {
-        if (commandMode) setCommandMode(false)
-        if (helpOpen) setHelpOpen(false)
+        if (commandMode) { setCommandMode(false); return }
+        if (helpOpen) { setHelpOpen(false); return }
         return
       }
 
-      // j / k — scroll
-      if (!commandMode) {
+      // Vim-style scrolling (only when command bar is closed)
+      if (!commandMode && !helpOpen) {
         const step = 40
-        if (e.key === "j") { e.preventDefault(); el.scrollBy(0, step) }
-        if (e.key === "k") { e.preventDefault(); el.scrollBy(0, -step) }
-        if (e.key === "g" && e.repeat === false) {
-          // gg — but we need to detect double-g
+        if (e.key === "j") { e.preventDefault(); el?.scrollBy(0, step); return }
+        if (e.key === "k") { e.preventDefault(); el?.scrollBy(0, -step); return }
+        if (e.key === "G") { e.preventDefault(); el?.scrollTo(0, el?.scrollHeight || 0); return }
+        if (e.ctrlKey && e.key === "d") { e.preventDefault(); el?.scrollBy(0, (el?.clientHeight || 0) * 0.5); return }
+        if (e.ctrlKey && e.key === "u") { e.preventDefault(); el?.scrollBy(0, -((el?.clientHeight || 0) * 0.5)); return }
+
+        // gg detection (double tap)
+        if (e.key === "g") {
+          gCount++
+          if (gCount === 2) {
+            e.preventDefault()
+            el?.scrollTo(0, 0)
+            gCount = 0
+            if (gTimer) { clearTimeout(gTimer); gTimer = null }
+          } else {
+            if (gTimer) clearTimeout(gTimer)
+            gTimer = setTimeout(() => { gCount = 0 }, 400)
+          }
+          return
         }
-        if (e.key === "G" && e.shiftKey) { e.preventDefault(); el.scrollTo(0, el.scrollHeight) }
-        if (e.ctrlKey && e.key === "d") { e.preventDefault(); el.scrollBy(0, el.clientHeight * 0.5) }
-        if (e.ctrlKey && e.key === "u") { e.preventDefault(); el.scrollBy(0, -el.clientHeight * 0.5) }
       }
     }
 
-    // gg detection
-    let gCount = 0
-    let gTimer: ReturnType<typeof setTimeout> | null = null
-
-    const gHandler = (e: KeyboardEvent) => {
-      if (e.key === "g" && !commandMode) {
-        gCount++
-        if (gCount === 2) {
-          e.preventDefault()
-          el.scrollTo(0, 0)
-          gCount = 0
-          if (gTimer) clearTimeout(gTimer)
-        }
-        if (gTimer) clearTimeout(gTimer)
-        gTimer = setTimeout(() => { gCount = 0 }, 400)
-        return
-      }
-    }
-
-    document.addEventListener("keydown", gHandler)
-    el.addEventListener("keydown", handler)
+    document.addEventListener("keydown", handler)
     return () => {
-      document.removeEventListener("keydown", gHandler)
-      el.removeEventListener("keydown", handler)
+      document.removeEventListener("keydown", handler)
+      if (gTimer) clearTimeout(gTimer)
     }
   }, [commandMode, helpOpen])
 
