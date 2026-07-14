@@ -8,43 +8,49 @@ duration: 15
 xp: 25
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [cpu-the-brain]
 learningObjectives:
   - Understand RAM's role
   - Differentiate RAM from storage
 ---
 
-## Memory (RAM)
+## 1. Hook
 
-**RAM** (Random Access Memory) is your computer's short-term memory. It holds data that the CPU needs to access quickly.
+When your computer slows down with too many tabs open, you're not running out of "storage" — you're running out of RAM. These are two very different things, and confusing them is one of the most common tech misconceptions.
 
-### How RAM Works
+## 2. RAM vs Storage
 
-When you open a program:
-1. The program's code loads from the **SSD/HDD** (slow, permanent)
-2. It's copied into **RAM** (fast, temporary)
-3. The **CPU** reads instructions from RAM
-4. When you close the program, RAM is freed
+```
+        CPU
+         ↑
+    Very fast
+         ↑
+       ┌───┐
+       │RAM│ ← Temporary, fast, limited (8-64 GB)
+       └───┘
+         ↑
+    Fast enough
+         ↑
+       ┌───┐
+       │SSD│ ← Permanent, slower, larger (256 GB - 4 TB)
+       └───┘
+```
 
-### RAM vs Storage
+## 3. How RAM Works
 
-| Aspect | RAM | SSD/HDD |
-|--------|-----|---------|
+| Aspect | RAM | SSD |
+|--------|-----|-----|
 | **Speed** | ~50 GB/s | ~5 GB/s |
-| **Capacity** | 8-64 GB typically | 256 GB-4 TB typically |
-| **Persistence** | Data lost when power is off | Data persists |
-| **Cost per GB** | Higher | Lower |
-| **Purpose** | Active work area | Permanent library |
+| **Persistence** | Lost on power off | Survives reboots |
+| **Purpose** | Active workspace | Permanent storage |
+| **Upgrade** | Easy (desktop) | Easy |
 
-### Types of RAM
+## 4. Summary
 
-| Type | Used In | Speed |
-|------|---------|-------|
-| **DDR4** | Older computers | Up to 3200 MT/s |
-| **DDR5** | New computers | Up to 6400 MT/s |
-| **LPDDR5** | Laptops, phones | Power-efficient |
+- RAM is **temporary workspace** — fast, small, volatile
+- Storage is **permanent library** — slower, larger, persistent
+- When RAM is full, your computer uses **swap space** on the SSD (very slow)
 
-### Why RAM Matters
+## 5. What's Next
 
-More RAM allows you to run more programs simultaneously without slowdown. 8 GB is minimum for most users, 16 GB is recommended, and 32+ GB for power users.
-
-When RAM is full, the OS uses **swap space** (a portion of the SSD as slow RAM), which dramatically slows down your computer.
+Next: **Storage (HDD, SSD)** — how permanent data is kept and the speed differences between technologies.

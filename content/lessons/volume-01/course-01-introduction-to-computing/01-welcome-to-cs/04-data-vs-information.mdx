@@ -8,14 +8,34 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [what-is-computer-science]
 learningObjectives:
-  - Distinguish data, information, and knowledge
+  - Distinguish data, information, knowledge, and wisdom
   - Understand the DIKW pyramid
+  - See how data becomes valuable through processing
+estimatedKnowledgeGain: 7
+tags: [data, information, knowledge, dikw]
 ---
 
-## Data vs Information vs Knowledge
+## 1. Hook
 
-These terms are often confused but represent different levels of understanding.
+Your phone's weather app shows 72°F and a sunny icon. That's useful — you know to dress lightly.
+
+But somewhere, a meteorologist is looking at thousands of raw temperature readings, pressure maps, and satellite images — making predictions that affect millions of people.
+
+Why does the same "data" mean something different to each of them?
+
+## 2. Why This Matters
+
+The difference between data and information is one of the most important concepts in computing. Every program you write transforms raw data into useful information. Understanding this transformation is the difference between code that merely runs and code that actually *helps* people.
+
+## 3. Learning Objectives
+
+- **Differentiate** data, information, knowledge, and wisdom
+- **Explain** the DIKW pyramid
+- **Trace** how raw data becomes actionable wisdom
+
+## 4. Core Concept
 
 ### The DIKW Pyramid
 
@@ -31,20 +51,61 @@ These terms are often confused but represent different levels of understanding.
         └─────────┘
 ```
 
-### Examples
+### Example: A Hospital
 
-| Level | Example |
-|-------|---------|
-| **Data** | `25`, `35`, `28` — raw numbers |
-| **Information** | `Temperature: 25°C, 35°C, 28°C` — labeled data |
-| **Knowledge** | `Summer temperatures average 29°C` — patterns in information |
-| **Wisdom** | `Install better cooling for summer` — knowing what to do |
+| Level | Example | What It Is |
+|-------|---------|------------|
+| **Data** | `98.6, 120/80, 37` | Raw numbers |
+| **Information** | `Temperature: 98.6°F, BP: 120/80, Pulse: 37` | Labeled data |
+| **Knowledge** | `Vitals are normal for a resting adult` | Patterns in data |
+| **Wisdom** | `Patient is healthy — discharge with standard advice` | Decision based on knowledge |
 
-### In Programming
+## 5. Mental Model — The Kitchen Analogy
 
-- **Data** is what your program receives
-- **Information** is what your program processes
-- **Knowledge** is what your program learns over time
-- **Wisdom** is what you design your program to do
+```
+Data           → Raw ingredients (flour, eggs, sugar)
+Information    → Measured ingredients (2 cups flour, 3 eggs, 1 cup sugar)
+Knowledge      → A recipe combining them correctly
+Wisdom         → Knowing when to adjust the recipe
+```
 
-Every program you write transforms data into information.
+You can give someone the same ingredients. What they do with them depends on their level of understanding.
+
+## 6. Real-World Applications
+
+| System | Data | Information | Action |
+|--------|------|-------------|--------|
+| **Navigation** | Satellite signals | "Turn left in 200m" | Route recalculation |
+| **E-commerce** | Click history | "Customers also bought..." | Product recommendation |
+| **Healthcare** | Symptom inputs | "85% match with condition X" | Suggested diagnosis |
+| **Banking** | Transaction amounts | "Unusual spending pattern" | Fraud alert |
+
+## 7. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Raw data (unlabeled)
+console.log([25, 30, 35, 28, 32]);
+
+// As information (context added)
+let temps = [25, 30, 35, 28, 32];
+console.log(&quot;Temperatures:&quot;, temps);
+console.log(&quot;Average:&quot;, temps.reduce((a,b) => a+b) / temps.length + &quot;°C&quot;);" />
+
+## 8. Quiz
+
+<Quiz question="A GPS shows 'Arrive in 15 minutes.' Is this data, information, or knowledge?"
+  options={["Data", "Information", "Knowledge", "Wisdom"]}
+  answer="1"
+  explanation="Raw GPS coordinates are data. '15 minutes' is processed information — a meaningful interpretation of the raw data."
+/>
+
+## 9. Summary
+
+- **Data**: Raw facts (no context)
+- **Information**: Data with meaning
+- **Knowledge**: Patterns in information
+- **Wisdom**: Applied knowledge for decisions
+- Every program you write transforms data into information
+
+## 10. What's Next
+
+Now that you understand the raw material of computing (data), the next lesson explores how computing has transformed — and continues to transform — the world around us.

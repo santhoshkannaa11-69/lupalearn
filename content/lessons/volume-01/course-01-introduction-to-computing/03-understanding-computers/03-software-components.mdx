@@ -8,45 +8,60 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [hardware-components]
 learningObjectives:
   - Understand the software stack
-  - Differentiate software types
+  - Differentiate OS, applications, drivers, and firmware
 ---
 
-## Software Components
+## 1. Hook
 
-**Software** is the set of instructions that tell hardware what to do. Without software, hardware is just expensive metal and silicon.
+Hardware is the body. Software is the mind. A computer without software is a collection of expensive metal and silicon — it can't do anything until told what to do.
 
-### The Software Stack
+## 2. The Software Stack
 
 ```
-User
-  ↓
-Applications (browser, games, editors)
-  ↓
-Operating System (Windows, macOS, Linux)
-  ↓
-Drivers (communicate with hardware)
-  ↓
-Hardware (CPU, memory, devices)
+┌──────────────────────────────┐
+│    Applications              │  ← What users interact with
+│  (Chrome, VSCode, Spotify)  │
+├──────────────────────────────┤
+│    Operating System          │  ← Manages hardware resources
+│  (Windows, macOS, Linux)    │
+├──────────────────────────────┤
+│    Drivers                   │  ← Translates between OS and hardware
+├──────────────────────────────┤
+│    Firmware / BIOS           │  ← Built into hardware, boots the system
+└──────────────────────────────┘
 ```
 
-### Types of Software
+## 3. Types of Software
 
-| Type | What It Does | Examples |
-|------|-------------|----------|
-| **Operating System** | Manages hardware and resources | Windows, macOS, Linux, Android, iOS |
-| **Applications** | Performs specific tasks | Chrome, Word, VS Code, Spotify |
-| **Utilities** | System maintenance | Antivirus, disk cleanup, backup |
-| **Drivers** | Communicate with hardware | GPU driver, printer driver |
-| **Firmware** | Built into hardware | BIOS, router firmware |
+| Type | Examples | Purpose |
+|------|----------|---------|
+| **Operating System** | Windows, macOS, Linux | Manages resources |
+| **Applications** | Chrome, VS Code, Spotify | User tasks |
+| **Drivers** | GPU driver, printer driver | Hardware communication |
+| **Firmware** | BIOS, router firmware | Device-level control |
+| **Utilities** | Antivirus, disk cleanup | System maintenance |
 
-### How Software Interacts with Hardware
+## 4. How They Interact
 
-1. An **application** requests data
-2. The **OS** manages the request
-3. The **driver** translates the request to hardware commands
-4. The **hardware** performs the operation
-5. The result flows back up the stack
+```
+User opens Chrome
+  → OS allocates RAM for Chrome
+  → Chrome requests network access
+  → Driver sends signal to Wi-Fi card
+  → Hardware transmits data
+  → Result flows back up the stack
+```
 
-This layering allows you to run complex software without understanding the underlying hardware details.
+## 5. Summary
+
+- **Software** is the instructions that tell hardware what to do
+- The **OS** manages hardware and runs applications
+- **Drivers** bridge the gap between OS and hardware
+- **Firmware** provides low-level device control
+
+## 6. What's Next
+
+Next, we explore **firmware** — the often-overlooked layer that bridges hardware and software.

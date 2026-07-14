@@ -8,51 +8,45 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [processes-and-programs]
 learningObjectives:
-  - Understand file systems
-  - Navigate directory structures
+  - Understand file system structure
+  - Navigate directory hierarchies
 ---
 
-## Files and File Systems
+## 1. Hook
 
-A **file system** is how the OS organizes and stores files on a disk.
+Every file on your computer lives somewhere in a tree of folders. This structure — first developed in the 1960s — is so fundamental that almost every operating system uses the same basic design.
 
-### File System Structure
+## 2. File System Structure
 
 ```
 / (root)
 ├── home/
 │   └── user/
 │       ├── Documents/
-│       ├── Pictures/
+│       ├── Downloads/
 │       └── Projects/
-├── etc/         (configuration files)
-├── usr/         (program files)
-└── var/         (variable data, logs)
+├── etc/          (config files)
+├── usr/          (program files)
+└── var/          (logs, data)
 ```
 
-### File System Types
+## 3. File Systems Compared
 
-| System | Used By | Features |
-|--------|---------|----------|
-| **NTFS** | Windows | Journaling, permissions, encryption |
-| **APFS** | macOS | Snapshots, encryption, space sharing |
-| **ext4** | Linux | Journaling, large files, backward compatible |
-| **FAT32** | Universal | Compatible everywhere, 4GB file limit |
+| System | Used By | Max File Size |
+|--------|---------|---------------|
+| **NTFS** | Windows | 16 EB |
+| **APFS** | macOS | 8 EB |
+| **ext4** | Linux | 16 TB |
+| **FAT32** | USB drives | 4 GB |
 
-### File Paths
+## 4. Summary
 
-- **Absolute path**: `/home/user/Documents/file.txt` (starts from root)
-- **Relative path**: `Documents/file.txt` (relative to current directory)
+- The file system organizes data into a **tree of directories**
+- Different OSs use different file systems (NTFS, APFS, ext4)
+- Understanding the hierarchy helps you navigate any computer
 
-### File Permissions
+## 5. What's Next
 
-Linux/macOS use a permission system:
-
-| Permission | File | Directory |
-|-----------|------|-----------|
-| **Read (r)** | View contents | List files |
-| **Write (w)** | Modify contents | Create/delete files |
-| **Execute (x)** | Run as program | Enter directory |
-
-Permissions are set for: **owner**, **group**, and **everyone**.
+The final OS lesson compares two ways of interacting with a computer: **Graphical UI vs Command Line**.

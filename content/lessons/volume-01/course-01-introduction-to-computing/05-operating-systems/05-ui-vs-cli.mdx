@@ -8,49 +8,37 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [files-and-file-systems]
 learningObjectives:
   - Compare GUI and CLI
   - Know when to use each
 ---
 
-## UI vs Command Line
+## 1. Hook
 
-You can interact with your computer in two ways.
+You've been using a GUI your whole life — windows, icons, buttons. But behind every GUI is a command line waiting to be used. And for many tasks, the command line is faster than any menu.
 
-### Graphical User Interface (GUI)
+## 2. GUI vs CLI
 
-Windows, icons, buttons, and menus. Intuitive and visual.
+| Task | GUI | CLI |
+|------|-----|-----|
+| **Rename 100 files** | Click each one → F2 | `rename 's/.jpg/.png/'` — 1 second |
+| **Find a file** | Search bar | `find / -name "*.txt"` |
+| **Copy to server** | FTP client | `scp file.zip server.com:/` |
 
-| Pro | Con |
-|-----|-----|
-| Easy to learn | Slower for power users |
-| Visual feedback | Hard to automate |
-| Discoverable | Uses more resources |
+## 3. Why the CLI Matters for Developers
 
-### Command Line Interface (CLI)
+- **Scriptable** — automate repetitive tasks
+- **Available everywhere** — every server has a terminal
+- **Composable** — chain commands together (`ls | grep "test" | wc -l`)
+- **Lightweight** — runs on any machine, any connection speed
 
-Typing commands in a terminal. Powerful and efficient.
+## 4. Summary
 
-| Pro | Con |
-|-----|-----|
-| Very fast | Steeper learning curve |
-| Scriptable/automated | No visual feedback |
-| Minimal resources | Requires memorizing commands |
-| Accessible remotely | |
+- **GUI** is intuitive and discoverable
+- **CLI** is faster and more powerful for complex tasks
+- Developers use **both** — choosing the right tool for each task
 
-### When to Use Each
+## 5. What's Next
 
-| Task | Better With |
-|------|-------------|
-| Browsing the web | GUI |
-| Editing a photo | GUI |
-| Renaming 1000 files | CLI (`rename 's/.jpg/.png/' *.jpg`) |
-| Installing software | CLI (`npm install react`) |
-| Configuring a server | CLI |
-| Writing code | Both (editor GUI + terminal CLI) |
-
-### In the Playground
-
-Open the **Playground** and try the terminal. Type `ls`, `pwd`, `cd` — you're using a CLI right now. As you progress through LupaLearn, you'll become comfortable with both interfaces.
-
-The most effective developers use **both** — choosing the right tool for each task.
+The next module moves from individual computers to networks: **Computer Networks & The Internet**.

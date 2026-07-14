@@ -8,63 +8,70 @@ duration: 20
 xp: 30
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [input-output-devices]
 learningObjectives:
-  - See the complete data flow
+  - Trace the complete data flow through a computer
   - Understand system integration
 ---
 
-## How Everything Works Together
+## 1. Hook
 
-Let's trace what happens when you press a key in a text editor.
+Every action you take on a computer triggers a chain reaction involving dozens of components, multiple layers of software, and billions of transistors — all coordinated in milliseconds.
 
-### The Journey of a Keystroke
+## 2. The Journey of a Keystroke
 
 ```
-1. KEY PRESS
-   You press 'A' on the keyboard
-   
-2. INPUT
-   Keyboard sends signal via USB to motherboard
-   
-3. INTERRUPT
-   CPU pauses current work to handle the input
-   
-4. DRIVER
-   Keyboard driver translates signal to the letter 'A'
-   
-5. OS
-   Operating System receives the character
-   
-6. APPLICATION
-   OS delivers 'A' to the active text editor
-   
-7. DISPLAY
-   Text editor requests the letter to be shown
-   
-8. OUTPUT
-   GPU renders the pixel, monitor displays 'A'
-   
-9. STORAGE
-   Auto-save writes document back to SSD
+Finger presses 'A'
+    ↓
+Keyboard registers key (hardware)
+    ↓
+Keyboard sends signal via USB
+    ↓
+USB controller interrupts CPU
+    ↓
+CPU pauses current work, reads the signal
+    ↓
+Keyboard driver translates signal → scancode
+    ↓
+OS receives scancode → character 'A'
+    ↓
+OS delivers 'A' to focused application
+    ↓
+Application processes input (add to document)
+    ↓
+Application requests screen update
+    ↓
+GPU renders the new pixel data
+    ↓
+Monitor displays the character 'A'
 ```
 
-### The Memory Path
+## 3. The Memory Dance
 
 ```
 Keyboard → USB Controller → RAM → CPU → RAM → GPU → Monitor
-                                        ↓
-                                      SSD (save)
+                                      ↓
+                                    Auto-save → SSD
 ```
 
-### Analogy: A Restaurant
+## 4. Restaurant Analogy
 
 | Computer | Restaurant |
-|----------|-----------|
+|----------|------------|
 | **CPU** | The chef |
-| **RAM** | The counter (prep area) |
-| **SSD** | The refrigerator (storage) |
-| **Keyboard** | The waiter (taking orders) |
-| **Monitor** | The plating (presentation) |
-| **Motherboard** | The kitchen layout |
+| **RAM** | Prep counter |
+| **SSD** | Walk-in fridge |
+| **Keyboard** | Waiter (taking orders) |
+| **Monitor** | Plating (presentation) |
+| **Motherboard** | Kitchen layout |
+| **OS** | The restaurant manager |
 
-Everything must work together smoothly for the system to function.
+## 5. Summary
+
+- Every action triggers a **multi-step chain reaction** through hardware and software
+- Data flows through **input → processing → output → storage**
+- The **OS** orchestrates everything behind the scenes
+
+## 6. What's Next
+
+The next module explores the most important software on any computer: the **Operating System** — what it does, how it works, and why there are different ones.

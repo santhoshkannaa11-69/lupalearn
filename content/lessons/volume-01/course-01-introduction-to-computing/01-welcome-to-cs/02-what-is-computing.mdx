@@ -1,6 +1,6 @@
 ---
 title: "What Is Computing?"
-slug: what-is-computing
+slug: what-is-computing-c1
 module: "Welcome to CS"
 moduleOrder: 1
 lessonOrder: 2
@@ -8,38 +8,119 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [welcome-to-lupalearn]
 learningObjectives:
-  - Define computing
-  - Understand data processing
-  - See computing in everyday life
+  - Define computing and the data processing model
+  - Identify computing systems in everyday life
+  - Understand the input-process-output cycle
+estimatedKnowledgeGain: 7
+tags: [computing, fundamentals]
 ---
 
-## What Is Computing?
+## 1. Hook
 
-**Computing** is any goal-oriented activity that uses computers to process data. It includes designing hardware, writing software, and processing information.
+You press a button on your microwave, and 90 seconds later your food is hot. You tap your phone and a car arrives at your location. You type a question and an AI answers in seconds.
 
-### Computing in Everyday Life
+Each of these is a computing system at work. But what's actually happening inside?
 
-You interact with computing systems dozens of times daily:
+## 2. Why This Matters
 
-| Activity | Computing Involved |
-|----------|-------------------|
-| Sending a message | Data transmission, encryption, storage |
-| Watching a video | Streaming, compression, rendering |
-| Ordering food | Database queries, payment processing |
-| Using a map | GPS, routing algorithms, real-time data |
-| Checking email | Mail servers, spam filters, search |
+Every piece of technology you interact with follows the same fundamental pattern. Once you understand this pattern, you'll see it everywhere — and you'll understand what computers actually *do* rather than treating them as magic boxes.
 
-### The Core of Computing: Data Processing
+## 3. Learning Objectives
 
-All computing follows the same pattern:
+- **Define** computing in terms of data processing
+- **Trace** the input-process-output cycle through everyday systems
+- **Identify** computing devices you didn't realize were computers
+
+## 4. Prerequisite Recap
+
+In the last lesson, you learned that Computer Science is problem-solving, not just programming. Now we'll look at what computing actually *is* at a fundamental level.
+
+## 5. Core Concept
+
+**Computing** is the process of taking data, performing operations on it, and producing a result.
+
+### The Universal Pattern
 
 ```
-Input Data → Process → Output Data → Store
+Input → Process → Output
 ```
 
-### Automation
+Every computing device follows this cycle.
 
-Computers excel at automating repetitive tasks. Tasks that would take a human hours can be done in milliseconds.
+| Device | Input | Process | Output |
+|--------|-------|---------|--------|
+| **Microwave** | Button press, time | Generate microwaves, start timer | Food heated, beep |
+| **Phone** | Touch, voice | Run app, fetch data, render | Display, sound |
+| **Car** | Gas pedal, steering | Engine control, navigation | Motion, direction |
+| **AI** | Question text | Pattern matching, prediction | Answer text |
 
-In the next lesson, we'll explore **Computer Science** as a formal discipline.
+## 6. Mental Model — The Factory Analogy
+
+Think of a computer like a factory assembly line:
+
+```
+Raw materials (data) arrive at the loading dock
+                ↓
+Factory workers (CPU) process each piece
+                ↓
+Finished products (output) leave the shipping area
+                ↓
+Some products go to storage (memory) for later
+```
+
+## 7. Computing in Daily Life
+
+| Activity | Computing Involved | You Don't See |
+|----------|-------------------|---------------|
+| **Sending a message** | Encode, transmit, route, deliver | 4+ protocols, multiple servers |
+| **Watching a video** | Decode, buffer, render frames | 24-60 calculations per second |
+| **Ordering food** | Query database, process payment, notify restaurant | 10+ services coordinating |
+| **Using GPS** | Receive satellite signals, calculate position, draw map | Triangulation from 4+ satellites |
+
+## 8. Execution Visualization
+
+```
+WHAT HAPPENS WHEN YOU SEND "HELLO":
+
+You type "Hello"
+       ↓
+Phone encodes as 01001000 01100101 01101100 01101100 01101111
+       ↓
+Data sent as radio waves to cell tower
+       ↓
+Tower routes through fiber optic cables
+       ↓
+Server receives, stores in database, sends notification
+       ↓
+Recipient's phone decodes → displays "Hello"
+```
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Computing in action: input → process → output
+let input = &quot;Hello&quot;;
+let processed = input.toUpperCase();
+console.log(&quot;Input:&quot;, input);
+console.log(&quot;Processed:&quot;, processed);
+console.log(&quot;Output length:&quot;, processed.length + &quot; characters&quot;);" />
+
+## 10. Quiz
+
+<Quiz question="A thermostat reads 68°F, compares it to the target of 72°F, and turns on the heater. What is the 'process' in this computing system?"
+  options={["The temperature reading", "Comparing and deciding", "The heater turning on", "The thermostat device"]}
+  answer="1"
+  explanation="The process is the comparison and decision-making step — what happens between input and output."
+/>
+
+## 11. Summary
+
+- **Computing** = input → process → output
+- Every computing device follows this pattern — from microwaves to AI
+- The same data can be processed in many different ways
+- Understanding this pattern helps you think like a programmer
+
+## 12. What's Next
+
+Now that you understand what computing is, the next lesson asks a bigger question: **What is Computer Science — the formal study of all of this?**

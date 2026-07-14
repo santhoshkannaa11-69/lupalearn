@@ -8,48 +8,43 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [how-internet-works]
 learningObjectives:
   - Understand the client-server model
-  - Explain how websites are delivered
+  - Explain how web pages are delivered
 ---
 
-## Websites, Browsers & Servers
+## 1. Hook
 
-### The Client-Server Model
+LupaLearn is currently running on a server somewhere, sending this text to your browser. Every word you read traveled across the Internet as data packets, was reassembled by your browser, and rendered as this page.
+
+## 2. The Client-Server Model
 
 ```
-You (Client)                Server
-┌─────────┐   Request →   ┌─────────┐
-│ Browser │──────────────→│ Web     │
-│         │←──────────────│ Server  │
-└─────────┘   Response    └─────────┘
+You (Client)                  Server
+┌─────────┐   Request →     ┌─────────┐
+│ Browser │────────────────→│  Web    │
+│         │←───────────────│  Server │
+└─────────┘   Response      └─────────┘
 ```
 
-1. **Client** (browser) sends a request: "Give me this page"
-2. **Server** processes the request
-3. **Server** sends back HTML, CSS, JavaScript
-4. **Browser** renders the page
+## 3. What Happens When You Visit a Page
 
-### What Happens When You Visit a Website
+```
+1. You type "lupalearn.app"
+2. DNS → finds IP address
+3. Browser sends HTTP request
+4. Server processes request (may query DB)
+5. Server sends back HTML + CSS + JS
+6. Browser renders the page
+```
 
-1. You type `lupalearn.app` in the address bar
-2. **DNS lookup** finds the server's IP address
-3. Your browser sends an **HTTP request** to that server
-4. The server processes the request (may query a database)
-5. The server sends back an **HTTP response** with the page content
-6. Your browser renders the HTML and executes JavaScript
+## 4. Summary
 
-### Client vs Server
+- **Clients** (browsers) make requests
+- **Servers** process requests and send responses
+- "The Cloud" is just someone else's servers that you rent over the Internet
 
-| Aspect | Client | Server |
-|--------|--------|--------|
-| **Role** | Makes requests | Responds to requests |
-| **Examples** | Browser, phone app | Web server, API server |
-| **Location** | User's device | Data center (cloud) |
-| **Software** | Chrome, Safari, Firefox | Nginx, Apache, Node.js |
+## 5. What's Next
 
-### The Cloud
-
-"**The Cloud**" is just someone else's computers. Cloud providers like AWS, Google Cloud, and Azure host servers that you can rent and access over the Internet.
-
-When you see "powered by cloud computing," it means the processing happens on remote servers, not your device.
+Next: **Cloud Computing Basics** — IaaS, PaaS, SaaS and the cloud providers powering modern applications.

@@ -8,36 +8,44 @@ duration: 20
 xp: 25
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [what-makes-a-computer]
 learningObjectives:
   - Identify major hardware components
-  - Understand component roles
+  - Understand how components interact
 ---
 
-## Hardware Components
+## 1. Hook
 
-**Hardware** is the physical parts of a computer that you can touch.
+If you opened your computer right now, you'd see a green board with chips, slots, and wires. It might look like random electronic parts — but every component has a specific job.
 
-### Internal Components
+## 2. Internal Components
 
-| Component | Purpose | How It Works |
-|-----------|---------|--------------|
-| **Motherboard** | Connects everything | Circuit board with buses |
-| **CPU** | Executes instructions | Billions of transistors switching on/off |
-| **RAM** | Active memory | Fast but loses data when power is off |
-| **SSD/HDD** | Permanent storage | Magnetic or flash storage |
-| **GPU** | Renders graphics | Parallel processing cores |
-| **PSU** | Provides power | Converts AC to DC power |
-| **Cooling** | Prevents overheating | Fans, heat sinks, liquid cooling |
+| Component | Purpose | Key Spec |
+|-----------|---------|----------|
+| **Motherboard** | Connects all parts | Form factor (ATX, mATX) |
+| **CPU** | Executes instructions | GHz, cores, threads |
+| **RAM** | Active memory | GB, speed (MHz) |
+| **SSD** | Permanent storage | GB, read/write speed |
+| **GPU** | Graphics processing | VRAM, CUDA cores |
+| **PSU** | Power supply | Watts, efficiency |
 
-### Peripheral Devices
+## 3. How They Work Together
 
-| Category | Examples |
-|----------|----------|
-| **Input** | Keyboard, mouse, touchpad, microphone, webcam, scanner |
-| **Output** | Monitor, speakers, headphones, printer |
-| **Storage** | USB drive, external hard drive, SD card |
-| **Network** | Wi-Fi adapter, ethernet card, modem |
+```
+Power button pressed → PSU provides power
+    → Motherboard starts → CPU loads BIOS
+    → BIOS detects hardware → Finds boot drive
+    → OS loads into RAM → CPU executes OS
+    → You see the login screen
+```
 
-### The Motherboard
+## 4. Summary
 
-Everything connects to the motherboard. It's the central hub that allows components to communicate. The **bus** system on the motherboard moves data between the CPU, RAM, and other components at billions of transfers per second.
+- Hardware components each have a **specific role**
+- The **motherboard** connects everything
+- The **CPU** executes instructions from **RAM**
+- **Storage** holds data permanently when the power is off
+
+## 5. What's Next
+
+If hardware is the body, **software** is the mind. The next lesson explores software — the instructions that tell hardware what to do.

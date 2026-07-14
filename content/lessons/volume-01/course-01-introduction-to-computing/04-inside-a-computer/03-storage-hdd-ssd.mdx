@@ -8,55 +8,44 @@ duration: 15
 xp: 25
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [memory-ram]
 learningObjectives:
-  - Understand storage technologies
-  - Compare HDD vs SSD
+  - Compare HDD and SSD
+  - Understand the storage hierarchy
 ---
 
-## Storage (HDD, SSD)
+## 1. Hook
 
-**Storage** is where data lives permanently — files, programs, your operating system.
+The difference between a 10-second boot time and a 30-second boot time is usually the same thing. The difference between waiting 30 seconds for a file to copy and 30 minutes? Also the same thing.
 
-### HDD (Hard Disk Drive)
-
-Traditional magnetic storage.
-
-- **How it works**: Spinning magnetic platters, a moving read/write head
-- **Speed**: ~150 MB/s
-- **Capacity**: Up to 20 TB
-- **Durability**: Fragile (moving parts)
-- **Noise**: Audible spinning and clicking
-- **Cost**: ~$0.02/GB
-
-### SSD (Solid State Drive)
-
-Modern flash storage.
-
-- **How it works**: NAND flash memory, no moving parts
-- **Speed**: ~5,000 MB/s (NVMe)
-- **Capacity**: Up to 4 TB (consumer)
-- **Durability**: Very durable
-- **Noise**: Silent
-- **Cost**: ~$0.10/GB
-
-### Comparison
+## 2. HDD vs SSD
 
 | Factor | HDD | SSD |
 |--------|-----|-----|
-| Boot time | 30-60 seconds | 5-10 seconds |
-| File transfer | 150 MB/s | 5,000 MB/s |
-| Lifespan | 3-5 years | 5-10 years |
-| Power use | 6-10 W | 2-4 W |
-| Weight | Heavy | Light |
+| **Technology** | Spinning magnetic platters | Flash memory chips |
+| **Speed** | ~150 MB/s | ~5,000 MB/s (NVMe) |
+| **Durability** | Fragile (moving parts) | Tough (no moving parts) |
+| **Noise** | Audible | Silent |
+| **Cost** | ~$0.02/GB | ~$0.10/GB |
 
-### Storage Hierarchy
+## 3. The Storage Hierarchy
 
 ```
-Registers (1 ns)       ← Smallest, fastest
-Cache (3 ns)           │
-RAM (50 ns)            │
-SSD (100,000 ns)       │
-HDD (10,000,000 ns)    ← Largest, slowest
+Registers    < 1 ns    ← Inside CPU
+Cache         ~3 ns    ← Inside CPU
+RAM           ~50 ns   ← DIMM slots
+SSD         ~100 μs    ← SATA/NVMe
+HDD          ~10 ms    ← SATA
 ```
 
-Every computer uses this hierarchy to balance speed and cost.
+Each level is ~10-100x slower than the level above it.
+
+## 4. Summary
+
+- HDDs are **slower but cheaper** per GB
+- SSDs are **faster, quieter, more durable**
+- Modern computers use SSDs for OS/apps, HDDs for bulk storage
+
+## 5. What's Next
+
+Next: **Input & Output Devices** — how data enters and leaves the computer.

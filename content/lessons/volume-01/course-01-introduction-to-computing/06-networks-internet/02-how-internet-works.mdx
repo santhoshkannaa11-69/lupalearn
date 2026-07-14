@@ -8,50 +8,41 @@ duration: 20
 xp: 30
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [what-is-network]
 learningObjectives:
-  - Understand Internet architecture
-  - Explain IP addresses and DNS
+  - Understand IP addresses and DNS
+  - Explain how data travels across the Internet
 ---
 
-## How the Internet Works
+## 1. Hook
 
-The **Internet** is a global network of networks — millions of computers connected together.
+When you type `google.com`, your computer sends a message to a server — but it doesn't know where the server is. It asks a "phone book" (DNS), gets an address (IP), then sends your request in small pieces (packets) that each take their own route.
 
-### Key Concepts
+## 2. Key Concepts
 
-| Concept | What It Is | Analogy |
-|---------|-----------|---------|
-| **IP Address** | Unique identifier for each device | Street address |
-| **DNS** | Translates domain names to IPs | Phone book |
-| **Packet** | Small unit of data sent over network | Postcard |
-| **Router** | Directs packets between networks | Post office |
-| **Protocol** | Rules for communication | Language |
+| Concept | Analogy |
+|---------|---------|
+| **IP Address** (192.168.1.1) | Street address |
+| **DNS** (google.com → IP) | Phone book |
+| **Packet** (small data chunk) | Postcard |
+| **Router** | Post office sorting facility |
+| **Protocol** (rules) | Language |
 
-### IP Addresses
-
-Every device connected to the Internet has an IP address:
-
-- **IPv4**: `192.168.1.1` — 4.3 billion addresses (exhausted)
-- **IPv6**: `2001:db8::ff00:42:8329` — virtually unlimited
-
-### How Data Travels
+## 3. How It Works
 
 ```
-Your computer → Router → ISP → Internet → Router → Server
-     ↓                                      ↓
-   Packet 1 → ... → ... → ... → ... → Packet 1
-   Packet 2 → ... → ... → ... → ... → Packet 2
-   Packet 3 → ... → ... → ... → ... → Packet 3
+Your computer → Router → ISP → Internet backbone → Server
+    ↓                                                    ↓
+Sends packets → Routers forward → Routers forward → Reassembled
 ```
 
-Data is broken into **packets**, each takes its own route, and they're reassembled at the destination.
+## 4. Summary
 
-### The DNS System
+- **IP addresses** uniquely identify devices on the Internet
+- **DNS** translates domain names to IP addresses
+- Data is broken into **packets**, routed independently, and reassembled
+- This all happens in **milliseconds**
 
-When you type `google.com`:
+## 5. What's Next
 
-1. Your computer asks the DNS server: "Where is google.com?"
-2. DNS responds: "142.250.80.46"
-3. Your computer connects to that IP address
-
-This all happens in milliseconds.
+Next: **Websites, Browsers & Servers** — the client-server model that powers the web.

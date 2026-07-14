@@ -8,42 +8,41 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [software-components]
 learningObjectives:
-  - Define firmware
-  - Understand where firmware is used
+  - Define firmware and its role
+  - Understand where firmware lives
 ---
 
-## Firmware Explained
+## 1. Hook
 
-**Firmware** is software that's permanently stored on a hardware device. It sits between hardware and regular software.
+Every device with a computer chip has a tiny program permanently stored on it — invisible to the user, essential for operation. Your SSD has one. Your monitor has one. Your router has one. Even your keyboard has one.
 
-### Firmware vs Software vs Hardware
+## 2. What Is Firmware?
 
-| | Software | Firmware | Hardware |
-|---|----------|----------|----------|
-| **Persistence** | Stored on disk | Stored in flash ROM | Physical circuits |
-| **Updateable** | Easily | Requires specific process | No |
-| **Purpose** | User tasks | Device control | Physical computation |
-| **Examples** | Chrome, Word | BIOS, router firmware | CPU, RAM |
+**Firmware** is software permanently stored on a hardware device. It's the middle layer between hardware and regular software.
 
-### Common Firmware
+| Layer | Modifiable By | Speed |
+|-------|--------------|-------|
+| **Software** | User (easy update) | Slowest |
+| **Firmware** | Manufacturer (special process) | Fast |
+| **Hardware** | Not modifiable | Fastest |
 
-| Device | Firmware | Purpose |
-|--------|----------|---------|
-| **Motherboard** | BIOS/UEFI | Boot the computer, configure hardware |
-| **SSD** | SSD firmware | Manage flash memory, wear leveling |
-| **Router** | Router firmware | Route network traffic |
-| **Printer** | Printer firmware | Process print jobs |
-| **USB drive** | Controller firmware | Manage flash storage |
-| **Smart TV** | TV firmware | Process video input, display |
+## 3. Common Firmware Examples
 
-### BIOS/UEFI
+| Device | Firmware | What Happens Without It |
+|--------|----------|------------------------|
+| **Motherboard** | BIOS/UEFI | Computer can't boot |
+| **SSD** | SSD firmware | Drive won't function |
+| **Router** | Router firmware | No internet routing |
+| **Printer** | Printer firmware | Can't process print jobs |
 
-When you turn on a computer, the **BIOS** (or modern **UEFI**) is the first thing that runs. It:
+## 4. Summary
 
-1. Performs a power-on self-test (POST)
-2. Detects hardware components
-3. Finds a bootable device
-4. Loads the operating system
+- Firmware is **semi-permanent software** on hardware devices
+- It's **essential** for device operation
+- Unlike regular software, updating firmware carries risk (a failed update can "brick" the device)
 
-Firmware updates can fix bugs and add features — that's why manufacturers occasionally release "BIOS updates."
+## 5. What's Next
+
+Now that you understand hardware, software, and firmware, the next lesson brings it all together: **How Hardware, Software, and Firmware Work Together**.

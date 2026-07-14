@@ -8,46 +8,46 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [windows-linux-macos]
 learningObjectives:
   - Differentiate programs from processes
   - Understand multitasking
 ---
 
-## Processes and Programs
+## 1. Hook
 
-A **program** is a file on disk. A **process** is a program that's currently running in memory.
+When you open Chrome, you create one process. Open 10 tabs — now you've created 10 processes. Chrome itself is the program, but each tab is a separate *running instance*.
 
-### Program vs Process
+## 2. Program vs Process
 
 | Aspect | Program | Process |
 |--------|---------|---------|
-| **Location** | On disk (SSD/HDD) | In memory (RAM) |
-| **State** | Static (file) | Active (running) |
-| **Multiple instances** | One file | Can have many instances |
-| **Example** | chrome.exe | Chrome with 10 tabs = 10 processes |
+| **What it is** | File on disk | Running in memory |
+| **State** | Static | Active |
+| **Multiple?** | One file | Many copies can run |
 
-### Process Lifecycle
+## 3. Context Switching
 
-```
-Start → Running → Waiting → Running → Terminated
-```
-
-1. **Start** — Program is loaded from disk to RAM
-2. **Running** — CPU executes instructions
-3. **Waiting** — Process waits for resource (disk, network)
-4. **Running** — Resource available, continues
-5. **Terminated** — Process ends
-
-### Multitasking
-
-The OS creates the illusion of many things happening simultaneously by rapidly switching between processes. This is called **context switching**.
+The OS creates the illusion of multitasking by rapidly switching between processes:
 
 ```
-Time slice → Process A runs (10ms)
-           → Switch to Process B (takes <1ms)
-           → Process B runs (10ms)
-           → Switch to Process C
-           → ...repeat...
+Process A runs (10ms)
+    → Save A's state
+    → Load B's state
+    → Process B runs (10ms)
+    → Save B's state
+    → Load C's state
+    → ...
 ```
 
-Modern CPUs with multiple cores can literally run multiple processes simultaneously.
+This happens thousands of times per second.
+
+## 4. Summary
+
+- A **program** is a static file on disk
+- A **process** is a program that's currently **running** in memory
+- The OS switches between processes so fast it feels like everything runs at once
+
+## 5. What's Next
+
+Next: **Files and File Systems** — how the OS organizes data on disk.

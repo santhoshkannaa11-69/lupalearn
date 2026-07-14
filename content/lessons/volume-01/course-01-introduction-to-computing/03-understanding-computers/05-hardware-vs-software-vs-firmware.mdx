@@ -8,55 +8,45 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [firmware-explained]
 learningObjectives:
-  - Compare HW, SW, and firmware
-  - Understand how they work together
+  - Compare hardware, software, and firmware
+  - Understand how the three layers work together
 ---
 
-## Hardware vs Software vs Firmware
+## 1. Hook
 
-These three layers work together to make a computer functional.
+Three layers. One computer. Each layer has a different job, different update cycle, and different failure mode. Understanding which is which helps you diagnose problems throughout your career.
 
-### Visual Comparison
-
-```
-┌─────────────────────────────────────┐
-│         Applications                │ ← Software
-│  Chrome  VS Code  Spotify  Games    │
-├─────────────────────────────────────┤
-│         Operating System            │ ← Software
-│  File Manager  Drivers  Kernel      │
-├─────────────────────────────────────┤
-│   BIOS / UEFI   Device Firmware     │ ← Firmware
-│  (Motherboard)  (SSD, GPU, etc.)    │
-├─────────────────────────────────────┤
-│   CPU  RAM  SSD  GPU  Motherboard   │ ← Hardware
-│  (Physical components)              │
-└─────────────────────────────────────┘
-```
-
-### How They Interact
-
-```
-User clicks "Save" in Word
-  → Application (Word) requests file write
-  → OS receives and manages the request
-  → Driver translates to disk commands
-  → SSD firmware manages flash storage
-  → Hardware stores data electrically
-```
-
-### Key Distinctions
+## 2. Comparison
 
 | Aspect | Hardware | Software | Firmware |
 |--------|----------|----------|----------|
 | **Can you touch it?** | Yes | No | No |
-| **Can it be changed?** | Replace physically | Download update | Special update process |
-| **Speed** | Fastest | Slowest | Fast |
-| **Failure mode** | Physical damage | Crash/bug | Bricking |
+| **How to update** | Replace physically | Download & install | Special flash process |
+| **Failure mode** | Physical damage | Crash/bug | Device becomes unusable |
+| **Developer** | Electrical engineer | Software engineer | Firmware engineer |
 
-### Why You Need All Three
+## 3. The Three-Layer Model
+
+```
+SOFTWARE (Applications + OS)
+    ┃ User-downloadable, frequently updated
+    ▼
+FIRMWARE (BIOS, device controllers)
+    ┃ Manufacturer-installed, rarely updated
+    ▼
+HARDWARE (CPU, RAM, storage)
+    ┃ Physical, fixed at manufacture
+```
+
+## 4. Summary
 
 - **Hardware** provides the physical capability
-- **Software** provides flexibility and user features
-- **Firmware** bridges the gap, providing stable low-level control
+- **Software** provides flexibility and user-facing features
+- **Firmware** bridges the gap with stable, low-level control
+- All three layers must work together for a computer to function
+
+## 5. What's Next
+
+The next module opens the case and looks **inside** the computer — CPU, memory, storage, and how data flows through the system.

@@ -8,46 +8,42 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [storage-hdd-ssd]
 learningObjectives:
   - Categorize input and output devices
-  - Understand how devices communicate
+  - Understand device communication
 ---
 
-## Input & Output Devices
+## 1. Hook
 
-**Input devices** send data to the computer. **Output devices** receive data from the computer.
+When you move your mouse, a signal travels from the mouse to the computer, through the OS and driver, to the application, which then sends a signal back to the monitor — all in under 10 milliseconds.
 
-### Input Devices
+## 2. Input vs Output
 
-| Device | What It Captures | How It Works |
-|--------|-----------------|--------------|
-| **Keyboard** | Text input | Key presses → electrical signals → key codes |
-| **Mouse** | Position and clicks | Optical sensor tracks movement |
-| **Touchscreen** | Touch position | Capacitive grid detects finger location |
-| **Microphone** | Audio | Sound waves → electrical signals → digital samples |
-| **Camera** | Visual images | Light → sensor → pixel data |
-| **Scanner** | Documents | Reflected light → digital image |
+| Input Devices | Output Devices |
+|---------------|----------------|
+| Keyboard | Monitor |
+| Mouse | Speakers |
+| Microphone | Headphones |
+| Camera | Printer |
+| Scanner | Haptic feedback |
 
-### Output Devices
+## 3. How Devices Communicate
 
-| Device | What It Produces | How It Works |
-|--------|-----------------|--------------|
-| **Monitor** | Visual display | Pixels lit by LCD/LED/OLED |
-| **Speakers** | Sound | Digital signals → analog waves → sound |
-| **Headphones** | Private audio | Same as speakers, personal |
-| **Printer** | Physical documents | Ink/toner applied to paper |
+```
+Input: Device → Driver → OS → Application
+Output: Application → OS → Driver → Device
+```
 
-### Universal Serial Bus (USB)
+Every device communicates through a **driver** — a translator between the device's native language and the OS's language.
 
-Most devices connect via **USB** (Universal Serial Bus). USB is a standard that allows any device to communicate with the computer using a common protocol.
+## 4. Summary
 
-| USB Version | Speed | Year |
-|-------------|-------|------|
-| USB 2.0 | 480 Mbps | 2000 |
-| USB 3.0 | 5 Gbps | 2008 |
-| USB 3.2 | 20 Gbps | 2017 |
-| USB4 | 40 Gbps | 2019 |
+- **Input** devices send data to the computer
+- **Output** devices receive data from the computer
+- **Drivers** bridge the communication gap
+- **USB** is the most common connection standard
 
-### Device Drivers
+## 5. What's Next
 
-Every device needs a **driver** — software that tells the operating system how to communicate with that specific hardware.
+The final lesson in this module traces **how everything works together** — the complete journey of a keystroke from finger to display.

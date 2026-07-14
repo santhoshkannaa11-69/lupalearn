@@ -8,47 +8,42 @@ duration: 20
 xp: 25
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [how-everything-works-together]
 learningObjectives:
   - Define an operating system
   - Understand OS functions
 ---
 
-## What Is an Operating System?
+## 1. Hook
 
-An **Operating System (OS)** is the most important software on a computer. It manages all hardware and software and provides services for programs.
+When you open three applications at once, how does your laptop decide which one gets the CPU's attention? How do they share memory without interfering with each other? The answer is the most important software you never think about.
 
-### What the OS Does
+## 2. What the OS Does
 
-| Function | Description |
-|----------|-------------|
-| **Process management** | Runs and schedules programs |
-| **Memory management** | Allocates RAM between programs |
-| **File system** | Organizes data on storage |
-| **Device management** | Communicates with hardware via drivers |
-| **Security** | Controls access and permissions |
-| **User interface** | Provides a way to interact with the computer |
+| Function | Description | Everyday Example |
+|----------|-------------|------------------|
+| **Process management** | Runs and schedules programs | Switching between apps |
+| **Memory management** | Allocates RAM | Keeping 10 tabs open |
+| **File system** | Organizes data | The folder structure |
+| **Device management** | Controls hardware via drivers | Printing a document |
+| **Security** | Controls access | User accounts, permissions |
 
-### Without an OS
+## 3. Mental Model
 
-Without an OS, every program would need to:
+The OS is like a **building manager**:
 
-- Know exactly what hardware was installed
-- Include drivers for every device
-- Manage its own memory allocation
-- Handle file storage directly
+- Allocates space (memory) to different tenants (applications)
+- Ensures everyone gets time on shared facilities (CPU)
+- Handles maintenance (device drivers)
+- Enforces security (door locks)
+- Manages shared resources (heating, water)
 
-This would make software development impossibly complex.
+## 4. Summary
 
-### The OS as a Layer
+- The OS is the **foundation software** that everything else runs on top of
+- It manages: **processes, memory, files, devices, security**
+- Without an OS, every program would need to handle these itself
 
-```
-Hardware
-    ↓
-Operating System
-    ↓
-Applications
-    ↓
-User
-```
+## 5. What's Next
 
-The OS abstracts away hardware complexity so developers can focus on features.
+The next lesson compares the three major operating systems: **Windows, Linux & macOS**.

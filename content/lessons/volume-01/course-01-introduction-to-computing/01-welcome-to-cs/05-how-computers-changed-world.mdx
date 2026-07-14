@@ -8,44 +8,108 @@ duration: 20
 xp: 25
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [data-vs-information]
 learningObjectives:
-  - Understand computing's impact on society
-  - See transformational applications
+  - Understand computing's transformative impact
+  - See how CS enables modern life
+  - Appreciate the scale and pace of change
+estimatedKnowledgeGain: 7
+tags: [impact, history, transformation]
 ---
 
-## How Computers Changed the World
+## 1. Hook
 
-Computers have transformed every aspect of modern life.
+In 1969, a computer sent the first message over what would become the Internet. The message was "LO." The system crashed after the first two letters.
+
+Today, 5 billion people carry Internet-connected computers in their pockets. That's a device billions of times more powerful than the computers that sent humans to the Moon.
+
+How did we get here — and where are we going?
+
+## 2. Why This Matters
+
+Understanding computing's impact helps you see why your skills matter. Every line of code you'll write builds on decades of innovation — and contributes to what comes next.
+
+## 3. Learning Objectives
+
+- **Describe** computing's impact on communication, healthcare, and finance
+- **Explain** how AI is creating a new era of computing
+- **Identify** the exponential trend in computing power
+
+## 4. Core Concept
+
+### The Acceleration of Computing
+
+```
+1940s: ENIAC — 5,000 ops/sec, room-sized
+1960s: Transistor — 100,000 ops/sec, cabinet-sized
+1980s: PC — 1M ops/sec, desk-sized
+2000s: Laptop — 1B ops/sec, bag-sized
+2020s: Phone — 10B+ ops/sec, pocket-sized
+```
+
+Computing power doubles roughly every 2 years (Moore's Law).
+
+## 5. Sector Transformations
 
 ### Communication
 
-From letters to instant messaging. Email, social media, and video calls connect billions of people globally.
+| Then | Now |
+|------|-----|
+| Letters (days) | Email (seconds) |
+| Phone calls (wired) | Video calls (mobile) |
+| Newspapers (daily) | News feeds (real-time) |
 
 ### Healthcare
 
-Computers power MRI and CT scans, maintain electronic health records, and assist in surgery through robotic systems. AI helps detect diseases earlier than human doctors alone.
+Computers enable: MRI and CT scanning, robotic surgery, telemedicine, AI-assisted diagnosis, personalized medicine through genomics.
 
 ### Finance
 
-Banking, stock trading, and payments are entirely digital. Algorithms process millions of transactions per second.
+Stock trading went from floor shouting to algorithmic trading (millions of orders per second). Banking went from branch visits to mobile apps.
 
-### Transportation
+### Science
 
-GPS navigation, traffic optimization, and autonomous vehicles all rely on computing. Airlines use complex systems to manage thousands of flights daily.
+Computers enabled: human genome sequencing, climate modeling, particle physics (CERN generates 30 petabytes/year), drug discovery through simulation.
 
-### Space Exploration
+## 6. The AI Revolution
 
-Rockets, satellites, and rovers are controlled by computers. The Mars rover Perseverance operates semi-autonomously using onboard AI.
+Artificial intelligence is the next frontier:
 
-### Artificial Intelligence
+| Era | Capability | Example |
+|-----|-----------|---------|
+| **2000s** | Pattern recognition | Spam filters, handwriting recognition |
+| **2010s** | Understanding | Speech recognition, image classification |
+| **2020s** | Generation | Text, image, music, code creation |
+| **2030s?** | Autonomy | Self-driving, scientific discovery |
 
-AI systems now:
-- Recognize faces and voices
-- Translate languages
-- Create art and music
-- Play chess and Go at champion level
-- Assist in scientific research
+## 7. Interactive Practice
 
-### Your Turn
+<Terminal mode="interactive" language="javascript" initialCode="// Moore's Law in numbers
+let transistors = 2300; // Intel 4004 (1971)
+let year = 1971;
 
-As you progress through this course, you'll understand how these technologies work — and eventually build them yourself.
+while (year < 2025) {
+  console.log(year + &quot;: ~&quot; + (transistors / 1000).toFixed(0) + &quot;K transistors&quot;);
+  transistors *= 2;
+  year += 2;
+}
+console.log(&quot;2025: ~&quot; + (transistors / 1000000).toFixed(0) + &quot;M transistors (estimated)&quot;);" />
+
+## 8. Quiz
+
+<Quiz question="Which technology trend describes computing power doubling approximately every 2 years?"
+  options={["Moore's Law", "Turing's Theorem", "Metcalfe's Law", "Amdahl's Law"]}
+  answer="0"
+  explanation="Moore's Law observed that transistor density doubles roughly every 2 years, leading to exponential growth in computing power."
+/>
+
+## 9. Summary
+
+- Computing has transformed **every major industry**
+- **Moore's Law** drives exponential growth in capability
+- **AI** represents the next major wave of computing
+- The devices we carry today are billions of times more powerful than early computers
+
+## 10. What's Next
+
+Now that you understand computing's impact, we'll go back to the beginning and explore **the history of computing** — how we got from abacuses to AI.

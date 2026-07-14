@@ -8,47 +8,51 @@ duration: 20
 xp: 30
 difficulty: beginner
 concepts: [algorithms]
+prerequisites: [hw-sw-firmware]
 learningObjectives:
-  - Understand CPU function
   - Explain the fetch-decode-execute cycle
+  - Understand cores, threads, and clock speed
 ---
 
-## CPU — The Brain of the Computer
+## 1. Hook
 
-The **Central Processing Unit (CPU)** is the most important component in a computer. It executes instructions that make everything happen.
+A modern CPU executes billions of instructions per second. That's like reading every word on 10,000 books in a single second. How does it keep track of what to do next?
 
-### The Fetch-Decode-Execute Cycle
+## 2. The Fetch-Decode-Execute Cycle
 
 ```
-Fetch → Decode → Execute → (repeat)
+┌─────────┐     ┌─────────┐     ┌─────────┐
+│ FETCH   │────→│ DECODE  │────→│ EXECUTE │
+│ Get next │     │ Translate│     │ Perform  │
+│instruction│     │to commands│     │operation │
+└─────────┘     └─────────┘     └─────────┘
+       ↑                           │
+       └───────────────────────────┘
 ```
 
-1. **Fetch** — Get the next instruction from RAM
-2. **Decode** — Translate the instruction into commands
-3. **Execute** — Perform the operation (math, move data, etc.)
+## 3. CPU Components
 
-This cycle happens billions of times per second.
-
-### CPU Components
-
-| Component | Function |
-|-----------|----------|
-| **Control Unit (CU)** | Manages instruction flow |
-| **Arithmetic Logic Unit (ALU)** | Performs calculations (+, -, ×, ÷, AND, OR) |
+| Component | Purpose |
+|-----------|---------|
+| **Control Unit** | Fetches and decodes instructions |
+| **ALU** | Performs math and logic |
 | **Registers** | Ultra-fast internal memory |
-| **Cache** | Small, fast memory (L1, L2, L3) |
+| **Cache** | Small, fast buffer (L1, L2, L3) |
 
-### CPU Speed
+## 4. Cores vs Speed
 
-Modern CPUs operate at 2-5 GHz (gigahertz), meaning they cycle 2-5 billion times per second. But speed alone doesn't tell the whole story — architecture and core count matter too.
+| Spec | What It Means |
+|------|---------------|
+| **Clock speed (GHz)** | Cycles per second (higher = faster) |
+| **Cores** | Independent processing units |
+| **Threads** | Virtual cores (hyper-threading) |
 
-### Cores and Threads
+## 5. Summary
 
-| Term | Meaning |
-|------|---------|
-| **Single-core** | One processing unit |
-| **Multi-core** | Multiple processing units (e.g., 8-core) |
-| **Hyper-threading** | Each core handles 2 threads |
-| **Thread** | A sequence of instructions |
+- CPU follows **fetch → decode → execute** billions of times per second
+- More **cores** = handles more tasks simultaneously
+- Higher **clock speed** = processes each task faster
 
-A 16-core CPU can handle 32 threads simultaneously — dramatically faster than a single-core CPU at the same speed.
+## 6. What's Next
+
+The CPU needs fast access to data. Next: **RAM** — the computer's short-term memory.
