@@ -5,6 +5,21 @@ const prisma = new PrismaClient()
 async function main() {
   console.log("🌱 Seeding LupaLearn...")
 
+  // Clear existing data
+  await prisma.edge.deleteMany()
+  await prisma.roadmapStep.deleteMany()
+  await prisma.roadmap.deleteMany()
+  await prisma.lessonVersion.deleteMany()
+  await prisma.lessonCompletion.deleteMany()
+  await prisma.lesson.deleteMany()
+  await prisma.module.deleteMany()
+  await prisma.category.deleteMany()
+  await prisma.volume.deleteMany()
+  await prisma.node.deleteMany()
+  await prisma.project.deleteMany()
+  await prisma.challenge.deleteMany()
+  await prisma.quizQuestion.deleteMany()
+
   // ─── CONCEPT NODES ───
   const concepts = await Promise.all([
     // Programming fundamentals
@@ -165,36 +180,57 @@ async function main() {
     },
   })
 
-  // Course 7: Introduction to Programming
-  const catProg = await prisma.category.create({
-    data: {
-      volumeId: v1.id,
-      slug: "programming-fundamentals",
-      title: "Programming Fundamentals",
-      order: 7,
-    },
-  })
-
-  // ─── 10 MODULES WITH 45 LESSONS ───
-  const modules = [
-    { slug: "what-is-programming", title: "What is Programming?", order: 1 },
-    { slug: "variables-data-types", title: "Variables & Data Types", order: 2 },
-    { slug: "operators-expressions", title: "Operators & Expressions", order: 3 },
-    { slug: "control-flow", title: "Control Flow", order: 4 },
-    { slug: "loops", title: "Loops", order: 5 },
-    { slug: "functions", title: "Functions", order: 6 },
-    { slug: "scope-closures", title: "Scope & Closures", order: 7 },
-    { slug: "recursion", title: "Recursion", order: 8 },
-    { slug: "error-handling", title: "Error Handling", order: 9 },
-    { slug: "projects", title: "Projects", order: 10 },
+  // ─── ALL 10 COURSES (Categories) ───
+  const courseDefs = [
+    { slug: "introduction-to-computing", title: "Introduction to Computing", order: 1, modules: [
+      { slug: "what-is-a-computer", title: "What is a Computer?", order: 1 }, { slug: "history-of-computing", title: "History of Computing", order: 2 }, { slug: "generations", title: "Generations of Computers", order: 3 }, { slug: "types-of-computers", title: "Types of Computers", order: 4 }, { slug: "computer-components", title: "Computer Components", order: 5 }, { slug: "architecture-overview", title: "Architecture Overview", order: 6 }, { slug: "hardware-vs-software", title: "Hardware vs Software", order: 7 }, { slug: "computer-applications", title: "Computer Applications", order: 8 }, { slug: "future-of-computing", title: "Future of Computing", order: 9 },
+    ]},
+    { slug: "number-systems", title: "Number Systems", order: 2, modules: [
+      { slug: "decimal-system", title: "Decimal System", order: 1 }, { slug: "binary-system", title: "Binary System", order: 2 }, { slug: "octal-system", title: "Octal System", order: 3 }, { slug: "hexadecimal-system", title: "Hexadecimal System", order: 4 }, { slug: "conversions", title: "Conversions Between Bases", order: 5 }, { slug: "binary-arithmetic", title: "Binary Arithmetic", order: 6 },
+    ]},
+    { slug: "data-representation", title: "Data Representation", order: 3, modules: [
+      { slug: "bits-and-bytes", title: "Bits & Bytes", order: 1 }, { slug: "character-encoding", title: "Character Encoding", order: 2 }, { slug: "image-representation", title: "Image Representation", order: 3 }, { slug: "audio-representation", title: "Audio Representation", order: 4 }, { slug: "compression", title: "Compression", order: 5 },
+    ]},
+    { slug: "logic-boolean-algebra", title: "Logic & Boolean Algebra", order: 4, modules: [
+      { slug: "boolean-basics", title: "Boolean Algebra Basics", order: 1 }, { slug: "logic-gates", title: "Logic Gates", order: 2 }, { slug: "boolean-laws", title: "Boolean Laws", order: 3 }, { slug: "karnaugh-maps", title: "Karnaugh Maps", order: 4 }, { slug: "logic-simplification", title: "Logic Simplification", order: 5 },
+    ]},
+    { slug: "digital-electronics", title: "Digital Electronics", order: 5, modules: [
+      { slug: "combinational-circuits", title: "Combinational Circuits", order: 1 }, { slug: "sequential-circuits", title: "Sequential Circuits", order: 2 }, { slug: "multiplexers", title: "Multiplexers & Demultiplexers", order: 3 }, { slug: "flip-flops", title: "Flip-Flops", order: 4 }, { slug: "counters", title: "Counters", order: 5 }, { slug: "finite-state-machines", title: "Finite State Machines", order: 6 },
+    ]},
+    { slug: "mathematics", title: "Mathematics for Computer Science", order: 6, modules: [
+      { slug: "set-theory", title: "Set Theory", order: 1 }, { slug: "relations-functions", title: "Relations & Functions", order: 2 }, { slug: "matrices", title: "Matrices", order: 3 }, { slug: "probability", title: "Probability", order: 4 }, { slug: "graph-theory", title: "Graph Theory", order: 5 }, { slug: "number-theory", title: "Number Theory", order: 6 },
+    ]},
+    { slug: "programming-fundamentals", title: "Programming Fundamentals", order: 7, modules: [
+      { slug: "what-is-programming", title: "What is Programming?", order: 1 }, { slug: "variables-data-types", title: "Variables & Data Types", order: 2 }, { slug: "operators-expressions", title: "Operators & Expressions", order: 3 }, { slug: "control-flow", title: "Control Flow", order: 4 }, { slug: "loops", title: "Loops", order: 5 }, { slug: "functions", title: "Functions", order: 6 }, { slug: "scope-closures", title: "Scope & Closures", order: 7 }, { slug: "recursion", title: "Recursion", order: 8 }, { slug: "error-handling", title: "Error Handling", order: 9 }, { slug: "projects", title: "Projects", order: 10 },
+    ]},
+    { slug: "problem-solving", title: "Problem Solving", order: 8, modules: [
+      { slug: "computational-thinking", title: "Computational Thinking", order: 1 }, { slug: "decomposition", title: "Decomposition", order: 2 }, { slug: "pattern-recognition", title: "Pattern Recognition", order: 3 }, { slug: "abstraction", title: "Abstraction", order: 4 }, { slug: "algorithm-design", title: "Algorithm Design", order: 5 },
+    ]},
+    { slug: "development-environment", title: "Development Environment", order: 9, modules: [
+      { slug: "command-line", title: "Command Line Basics", order: 1 }, { slug: "version-control", title: "Version Control (Git)", order: 2 }, { slug: "code-editors", title: "Code Editors", order: 3 }, { slug: "package-managers", title: "Package Managers", order: 4 }, { slug: "debugging-tools", title: "Debugging Tools", order: 5 },
+    ]},
+    { slug: "computer-ethics", title: "Computer Ethics", order: 10, modules: [
+      { slug: "open-source", title: "Open Source", order: 1 }, { slug: "privacy", title: "Privacy & Data Protection", order: 2 }, { slug: "security-ethics", title: "Security & Ethics", order: 3 }, { slug: "ai-ethics", title: "AI Ethics", order: 4 }, { slug: "professional-conduct", title: "Professional Conduct", order: 5 },
+    ]},
   ]
 
-  const moduleRecords = await Promise.all(
-    modules.map((m) =>
-      prisma.module.create({ data: { categoryId: catProg.id, slug: m.slug, title: m.title, order: m.order } })
-    )
-  )
-  const modMap = Object.fromEntries(moduleRecords.map((m) => [m.slug, m.id]))
+  // Create categories and modules
+  const catMap: Record<string, string> = {}
+  const modMap: Record<string, string> = {}
+
+  for (const course of courseDefs) {
+    const cat = await prisma.category.create({
+      data: { volumeId: v1.id, slug: course.slug, title: course.title, order: course.order },
+    })
+    catMap[course.slug] = cat.id
+
+    for (const mod of course.modules) {
+      const m = await prisma.module.create({
+        data: { categoryId: cat.id, slug: mod.slug, title: mod.title, order: mod.order },
+      })
+      modMap[mod.slug] = m.id
+    }
+  }
 
   const BASE_PATH = "lessons/volume-01/course-07-programming-fundamentals"
 
@@ -264,6 +300,43 @@ async function main() {
     { slug: "project-grade-tracker", title: "Project: Grade Tracker", description: "Build a grade management system.", contentPath: `${BASE_PATH}/10-projects/04-grade-tracker.mdx`, moduleSlug: "projects", order: 4, duration: 30, xp: 65, tags: ["grades"], concepts: ["functions", "arrays"] },
     { slug: "project-text-analyzer", title: "Project: Text Analyzer", description: "Build a text analysis tool.", contentPath: `${BASE_PATH}/10-projects/05-text-analyzer.mdx`, moduleSlug: "projects", order: 5, duration: 30, xp: 60, tags: ["text-analysis"], concepts: ["functions", "strings"] },
     { slug: "project-weather-cli", title: "Capstone: Weather CLI Tool", description: "Build a complete weather CLI tool.", contentPath: `${BASE_PATH}/10-projects/06-capstone-weather-cli.mdx`, moduleSlug: "projects", order: 6, duration: 45, xp: 100, tags: ["capstone"], concepts: ["functions", "error-handling"] },
+
+    // ─── COURSE 1: Introduction to Computing (sample lessons) ───
+    { slug: "what-is-computer-def", title: "What Is a Computer?", description: "Define what a computer is and its core functions.", contentPath: "lessons/volume-01/course-01-introduction-to-computing/what-is-computer.mdx", moduleSlug: "what-is-a-computer", order: 1, duration: 15, xp: 20, tags: ["computers"], concepts: ["algorithms"] },
+    { slug: "history-of-computers", title: "History of Computers", description: "Trace the evolution of computing from abacus to AI.", contentPath: "lessons/volume-01/course-01-introduction-to-computing/history.mdx", moduleSlug: "history-of-computing", order: 1, duration: 20, xp: 25, tags: ["history"], concepts: ["algorithms"] },
+    { slug: "computer-components", title: "Computer Components", description: "Identify CPU, RAM, storage, and other key components.", contentPath: "lessons/volume-01/course-01-introduction-to-computing/components.mdx", moduleSlug: "computer-components", order: 1, duration: 20, xp: 25, tags: ["hardware"], concepts: ["algorithms"] },
+
+    // ─── COURSE 2: Number Systems (sample lessons) ───
+    { slug: "binary-numbers-intro", title: "Introduction to Binary", description: "Learn how computers count using only 0s and 1s.", contentPath: "lessons/volume-01/course-02-number-systems/binary-intro.mdx", moduleSlug: "binary-system", order: 1, duration: 20, xp: 30, tags: ["binary"], concepts: ["binary"] },
+    { slug: "hexadecimal-intro", title: "Introduction to Hexadecimal", description: "Understand base-16 numbering used in computing.", contentPath: "lessons/volume-01/course-02-number-systems/hex-intro.mdx", moduleSlug: "hexadecimal-system", order: 1, duration: 20, xp: 30, tags: ["hex"], concepts: ["binary"] },
+
+    // ─── COURSE 3: Data Representation (sample lessons) ───
+    { slug: "bits-and-bytes", title: "Bits & Bytes", description: "Understand the fundamental units of digital data.", contentPath: "lessons/volume-01/course-03-data-representation/bits-bytes.mdx", moduleSlug: "bits-and-bytes", order: 1, duration: 15, xp: 20, tags: ["data"], concepts: ["binary"] },
+    { slug: "character-encoding", title: "Character Encoding", description: "Learn how text is represented in computers.", contentPath: "lessons/volume-01/course-03-data-representation/encoding.mdx", moduleSlug: "character-encoding", order: 1, duration: 20, xp: 25, tags: ["encoding"], concepts: ["binary"] },
+
+    // ─── COURSE 4: Logic & Boolean Algebra (sample lessons) ───
+    { slug: "boolean-algebra", title: "Boolean Algebra Basics", description: "Learn the fundamental laws of boolean logic.", contentPath: "lessons/volume-01/course-04-logic-boolean-algebra/boolean-algebra.mdx", moduleSlug: "boolean-basics", order: 1, duration: 20, xp: 30, tags: ["logic"], concepts: ["boolean-logic"] },
+    { slug: "logic-gates-intro", title: "Introduction to Logic Gates", description: "Understand AND, OR, NOT, NAND, NOR, XOR gates.", contentPath: "lessons/volume-01/course-04-logic-boolean-algebra/logic-gates.mdx", moduleSlug: "logic-gates", order: 1, duration: 25, xp: 35, tags: ["gates"], concepts: ["boolean-logic"] },
+
+    // ─── COURSE 5: Digital Electronics (sample lessons) ───
+    { slug: "combinational-circuits", title: "Combinational Circuits", description: "Build circuits using logic gates.", contentPath: "lessons/volume-01/course-05-digital-electronics/combinational.mdx", moduleSlug: "combinational-circuits", order: 1, duration: 25, xp: 35, tags: ["circuits"], concepts: ["boolean-logic"] },
+    { slug: "flip-flops-intro", title: "Introduction to Flip-Flops", description: "Learn the basic building blocks of sequential logic.", contentPath: "lessons/volume-01/course-05-digital-electronics/flip-flops.mdx", moduleSlug: "flip-flops", order: 1, duration: 25, xp: 35, tags: ["sequential"], concepts: ["boolean-logic"] },
+
+    // ─── COURSE 6: Mathematics (sample lessons) ───
+    { slug: "set-theory-intro", title: "Introduction to Set Theory", description: "Learn about sets, subsets, and set operations.", contentPath: "lessons/volume-01/course-06-mathematics/set-theory.mdx", moduleSlug: "set-theory", order: 1, duration: 20, xp: 30, tags: ["sets"], concepts: ["algorithms"] },
+    { slug: "graph-theory-intro", title: "Introduction to Graph Theory", description: "Understand graphs, trees, and their applications in CS.", contentPath: "lessons/volume-01/course-06-mathematics/graph-theory.mdx", moduleSlug: "graph-theory", order: 1, duration: 25, xp: 35, tags: ["graphs"], concepts: ["graphs"] },
+
+    // ─── COURSE 8: Problem Solving (sample lessons) ───
+    { slug: "computational-thinking", title: "Computational Thinking", description: "Learn the four pillars of computational thinking.", contentPath: "lessons/volume-01/course-08-problem-solving/computational-thinking.mdx", moduleSlug: "computational-thinking", order: 1, duration: 20, xp: 25, tags: ["thinking"], concepts: ["algorithms"] },
+    { slug: "algorithm-design", title: "Algorithm Design", description: "Design step-by-step solutions to problems.", contentPath: "lessons/volume-01/course-08-problem-solving/algorithm-design.mdx", moduleSlug: "algorithm-design", order: 1, duration: 25, xp: 35, tags: ["algorithms"], concepts: ["algorithms"] },
+
+    // ─── COURSE 9: Development Environment (sample lessons) ───
+    { slug: "command-line-basics", title: "Command Line Basics", description: "Navigate your computer using the terminal.", contentPath: "lessons/volume-01/course-09-development-environment/command-line.mdx", moduleSlug: "command-line", order: 1, duration: 20, xp: 25, tags: ["terminal"], concepts: ["algorithms"] },
+    { slug: "git-introduction", title: "Introduction to Git", description: "Learn version control with Git.", contentPath: "lessons/volume-01/course-09-development-environment/git-intro.mdx", moduleSlug: "version-control", order: 1, duration: 25, xp: 35, tags: ["git"], concepts: ["git"] },
+
+    // ─── COURSE 10: Computer Ethics (sample lessons) ───
+    { slug: "open-source-intro", title: "Introduction to Open Source", description: "Understand open source software and licenses.", contentPath: "lessons/volume-01/course-10-computer-ethics/open-source.mdx", moduleSlug: "open-source", order: 1, duration: 20, xp: 25, tags: ["open-source"], concepts: ["algorithms"] },
+    { slug: "ai-ethics-intro", title: "AI Ethics", description: "Explore ethical considerations in artificial intelligence.", contentPath: "lessons/volume-01/course-10-computer-ethics/ai-ethics.mdx", moduleSlug: "ai-ethics", order: 1, duration: 20, xp: 25, tags: ["ai-ethics"], concepts: ["algorithms"] },
   ]
 
   // Create lessons with proper module mapping

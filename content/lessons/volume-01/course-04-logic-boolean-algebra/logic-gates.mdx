@@ -1,0 +1,34 @@
+---
+title: "Introduction to Logic Gates"
+slug: logic-gates-intro
+module: "Logic Gates"
+moduleOrder: 1
+lessonOrder: 1
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [boolean-logic]
+learningObjectives:
+  - Identify basic logic gates
+  - Understand gate symbols
+  - Build truth tables for gates
+---
+
+## Logic Gates
+
+**Logic gates** are the physical implementation of Boolean algebra in circuits.
+
+### Basic Gates
+
+| Gate | Symbol | Output | Truth Table |
+|------|--------|--------|-------------|
+| AND | · | Both inputs 1 → 1 | 00→0, 01→0, 10→0, 11→1 |
+| OR | + | Any input 1 → 1 | 00→0, 01→1, 10→1, 11→1 |
+| NOT | ¬ | Inverts input | 0→1, 1→0 |
+| NAND | ↑ | Opposite of AND | 00→1, 01→1, 10→1, 11→0 |
+| NOR | ↓ | Opposite of OR | 00→1, 01→0, 10→0, 11→0 |
+| XOR | ⊕ | Inputs differ → 1 | 00→0, 01→1, 10→1, 11→0 |
+
+### Universal Gates
+
+**NAND** and **NOR** are "universal gates" — you can build any other gate using only NAND or only NOR gates. This simplifies chip manufacturing.

@@ -1,0 +1,48 @@
+---
+title: "Introduction to Git"
+slug: git-introduction
+module: "Version Control (Git)"
+moduleOrder: 1
+lessonOrder: 1
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [git]
+learningObjectives:
+  - Understand version control
+  - Initialize a Git repository
+  - Commit changes and view history
+---
+
+## Git
+
+**Git** is a distributed version control system that tracks changes to files over time.
+
+### Why Git?
+
+- **History** — see every change ever made
+- **Collaboration** — multiple people work on the same code
+- **Branching** — experiment without breaking the main code
+- **Backup** — your code exists on every contributor's machine
+
+### Essential Git Commands
+
+| Command | What It Does |
+|---------|-------------|
+| `git init` | Start tracking a project |
+| `git add` | Stage changes for commit |
+| `git commit` | Save staged changes with a message |
+| `git log` | View commit history |
+| `git diff` | See what changed |
+| `git status` | See current state |
+
+### Basic Workflow
+
+```bash
+git init
+echo "# My Project" > README.md
+git add README.md
+git commit -m "Initial commit"
+```
+
+Every commit creates a snapshot you can return to later.

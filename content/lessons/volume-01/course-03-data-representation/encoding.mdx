@@ -1,0 +1,41 @@
+---
+title: "Character Encoding"
+slug: character-encoding
+module: "Character Encoding"
+moduleOrder: 1
+lessonOrder: 1
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+learningObjectives:
+  - Understand how text is stored digitally
+  - Compare ASCII, Unicode, and UTF-8
+---
+
+## Character Encoding
+
+Computers store text by assigning numeric codes to characters.
+
+### ASCII
+
+**ASCII** (American Standard Code for Information Interchange) uses 7 bits to represent 128 characters.
+
+| Character | ASCII Code | Binary |
+|-----------|-----------|--------|
+| A | 65 | 01000001 |
+| B | 66 | 01000010 |
+| a | 97 | 01100001 |
+| 0 | 48 | 00110000 |
+
+### Unicode & UTF-8
+
+**Unicode** supports over 1 million characters — enough for all languages. **UTF-8** is the most common encoding format.
+
+- ASCII text is valid UTF-8 (backward compatible)
+- Common characters use fewer bytes: A = 1 byte, € = 3 bytes
+- Over 98% of websites use UTF-8
+
+### Why Encoding Matters
+
+Wrong encoding → garbled text (mojibake). Always specify UTF-8 for modern applications.

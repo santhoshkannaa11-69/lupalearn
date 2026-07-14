@@ -1,0 +1,45 @@
+---
+title: "Algorithm Design"
+slug: algorithm-design
+module: "Algorithm Design"
+moduleOrder: 1
+lessonOrder: 1
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Design algorithms to solve problems
+  - Express algorithms as pseudocode
+  - Analyze algorithm efficiency
+---
+
+## Algorithm Design
+
+An **algorithm** is a step-by-step procedure for solving a problem.
+
+### Expressing Algorithms
+
+**Pseudocode** is a human-readable description of an algorithm:
+
+```
+FUNCTION findMax(numbers)
+    max = numbers[0]
+    FOR each number in numbers
+        IF number > max THEN
+            max = number
+    RETURN max
+```
+
+### Algorithm Strategies
+
+| Strategy | Description | Example |
+|----------|-------------|---------|
+| **Brute Force** | Try all possibilities | Password cracking |
+| **Divide & Conquer** | Split problem, solve parts | Merge sort |
+| **Greedy** | Best choice at each step | Dijkstra's algorithm |
+| **Recursion** | Function calls itself | Tree traversal |
+
+### Why Efficiency Matters
+
+An algorithm that takes O(n²) vs O(n) can mean the difference between 1 second and 3 hours for large inputs.
