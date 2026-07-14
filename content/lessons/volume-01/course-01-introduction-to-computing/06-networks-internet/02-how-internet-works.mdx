@@ -1,0 +1,57 @@
+---
+title: "How the Internet Works"
+slug: how-internet-works
+module: "Networks & Internet"
+moduleOrder: 1
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Understand Internet architecture
+  - Explain IP addresses and DNS
+---
+
+## How the Internet Works
+
+The **Internet** is a global network of networks — millions of computers connected together.
+
+### Key Concepts
+
+| Concept | What It Is | Analogy |
+|---------|-----------|---------|
+| **IP Address** | Unique identifier for each device | Street address |
+| **DNS** | Translates domain names to IPs | Phone book |
+| **Packet** | Small unit of data sent over network | Postcard |
+| **Router** | Directs packets between networks | Post office |
+| **Protocol** | Rules for communication | Language |
+
+### IP Addresses
+
+Every device connected to the Internet has an IP address:
+
+- **IPv4**: `192.168.1.1` — 4.3 billion addresses (exhausted)
+- **IPv6**: `2001:db8::ff00:42:8329` — virtually unlimited
+
+### How Data Travels
+
+```
+Your computer → Router → ISP → Internet → Router → Server
+     ↓                                      ↓
+   Packet 1 → ... → ... → ... → ... → Packet 1
+   Packet 2 → ... → ... → ... → ... → Packet 2
+   Packet 3 → ... → ... → ... → ... → Packet 3
+```
+
+Data is broken into **packets**, each takes its own route, and they're reassembled at the destination.
+
+### The DNS System
+
+When you type `google.com`:
+
+1. Your computer asks the DNS server: "Where is google.com?"
+2. DNS responds: "142.250.80.46"
+3. Your computer connects to that IP address
+
+This all happens in milliseconds.

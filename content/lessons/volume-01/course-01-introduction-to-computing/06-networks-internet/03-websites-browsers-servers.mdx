@@ -1,0 +1,55 @@
+---
+title: "Websites, Browsers & Servers"
+slug: websites-browsers-servers
+module: "Networks & Internet"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Understand the client-server model
+  - Explain how websites are delivered
+---
+
+## Websites, Browsers & Servers
+
+### The Client-Server Model
+
+```
+You (Client)                Server
+┌─────────┐   Request →   ┌─────────┐
+│ Browser │──────────────→│ Web     │
+│         │←──────────────│ Server  │
+└─────────┘   Response    └─────────┘
+```
+
+1. **Client** (browser) sends a request: "Give me this page"
+2. **Server** processes the request
+3. **Server** sends back HTML, CSS, JavaScript
+4. **Browser** renders the page
+
+### What Happens When You Visit a Website
+
+1. You type `lupalearn.app` in the address bar
+2. **DNS lookup** finds the server's IP address
+3. Your browser sends an **HTTP request** to that server
+4. The server processes the request (may query a database)
+5. The server sends back an **HTTP response** with the page content
+6. Your browser renders the HTML and executes JavaScript
+
+### Client vs Server
+
+| Aspect | Client | Server |
+|--------|--------|--------|
+| **Role** | Makes requests | Responds to requests |
+| **Examples** | Browser, phone app | Web server, API server |
+| **Location** | User's device | Data center (cloud) |
+| **Software** | Chrome, Safari, Firefox | Nginx, Apache, Node.js |
+
+### The Cloud
+
+"**The Cloud**" is just someone else's computers. Cloud providers like AWS, Google Cloud, and Azure host servers that you can rent and access over the Internet.
+
+When you see "powered by cloud computing," it means the processing happens on remote servers, not your device.

@@ -1,0 +1,53 @@
+---
+title: "Processes and Programs"
+slug: processes-and-programs
+module: "Operating Systems"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Differentiate programs from processes
+  - Understand multitasking
+---
+
+## Processes and Programs
+
+A **program** is a file on disk. A **process** is a program that's currently running in memory.
+
+### Program vs Process
+
+| Aspect | Program | Process |
+|--------|---------|---------|
+| **Location** | On disk (SSD/HDD) | In memory (RAM) |
+| **State** | Static (file) | Active (running) |
+| **Multiple instances** | One file | Can have many instances |
+| **Example** | chrome.exe | Chrome with 10 tabs = 10 processes |
+
+### Process Lifecycle
+
+```
+Start → Running → Waiting → Running → Terminated
+```
+
+1. **Start** — Program is loaded from disk to RAM
+2. **Running** — CPU executes instructions
+3. **Waiting** — Process waits for resource (disk, network)
+4. **Running** — Resource available, continues
+5. **Terminated** — Process ends
+
+### Multitasking
+
+The OS creates the illusion of many things happening simultaneously by rapidly switching between processes. This is called **context switching**.
+
+```
+Time slice → Process A runs (10ms)
+           → Switch to Process B (takes <1ms)
+           → Process B runs (10ms)
+           → Switch to Process C
+           → ...repeat...
+```
+
+Modern CPUs with multiple cores can literally run multiple processes simultaneously.

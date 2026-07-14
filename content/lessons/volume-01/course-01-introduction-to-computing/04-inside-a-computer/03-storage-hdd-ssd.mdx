@@ -1,0 +1,62 @@
+---
+title: "Storage (HDD, SSD)"
+slug: storage-hdd-ssd
+module: "Inside a Computer"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Understand storage technologies
+  - Compare HDD vs SSD
+---
+
+## Storage (HDD, SSD)
+
+**Storage** is where data lives permanently — files, programs, your operating system.
+
+### HDD (Hard Disk Drive)
+
+Traditional magnetic storage.
+
+- **How it works**: Spinning magnetic platters, a moving read/write head
+- **Speed**: ~150 MB/s
+- **Capacity**: Up to 20 TB
+- **Durability**: Fragile (moving parts)
+- **Noise**: Audible spinning and clicking
+- **Cost**: ~$0.02/GB
+
+### SSD (Solid State Drive)
+
+Modern flash storage.
+
+- **How it works**: NAND flash memory, no moving parts
+- **Speed**: ~5,000 MB/s (NVMe)
+- **Capacity**: Up to 4 TB (consumer)
+- **Durability**: Very durable
+- **Noise**: Silent
+- **Cost**: ~$0.10/GB
+
+### Comparison
+
+| Factor | HDD | SSD |
+|--------|-----|-----|
+| Boot time | 30-60 seconds | 5-10 seconds |
+| File transfer | 150 MB/s | 5,000 MB/s |
+| Lifespan | 3-5 years | 5-10 years |
+| Power use | 6-10 W | 2-4 W |
+| Weight | Heavy | Light |
+
+### Storage Hierarchy
+
+```
+Registers (1 ns)       ← Smallest, fastest
+Cache (3 ns)           │
+RAM (50 ns)            │
+SSD (100,000 ns)       │
+HDD (10,000,000 ns)    ← Largest, slowest
+```
+
+Every computer uses this hierarchy to balance speed and cost.

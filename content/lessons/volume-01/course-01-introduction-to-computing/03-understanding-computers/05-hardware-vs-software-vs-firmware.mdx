@@ -1,0 +1,62 @@
+---
+title: "Hardware vs Software vs Firmware"
+slug: hw-sw-firmware
+module: "Understanding Computers"
+moduleOrder: 1
+lessonOrder: 5
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Compare HW, SW, and firmware
+  - Understand how they work together
+---
+
+## Hardware vs Software vs Firmware
+
+These three layers work together to make a computer functional.
+
+### Visual Comparison
+
+```
+┌─────────────────────────────────────┐
+│         Applications                │ ← Software
+│  Chrome  VS Code  Spotify  Games    │
+├─────────────────────────────────────┤
+│         Operating System            │ ← Software
+│  File Manager  Drivers  Kernel      │
+├─────────────────────────────────────┤
+│   BIOS / UEFI   Device Firmware     │ ← Firmware
+│  (Motherboard)  (SSD, GPU, etc.)    │
+├─────────────────────────────────────┤
+│   CPU  RAM  SSD  GPU  Motherboard   │ ← Hardware
+│  (Physical components)              │
+└─────────────────────────────────────┘
+```
+
+### How They Interact
+
+```
+User clicks "Save" in Word
+  → Application (Word) requests file write
+  → OS receives and manages the request
+  → Driver translates to disk commands
+  → SSD firmware manages flash storage
+  → Hardware stores data electrically
+```
+
+### Key Distinctions
+
+| Aspect | Hardware | Software | Firmware |
+|--------|----------|----------|----------|
+| **Can you touch it?** | Yes | No | No |
+| **Can it be changed?** | Replace physically | Download update | Special update process |
+| **Speed** | Fastest | Slowest | Fast |
+| **Failure mode** | Physical damage | Crash/bug | Bricking |
+
+### Why You Need All Three
+
+- **Hardware** provides the physical capability
+- **Software** provides flexibility and user features
+- **Firmware** bridges the gap, providing stable low-level control

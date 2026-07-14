@@ -1,0 +1,58 @@
+---
+title: "Files and File Systems"
+slug: files-and-file-systems
+module: "Operating Systems"
+moduleOrder: 1
+lessonOrder: 4
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - Understand file systems
+  - Navigate directory structures
+---
+
+## Files and File Systems
+
+A **file system** is how the OS organizes and stores files on a disk.
+
+### File System Structure
+
+```
+/ (root)
+├── home/
+│   └── user/
+│       ├── Documents/
+│       ├── Pictures/
+│       └── Projects/
+├── etc/         (configuration files)
+├── usr/         (program files)
+└── var/         (variable data, logs)
+```
+
+### File System Types
+
+| System | Used By | Features |
+|--------|---------|----------|
+| **NTFS** | Windows | Journaling, permissions, encryption |
+| **APFS** | macOS | Snapshots, encryption, space sharing |
+| **ext4** | Linux | Journaling, large files, backward compatible |
+| **FAT32** | Universal | Compatible everywhere, 4GB file limit |
+
+### File Paths
+
+- **Absolute path**: `/home/user/Documents/file.txt` (starts from root)
+- **Relative path**: `Documents/file.txt` (relative to current directory)
+
+### File Permissions
+
+Linux/macOS use a permission system:
+
+| Permission | File | Directory |
+|-----------|------|-----------|
+| **Read (r)** | View contents | List files |
+| **Write (w)** | Modify contents | Create/delete files |
+| **Execute (x)** | Run as program | Enter directory |
+
+Permissions are set for: **owner**, **group**, and **everyone**.

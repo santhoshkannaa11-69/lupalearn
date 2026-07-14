@@ -1,0 +1,70 @@
+---
+title: "How Everything Works Together"
+slug: how-everything-works-together
+module: "Inside a Computer"
+moduleOrder: 1
+lessonOrder: 5
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [algorithms]
+learningObjectives:
+  - See the complete data flow
+  - Understand system integration
+---
+
+## How Everything Works Together
+
+Let's trace what happens when you press a key in a text editor.
+
+### The Journey of a Keystroke
+
+```
+1. KEY PRESS
+   You press 'A' on the keyboard
+   
+2. INPUT
+   Keyboard sends signal via USB to motherboard
+   
+3. INTERRUPT
+   CPU pauses current work to handle the input
+   
+4. DRIVER
+   Keyboard driver translates signal to the letter 'A'
+   
+5. OS
+   Operating System receives the character
+   
+6. APPLICATION
+   OS delivers 'A' to the active text editor
+   
+7. DISPLAY
+   Text editor requests the letter to be shown
+   
+8. OUTPUT
+   GPU renders the pixel, monitor displays 'A'
+   
+9. STORAGE
+   Auto-save writes document back to SSD
+```
+
+### The Memory Path
+
+```
+Keyboard → USB Controller → RAM → CPU → RAM → GPU → Monitor
+                                        ↓
+                                      SSD (save)
+```
+
+### Analogy: A Restaurant
+
+| Computer | Restaurant |
+|----------|-----------|
+| **CPU** | The chef |
+| **RAM** | The counter (prep area) |
+| **SSD** | The refrigerator (storage) |
+| **Keyboard** | The waiter (taking orders) |
+| **Monitor** | The plating (presentation) |
+| **Motherboard** | The kitchen layout |
+
+Everything must work together smoothly for the system to function.
