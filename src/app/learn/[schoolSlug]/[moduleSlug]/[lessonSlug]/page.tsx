@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import path from "path"
 import fs from "fs"
+import { prisma } from "@/lib/db"
 import { getLessonBySlug, getConceptsForLesson } from "@/lib/graph"
 import { LessonViewer } from "@/components/learn/LessonViewer"
 
@@ -10,23 +11,29 @@ export default async function LessonPage({
 }: {
   params: Promise<{ schoolSlug: string; moduleSlug: string; lessonSlug: string }>
 }) {
-  const { lessonSlug, schoolSlug } = await params
+  const { lessonSlug, schoolSlug, moduleSlug } = await params
   const lesson = await getLessonBySlug(lessonSlug)
 
-  if (!lesson) {
-    notFound()
-  }
+  if (!lesson) notFound()
 
   const concepts = await getConceptsForLesson(lessonSlug)
+
+  // Fetch all lessons in the same module for prev/next navigation
+  const moduleLessons = await prisma.lesson.findMany({
+    where: { module: { slug: moduleSlug } },
+    orderBy: { order: "asc" },
+    select: { slug: true, title: true },
+  })
+  const currentIdx = moduleLessons.findIndex((l) => l.slug === lessonSlug)
+  const nextSlug = currentIdx < moduleLessons.length - 1 ? moduleLessons[currentIdx + 1].slug : undefined
+  const prevSlug = currentIdx > 0 ? moduleLessons[currentIdx - 1].slug : undefined
 
   // Read MDX content from file system
   let mdxContent = ""
   try {
-    // contentPath is like: lessons/volume-01/course-07-programming-fundamentals/02-variables-data-types/01-variables-data-types.mdx
     const fullPath = path.join(process.cwd(), "content", lesson.contentPath)
     if (fs.existsSync(fullPath)) {
       mdxContent = fs.readFileSync(fullPath, "utf-8")
-      // Strip frontmatter (content between --- delimiters)
       mdxContent = mdxContent.replace(/^---[\s\S]*?---\n?/, "")
     }
   } catch (e) {
@@ -43,9 +50,7 @@ export default async function LessonPage({
         <span className="text-[#606060]">/</span>
         <span className="text-[#c0c0c0]">{lesson.slug}</span>
         <span className="text-[#00ff41] animate-blink ml-0.5">_</span>
-
         <div className="flex-1" />
-
         <span className="text-[#606060]">{lesson.duration}min</span>
         <span className="text-[#1e1e1e]">|</span>
         <span className="text-[#ffb000]">+{lesson.xpReward} XP</span>
@@ -68,6 +73,14 @@ export default async function LessonPage({
         }}
         concepts={concepts}
         mdxContent={mdxContent}
+        navigation={{
+          schoolSlug,
+          moduleSlug,
+          currentIndex: currentIdx,
+          totalInModule: moduleLessons.length,
+          nextSlug,
+          prevSlug,
+        }}
       />
     </div>
   )
