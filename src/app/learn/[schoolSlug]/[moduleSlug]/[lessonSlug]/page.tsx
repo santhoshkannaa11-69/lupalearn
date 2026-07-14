@@ -73,6 +73,7 @@ export default async function LessonPage({
         }}
         concepts={concepts}
         mdxContent={mdxContent}
+        conceptSlugs={concepts.map((c) => c.slug)}
         navigation={{
           schoolSlug,
           moduleSlug,

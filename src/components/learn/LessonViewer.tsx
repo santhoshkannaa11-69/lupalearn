@@ -11,6 +11,7 @@ import { CommandBar } from "@/lib/command-system/CommandBar"
 import { registerLessonCommands } from "@/lib/command-system/commands/lesson-commands"
 import type { CommandContext } from "@/lib/command-system/types"
 import { showToast } from "@/components/ui/Toast"
+import { ReadinessScore, WhyLearnThis } from "@/components/learn/ReadinessScore"
 import Link from "next/link"
 import { BookOpen, ArrowLeft, ArrowRight, CheckCircle, Bookmark, Terminal, Command } from "lucide-react"
 
@@ -40,6 +41,7 @@ interface LessonViewerProps {
   }
   concepts: Array<{ id: string; slug: string; name: string; type: string; description: string | null }>
   mdxContent?: string
+  conceptSlugs?: string[]
   navigation?: NavigationInfo
 }
 
@@ -81,7 +83,7 @@ function HelpModal({ onClose }: { onClose: () => void }) {
   )
 }
 
-function LessonViewer({ lesson, concepts, mdxContent, navigation }: LessonViewerProps) {
+function LessonViewer({ lesson, concepts, mdxContent, conceptSlugs, navigation }: LessonViewerProps) {
   const router = useRouter()
   const contentRef = useRef<HTMLDivElement>(null)
   const [commandMode, setCommandMode] = useState(false)
@@ -233,6 +235,14 @@ function LessonViewer({ lesson, concepts, mdxContent, navigation }: LessonViewer
             </div>
           )}
         </div>
+
+        {/* Readiness & Why Learn */}
+        {conceptSlugs && conceptSlugs.length > 0 && (
+          <>
+            <ReadinessScore concepts={conceptSlugs} schoolSlug={navigation?.schoolSlug || "computer-science"} moduleSlug={navigation?.moduleSlug || "programming-fundamentals"} />
+            <WhyLearnThis conceptSlug={conceptSlugs[0]} />
+          </>
+        )}
 
         {/* Content */}
         {cleanedContent ? (
