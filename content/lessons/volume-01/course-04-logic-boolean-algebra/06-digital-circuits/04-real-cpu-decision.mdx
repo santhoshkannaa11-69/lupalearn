@@ -1,0 +1,54 @@
+---
+title: "Real CPU Decision Making"
+slug: real-cpu-decision-making
+module: "Logic in Digital Circuits"
+moduleOrder: 6
+lessonOrder: 4
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [combinational-logic]
+learningObjectives:
+  - Understand how CPUs use Boolean logic
+  - See the ALU as a Boolean circuit
+estimatedKnowledgeGain: 8
+tags: [cpu, alu, decision-making]
+---
+
+## 1. Hook
+
+When your program says `if (x > y)`, the CPU evaluates that condition using a comparator circuit — a network of logic gates that computes whether one binary number is greater than another.
+
+## 2. The ALU (Arithmetic Logic Unit)
+
+The ALU is the part of the CPU that performs arithmetic and logical operations. It's built entirely from logic gates.
+
+| Operation | Circuit | Gates Used |
+|-----------|---------|------------|
+| **Add** | Adder | XOR, AND, OR |
+| **Subtract** | Subtractor | XOR, AND, OR, NOT |
+| **Compare** | Comparator | XOR, NOR, AND |
+| **AND** | AND gate array | AND |
+| **OR** | OR gate array | OR |
+| **XOR** | XOR gate array | XOR |
+
+## 3. How a CPU Evaluates `if (x > y)`
+
+```
+1. Fetch instruction: CMP x, y
+2. ALU computes x - y
+3. ALU sets flags: negative, zero, carry
+4. Control unit checks: if negative flag is NOT set AND zero flag is NOT set
+5. If true → jump to the if-block
+```
+
+## 4. Summary
+
+- The **ALU** is built entirely from logic gates
+- Every `if`, `else`, loop, and comparison ultimately becomes gates switching electrons
+- Boolean logic IS what computers do at the most fundamental level
+
+## 5. What's Next
+
+Next: **Logic Everywhere** — the final lesson connecting all the ideas.

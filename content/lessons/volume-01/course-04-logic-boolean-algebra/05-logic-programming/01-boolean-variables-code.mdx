@@ -1,0 +1,70 @@
+---
+title: "Boolean Variables in Code"
+slug: boolean-variables-code
+module: "Logic in Programming"
+moduleOrder: 5
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [de-morgans-laws]
+learningObjectives:
+  - Use Boolean variables in programs
+  - Write clear Boolean conditions
+estimatedKnowledgeGain: 7
+tags: [booleans, variables, conditions]
+---
+
+## 1. Hook
+
+Every `if` statement, every `while` loop, every `&&` and `||` — they all depend on Boolean values. Making your Boolean conditions readable is one of the most important programming skills.
+
+## 2. Naming Booleans
+
+```javascript
+// Clear names
+let isLoggedIn = true;
+let hasPermission = false;
+let isOver18 = age >= 18;
+
+// Avoid names that don't communicate true/false
+let status = true;       // ❌ What does "status" mean?
+let isLoggedIn = true;   // ✅ Clear: yes/no question
+```
+
+## 3. Common Patterns
+
+```javascript
+// Check multiple conditions
+let canAccess = isLoggedIn && (isAdmin || hasPermission);
+
+// Negative checks
+if (!isLoggedIn) {
+  showLoginPage();
+}
+
+// Ternary with Boolean
+let message = isValid ? "Valid" : "Invalid";
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function checkAccess(age, hasID, isVIP) {
+  let canEnter = age >= 18 && hasID;
+  let hasAccess = canEnter || isVIP;
+  console.log(`Age: ${age}, ID: ${hasID}, VIP: ${isVIP}`);
+  console.log(`Can enter: ${canEnter}, Has access: ${hasAccess}`);
+}
+checkAccess(21, true, false);
+checkAccess(17, true, true);" />
+
+## 5. Summary
+
+- Use **clear, descriptive names** for Boolean variables
+- Boolean variables should read like **yes/no questions**
+- Combine Booleans with `&&`, `||`, and `!` for complex conditions
+
+## 6. What's Next
+
+Next: **Conditional Statements** — if/else logic in depth.

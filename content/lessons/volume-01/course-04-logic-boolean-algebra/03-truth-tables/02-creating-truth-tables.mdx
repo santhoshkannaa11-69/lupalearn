@@ -1,0 +1,59 @@
+---
+title: "Creating Truth Tables"
+slug: creating-truth-tables
+module: "Truth Tables"
+moduleOrder: 3
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [reading-truth-tables]
+learningObjectives:
+  - Build truth tables from Boolean expressions
+estimatedKnowledgeGain: 8
+tags: [truth-tables, practice]
+---
+
+## 1. Step-by-Step Process
+
+```
+Expression: A AND (B OR C)
+
+Step 1: List all inputs (A, B, C = 8 rows)
+Step 2: Add columns for intermediate results
+Step 3: Fill in the output column
+```
+
+| A | B | C | B OR C | A AND (B OR C) |
+|---|---|---|--------|----------------|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 0 |
+| 0 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 1 | 0 |
+| 1 | 0 | 0 | 0 | 0 |
+| 1 | 0 | 1 | 1 | 1 |
+| 1 | 1 | 0 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 |
+
+## 2. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function evaluateExpression(a, b, c) {
+  return a && (b || c);
+}
+console.log(&quot;A B C | Result&quot;);
+console.log(&quot;──────┼───────&quot;);
+for (let a = 0; a <= 1; a++)
+  for (let b = 0; b <= 1; b++)
+    for (let c = 0; c <= 1; c++)
+      console.log(`${a} ${b} ${c} |   ${evaluateExpression(!!a, !!b, !!c) ? 1 : 0}`);" />
+
+## 3. Summary
+
+- Break complex expressions into **intermediate columns**
+- Use **systematic counting** to list all input combinations
+- Build the output column from the sub-expressions
+
+## 4. What's Next
+
+Next: **Multi-variable Truth Tables** — handling 4+ inputs.

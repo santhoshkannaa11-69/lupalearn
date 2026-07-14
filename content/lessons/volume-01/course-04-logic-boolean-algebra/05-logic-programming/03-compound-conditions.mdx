@@ -1,0 +1,75 @@
+---
+title: "Compound Conditions"
+slug: compound-conditions
+module: "Logic in Programming"
+moduleOrder: 5
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [conditional-statements-logic]
+learningObjectives:
+  - Write complex compound conditions
+  - Apply logical operator precedence correctly
+estimatedKnowledgeGain: 8
+tags: [compound, conditions, operators]
+---
+
+## 1. Hook
+
+"I'll go outside if the weather is good AND I have free time, OR if there's an emergency." Real decisions combine multiple conditions with AND, OR, and NOT — exactly like Boolean expressions.
+
+## 2. Operator Precedence
+
+```
+1. NOT (!)        — highest priority
+2. AND (&&)
+3. OR (||)        — lowest priority
+```
+
+```javascript
+let a = true, b = false, c = true;
+
+// !a && b || c
+// Step 1: !a = false
+// Step 2: false && b = false
+// Step 3: false || c = true
+
+// Use parentheses to be clear:
+let result = (!a && b) || c;
+```
+
+## 3. Real Example — Product Filter
+
+```javascript
+function passesFilter(product) {
+  let matchesSearch = product.name.includes("laptop");
+  let inPriceRange = product.price >= 500 && product.price <= 1500;
+  let inStock = product.quantity > 0;
+
+  return matchesSearch && inPriceRange && inStock;
+}
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function recommendActivity(temp, isRaining, hasUmbrella) {
+  if (temp > 80 && !isRaining) return &quot;Go to the beach!&quot;;
+  if (temp > 60 && !isRaining) return &quot;Go for a hike!&quot;;
+  if (temp > 50 && (isRaining && hasUmbrella)) return &quot;Go for a walk&quot;;
+  if (temp > 50 && isRaining && !hasUmbrella) return &quot;Stay home&quot;;
+  return &quot;Stay home, it's cold&quot;;
+}
+console.log(recommendActivity(85, false, false));
+console.log(recommendActivity(65, true, true));" />
+
+## 5. Summary
+
+- Use **parentheses** to make operator precedence clear
+- Break complex conditions into **named Boolean variables**
+- Compound conditions are just combinations of AND, OR, NOT
+
+## 6. What's Next
+
+Next: **Short-Circuit Evaluation** — how `&&` and `||` optimize performance.

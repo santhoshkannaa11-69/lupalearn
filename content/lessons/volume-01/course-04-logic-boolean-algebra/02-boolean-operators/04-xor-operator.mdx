@@ -1,0 +1,61 @@
+---
+title: "XOR Operator"
+slug: xor-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 4
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [not-operator]
+learningObjectives:
+  - Understand the XOR operator
+  - Differentiate OR from XOR
+estimatedKnowledgeGain: 7
+tags: [xor, exclusive-or, operator]
+---
+
+## 1. Hook
+
+"You can choose the window seat OR the aisle seat — but not both." That's XOR (exclusive OR). Unlike regular OR, where both can be true, XOR is true only when the inputs **differ**.
+
+## 2. Core Concept
+
+**XOR** returns `true` when the inputs are **different**.
+
+| A | B | A XOR B |
+|---|---|---------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+### Symbol: `^` (in code) · `⊕` (in logic)
+
+## 3. XOR vs OR
+
+| A | B | OR | XOR |
+|---|---|----|-----|
+| 0 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 1 |
+| 1 | 0 | 1 | 1 |
+| 1 | 1 | 1 | 0 |
+
+The only difference: when both inputs are 1, OR is 1 but XOR is 0.
+
+## 4. Real-World Uses
+
+- **Error detection** — parity bits use XOR
+- **Cryptography** — many ciphers use XOR
+- **Toggle switches** — XOR flips a bit when one input changes
+
+## 5. Summary
+
+- **XOR** = true when inputs differ
+- Programming symbol: `^` (bitwise)
+- Used in: parity checking, cryptography, toggling
+
+## 6. What's Next
+
+Next: **NAND Operator** — the universal gate.

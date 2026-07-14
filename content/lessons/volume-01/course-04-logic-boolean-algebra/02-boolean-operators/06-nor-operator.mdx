@@ -1,0 +1,51 @@
+---
+title: "NOR Operator"
+slug: nor-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 6
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [nand-operator]
+learningObjectives:
+  - Understand the NOR operator
+  - Know NOR is also a universal gate
+estimatedKnowledgeGain: 7
+tags: [nor, universal-gate, operator]
+---
+
+## 1. Hook
+
+NOR is "NOT OR" — the opposite of OR. Like NAND, it's a universal gate. Some chip designs use only NOR gates instead of NAND.
+
+## 2. Core Concept
+
+**NOR** is OR followed by NOT.
+
+| A | B | A NOR B |
+|---|---|---------|
+| 0 | 0 | 1 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 0 |
+
+## 3. The Two Universal Gates
+
+| Gate | Universal? | Used In |
+|------|------------|---------|
+| **NAND** | Yes | Most common logic family (74xx00) |
+| **NOR** | Yes | Alternative designs, certain memory cells |
+
+Both NAND and NOR are universal — you can express any Boolean function using just one of them.
+
+## 4. Summary
+
+- **NOR** = NOT OR (opposite of OR)
+- Also a **universal gate** like NAND
+- Different chip families use different universal gates
+
+## 5. What's Next
+
+Next: **XNOR Operator** — the equality gate.

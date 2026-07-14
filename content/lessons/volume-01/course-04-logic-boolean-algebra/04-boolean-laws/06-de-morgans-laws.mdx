@@ -1,0 +1,71 @@
+---
+title: "De Morgan's Laws"
+slug: de-morgans-laws
+module: "Boolean Laws"
+moduleOrder: 4
+lessonOrder: 6
+duration: 25
+xp: 35
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [distributive-associative-commutative]
+learningObjectives:
+  - Understand De Morgan's Laws
+  - Apply De Morgan's Laws to simplify expressions
+estimatedKnowledgeGain: 9
+tags: [de-morgan, logic, simplification]
+---
+
+## 1. Hook
+
+Augustus De Morgan discovered two rules that are among the most useful in all of computing: NOT (A AND B) = NOT A OR NOT B. In other words, flipping AND to OR (or OR to AND) when you distribute a NOT.
+
+## 2. De Morgan's Laws
+
+| Law | Expression | Equivalent |
+|-----|-----------|------------|
+| **First** | ¬(A ∧ B) | ¬A ∨ ¬B |
+| **Second** | ¬(A ∨ B) | ¬A ∧ ¬B |
+
+### In Programming
+
+```javascript
+!(a && b) === !a || !b
+!(a || b) === !a && !b
+```
+
+## 3. Truth Table Verification
+
+```
+¬(A ∧ B):
+A B | A∧B | ¬(A∧B) | ¬A | ¬B | ¬A∨¬B
+0 0 | 0   |   1    | 1  | 1  |  1
+0 1 | 0   |   1    | 1  | 0  |  1
+1 0 | 0   |   1    | 0  | 1  |  1
+1 1 | 1   |   0    | 0  | 0  |  0
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// De Morgan's First Law
+let a = true, b = false;
+console.log(&quot;!(a && b):&quot;, !(a && b));
+console.log(&quot;!a || !b:&quot;, !a || !b);
+console.log(&quot;Equal:&quot;, !(a && b) === (!a || !b));
+
+// In practice: refactoring conditions
+let isLoggedIn = false, isAdmin = false;
+// Instead of: if (!(isLoggedIn && isAdmin))
+// Use:        if (!isLoggedIn || !isAdmin)
+console.log(&quot;!loggedIn || !admin:&quot;, !isLoggedIn || !isAdmin);" />
+
+## 5. Summary
+
+- **De Morgan's Laws**: distribute NOT over AND/OR
+- `!(A && B) = !A || !B`
+- `!(A || B) = !A && !B`
+- Essential for simplifying complex conditions in code
+
+## 6. What's Next
+
+Next module: **Logic in Programming** — applying Boolean logic in real code.

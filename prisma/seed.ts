@@ -192,7 +192,7 @@ async function main() {
       { slug: "intro-data-repr", title: "Introduction to Data Representation", order: 1 }, { slug: "repr-numbers", title: "Representing Numbers", order: 2 }, { slug: "repr-text", title: "Representing Text", order: 3 }, { slug: "repr-images", title: "Representing Images", order: 4 }, { slug: "repr-audio", title: "Representing Audio", order: 5 }, { slug: "repr-video", title: "Representing Video", order: 6 }, { slug: "files-storage", title: "Files & Storage", order: 7 },
     ]},
     { slug: "logic-boolean-algebra", title: "Logic & Boolean Algebra", order: 4, modules: [
-      { slug: "boolean-basics", title: "Boolean Algebra Basics", order: 1 }, { slug: "logic-gates", title: "Logic Gates", order: 2 }, { slug: "boolean-laws", title: "Boolean Laws", order: 3 }, { slug: "karnaugh-maps", title: "Karnaugh Maps", order: 4 }, { slug: "logic-simplification", title: "Logic Simplification", order: 5 },
+      { slug: "thinking-logically", title: "Thinking Like a Computer", order: 1 }, { slug: "bool-operators", title: "Boolean Operators", order: 2 }, { slug: "truth-tables", title: "Truth Tables", order: 3 }, { slug: "bool-laws", title: "Boolean Laws", order: 4 }, { slug: "logic-programming", title: "Logic in Programming", order: 5 }, { slug: "digital-circuits", title: "Logic in Digital Circuits", order: 6 },
     ]},
     { slug: "digital-electronics", title: "Digital Electronics", order: 5, modules: [
       { slug: "combinational-circuits", title: "Combinational Circuits", order: 1 }, { slug: "sequential-circuits", title: "Sequential Circuits", order: 2 }, { slug: "multiplexers", title: "Multiplexers & Demultiplexers", order: 3 }, { slug: "flip-flops", title: "Flip-Flops", order: 4 }, { slug: "counters", title: "Counters", order: 5 }, { slug: "finite-state-machines", title: "Finite State Machines", order: 6 },
@@ -238,6 +238,7 @@ async function main() {
   const C1 = "lessons/volume-01/course-01-introduction-to-computing"
   const C2 = "lessons/volume-01/course-02-number-systems"
   const C3 = "lessons/volume-01/course-03-data-representation"
+  const C4 = "lessons/volume-01/course-04-logic-boolean-algebra"
   const lessonData = [
     // Module 1: What is Programming? (5)
     { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
@@ -411,9 +412,38 @@ async function main() {
     { slug: "file-systems", title: "File Systems", description: "NTFS, APFS, ext4, FAT32.", contentPath: `${C3}/07-files/01-file-systems.mdx`, moduleSlug: "files-storage", order: 1, duration: 15, xp: 20, tags: ["files"], concepts: ["binary"] },
     { slug: "how-oss-store-files", title: "How OSs Store Files", description: "Blocks, clusters, fragmentation.", contentPath: `${C3}/07-files/02-how-oss-store-files.mdx`, moduleSlug: "files-storage", order: 2, duration: 20, xp: 25, tags: ["storage"], concepts: ["binary"] },
 
-    // ─── COURSE 4: Logic & Boolean Algebra (sample lessons) ───
-    { slug: "boolean-algebra", title: "Boolean Algebra Basics", description: "Learn the fundamental laws of boolean logic.", contentPath: "lessons/volume-01/course-04-logic-boolean-algebra/boolean-algebra.mdx", moduleSlug: "boolean-basics", order: 1, duration: 20, xp: 30, tags: ["logic"], concepts: ["boolean-logic"] },
-    { slug: "logic-gates-intro", title: "Introduction to Logic Gates", description: "Understand AND, OR, NOT, NAND, NOR, XOR gates.", contentPath: "lessons/volume-01/course-04-logic-boolean-algebra/logic-gates.mdx", moduleSlug: "logic-gates", order: 1, duration: 25, xp: 35, tags: ["gates"], concepts: ["boolean-logic"] },
+    // ─── COURSE 4: Logic & Boolean Algebra (32 lessons, 6 modules) ───
+    // Module 1: Thinking (4)
+    // Module 1: Thinking (4)
+    { slug: "what-is-logic-cs", title: "What Is Logic?", description: "Logic as the foundation of computing.", contentPath: `${C4}/01-thinking-logically/01-what-is-logic.mdx`, moduleSlug: "thinking-logically", order: 1, duration: 15, xp: 20, tags: ["logic"], concepts: ["boolean-logic"] },
+    { slug: "statements-and-truth", title: "Statements & Truth", description: "True/false, logical statements.", contentPath: `${C4}/01-thinking-logically/02-statements-and-truth.mdx`, moduleSlug: "thinking-logically", order: 2, duration: 15, xp: 20, tags: ["logic"], concepts: ["boolean-logic"] },
+    { slug: "boolean-values", title: "Boolean Values", description: "True/false data type, binary connection.", contentPath: `${C4}/01-thinking-logically/03-boolean-values.mdx`, moduleSlug: "thinking-logically", order: 3, duration: 15, xp: 20, tags: ["boolean"], concepts: ["boolean-logic"] },
+    { slug: "george-boole-boolean-algebra", title: "George Boole & Boolean Algebra", description: "The history of Boolean algebra.", contentPath: `${C4}/01-thinking-logically/04-george-boole.mdx`, moduleSlug: "thinking-logically", order: 4, duration: 20, xp: 25, tags: ["history"], concepts: ["boolean-logic"] },
+    // Module 2: Boolean Operators (7)
+    { slug: "and-operator", title: "AND Operator", description: "AND truth table and uses.", contentPath: `${C4}/02-boolean-operators/01-and-operator.mdx`, moduleSlug: "bool-operators", order: 1, duration: 15, xp: 20, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "or-operator", title: "OR Operator", description: "OR truth table and uses.", contentPath: `${C4}/02-boolean-operators/02-or-operator.mdx`, moduleSlug: "bool-operators", order: 2, duration: 15, xp: 20, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "not-operator", title: "NOT Operator", description: "NOT, the inverter.", contentPath: `${C4}/02-boolean-operators/03-not-operator.mdx`, moduleSlug: "bool-operators", order: 3, duration: 15, xp: 20, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "xor-operator", title: "XOR Operator", description: "Exclusive OR, parity, cryptography.", contentPath: `${C4}/02-boolean-operators/04-xor-operator.mdx`, moduleSlug: "bool-operators", order: 4, duration: 15, xp: 25, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "nand-operator", title: "NAND Operator", description: "The universal gate.", contentPath: `${C4}/02-boolean-operators/05-nand-operator.mdx`, moduleSlug: "bool-operators", order: 5, duration: 15, xp: 25, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "nor-operator", title: "NOR Operator", description: "The other universal gate.", contentPath: `${C4}/02-boolean-operators/06-nor-operator.mdx`, moduleSlug: "bool-operators", order: 6, duration: 15, xp: 25, tags: ["operator"], concepts: ["boolean-logic"] },
+    { slug: "xnor-operator", title: "XNOR Operator", description: "The equality gate.", contentPath: `${C4}/02-boolean-operators/07-xnor-operator.mdx`, moduleSlug: "bool-operators", order: 7, duration: 15, xp: 25, tags: ["operator"], concepts: ["boolean-logic"] },
+    // Module 3: Truth Tables (5)
+    { slug: "reading-truth-tables", title: "Reading Truth Tables", description: "Structure and interpretation.", contentPath: `${C4}/03-truth-tables/01-reading-truth-tables.mdx`, moduleSlug: "truth-tables", order: 1, duration: 15, xp: 20, tags: ["truth-table"], concepts: ["boolean-logic"] },
+    { slug: "creating-truth-tables", title: "Creating Truth Tables", description: "Building from expressions.", contentPath: `${C4}/03-truth-tables/02-creating-truth-tables.mdx`, moduleSlug: "truth-tables", order: 2, duration: 20, xp: 25, tags: ["truth-table"], concepts: ["boolean-logic"] },
+    // Module 4: Boolean Laws (6)
+    { slug: "identity-law", title: "Identity Law", description: "A·1=A, A+0=A.", contentPath: `${C4}/04-boolean-laws/01-identity-law.mdx`, moduleSlug: "bool-laws", order: 1, duration: 15, xp: 20, tags: ["laws"], concepts: ["boolean-logic"] },
+    { slug: "de-morgans-laws", title: "De Morgan's Laws", description: "¬(A∧B)=¬A∨¬B, ¬(A∨B)=¬A∧¬B.", contentPath: `${C4}/04-boolean-laws/06-de-morgans-laws.mdx`, moduleSlug: "bool-laws", order: 6, duration: 25, xp: 35, tags: ["laws"], concepts: ["boolean-logic"] },
+    // Module 5: Logic in Programming (5)
+    { slug: "boolean-variables-code", title: "Boolean Variables in Code", description: "Using booleans effectively.", contentPath: `${C4}/05-logic-programming/01-boolean-variables-code.mdx`, moduleSlug: "logic-programming", order: 1, duration: 15, xp: 20, tags: ["programming"], concepts: ["boolean-logic"] },
+    { slug: "conditional-statements-logic", title: "Conditional Statements", description: "If/else and Boolean conditions.", contentPath: `${C4}/05-logic-programming/02-conditional-statements.mdx`, moduleSlug: "logic-programming", order: 2, duration: 20, xp: 25, tags: ["programming"], concepts: ["boolean-logic"] },
+    { slug: "compound-conditions", title: "Compound Conditions", description: "Combining Boolean expressions.", contentPath: `${C4}/05-logic-programming/03-compound-conditions.mdx`, moduleSlug: "logic-programming", order: 3, duration: 20, xp: 30, tags: ["programming"], concepts: ["boolean-logic"] },
+    { slug: "short-circuit-evaluation", title: "Short-Circuit Evaluation", description: "Optimizing && and ||.", contentPath: `${C4}/05-logic-programming/04-short-circuit-evaluation.mdx`, moduleSlug: "logic-programming", order: 4, duration: 20, xp: 30, tags: ["programming"], concepts: ["boolean-logic"] },
+    // Module 6: Digital Circuits (5)
+    { slug: "logic-gates-c4", title: "Logic Gates", description: "From Boolean algebra to transistors.", contentPath: `${C4}/06-digital-circuits/01-logic-gates.mdx`, moduleSlug: "digital-circuits", order: 1, duration: 25, xp: 35, tags: ["circuits"], concepts: ["boolean-logic"] },
+    { slug: "building-circuits", title: "Building Circuits", description: "Half adder, full adder design.", contentPath: `${C4}/06-digital-circuits/02-building-circuits.mdx`, moduleSlug: "digital-circuits", order: 2, duration: 25, xp: 35, tags: ["circuits"], concepts: ["boolean-logic"] },
+    { slug: "combinational-logic", title: "Combinational Logic", description: "No memory, just gates.", contentPath: `${C4}/06-digital-circuits/03-combinational-logic.mdx`, moduleSlug: "digital-circuits", order: 3, duration: 20, xp: 30, tags: ["circuits"], concepts: ["boolean-logic"] },
+    { slug: "real-cpu-decision-making", title: "Real CPU Decision Making", description: "ALU, comparators, flags.", contentPath: `${C4}/06-digital-circuits/04-real-cpu-decision.mdx`, moduleSlug: "digital-circuits", order: 4, duration: 20, xp: 30, tags: ["circuits"], concepts: ["boolean-logic"] },
+    { slug: "logic-everywhere", title: "Logic Everywhere", description: "Logic in everyday technology.", contentPath: `${C4}/06-digital-circuits/05-logic-everywhere.mdx`, moduleSlug: "digital-circuits", order: 5, duration: 20, xp: 30, tags: ["circuits"], concepts: ["boolean-logic"] },
 
     // ─── COURSE 5: Digital Electronics (sample lessons) ───
     { slug: "combinational-circuits", title: "Combinational Circuits", description: "Build circuits using logic gates.", contentPath: "lessons/volume-01/course-05-digital-electronics/combinational.mdx", moduleSlug: "combinational-circuits", order: 1, duration: 25, xp: 35, tags: ["circuits"], concepts: ["boolean-logic"] },

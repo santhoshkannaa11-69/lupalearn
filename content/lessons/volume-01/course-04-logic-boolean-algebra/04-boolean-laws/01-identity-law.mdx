@@ -1,0 +1,65 @@
+---
+title: "Boolean Laws — Identity Law"
+slug: identity-law
+module: "Boolean Laws"
+moduleOrder: 4
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [multi-variable-truth-tables]
+learningObjectives:
+  - Understand Boolean algebra laws
+  - Apply the Identity law
+estimatedKnowledgeGain: 7
+tags: [boolean-laws, simplification]
+---
+
+## 1. Hook
+
+Boolean algebra has laws, just like regular algebra. The Identity law says: `A AND 1 = A` and `A OR 0 = A`. A variable combined with its identity value stays unchanged.
+
+## 2. Identity Law
+
+| AND Form | OR Form |
+|----------|---------|
+| A · 1 = A | A + 0 = A |
+
+### Truth Table Verification
+
+```
+A · 1 = A:
+A | 1 | Result
+0 | 1 |   0
+1 | 1 |   1
+
+→ Same as A
+
+A + 0 = A:
+A | 0 | Result
+0 | 0 |   0
+1 | 0 |   1
+
+→ Same as A
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Identity law demonstration
+function identityAND(a) { return a && true; }
+function identityOR(a) { return a || false; }
+
+console.log(&quot;A · 1 result:&quot;, identityAND(true), identityAND(false));
+console.log(&quot;A + 0 result:&quot;, identityOR(true), identityOR(false));
+console.log(&quot;Same as A?&quot;, true, false);" />
+
+## 4. Summary
+
+- **Identity law**: `A · 1 = A` and `A + 0 = A`
+- A variable combined with its identity value stays unchanged
+- Used for simplifying Boolean expressions
+
+## 5. What's Next
+
+Next: **Null Law** — the law of extremes.

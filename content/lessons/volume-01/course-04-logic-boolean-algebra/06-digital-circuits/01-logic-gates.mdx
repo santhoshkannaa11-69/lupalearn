@@ -1,0 +1,64 @@
+---
+title: "Logic Gates"
+slug: logic-gates-c4
+module: "Logic in Digital Circuits"
+moduleOrder: 6
+lessonOrder: 1
+duration: 25
+xp: 35
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [real-programming-logic]
+learningObjectives:
+  - Understand how logic gates implement Boolean algebra
+  - Map Boolean operators to physical gates
+estimatedKnowledgeGain: 8
+tags: [logic-gates, circuits, hardware]
+---
+
+## 1. Hook
+
+Every Boolean expression you write in code has a physical equivalent inside the CPU. `(A && B) || C` becomes a circuit of logic gates etched into silicon — electrons flowing through transistors billions of times per second.
+
+## 2. The Seven Gates
+
+| Gate | Symbol | Boolean Expression | Transistors |
+|------|--------|-------------------|-------------|
+| AND | · | A · B | 6 |
+| OR | + | A + B | 6 |
+| NOT | ¬ | ¬A | 2 |
+| NAND | ↑ | ¬(A · B) | 4 |
+| NOR | ↓ | ¬(A + B) | 4 |
+| XOR | ⊕ | A ⊕ B | 8 |
+| XNOR | ⊙ | ¬(A ⊕ B) | 10 |
+
+## 3. How a Gate Works Physically
+
+```
+AND Gate:
+Input A ──┬──→ Transistor pair
+Input B ──┘   │
+              ↓
+         Output = A AND B
+         (Voltage present only if both inputs have voltage)
+```
+
+## 4. Building an AND Gate from Transistors
+
+Two transistors in series. Both must be ON (input = 1) for current to flow through (output = 1).
+
+```
+Vcc ──→|T1|──→|T2|──→ Output
+         ↑      ↑
+        A=1    B=1
+```
+
+## 5. Summary
+
+- **Logic gates** are the physical implementation of Boolean operators
+- Each gate uses **transistors** to control the flow of electricity
+- All digital circuits are built from combinations of these gates
+
+## 6. What's Next
+
+Next: **Building Circuits** — combining gates to create useful functions.

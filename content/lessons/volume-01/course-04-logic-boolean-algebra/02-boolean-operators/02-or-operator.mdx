@@ -1,0 +1,64 @@
+---
+title: "OR Operator"
+slug: or-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 2
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [and-operator]
+learningObjectives:
+  - Understand the OR operator
+  - Build OR truth tables
+estimatedKnowledgeGain: 7
+tags: [or, operator, logic]
+---
+
+## 1. Hook
+
+"The store accepts Visa OR Mastercard." If you have either one, you can pay. OR is the inclusive operator — as long as at least one condition is true, the result is true.
+
+## 2. Core Concept
+
+**OR** returns `true` when **at least one input** is `true`.
+
+| A | B | A OR B |
+|---|---|--------|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+### Symbol: `||` (in code) · `∨` (in logic)
+
+## 3. Real-World Examples
+
+| Scenario | Logic |
+|----------|-------|
+| **Discount** | Employee OR Student → 10% off |
+| **Access** | Has key card OR knows gate code → entry |
+| **Delivery** | Home OR work address → can deliver |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// OR in action
+console.log(&quot;true  OR true  =&quot;, true || true);
+console.log(&quot;true  OR false =&quot;, true || false);
+console.log(&quot;false OR true  =&quot;, false || true);
+console.log(&quot;false OR false =&quot;, false || false);
+
+let isStudent = true;
+let isSenior = false;
+console.log(&quot;Gets discount:&quot;, isStudent || isSenior);" />
+
+## 5. Summary
+
+- **OR** = at least one input must be true
+- Programming symbol: `||`
+- Used when any condition being true is sufficient
+
+## 6. What's Next
+
+Next: **NOT Operator** — the inverter, flipping true to false.

@@ -1,0 +1,53 @@
+---
+title: "Statements & Truth"
+slug: statements-and-truth
+module: "Thinking Like a Computer"
+moduleOrder: 1
+lessonOrder: 2
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [what-is-logic-cs]
+learningObjectives:
+  - Understand logical statements
+  - Differentiate facts from opinions
+estimatedKnowledgeGain: 6
+tags: [statements, truth, logic]
+---
+
+## 1. Hook
+
+"Is 7 + 5 = 12?" That's a statement — and it's true. "Is JavaScript better than Python?" That's an opinion — not a logical statement. Computers can only work with statements that have a definite truth value.
+
+## 2. Core Concept
+
+A **logical statement** is a declarative sentence that is either true or false — not both, not neither.
+
+| Statement | Truth Value | Type |
+|-----------|-------------|------|
+| "5 > 3" | True | Logical |
+| "Earth is flat" | False | Logical |
+| "This is beautiful" | Neither | Opinion |
+| "x + 5 = 12" | Depends on x | Conditional |
+
+## 3. Why This Matters for Programming
+
+```javascript
+// Valid conditions (logical statements)
+if (age >= 18) { ... }          // True or false
+while (score < 100) { ... }     // True or false
+
+// Invalid conditions
+// if ("this is beautiful") { ... }  // Can't evaluate
+```
+
+## 4. Summary
+
+- A **logical statement** has a definite truth value (true or false)
+- Opinions, questions, and commands are not logical statements
+- Programs can only make decisions based on logical statements
+
+## 5. What's Next
+
+Next: **Boolean Values** — the true/false data type at the heart of computing.

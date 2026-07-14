@@ -1,0 +1,56 @@
+---
+title: "XNOR Operator"
+slug: xnor-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 7
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [nor-operator]
+learningObjectives:
+  - Understand the XNOR operator
+  - Know where XNOR is used
+estimatedKnowledgeGain: 6
+tags: [xnor, equality, operator]
+---
+
+## 1. Hook
+
+XNOR is the opposite of XOR. While XOR is true when inputs differ, XNOR is true when inputs are the **same**. It's the equality detector.
+
+## 2. Core Concept
+
+**XNOR** returns `true` when both inputs are the same.
+
+| A | B | A XNOR B |
+|---|---|----------|
+| 0 | 0 | 1 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+### Symbol: `===` in programming (equality check)
+
+## 3. The Seven Operators Complete
+
+| Operator | Symbol | True When |
+|----------|--------|-----------|
+| AND | `&&` | Both true |
+| OR | `\|\|` | At least one true |
+| NOT | `!` | Input is false |
+| XOR | `^` | Inputs differ |
+| NAND | | Not both true |
+| NOR | | Neither true |
+| XNOR | `===` | Inputs same |
+
+## 4. Summary
+
+- **XNOR** = true when inputs are equal (equality gate)
+- Used for **comparison** operations
+- Completes the set of 7 fundamental Boolean operators
+
+## 5. What's Next
+
+Next module: **Truth Tables** — systematically evaluating logical expressions.

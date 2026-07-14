@@ -1,0 +1,59 @@
+---
+title: "Boolean Values"
+slug: boolean-values
+module: "Thinking Like a Computer"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [statements-and-truth]
+learningObjectives:
+  - Understand the Boolean data type
+  - See the connection between binary and Boolean logic
+estimatedKnowledgeGain: 7
+tags: [boolean, binary, truth-values]
+---
+
+## 1. Hook
+
+In your code, you write `true` and `false`. Inside the computer, those are stored as 1 and 0. Boolean logic is the bridge between human reasoning and binary circuits.
+
+## 2. Core Concept
+
+A **Boolean value** has exactly two possible states:
+
+| Boolean | Binary | Meaning |
+|---------|--------|---------|
+| `true` | 1 | Yes, on, valid |
+| `false` | 0 | No, off, invalid |
+
+### In Programming
+
+```javascript
+let isLoggedIn = true;     // The user has logged in
+let isAdmin = false;       // The user is not an admin
+
+if (isLoggedIn && isAdmin) {
+  // access dashboard
+}
+```
+
+## 3. The Binary Connection
+
+Boolean values map directly to binary:
+- **true** = 1 = voltage present
+- **false** = 0 = no voltage
+
+This means Boolean operations can be performed by simple electronic circuits — logic gates.
+
+## 4. Summary
+
+- **Boolean** = a value that is either `true` or `false`
+- Maps to binary: **true = 1, false = 0**
+- Every programming language has a Boolean data type
+
+## 5. What's Next
+
+Next: **George Boole & Boolean Algebra** — the mathematician who created the logic that powers computers.

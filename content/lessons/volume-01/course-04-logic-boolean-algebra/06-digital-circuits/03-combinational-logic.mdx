@@ -1,0 +1,51 @@
+---
+title: "Combinational Logic"
+slug: combinational-logic
+module: "Logic in Digital Circuits"
+moduleOrder: 6
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [building-circuits]
+learningObjectives:
+  - Understand combinational vs sequential logic
+  - Design combinational circuits
+estimatedKnowledgeGain: 7
+tags: [combinational, circuits, logic]
+---
+
+## 1. Hook
+
+A **combinational circuit** produces outputs based only on current inputs — no memory, no history. The output is determined entirely by Boolean logic.
+
+## 2. Combinational vs Sequential
+
+| Type | Characteristics | Examples |
+|------|-----------------|----------|
+| **Combinational** | Output = f(inputs only) | Adders, multiplexers, decoders |
+| **Sequential** | Output = f(inputs + state) | Registers, counters, memory |
+
+## 3. Common Combinational Circuits
+
+| Circuit | Function | Gates Used |
+|---------|----------|------------|
+| **Multiplexer (MUX)** | Select one of several inputs | AND, OR, NOT |
+| **Decoder** | Convert binary to one-hot | AND, NOT |
+| **Encoder** | Convert one-hot to binary | OR |
+| **Adder** | Add binary numbers | XOR, AND, OR |
+
+## 4. Real CPU Decision Making
+
+Inside a CPU, the **control unit** uses combinational logic to decode instructions. When the CPU fetches `ADD R1, R2`, a decoder circuit determines which operation to perform and which registers to use — all using Boolean logic.
+
+## 5. Summary
+
+- **Combinational logic** = outputs depend only on current inputs
+- No memory, no state — just Boolean operations
+- Every CPU uses combinational logic for instruction decoding, arithmetic, and control
+
+## 6. What's Next
+
+Next: **Logic Everywhere** — a final look at how logic powers everything in computing.

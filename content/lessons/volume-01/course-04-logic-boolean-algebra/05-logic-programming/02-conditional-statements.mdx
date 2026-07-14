@@ -1,0 +1,79 @@
+---
+title: "Conditional Statements"
+slug: conditional-statements-logic
+module: "Logic in Programming"
+moduleOrder: 5
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [boolean-variables-code]
+learningObjectives:
+  - Write effective if/else statements
+  - Understand Boolean conditions in control flow
+estimatedKnowledgeGain: 8
+tags: [conditionals, if-else, control-flow]
+---
+
+## 1. Hook
+
+An `if` statement is a Boolean expression evaluated at runtime. If the expression is `true`, one block runs. If `false`, another runs. That's all control flow is — Boolean logic directing execution.
+
+## 2. If/Else Patterns
+
+```javascript
+// Simple
+if (isLoggedIn) {
+  showDashboard();
+}
+
+// If/else
+if (score >= 90) {
+  grade = "A";
+} else if (score >= 80) {
+  grade = "B";
+} else {
+  grade = "C";
+}
+
+// Guard clause
+if (!isValid) return null;
+```
+
+## 3. Boolean Conditions in Practice
+
+```javascript
+// Complex decision: approve a loan
+let hasGoodCredit = creditScore > 700;
+let hasStableIncome = income > 30000;
+let lowDebtRatio = debtToIncome < 0.4;
+
+if (hasGoodCredit && hasStableIncome && lowDebtRatio) {
+  approveLoan();
+} else {
+  denyLoan();
+}
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function evaluateAccess(age, membership, hasInvite) {
+  if (age < 18) return &quot;Denied: Too young&quot;;
+  if (membership === &quot;vip&quot;) return &quot;Full access granted&quot;;
+  if (membership === &quot;regular&quot; && hasInvite) return &quot;Event access granted&quot;;
+  if (membership === &quot;regular&quot;) return &quot;General access only&quot;;
+  return &quot;Join as member to access&quot;;
+}
+console.log(evaluateAccess(25, &quot;vip&quot;, false));
+console.log(evaluateAccess(25, &quot;regular&quot;, true));" />
+
+## 5. Summary
+
+- `if` statements are **Boolean expressions** controlling execution
+- Use **guard clauses** to exit early and simplify logic
+- Combine conditions with `&&`, `||`, and `!` for complex decisions
+
+## 6. What's Next
+
+Next: **Compound Conditions** — combining multiple Boolean expressions.

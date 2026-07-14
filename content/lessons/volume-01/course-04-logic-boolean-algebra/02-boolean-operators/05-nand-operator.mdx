@@ -1,0 +1,56 @@
+---
+title: "NAND Operator"
+slug: nand-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 5
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [xor-operator]
+learningObjectives:
+  - Understand the NAND operator
+  - Learn why NAND is a universal gate
+estimatedKnowledgeGain: 8
+tags: [nand, universal-gate, operator]
+---
+
+## 1. Hook
+
+NAND is "NOT AND" — it's the opposite of AND. Every other logic gate can be built from NAND gates alone. This is why real computer chips are often built entirely from NAND gates.
+
+## 2. Core Concept
+
+**NAND** is AND followed by NOT.
+
+| A | B | A NAND B |
+|---|---|----------|
+| 0 | 0 | 1 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+### Symbol: `!()` or `~(a & b)` in code
+
+## 3. Why NAND Is Universal
+
+You can build any other gate using only NAND:
+
+```
+NOT A      = A NAND A
+A AND B    = (A NAND B) NAND (A NAND B)
+A OR B     = (A NAND A) NAND (B NAND B)
+```
+
+This is why real CPUs can be built from just one type of gate — it's cheaper to mass-produce a single gate type.
+
+## 4. Summary
+
+- **NAND** = NOT AND (opposite of AND)
+- **Universally complete** — any gate can be built from NAND
+- All CPUs use this property to simplify manufacturing
+
+## 5. What's Next
+
+Next: **NOR Operator** — the other universal gate.

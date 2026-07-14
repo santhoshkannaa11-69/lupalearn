@@ -1,0 +1,65 @@
+---
+title: "AND Operator"
+slug: and-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [george-boole-boolean-algebra]
+learningObjectives:
+  - Understand the AND operator
+  - Build AND truth tables
+estimatedKnowledgeGain: 7
+tags: [and, operator, logic]
+---
+
+## 1. Hook
+
+"You need a ticket AND a passport to board an international flight." Both conditions must be true. This is AND logic — the most restrictive operator. If either condition fails, the whole thing fails.
+
+## 2. Core Concept
+
+**AND** returns `true` only when **both inputs** are `true`.
+
+| A | B | A AND B |
+|---|---|---------|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+### Symbol: `&&` (in code) · `∧` (in logic)
+
+## 3. Real-World Examples
+
+| Scenario | Logic |
+|----------|-------|
+| **Login** | Correct username AND correct password → access granted |
+| **Flight** | Have ticket AND have passport → can board |
+| **ATM** | Correct PIN AND sufficient balance → cash dispensed |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// AND in action
+console.log(&quot;true  AND true  =&quot;, true && true);
+console.log(&quot;true  AND false =&quot;, true && false);
+console.log(&quot;false AND true  =&quot;, false && true);
+console.log(&quot;false AND false =&quot;, false && false);
+
+// Real-world example
+let hasTicket = true;
+let hasPassport = false;
+console.log(&quot;Can board:&quot;, hasTicket && hasPassport);" />
+
+## 5. Summary
+
+- **AND** = both inputs must be true
+- Programming symbol: `&&`
+- Used wherever multiple conditions must all be satisfied
+
+## 6. What's Next
+
+Next: **OR Operator** — true when at least one condition is true.

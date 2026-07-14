@@ -1,0 +1,69 @@
+---
+title: "Reading Truth Tables"
+slug: reading-truth-tables
+module: "Truth Tables"
+moduleOrder: 3
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [xnor-operator]
+learningObjectives:
+  - Read and interpret truth tables
+  - Understand the structure of a truth table
+estimatedKnowledgeGain: 7
+tags: [truth-tables, logic]
+---
+
+## 1. Hook
+
+A truth table lists every possible combination of inputs and shows the output. For 2 inputs, there are 4 rows. For 3 inputs, 8 rows. For n inputs, 2ⁿ rows.
+
+## 2. Truth Table Structure
+
+A truth table has one column per input and one for the output.
+
+```
+Inputs:   A B | A AND B
+          ────|────────
+          0 0 |    0
+          0 1 |    0
+          1 0 |    0
+          1 1 |    1
+```
+
+### Number of Rows
+
+| Inputs | Rows (2ⁿ) |
+|--------|-----------|
+| 1 | 2 |
+| 2 | 4 |
+| 3 | 8 |
+| 4 | 16 |
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function truthTable(operator, name) {
+  console.log(`\n${name} Truth Table:`);
+  console.log(&quot;A B | Result&quot;);
+  console.log(&quot;────┼───────&quot;);
+  for (let a = 0; a <= 1; a++) {
+    for (let b = 0; b <= 1; b++) {
+      let result = operator(!!a, !!b) ? 1 : 0;
+      console.log(`${a} ${b} |   ${result}`);
+    }
+  }
+}
+truthTable((a,b) => a && b, &quot;AND&quot;);
+truthTable((a,b) => a || b, &quot;OR&quot;);" />
+
+## 4. Summary
+
+- A **truth table** shows all input combinations and the output
+- **2ⁿ rows** for n inputs
+- Reading truth tables is the first step to understanding any logical expression
+
+## 5. What's Next
+
+Next: **Creating Truth Tables** — building truth tables for complex expressions.

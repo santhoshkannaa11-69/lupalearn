@@ -1,0 +1,61 @@
+---
+title: "NOT Operator"
+slug: not-operator
+module: "Boolean Operators"
+moduleOrder: 2
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [or-operator]
+learningObjectives:
+  - Understand the NOT operator
+  - Build NOT truth tables
+estimatedKnowledgeGain: 6
+tags: [not, operator, inversion]
+---
+
+## 1. Hook
+
+NOT is the simplest operator — it takes one input and flips it. `true` becomes `false`. `false` becomes `true`. It's the inverter.
+
+## 2. Core Concept
+
+**NOT** returns the opposite of the input.
+
+| A | NOT A |
+|---|-------|
+| 0 | 1 |
+| 1 | 0 |
+
+### Symbol: `!` (in code) · `¬` (in logic) · `¯` (overbar)
+
+## 3. Real-World Examples
+
+| Scenario | Logic |
+|----------|-------|
+| **Lock** | NOT unlocked → locked |
+| **Login** | NOT logged in → show login page |
+| **Validation** | NOT valid → show error message |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// NOT in action
+let isLoggedIn = false;
+console.log(&quot;Logged in:&quot;, isLoggedIn);
+console.log(&quot;NOT logged in:&quot;, !isLoggedIn);
+
+let isValid = true;
+console.log(&quot;Valid:&quot;, isValid);
+console.log(&quot;NOT valid:&quot;, !isValid);" />
+
+## 5. Summary
+
+- **NOT** = invert the input (true → false, false → true)
+- Programming symbol: `!`
+- Used for negation — "if NOT this, then that"
+
+## 6. What's Next
+
+Next: **XOR Operator** — exclusive OR, true when inputs differ.

@@ -1,0 +1,86 @@
+---
+title: "Short-Circuit Evaluation"
+slug: short-circuit-evaluation
+module: "Logic in Programming"
+moduleOrder: 5
+lessonOrder: 4
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [compound-conditions]
+learningObjectives:
+  - Understand short-circuit evaluation
+  - Use short-circuiting to write efficient code
+estimatedKnowledgeGain: 8
+tags: [short-circuit, evaluation, optimization]
+---
+
+## 1. Hook
+
+In `a && b`, if `a` is false, the result is always false — so the computer doesn't bother evaluating `b`. This is called **short-circuit evaluation**, and it's a key optimization in every programming language.
+
+## 2. How Short-Circuiting Works
+
+```javascript
+// AND (&&): stops at first false
+false && anything → false (anything not evaluated)
+true && something → something (evaluated)
+
+// OR (||): stops at first true
+true || anything → true (anything not evaluated)
+false || something → something (evaluated)
+```
+
+## 3. Practical Uses
+
+```javascript
+// Safe navigation
+let userName = user && user.name;
+// If user is null, stops before accessing user.name
+
+// Default values
+let name = inputName || "Guest";
+// If inputName is empty/falsy, uses "Guest"
+
+// Conditional execution
+isValid && submitForm();
+// Only calls submitForm() if isValid is true
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="let callCount = 0;
+function expensiveCheck() {
+  callCount++;
+  return true;
+}
+
+// Short-circuit prevents expensiveCheck from running
+console.log(&quot;false && expensive():&quot;, false && expensiveCheck());
+console.log(&quot;expensive() called:&quot;, callCount + &quot; times&quot;);
+
+// Default value pattern
+let username = null;
+let displayName = username || &quot;Guest&quot;;
+console.log(&quot;Display name:&quot;, displayName);" />
+
+## 5. Common Mistake
+
+```javascript
+// ❌ Wrong — changes the logic
+let result = a || b && c;   // Not the same as (a || b) && c
+
+// ✅ Use parentheses
+let result = (a || b) && c;
+```
+
+## 6. Summary
+
+- **AND** stops at the first `false`
+- **OR** stops at the first `true`
+- Used for **safe navigation**, **default values**, and **conditional execution**
+
+## 7. What's Next
+
+Next: **Real Programming Examples** — applying Boolean logic in real applications.
