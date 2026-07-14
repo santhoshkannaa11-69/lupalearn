@@ -8,53 +8,49 @@ duration: 30
 xp: 60
 difficulty: intermediate
 concepts: [control-flow, loops, functions]
-prerequisites: [loop-challenge, if-else-basics]
+prerequisites: [error-handling-challenge]
 learningObjectives:
   - Build a complete interactive game
   - Combine loops, conditions, and user input
 estimatedKnowledgeGain: 9
-tags: [project, game, loops, conditions]
+tags: [project, game]
 ---
 
-## 1. Project Brief
+## 1. Hook
+
+You've learned variables, loops, conditions, and functions. Now it's time to combine them into a real, playable game.
+
+## 2. Project Brief
 
 Build a number guessing game where the computer picks a random number, and the player tries to guess it.
 
-## 2. Requirements
+## 3. Requirements
 
 1. Computer picks a random number between 1 and 100
 2. Player enters guesses
-3. After each guess, tell "Too high", "Too low", or "Correct!"
+3. Tell "Too high", "Too low", or "Correct!"
 4. Track the number of attempts
-5. Allow the player to play again
+5. Let the player play again
 
-## 3. Starter Code
+## 4. Starter Code
 
 <Terminal mode="challenge" language="javascript" initialCode="// Number Guessing Game
-// Your code here" />
+// Computer picks a number, you guess it" />
 
-## 4. Hints
-
-- Use `Math.random()` and `Math.floor()` to generate a random number
-- Use a `while` loop to keep asking until the player guesses correctly
-- Use `prompt()` to get user input (Node.js: use readline)
-- Track attempts with a counter variable
-
-## 5. Solution Approach
+## 5. Approach
 
 ```javascript
-const secretNumber = Math.floor(Math.random() * 100) + 1;
+const secret = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
 let guessed = false;
 
 while (!guessed) {
-  let guess = parseInt(prompt("Guess a number (1-100):"));
+  let guess = parseInt(prompt("Guess (1-100):"));
   attempts++;
-
-  if (guess === secretNumber) {
-    console.log("Correct! You got it in " + attempts + " attempts!");
+  if (guess === secret) {
+    console.log(`Correct in ${attempts} attempts!`);
     guessed = true;
-  } else if (guess > secretNumber) {
+  } else if (guess > secret) {
     console.log("Too high!");
   } else {
     console.log("Too low!");
@@ -64,7 +60,11 @@ while (!guessed) {
 
 ## 6. Summary
 
-- Games are great practice projects
-- Combine loops and conditions for game logic
-- Track state with variables
-- Test edge cases (0, 101, non-numbers)
+- **Math.random()** generates random numbers
+- **While loops** are great when you don't know the iteration count
+- Games combine all the concepts you've learned
+- Test edge cases: 0, 101, non-numbers
+
+## 7. What's Next
+
+Next project: **Todo List** — an application that manages a list of tasks.

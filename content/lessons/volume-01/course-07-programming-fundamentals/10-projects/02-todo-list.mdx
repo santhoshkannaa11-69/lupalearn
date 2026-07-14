@@ -7,61 +7,32 @@ lessonOrder: 2
 duration: 30
 xp: 65
 difficulty: intermediate
-concepts: [functions, arrays, control-flow]
-prerequisites: [function-challenge, for-loops]
+concepts: [functions, arrays]
+prerequisites: [project-number-guessing-game]
 learningObjectives:
-  - Build a functional todo list application
+  - Build a functional todo list app
   - Manage state with arrays and functions
 estimatedKnowledgeGain: 9
-tags: [project, todo-list, arrays, functions]
+tags: [project, todo]
 ---
 
-## 1. Project Brief
+## 1. Hook
 
-Build a todo list manager that runs in the console. Users can add, list, complete, and delete todos.
+Every productivity app — from Apple Reminders to Notion — is essentially a todo list with features built around it. If you can build a todo list, you can understand how most data management apps work.
 
-## 2. Requirements
+## 2. Project Brief
+
+Build a todo list manager that can add, list, complete, and remove tasks.
+
+## 3. Requirements
 
 1. `add(todo)` — adds a new todo
-2. `list()` — shows all todos with their status
+2. `list()` — shows all todos with status
 3. `complete(index)` — marks a todo as done
 4. `remove(index)` — removes a todo
 5. `summary()` — shows counts (total, done, pending)
 
-## 3. Starter Code
-
-<Terminal mode="challenge" language="javascript" initialCode="// Todo List Manager
-let todos = [];
-
-function add(todo) {
-  // Your code here
-}
-
-function list() {
-  // Your code here
-}
-
-function complete(index) {
-  // Your code here
-}
-
-function remove(index) {
-  // Your code here
-}
-
-function summary() {
-  // Your code here
-}
-
-// Test your functions:
-add(&quot;Learn JavaScript&quot;);
-add(&quot;Build a project&quot;);
-add(&quot;Review lessons&quot;);
-list();
-complete(0);
-summary();" />
-
-## 4. Solution Approach
+## 4. Approach
 
 ```javascript
 let todos = [];
@@ -88,7 +59,10 @@ function remove(index) {
 
 ## 5. Summary
 
-- Real applications manage state with arrays
-- Functions encapsulate operations
-- Objects group related data (text + status)
-- Build features incrementally
+- Arrays of objects are a **common data pattern**
+- Functions **encapsulate** operations
+- Real apps manage state — changes in data update the display
+
+## 6. What's Next
+
+Next: **Calculator App** — a more complex application with multiple operations.

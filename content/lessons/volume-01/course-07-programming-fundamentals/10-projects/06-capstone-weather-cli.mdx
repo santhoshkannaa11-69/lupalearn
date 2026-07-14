@@ -7,86 +7,57 @@ lessonOrder: 6
 duration: 45
 xp: 100
 difficulty: advanced
-concepts: [functions, error-handling, async-programming]
-prerequisites: [error-handling-challenge, project-todo-list, project-number-guessing-game, project-calculator-app, project-grade-tracker, project-text-analyzer]
+concepts: [functions, error-handling]
+prerequisites: [project-text-analyzer]
 learningObjectives:
   - Build a complete CLI tool
   - Combine all concepts from the course
-  - Handle real-world edge cases
 estimatedKnowledgeGain: 10
-tags: [project, capstone, cli, error-handling]
+tags: [capstone, project]
 ---
 
-## 1. Capstone Project
+## 1. Hook
 
-Build a complete weather CLI tool that demonstrates everything you've learned. This is the final project that ties together the entire course.
+This is the final project of Programming Fundamentals. It combines everything you've learned: variables, arrays, objects, functions, loops, conditions, and error handling. If you can build this, you're ready for the next course.
 
-## 2. Requirements
+## 2. Capstone Project
 
-1. **Data Storage** — store weather data for multiple cities
-2. **CRUD Operations** — add, list, update, delete city data
-3. **Analysis** — calculate averages, find extremes, trends
-4. **Reporting** — formatted output with statistics
-5. **Error Handling** — validate all inputs, handle edge cases
-6. **File Persistence** — save/load data (using localStorage concept)
+Build a weather data management tool that stores, analyzes, and reports on weather readings.
 
-## 3. Features to Implement
+## 3. Requirements
 
-```javascript
-// Data structure
-// { city: string, temperature: number, humidity: number, condition: string, date: string }
-
-// Functions to implement:
-// addReading(city, temp, humidity, condition) — adds a weather reading
-// getCityData(city) — returns all readings for a city
-// getAverageTemp(city) — average temperature for a city
-// getHottestDay(city) — returns the hottest reading
-// getCitySummary(city) — formatted summary of all data
-// getAllCities() — list all cities with data
-// removeCity(city) — removes a city and its data
-// compareCities(city1, city2) — compares two cities
-```
+1. **Add reading** — `addReading(city, temp, humidity, condition)`
+2. **Get city data** — `getCityData(city)`
+3. **Average temperature** — `getAverageTemp(city)`
+4. **Hottest day** — `getHottestDay(city)`
+5. **City summary** — `getCitySummary(city)`
+6. **Compare cities** — `compareCities(c1, c2)`
 
 ## 4. Starter Code
 
-<Terminal mode="challenge" language="javascript" initialCode="// Capstone: Weather CLI Tool
+<Terminal mode="challenge" language="javascript" initialCode="// Weather CLI Tool
 let weatherData = [];
 
 function addReading(city, temp, humidity, condition) {
-  // Validate inputs
-  // Add reading with date
-}
-
-function getCityData(city) {
-  // Return all readings for a city
-}
-
-function getAverageTemp(city) {
-  // Calculate average temperature
+  // Your code here
 }
 
 function getCitySummary(city) {
-  // Return formatted summary
+  // Your code here
 }
 
-// Test your tool:
+// Test:
 addReading(&quot;New York&quot;, 72, 65, &quot;Sunny&quot;);
 addReading(&quot;New York&quot;, 68, 70, &quot;Cloudy&quot;);
-addReading(&quot;London&quot;, 55, 80, &quot;Rainy&quot;);
-console.log(getCitySummary(&quot;New York&quot;));
-console.log(getAverageTemp(&quot;New York&quot;));
-console.log(getAllCities());" />
+console.log(getCitySummary(&quot;New York&quot;));" />
 
-## 5. Extensions
+## 5. Summary
 
-- Add temperature conversion (C/F)
-- Add weather alerts (extreme temps)
-- Add search by condition
-- Add sort by temperature
-
-## 6. Summary
-
-- This capstone uses everything from the course
-- Functions, arrays, objects, conditionals, loops, error handling
+- This **capstone** uses everything from Programming Fundamentals
+- Functions, arrays, objects, loops, conditions, error handling
 - Real applications combine multiple features
-- You're now ready for more advanced programming!
+- You're now ready for more advanced programming! 🚀
+
+## 6. What's Next
+
+Complete the course by reviewing the **Summary** module. Then continue to **Course 8: Problem Solving**.
