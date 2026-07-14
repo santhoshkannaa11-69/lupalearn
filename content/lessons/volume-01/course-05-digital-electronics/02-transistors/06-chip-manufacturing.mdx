@@ -1,0 +1,58 @@
+---
+title: "How Chips Are Manufactured"
+slug: chip-manufacturing
+module: "Transistors"
+moduleOrder: 2
+lessonOrder: 6
+duration: 20
+xp: 25
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [moores-law]
+learningObjectives:
+  - Understand how silicon becomes a CPU
+  - Know the basic manufacturing process
+estimatedKnowledgeGain: 7
+tags: [manufacturing, silicon, lithography]
+---
+
+## 1. Hook
+
+A CPU starts as sand (silicon dioxide), which is purified, sliced into wafers, etched with patterns using light, and cut into individual chips. The entire process takes months and costs billions.
+
+## 2. The Manufacturing Pipeline
+
+```
+Sand → Purified Silicon → Silicon Ingot → Sliced Wafers
+    → Photolithography (pattern etched)
+    → Doping (add impurities for conductivity)
+    → Metallization (add wires)
+    → Testing → Cut into dies → Package
+```
+
+## 3. Photolithography
+
+The most critical step uses light to etch transistor patterns:
+
+```
+UV Light
+    ↓
+Mask (pattern)
+    ↓
+Photoresist on wafer
+    ↓
+Etched pattern
+```
+
+Modern EUV (Extreme Ultraviolet) lithography uses 13.5nm wavelength light — that's just 50 atoms wide.
+
+## 4. Summary
+
+- Chips start as **sand** and go through hundreds of processing steps
+- **Photolithography** etches transistor patterns using light
+- Manufacturing takes **months** and fab plants cost **$20+ billion**
+- This complexity is why CPUs are expensive despite being made from cheap raw materials
+
+## 5. What's Next
+
+Next module: **Logic Gates in Hardware** — building physical gates from transistors.

@@ -1,0 +1,63 @@
+---
+title: "The Transistor as a Switch"
+slug: transistor-as-switch
+module: "Transistors"
+moduleOrder: 2
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [what-is-transistor]
+learningObjectives:
+  - Understand how transistors create logic gates
+  - Build an AND gate from transistors
+estimatedKnowledgeGain: 8
+tags: [transistor, logic-gate, switch]
+---
+
+## 1. Hook
+
+Two transistors in series: both must be ON for current to flow. Two transistors in parallel: if either is ON, current flows. This is how AND and OR gates are built from individual transistors.
+
+## 2. AND Gate from Transistors
+
+```
+Vcc ──→ [T1] ──→ [T2] ──→ Output
+          ↑          ↑
+        Input A   Input B
+```
+
+Only when both transistors are ON does the output receive voltage.
+
+## 3. OR Gate from Transistors
+
+```
+Input A ──→ [T1] ──╮
+                    ├──→ Output
+Input B ──→ [T2] ──╯
+```
+
+If either transistor is ON, the output receives voltage.
+
+## 4. NOT Gate (Inverter)
+
+```
+Vcc ──→ [Transistor] ──→ Output
+              ↑
+           Input
+```
+
+When input is ON, transistor conducts → output is grounded (0).
+When input is OFF, transistor blocks → output is high (1).
+
+## 5. Summary
+
+- **Series** transistors = AND
+- **Parallel** transistors = OR
+- A single transistor with a pull-up resistor = NOT
+- Every logic gate is a specific arrangement of transistors
+
+## 6. What's Next
+
+Next: **Billions of Transistors** — how modern chips scale to billions.

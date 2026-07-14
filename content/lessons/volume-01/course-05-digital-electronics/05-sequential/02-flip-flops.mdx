@@ -1,0 +1,59 @@
+---
+title: "Flip-Flops"
+slug: flip-flops-sequential
+module: "Sequential Circuits"
+moduleOrder: 5
+lessonOrder: 2
+duration: 25
+xp: 35
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [latches]
+learningObjectives:
+  - Understand edge-triggered flip-flops
+  - Differentiate SR, D, JK, and T flip-flops
+estimatedKnowledgeGain: 9
+tags: [flip-flop, edge-triggered, sequential]
+---
+
+## 1. Hook
+
+A latch changes whenever its inputs change. But in a CPU, we need circuits that change only at specific moments — on the tick of a clock. This is where **flip-flops** come in.
+
+## 2. Edge Triggering
+
+A flip-flop only reads its inputs on a **clock edge**:
+
+```
+Clock:  ▄▄▄▄████▄▄▄▄████▄▄▄▄████
+             ↑        ↑
+        Rising edge (transitions)
+```
+
+## 3. Types of Flip-Flops
+
+| Type | Inputs | Behavior |
+|------|--------|----------|
+| **SR** | S, R | Set or Reset (same as latch but clocked) |
+| **D** | D | Copies D to Q on each clock edge |
+| **JK** | J, K | Toggle when both are 1 |
+| **T** | T | Toggles output on each clock edge |
+
+### D Flip-Flop (Most Common)
+
+```
+D ──→ [DFF] ──→ Q
+CLK ──→     ──→ Q̅
+```
+
+On each rising clock edge, Q = D. Used for **registers** — stores 1 bit.
+
+## 4. Summary
+
+- **Flip-flops** are edge-triggered (clocked) storage elements
+- **D flip-flop** is the most common type
+- Used for **registers**, **counters**, and **state machines**
+
+## 5. What's Next
+
+Next: **Registers** — groups of flip-flops storing multi-bit values.

@@ -1,0 +1,57 @@
+---
+title: "Circuits"
+slug: circuits-basics
+module: "From Electricity to Computing"
+moduleOrder: 1
+lessonOrder: 3
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [voltage-current-resistance]
+learningObjectives:
+  - Understand open, closed, and short circuits
+  - Know how current flows in a circuit
+estimatedKnowledgeGain: 6
+tags: [circuits, current, flow]
+---
+
+## 1. Hook
+
+A circuit is a complete path for electricity to flow. If there's a break anywhere, current stops. This is exactly how transistors work — they create or break connections millions of times per second.
+
+## 2. Circuit Types
+
+| Circuit | Description | Current Flow |
+|---------|-------------|--------------|
+| **Open** | Path is broken | No current |
+| **Closed** | Complete path | Current flows |
+| **Short** | Unintended low-resistance path | Very high current (dangerous) |
+
+### Simple Circuit
+
+```
+Battery (+) ──→ Wire ──→ Light Bulb ──→ Wire ──→ Battery (-)
+                    ↓
+                Closed loop — current flows
+```
+
+## 3. How Circuits Relate to Computers
+
+A transistor acts as a **controlled switch** in a circuit:
+
+```
+Control signal (gate) → opens or closes the circuit
+When ON → current flows → represents a 1
+When OFF → no current → represents a 0
+```
+
+## 4. Summary
+
+- A **closed circuit** allows current to flow
+- An **open circuit** stops current
+- Transistors are **electronic switches** that open/close circuits billions of times per second
+
+## 5. What's Next
+
+Next: **Switches Become Binary** — how switches are the foundation of digital logic.

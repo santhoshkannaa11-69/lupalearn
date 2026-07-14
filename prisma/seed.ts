@@ -195,7 +195,7 @@ async function main() {
       { slug: "thinking-logically", title: "Thinking Like a Computer", order: 1 }, { slug: "bool-operators", title: "Boolean Operators", order: 2 }, { slug: "truth-tables", title: "Truth Tables", order: 3 }, { slug: "bool-laws", title: "Boolean Laws", order: 4 }, { slug: "logic-programming", title: "Logic in Programming", order: 5 }, { slug: "digital-circuits", title: "Logic in Digital Circuits", order: 6 },
     ]},
     { slug: "digital-electronics", title: "Digital Electronics", order: 5, modules: [
-      { slug: "combinational-circuits", title: "Combinational Circuits", order: 1 }, { slug: "sequential-circuits", title: "Sequential Circuits", order: 2 }, { slug: "multiplexers", title: "Multiplexers & Demultiplexers", order: 3 }, { slug: "flip-flops", title: "Flip-Flops", order: 4 }, { slug: "counters", title: "Counters", order: 5 }, { slug: "finite-state-machines", title: "Finite State Machines", order: 6 },
+      { slug: "electricity", title: "From Electricity to Computing", order: 1 }, { slug: "transistors", title: "Transistors", order: 2 }, { slug: "logic-gates-hw", title: "Logic Gates in Hardware", order: 3 }, { slug: "combinational", title: "Combinational Circuits", order: 4 }, { slug: "sequential", title: "Sequential Circuits", order: 5 }, { slug: "cpu-hardware", title: "Computer Hardware", order: 6 }, { slug: "memory", title: "Memory Systems", order: 7 }, { slug: "modern-systems", title: "Modern Digital Systems", order: 8 },
     ]},
     { slug: "mathematics", title: "Mathematics for Computer Science", order: 6, modules: [
       { slug: "set-theory", title: "Set Theory", order: 1 }, { slug: "relations-functions", title: "Relations & Functions", order: 2 }, { slug: "matrices", title: "Matrices", order: 3 }, { slug: "probability", title: "Probability", order: 4 }, { slug: "graph-theory", title: "Graph Theory", order: 5 }, { slug: "number-theory", title: "Number Theory", order: 6 },
@@ -239,6 +239,7 @@ async function main() {
   const C2 = "lessons/volume-01/course-02-number-systems"
   const C3 = "lessons/volume-01/course-03-data-representation"
   const C4 = "lessons/volume-01/course-04-logic-boolean-algebra"
+  const C5 = "lessons/volume-01/course-05-digital-electronics"
   const lessonData = [
     // Module 1: What is Programming? (5)
     { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
@@ -445,9 +446,40 @@ async function main() {
     { slug: "real-cpu-decision-making", title: "Real CPU Decision Making", description: "ALU, comparators, flags.", contentPath: `${C4}/06-digital-circuits/04-real-cpu-decision.mdx`, moduleSlug: "digital-circuits", order: 4, duration: 20, xp: 30, tags: ["circuits"], concepts: ["boolean-logic"] },
     { slug: "logic-everywhere", title: "Logic Everywhere", description: "Logic in everyday technology.", contentPath: `${C4}/06-digital-circuits/05-logic-everywhere.mdx`, moduleSlug: "digital-circuits", order: 5, duration: 20, xp: 30, tags: ["circuits"], concepts: ["boolean-logic"] },
 
-    // ─── COURSE 5: Digital Electronics (sample lessons) ───
-    { slug: "combinational-circuits", title: "Combinational Circuits", description: "Build circuits using logic gates.", contentPath: "lessons/volume-01/course-05-digital-electronics/combinational.mdx", moduleSlug: "combinational-circuits", order: 1, duration: 25, xp: 35, tags: ["circuits"], concepts: ["boolean-logic"] },
-    { slug: "flip-flops-intro", title: "Introduction to Flip-Flops", description: "Learn the basic building blocks of sequential logic.", contentPath: "lessons/volume-01/course-05-digital-electronics/flip-flops.mdx", moduleSlug: "flip-flops", order: 1, duration: 25, xp: 35, tags: ["sequential"], concepts: ["boolean-logic"] },
+    // ─── COURSE 5: Digital Electronics (40 lessons, 8 modules) ───
+    // Module 1: Electricity (5)
+    { slug: "why-computers-need-electricity", title: "Why Computers Need Electricity", description: "Electricity vs electronics, analog vs digital.", contentPath: `${C5}/01-electricity/01-why-electricity.mdx`, moduleSlug: "electricity", order: 1, duration: 15, xp: 20, tags: ["electricity"], concepts: ["boolean-logic"] },
+    { slug: "voltage-current-resistance", title: "Voltage, Current & Resistance", description: "Ohm's Law, water analogy.", contentPath: `${C5}/01-electricity/02-voltage-current-resistance.mdx`, moduleSlug: "electricity", order: 2, duration: 15, xp: 20, tags: ["electricity"], concepts: ["boolean-logic"] },
+    { slug: "circuits-basics", title: "Circuits", description: "Open/closed/short circuits, current flow.", contentPath: `${C5}/01-electricity/03-circuits-basics.mdx`, moduleSlug: "electricity", order: 3, duration: 15, xp: 20, tags: ["electricity"], concepts: ["boolean-logic"] },
+    { slug: "switches-become-binary", title: "Switches Become Binary", description: "Light switch analogy, AND/OR from switches.", contentPath: `${C5}/01-electricity/04-switches-become-binary.mdx`, moduleSlug: "electricity", order: 4, duration: 15, xp: 20, tags: ["electricity"], concepts: ["boolean-logic"] },
+    { slug: "electronic-components", title: "Electronic Components", description: "Resistors, capacitors, diodes, ICs.", contentPath: `${C5}/01-electricity/05-electronic-components.mdx`, moduleSlug: "electricity", order: 5, duration: 20, xp: 25, tags: ["electricity"], concepts: ["boolean-logic"] },
+    // Module 2: Transistors (6)
+    { slug: "what-is-transistor", title: "What Is a Transistor?", description: "Transistor as a switch, three terminals.", contentPath: `${C5}/02-transistors/01-what-is-transistor.mdx`, moduleSlug: "transistors", order: 1, duration: 20, xp: 30, tags: ["transistor"], concepts: ["boolean-logic"] },
+    { slug: "transistor-as-switch", title: "The Transistor as a Switch", description: "AND/OR/NOT from transistors.", contentPath: `${C5}/02-transistors/02-transistor-as-switch.mdx`, moduleSlug: "transistors", order: 2, duration: 20, xp: 30, tags: ["transistor"], concepts: ["boolean-logic"] },
+    { slug: "billions-of-transistors", title: "Billions of Transistors", description: "Scale of modern chips, hierarchy.", contentPath: `${C5}/02-transistors/03-billions-of-transistors.mdx`, moduleSlug: "transistors", order: 3, duration: 15, xp: 25, tags: ["transistor"], concepts: ["boolean-logic"] },
+    { slug: "mosfet-basics", title: "MOSFET Basics", description: "CMOS technology, MOSFET vs BJT.", contentPath: `${C5}/02-transistors/04-mosfet-basics.mdx`, moduleSlug: "transistors", order: 4, duration: 20, xp: 25, tags: ["transistor"], concepts: ["boolean-logic"] },
+    { slug: "moores-law", title: "Moore's Law", description: "Transistor scaling, limits, future.", contentPath: `${C5}/02-transistors/05-moores-law.mdx`, moduleSlug: "transistors", order: 5, duration: 20, xp: 25, tags: ["transistor"], concepts: ["boolean-logic"] },
+    { slug: "chip-manufacturing", title: "How Chips Are Manufactured", description: "Sand to silicon to CPU.", contentPath: `${C5}/02-transistors/06-chip-manufacturing.mdx`, moduleSlug: "transistors", order: 6, duration: 20, xp: 25, tags: ["transistor"], concepts: ["boolean-logic"] },
+    // Module 3: Logic Gates HW (6)
+    { slug: "and-gate-circuit", title: "AND Gate Circuit", description: "AND from transistors.", contentPath: `${C5}/03-logic-gates-hw/01-and-gate-circuit.mdx`, moduleSlug: "logic-gates-hw", order: 1, duration: 20, xp: 30, tags: ["gates"], concepts: ["boolean-logic"] },
+    { slug: "combining-gates", title: "Combining Gates", description: "XOR from basic gates, half adder.", contentPath: `${C5}/03-logic-gates-hw/06-combining-gates.mdx`, moduleSlug: "logic-gates-hw", order: 6, duration: 20, xp: 30, tags: ["gates"], concepts: ["boolean-logic"] },
+    // Module 4: Combinational (6)
+    { slug: "half-adder", title: "Half Adder", description: "XOR + AND = adds two bits.", contentPath: `${C5}/04-combinational/01-half-adder.mdx`, moduleSlug: "combinational", order: 1, duration: 20, xp: 30, tags: ["adder"], concepts: ["boolean-logic"] },
+    { slug: "full-adder", title: "Full Adder", description: "Adds three bits with carry.", contentPath: `${C5}/04-combinational/02-full-adder.mdx`, moduleSlug: "combinational", order: 2, duration: 20, xp: 35, tags: ["adder"], concepts: ["boolean-logic"] },
+    { slug: "multiplexers", title: "Multiplexers", description: "2-to-1 MUX, select lines.", contentPath: `${C5}/04-combinational/03-multiplexers.mdx`, moduleSlug: "combinational", order: 3, duration: 20, xp: 30, tags: ["mux"], concepts: ["boolean-logic"] },
+    // Module 5: Sequential (6)
+    { slug: "latches", title: "Latches", description: "SR latch, storing one bit.", contentPath: `${C5}/05-sequential/01-latches.mdx`, moduleSlug: "sequential", order: 1, duration: 20, xp: 30, tags: ["latch"], concepts: ["boolean-logic"] },
+    { slug: "flip-flops-sequential", title: "Flip-Flops", description: "Edge-triggered, SR/D/JK/T types.", contentPath: `${C5}/05-sequential/02-flip-flops.mdx`, moduleSlug: "sequential", order: 2, duration: 25, xp: 35, tags: ["flipflop"], concepts: ["boolean-logic"] },
+    // Module 6: CPU Hardware (5)
+    { slug: "cpu-architecture-basics", title: "CPU Architecture Basics", description: "Von Neumann model, components.", contentPath: `${C5}/06-cpu-hardware/01-cpu-architecture.mdx`, moduleSlug: "cpu-hardware", order: 1, duration: 25, xp: 35, tags: ["cpu"], concepts: ["boolean-logic"] },
+    { slug: "fetch-decode-execute-cycle", title: "The Fetch–Decode–Execute Cycle", description: "Instruction cycle, pipelining.", contentPath: `${C5}/06-cpu-hardware/05-fetch-decode-execute.mdx`, moduleSlug: "cpu-hardware", order: 5, duration: 25, xp: 40, tags: ["cpu"], concepts: ["boolean-logic"] },
+    // Module 7: Memory (3)
+    { slug: "ram-memory", title: "RAM", description: "SRAM vs DRAM, memory hierarchy.", contentPath: `${C5}/07-memory/01-ram.mdx`, moduleSlug: "memory", order: 1, duration: 20, xp: 25, tags: ["memory"], concepts: ["boolean-logic"] },
+    { slug: "rom-flash-memory", title: "ROM & Flash Memory", description: "EEPROM, NAND/NOR flash.", contentPath: `${C5}/07-memory/02-rom-flash.mdx`, moduleSlug: "memory", order: 2, duration: 15, xp: 20, tags: ["memory"], concepts: ["boolean-logic"] },
+    { slug: "cache-memory", title: "Cache Memory", description: "L1/L2/L3, hit vs miss.", contentPath: `${C5}/07-memory/03-cache-memory.mdx`, moduleSlug: "memory", order: 3, duration: 20, xp: 30, tags: ["memory"], concepts: ["boolean-logic"] },
+    // Module 8: Modern Systems (2)
+    { slug: "gpus-fpgas-asics", title: "GPUs, FPGAs & ASICs", description: "CPU vs GPU vs FPGA vs ASIC.", contentPath: `${C5}/08-modern-systems/01-gpus-fpgas-asics.mdx`, moduleSlug: "modern-systems", order: 1, duration: 20, xp: 30, tags: ["gpu"], concepts: ["boolean-logic"] },
+    { slug: "silicon-to-ai", title: "From Silicon to AI", description: "Connecting electrons to intelligence.", contentPath: `${C5}/08-modern-systems/02-silicon-to-ai.mdx`, moduleSlug: "modern-systems", order: 2, duration: 20, xp: 30, tags: ["ai"], concepts: ["boolean-logic"] },
 
     // ─── COURSE 6: Mathematics (sample lessons) ───
     { slug: "set-theory-intro", title: "Introduction to Set Theory", description: "Learn about sets, subsets, and set operations.", contentPath: "lessons/volume-01/course-06-mathematics/set-theory.mdx", moduleSlug: "set-theory", order: 1, duration: 20, xp: 30, tags: ["sets"], concepts: ["algorithms"] },

@@ -1,0 +1,55 @@
+---
+title: "ROM & Flash Memory"
+slug: rom-flash-memory
+module: "Memory Systems"
+moduleOrder: 7
+lessonOrder: 2
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [boolean-logic]
+prerequisites: [ram-memory]
+learningObjectives:
+  - Understand ROM and Flash memory
+  - Know when each type is used
+estimatedKnowledgeGain: 6
+tags: [rom, flash, persistent-memory]
+---
+
+## 1. Hook
+
+When you turn on your computer, it needs to load instructions from somewhere — even before the operating system is loaded. That's **ROM** (Read-Only Memory). It contains the BIOS/UEFI firmware that boots the system.
+
+## 2. ROM vs Flash
+
+| Feature | ROM | Flash |
+|---------|-----|-------|
+| **Persistence** | Permanent | Retains data |
+| **Reprogrammable** | No (or hard) | Yes |
+| **Speed** | Fast | Fast reads, slow writes |
+| **Used in** | BIOS/UEFI, firmware | SSDs, USB drives, SD cards |
+| **Data retention** | Decades | 10+ years |
+
+## 3. Flash Memory
+
+Flash is a type of **EEPROM** (Electrically Erasable Programmable ROM). It stores data in floating-gate transistors:
+
+```
+Control Gate ──→ [Floating Gate] ──→ Source/Drain
+                       │
+                  Electrons trapped here = 1
+                  Electrons released = 0
+```
+
+**NAND Flash**: Dense, block-oriented (SSDs, USB drives)
+**NOR Flash**: Random access, slower writes (firmware storage)
+
+## 4. Summary
+
+- **ROM** stores permanent boot code (BIOS/UEFI)
+- **Flash** is rewritable persistent memory (SSDs, USB drives)
+- **NAND flash** powers all modern solid-state storage
+
+## 5. What's Next
+
+Next: **Cache Memory** — the small, ultra-fast buffer between CPU and RAM.

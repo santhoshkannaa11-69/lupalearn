@@ -1,0 +1,55 @@
+---
+title: "GPUs, FPGAs & ASICs"
+slug: gpus-fpgas-asics
+module: "Modern Digital Systems"
+moduleOrder: 8
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [cache-memory]
+learningObjectives:
+  - Compare GPUs, FPGAs, and ASICs
+  - Understand specialized hardware
+estimatedKnowledgeGain: 7
+tags: [gpu, fpga, asic, hardware]
+---
+
+## 1. Hook
+
+The CPU is a generalist — it can run any program. But sometimes you need a specialist. **GPUs** handle graphics and AI. **FPGAs** can be reprogrammed for specific tasks. **ASICs** are custom-built for a single purpose (like Bitcoin mining).
+
+## 2. Comparison
+
+| Aspect | CPU | GPU | FPGA | ASIC |
+|--------|-----|-----|------|------|
+| **Flexibility** | Maximum | Moderate | High | None (fixed) |
+| **Parallelism** | Low (big cores) | Very high (many small cores) | Medium | Custom |
+| **Best at** | Sequential tasks | Parallel computation | Custom logic | Fixed function |
+| **Example** | Intel Core i9 | NVIDIA RTX 4090 | Xilinx | Bitcoin miner |
+
+## 3. GPU Architecture
+
+A GPU has thousands of small cores, unlike a CPU's few powerful cores:
+
+```
+CPU:  [████████]     (8 powerful cores)
+GPU:  [█][█][█][█][█][█]... (thousands of simple cores)
+```
+
+This makes GPUs ideal for:
+- Graphics rendering (parallel pixel processing)
+- AI training (matrix multiplication)
+- Scientific computing
+
+## 4. Summary
+
+- **CPU**: general-purpose, few powerful cores
+- **GPU**: massively parallel, many simple cores
+- **FPGA**: field-programmable for custom logic
+- **ASIC**: custom-designed for one task
+
+## 5. What's Next
+
+Next: **From Silicon to Artificial Intelligence** — the final lesson connecting hardware to modern AI.

@@ -1,0 +1,56 @@
+---
+title: "Multiplexers"
+slug: multiplexers
+module: "Combinational Circuits"
+moduleOrder: 4
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [full-adder]
+learningObjectives:
+  - Understand how multiplexers work
+  - Build a 2-to-1 multiplexer
+estimatedKnowledgeGain: 7
+tags: [multiplexer, mux, selector]
+---
+
+## 1. Hook
+
+A multiplexer (MUX) is like a railroad switch — it selects one of several inputs and connects it to the output. The select line determines which input passes through.
+
+## 2. 2-to-1 Multiplexer
+
+```
+Input 0 ──╮
+          ├──→ AND ──╮
+Select ───┤          │
+          │          ├──→ OR ──→ Output
+Select ───┤          │
+          ├──→ AND ──╯
+Input 1 ──╯
+```
+
+| Select | Output |
+|--------|--------|
+| 0 | Input 0 |
+| 1 | Input 1 |
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function mux2to1(input0, input1, select) {
+  return select ? input1 : input0;
+}
+console.log(&quot;Select 0:&quot;, mux2to1(&quot;A&quot;, &quot;B&quot;, 0));
+console.log(&quot;Select 1:&quot;, mux2to1(&quot;A&quot;, &quot;B&quot;, 1));" />
+
+## 4. Summary
+
+- **Multiplexer** selects one of n inputs based on select lines
+- A 2-to-1 MUX uses: 2 AND gates, 1 NOT, 1 OR
+- Used inside CPUs for register selection, instruction routing, and data paths
+
+## 5. What's Next
+
+Next: **Demultiplexers** — the reverse: one input to multiple outputs.

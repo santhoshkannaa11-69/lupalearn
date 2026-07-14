@@ -1,0 +1,63 @@
+---
+title: "RAM"
+slug: ram-memory
+module: "Memory Systems"
+moduleOrder: 7
+lessonOrder: 1
+duration: 20
+xp: 25
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [fetch-decode-execute-cycle]
+learningObjectives:
+  - Understand how RAM works
+  - Differentiate SRAM and DRAM
+estimatedKnowledgeGain: 7
+tags: [ram, memory, sram, dram]
+---
+
+## 1. Hook
+
+RAM (Random Access Memory) stores data temporarily while the computer is running. Unlike storage (SSD/HDD), RAM loses its data when the power is turned off — that's why you lose unsaved work when your computer crashes.
+
+## 2. SRAM vs DRAM
+
+| Aspect | SRAM | DRAM |
+|--------|------|------|
+| **Cell type** | 6 transistors (flip-flop) | 1 transistor + 1 capacitor |
+| **Speed** | Very fast (~1 ns) | Fast (~50 ns) |
+| **Density** | Lower (6T/cell) | Higher (1T1C/cell) |
+| **Power** | Low (but always on) | Needs periodic refresh |
+| **Used in** | Cache memory | Main RAM (DDR5) |
+
+### DRAM Cell
+
+```
+Transistor acts as a switch
+Capacitor stores the charge (1 or 0)
+Capacitor slowly discharges → must be refreshed thousands of times/second
+```
+
+## 3. Memory Hierarchy
+
+```
+Register   (1 ns)    ← 4-8 bytes per register
+L1 Cache   (1 ns)    ← 32-64 KB
+L2 Cache   (4 ns)    ← 256-512 KB
+L3 Cache   (10 ns)   ← 8-32 MB
+RAM (DDR5) (50 ns)   ← 8-64 GB
+SSD        (100 μs)  ← 256 GB-4 TB
+HDD        (10 ms)   ← 1-20 TB
+```
+
+Each level is ~10× slower but ~10× larger.
+
+## 4. Summary
+
+- **SRAM**: fast, uses 6 transistors per bit (cache)
+- **DRAM**: denser, uses 1T1C per bit (main RAM)
+- The **memory hierarchy** balances speed vs size vs cost
+
+## 5. What's Next
+
+Next: **ROM & Flash Memory** — persistent memory that retains data without power.

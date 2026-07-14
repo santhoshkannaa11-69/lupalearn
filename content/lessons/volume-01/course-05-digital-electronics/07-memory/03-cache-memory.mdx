@@ -1,0 +1,71 @@
+---
+title: "Cache Memory"
+slug: cache-memory
+module: "Memory Systems"
+moduleOrder: 7
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [rom-flash-memory]
+learningObjectives:
+  - Understand cache memory
+  - Know L1, L2, L3 cache hierarchy
+estimatedKnowledgeGain: 8
+tags: [cache, cpu, performance]
+---
+
+## 1. Hook
+
+RAM is fast — but the CPU is much faster. If the CPU had to wait for RAM on every operation, it would be idle 90% of the time. **Cache** is the solution — a small amount of ultra-fast memory inside the CPU that stores recently used data.
+
+## 2. The Problem
+
+```
+CPU speed:        ~0.3 ns per operation
+RAM speed:        ~50 ns to fetch data
+Wait time:        ~150 CPU cycles lost per RAM access
+```
+
+Without cache, the CPU spends most of its time waiting.
+
+## 3. Cache Levels
+
+| Level | Size | Speed | Location |
+|-------|------|-------|----------|
+| **L1** | 32-64 KB per core | ~1 ns | Inside each core |
+| **L2** | 256-512 KB per core | ~4 ns | Near each core |
+| **L3** | 8-32 MB (shared) | ~10 ns | Shared across cores |
+
+### How It Works
+
+```
+CPU requests memory address
+    → Check L1 cache (fastest, smallest)
+    → If miss, check L2
+    → If miss, check L3
+    → If miss, fetch from RAM (slowest)
+```
+
+## 4. Cache Hit vs Miss
+
+| Outcome | What Happens | Time |
+|---------|-------------|------|
+| **L1 hit** | Data in L1 | ~1 ns |
+| **L2 hit** | Data in L2 | ~4 ns |
+| **L3 hit** | Data in L3 | ~10 ns |
+| **RAM** | Not in any cache | ~50 ns |
+
+90%+ of memory accesses should hit in cache for optimal performance.
+
+## 5. Summary
+
+- **Cache** stores recently used data close to the CPU
+- Three levels: **L1, L2, L3** — each larger and slower
+- **Cache hits** are fast; **cache misses** are expensive
+- Good cache design is critical for CPU performance
+
+## 6. What's Next
+
+Next module: **Modern Digital Systems** — GPUs, FPGAs, and ASICs.

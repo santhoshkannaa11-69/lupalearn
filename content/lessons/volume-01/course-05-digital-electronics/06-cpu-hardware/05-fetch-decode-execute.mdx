@@ -1,0 +1,84 @@
+---
+title: "The Fetch-Decode-Execute Cycle"
+slug: fetch-decode-execute-cycle
+module: "Computer Hardware"
+moduleOrder: 6
+lessonOrder: 5
+duration: 25
+xp: 40
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [clock-signals]
+learningObjectives:
+  - Understand the CPU instruction cycle
+  - Trace a simple instruction through the CPU
+estimatedKnowledgeGain: 9
+tags: [cpu, fetch, decode, execute]
+---
+
+## 1. Hook
+
+Every program — from a calculator app to an operating system — runs as a sequence of instructions. Each instruction goes through the same three steps: **Fetch, Decode, Execute**. Billions of times per second.
+
+## 2. The Cycle
+
+```
+1. FETCH
+   ──→ Get the next instruction from memory
+   ──→ Program Counter (PC) holds its address
+   ──→ Increment PC to point to the next instruction
+
+2. DECODE
+   ──→ Control unit interprets the instruction
+   ──→ Determines what operation to perform
+   ──→ Identifies which registers/memory to use
+
+3. EXECUTE
+   ──→ ALU performs the operation
+   ──→ Results are written back to registers/memory
+```
+
+## 3. Example: ADD R1, R2
+
+```
+FETCH:  Read instruction from memory at PC
+        Instruction = "ADD R1, R2"
+        PC++
+
+DECODE: Control unit decodes "ADD"
+        Identifies R1 and R2 as operands
+        Routes R1 and R2 to ALU inputs
+
+EXECUTE: ALU adds the values
+         Result written to R1 (or temporary register)
+         Flags updated (zero, negative, carry)
+```
+
+## 4. Clock Cycles
+
+Each instruction takes multiple clock cycles:
+
+```
+Clock: ▄▄▄▄████▄▄▄▄████▄▄▄▄████▄▄▄▄████
+       │ Fetch │ Decode│Execute│ Write │
+       ←──────── 1 instruction ────────→
+```
+
+Pipelining allows multiple instructions to overlap:
+
+```
+       │ Fetch │ Decode│Execute│ Write │ → Inst 1
+               │ Fetch │ Decode│Execute│ → Inst 2
+                       │ Fetch │ Decode│ → Inst 3
+```
+
+## 5. Summary
+
+- Every CPU instruction follows **Fetch → Decode → Execute**
+- The **clock** drives each step of the cycle
+- **Pipelining** overlaps instructions for higher throughput
+- This cycle repeats billions of times per second
+
+## 6. What's Next
+
+Next module: **Memory Systems** — how RAM, ROM, and cache work.

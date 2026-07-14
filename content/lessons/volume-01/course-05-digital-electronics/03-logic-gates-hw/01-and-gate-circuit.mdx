@@ -1,0 +1,64 @@
+---
+title: "AND Gate Circuit"
+slug: and-gate-circuit
+module: "Logic Gates in Hardware"
+moduleOrder: 3
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [chip-manufacturing]
+learningObjectives:
+  - Build an AND gate from transistors
+  - Understand the circuit implementation
+estimatedKnowledgeGain: 8
+tags: [and-gate, circuit, transistors]
+---
+
+## 1. Hook
+
+You've learned AND as a logical concept: A·B = output 1 when both are 1. Now you'll see AND as a physical circuit — two transistors in series controlling current flow.
+
+## 2. AND Gate Circuit
+
+```
+Vcc (+)
+  │
+  ├── [T1] Gate = A
+  │      │
+  │      └── [T2] Gate = B
+  │             │
+  │             └── Output (A AND B)
+  │
+  └── Pull-down resistor to GND
+```
+
+When both A AND B are high (1), both transistors conduct, and the output is connected to Vcc (1).
+
+| A | B | T1 | T2 | Output |
+|---|---|----|----|--------|
+| 0 | 0 | OFF | OFF | 0 |
+| 0 | 1 | OFF | ON | 0 |
+| 1 | 0 | ON | OFF | 0 |
+| 1 | 1 | ON | ON | 1 |
+
+## 3. Transistor Count
+
+| Gate | Transistors | Why |
+|------|-------------|-----|
+| AND | 6 | NAND + NOT |
+| OR | 6 | NOR + NOT |
+| NOT | 2 | Simplest gate |
+| NAND | 4 | Most efficient |
+| NOR | 4 | Also efficient |
+
+## 4. Summary
+
+- An **AND gate** = two transistors in series
+- Different gates need **different numbers of transistors**
+- NAND and NOR are the **most efficient** (fewest transistors)
+
+## 5. What's Next
+
+Next: **OR Gate Circuit** — transistors in parallel.

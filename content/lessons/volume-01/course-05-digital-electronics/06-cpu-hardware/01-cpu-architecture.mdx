@@ -1,0 +1,59 @@
+---
+title: "CPU Architecture Basics"
+slug: cpu-architecture-basics
+module: "Computer Hardware"
+moduleOrder: 6
+lessonOrder: 1
+duration: 25
+xp: 35
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [finite-state-machines]
+learningObjectives:
+  - Understand the basic CPU architecture
+  - Know the Von Neumann model
+estimatedKnowledgeGain: 8
+tags: [cpu, architecture, von-neumann]
+---
+
+## 1. Hook
+
+Every CPU since the 1940s follows the same basic design: the **Von Neumann architecture**. It has a processor (CPU), memory (RAM), input/output, and a bus connecting them.
+
+## 2. Von Neumann Architecture
+
+```
+┌──────────┐    Bus    ┌──────────┐
+│   CPU    │←─────────→│  Memory  │
+│          │           │  (RAM)   │
+│ ┌──────┐ │           └──────────┘
+│ │Control│ │                ↑
+│ │ Unit  │ │                │ I/O
+│ └──────┘ │           ┌──────────┐
+│ ┌──────┐ │           │  Input/  │
+│ │  ALU │ │           │  Output  │
+│ └──────┘ │           └──────────┘
+│ ┌──────┐ │
+│ │ Regs  │ │
+│ └──────┘ │
+└──────────┘
+```
+
+## 3. CPU Components
+
+| Component | Function |
+|-----------|----------|
+| **Control Unit** | Decodes instructions, coordinates execution |
+| **ALU** | Performs arithmetic and logic |
+| **Registers** | Ultra-fast internal memory |
+| **Cache** | Small, fast buffer between CPU and RAM |
+
+## 4. Summary
+
+- **Von Neumann architecture**: CPU + Memory + I/O + Bus
+- **CPU** = Control Unit + ALU + Registers + Cache
+- This design has dominated computing for 80 years
+
+## 5. What's Next
+
+Next: **ALU (Arithmetic Logic Unit)** — the computing core of the CPU.

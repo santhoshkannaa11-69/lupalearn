@@ -1,0 +1,54 @@
+---
+title: "MOSFET Basics"
+slug: mosfet-basics
+module: "Transistors"
+moduleOrder: 2
+lessonOrder: 4
+duration: 20
+xp: 25
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [billions-of-transistors]
+learningObjectives:
+  - Understand MOSFET operation
+  - Know why MOSFETs dominate digital logic
+estimatedKnowledgeGain: 7
+tags: [mosfet, cmos, transistor-type]
+---
+
+## 1. Hook
+
+The most common transistor in modern computers isn't the original type — it's a variant called **MOSFET** (Metal-Oxide-Semiconductor Field-Effect Transistor). MOSFETs use almost no power when idle, which is why billions can run without melting your laptop.
+
+## 2. MOSFET vs BJT
+
+| Aspect | MOSFET | BJT (original) |
+|--------|--------|----------------|
+| **Control** | Voltage | Current |
+| **Power use** | Very low (when idle) | Higher |
+| **Speed** | Faster | Slower |
+| **Size** | Smaller | Larger |
+| **Used in** | Modern CPUs, RAM | Older circuits, amplifiers |
+
+## 3. CMOS Technology
+
+Practically all digital chips use **CMOS** (Complementary MOSFET), which pairs an n-type and p-type MOSFET:
+
+```
+Input ──┬──→ pMOS (ON when input=0)
+        └──→ nMOS (ON when input=1)
+
+Output = NOT Input
+```
+
+CMOS uses almost zero power when not switching — this is what makes modern processors possible.
+
+## 4. Summary
+
+- **MOSFETs** are the transistor type used in modern chips
+- **CMOS** pairs nMOS + pMOS for near-zero idle power
+- Efficiency is why we can have billions of transistors in a single chip
+
+## 5. What's Next
+
+Next: **Moore's Law** — the observation that drove transistor scaling for 50 years.

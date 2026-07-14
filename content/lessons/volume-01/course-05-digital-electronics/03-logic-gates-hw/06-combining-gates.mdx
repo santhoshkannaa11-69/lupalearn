@@ -1,0 +1,57 @@
+---
+title: "Combining Gates"
+slug: combining-gates
+module: "Logic Gates in Hardware"
+moduleOrder: 3
+lessonOrder: 6
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [nor-gate-circuit]
+learningObjectives:
+  - Combine gates to create complex circuits
+  - Understand gate-level design
+estimatedKnowledgeGain: 8
+tags: [gates, combination, circuits]
+---
+
+## 1. Hook
+
+A single gate does one thing. Combine a few gates, and you can add two binary numbers. Combine thousands, and you get a CPU core.
+
+## 2. XOR from Basic Gates
+
+XOR can't be built from a single gate type — it requires a combination:
+
+```
+      ┌──→ AND ──╮
+A ──┬─┤          │
+    │ └──→ NOT ──┤
+    │            │
+    │ ┌──→ NOT ──┤
+    ├─┤          │
+    │ └──→ AND ──┤
+    │            ├──→ OR ──→ XOR output
+B ──┴────────────┘
+```
+
+## 3. Building a Half Adder
+
+```
+A ──┬──→ XOR ──→ Sum
+    │
+    └──→ AND ──→ Carry
+```
+
+This takes 3 gates (XOR uses 4 transistors, AND uses 6). Total: ~10 transistors to add two bits.
+
+## 4. Summary
+
+- **Complex circuits** are built from simpler gate combinations
+- A **half adder** = 1 XOR + 1 AND
+- From adders → ALUs → CPUs (all built from gates)
+
+## 5. What's Next
+
+Next module: **Combinational Circuits** — circuits without memory.

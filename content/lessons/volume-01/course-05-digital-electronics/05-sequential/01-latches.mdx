@@ -1,0 +1,58 @@
+---
+title: "Latches"
+slug: latches
+module: "Sequential Circuits"
+moduleOrder: 5
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [encoders-decoders]
+learningObjectives:
+  - Understand how circuits hold memory
+  - Build an SR latch from NAND gates
+estimatedKnowledgeGain: 8
+tags: [latch, memory, sequential]
+---
+
+## 1. Hook
+
+Combinational circuits have no memory — output depends only on current inputs. Sequential circuits change that. A **latch** can store a bit: once set, it stays set until explicitly reset.
+
+## 2. SR Latch (Set-Reset)
+
+Built from two NAND gates:
+
+```
+      ┌──→ NAND ──→ Q
+S ────┤
+      │
+      ┌──→ NAND ──→ Q̅
+R ────┤
+```
+
+| S | R | Q | Q̅ | State |
+|---|---|---|---|-------|
+| 0 | 0 | 1 | 1 | Invalid |
+| 0 | 1 | 1 | 0 | Set |
+| 1 | 0 | 0 | 1 | Reset |
+| 1 | 1 | Q | Q̅ | Hold |
+
+## 3. How It Works
+
+- When S=0 (low), the top NAND outputs 1 → **Q=1** (Set)
+- When R=0 (low), the bottom NAND outputs 1 → **Q̅=1** (Reset)
+- When both S=1 and R=1, the latch **holds** its previous value
+
+This is the simplest memory circuit — 2 NAND gates = 8 transistors = 1 bit.
+
+## 4. Summary
+
+- **Latches** are the simplest sequential circuits — they store 1 bit
+- **SR latch**: 2 cross-coupled NAND gates
+- Memory in computers is built from millions/billions of such circuits
+
+## 5. What's Next
+
+Next: **Flip-Flops** — edge-triggered latches for synchronized circuits.

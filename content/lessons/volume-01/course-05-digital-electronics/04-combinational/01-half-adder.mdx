@@ -1,0 +1,57 @@
+---
+title: "Half Adder"
+slug: half-adder
+module: "Combinational Circuits"
+moduleOrder: 4
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: intermediate
+concepts: [boolean-logic]
+prerequisites: [combining-gates]
+learningObjectives:
+  - Build a half adder circuit
+  - Understand binary addition at the gate level
+estimatedKnowledgeGain: 8
+tags: [adder, binary, combinational]
+---
+
+## 1. Hook
+
+Adding two binary numbers is the most fundamental arithmetic operation. The half adder shows how two logic gates can add two bits — the foundation of all arithmetic in every CPU ever built.
+
+## 2. Half Adder Circuit
+
+A half adder adds two bits and produces a **Sum** and a **Carry**.
+
+```
+A ──┬──→ XOR ──→ Sum (A ⊕ B)
+    │
+    └──→ AND ──→ Carry (A · B)
+```
+
+| A | B | Sum | Carry | Meaning |
+|---|---|-----|-------|---------|
+| 0 | 0 | 0 | 0 | 0 + 0 = 0 |
+| 0 | 1 | 1 | 0 | 0 + 1 = 1 |
+| 1 | 0 | 1 | 0 | 1 + 0 = 1 |
+| 1 | 1 | 0 | 1 | 1 + 1 = 2 (carry 1) |
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function halfAdder(a, b) {
+  return { sum: a ^ b, carry: a & b };
+}
+console.log(halfAdder(0, 0)); // { sum: 0, carry: 0 }
+console.log(halfAdder(0, 1)); // { sum: 1, carry: 0 }
+console.log(halfAdder(1, 1)); // { sum: 0, carry: 1 }" />
+
+## 4. Summary
+
+- **Half adder**: XOR + AND = adds two bits
+- Sum = A XOR B, Carry = A AND B
+- The foundation of all CPU arithmetic
+
+## 5. What's Next
+
+Next: **Full Adder** — adding three bits (handles carry-in).
