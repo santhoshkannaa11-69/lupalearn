@@ -1,0 +1,71 @@
+---
+title: "Bytes and Memory"
+slug: bytes-and-memory
+module: "Binary Numbers"
+moduleOrder: 2
+lessonOrder: 2
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [understanding-bits]
+learningObjectives:
+  - Define a byte
+  - Understand storage units (KB, MB, GB, TB)
+estimatedKnowledgeGain: 7
+tags: [bytes, memory, storage-units]
+---
+
+## 1. Hook
+
+One bit can only store a 0 or 1 — not useful on its own. But group 8 bits together, and you can store 256 different values — enough for every letter, number, and symbol on your keyboard.
+
+## 2. Core Concept
+
+A **byte** is 8 bits. It's the standard unit for measuring data.
+
+### Storage Units
+
+| Unit | Size | Rough Equivalent |
+|------|------|------------------|
+| **1 byte** | 8 bits | One character |
+| **1 KB** | 1,024 bytes | A short paragraph |
+| **1 MB** | 1,024 KB | A photograph |
+| **1 GB** | 1,024 MB | A full-length movie |
+| **1 TB** | 1,024 GB | A hard drive |
+
+### Why 1,024?
+
+Computers use binary, so storage units are based on powers of 2:
+
+```
+1 KB = 2¹⁰ = 1,024 bytes (not 1,000)
+1 MB = 2²⁰ = 1,048,576 bytes
+1 GB = 2³⁰ = 1,073,741,824 bytes
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function bytesToUnit(bytes) {
+  const units = [&quot;B&quot;, &quot;KB&quot;, &quot;MB&quot;, &quot;GB&quot;, &quot;TB&quot;];
+  let i = 0;
+  while (bytes >= 1024 && i < units.length - 1) {
+    bytes /= 1024;
+    i++;
+  }
+  return bytes.toFixed(2) + &quot; &quot; + units[i];
+}
+
+console.log(bytesToUnit(1024));          // 1 KB
+console.log(bytesToUnit(1048576));       // 1 MB
+console.log(bytesToUnit(1073741824));    // 1 GB" />
+
+## 4. Summary
+
+- **1 byte = 8 bits**
+- Storage units: **KB, MB, GB, TB** — each is 1,024× the previous
+- Binary-based (1,024) vs decimal-based (1,000) marketing causes confusion
+
+## 5. What's Next
+
+Next: **Binary Place Values** — how to read binary numbers using powers of two.

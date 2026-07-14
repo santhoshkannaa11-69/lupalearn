@@ -1,0 +1,85 @@
+---
+title: "Decimal to Binary Conversion"
+slug: decimal-to-binary
+module: "Binary Numbers"
+moduleOrder: 2
+lessonOrder: 4
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-place-values]
+learningObjectives:
+  - Convert decimal numbers to binary
+  - Use the division-by-2 method
+estimatedKnowledgeGain: 8
+tags: [conversion, decimal, binary]
+---
+
+## 1. Hook
+
+Converting decimal to binary is like making change with the fewest coins — you always take the largest denomination that fits.
+
+## 2. Method 1: Division by 2
+
+The most reliable method. Repeatedly divide by 2, reading remainders backward.
+
+### Example: Convert 42 to Binary
+
+```
+42 ÷ 2 = 21 remainder 0  (LSB)
+21 ÷ 2 = 10 remainder 1
+10 ÷ 2 = 5  remainder 0
+ 5 ÷ 2 = 2  remainder 1
+ 2 ÷ 2 = 1  remainder 0
+ 1 ÷ 2 = 0  remainder 1  (MSB)
+
+Reading remainders bottom to top: 101010
+```
+
+## 3. Method 2: Largest Power
+
+Find the largest power of 2 that fits, subtract it, repeat.
+
+### Example: Convert 42 to Binary
+
+```
+42 - 32 = 10  → 1 × 32  (position 5)
+10 - 8  = 2   → 1 × 8   (position 3)
+ 2 - 2  = 0   → 1 × 2   (position 1)
+               → 0 × 16, 0 × 4, 0 × 1
+
+Result: 101010
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function decimalToBinary(n) {
+  let result = &quot;&quot;;
+  while (n > 0) {
+    result = (n % 2) + result;
+    n = Math.floor(n / 2);
+  }
+  return result || &quot;0&quot;;
+}
+
+console.log(&quot;42 = &quot; + decimalToBinary(42));
+console.log(&quot;255 = &quot; + decimalToBinary(255));
+console.log(&quot;100 = &quot; + decimalToBinary(100));" />
+
+## 5. Common Mistakes
+
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| Reading remainders top-to-bottom | First remainder is LSB, not MSB | Read bottom to top |
+| Forgetting to divide until 0 | Stops too early | Continue until quotient is 0 |
+
+## 6. Summary
+
+- **Division by 2**: divide repeatedly, read remainders backward
+- **Largest power**: subtract the biggest power of 2 that fits
+- Both methods give the same result — use whichever you prefer
+
+## 7. What's Next
+
+Next: **Binary → Decimal Conversion** — the reverse process.

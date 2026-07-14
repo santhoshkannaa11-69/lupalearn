@@ -1,0 +1,50 @@
+---
+title: "Binary Subtraction"
+slug: binary-subtraction
+module: "Binary Arithmetic"
+moduleOrder: 4
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-addition]
+learningObjectives:
+  - Subtract binary numbers
+  - Understand borrow in binary subtraction
+estimatedKnowledgeGain: 7
+tags: [binary, arithmetic, subtraction]
+---
+
+## 1. Hook
+
+Subtraction in binary is like decimal subtraction — when you need to subtract 1 from 0, you borrow from the next column. But in binary, borrowing is simpler.
+
+## 2. Core Rules
+
+```
+0 - 0 = 0
+1 - 0 = 1
+1 - 1 = 0
+0 - 1 = 1  (borrow 1 from the left)
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function subBinary(a, b) {
+  let result = (parseInt(a, 2) - parseInt(b, 2)).toString(2);
+  console.log(`${a} - ${b} = ${result}`);
+  console.log(`Decimal: ${parseInt(a,2)} - ${parseInt(b,2)} = ${parseInt(a,2) - parseInt(b,2)}`);
+}
+subBinary(&quot;1111&quot;, &quot;0101&quot;); // 1010 (15-5=10)
+subBinary(&quot;1010&quot;, &quot;0011&quot;); // 0111 (10-3=7)" />
+
+## 4. Summary
+
+- Binary subtraction follows the same process as decimal
+- **0 - 1 requires borrowing** from the next position
+- Borrowing propagates left until a 1 is found
+
+## 5. What's Next
+
+Next: **Binary Multiplication**.

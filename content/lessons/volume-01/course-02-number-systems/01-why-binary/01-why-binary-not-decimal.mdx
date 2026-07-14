@@ -1,0 +1,78 @@
+---
+title: "Why Don't Computers Use Decimal?"
+slug: why-binary-not-decimal
+module: "Why Computers Use Binary"
+moduleOrder: 1
+lessonOrder: 1
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [what-is-os]
+learningObjectives:
+  - Explain why computers use base-2 instead of base-10
+  - Understand the relationship between switches and binary
+estimatedKnowledgeGain: 8
+tags: [binary, number-systems, fundamentals]
+---
+
+## 1. Hook
+
+Humans count in 10s (0-9). Computers count in 2s (0-1). Why? The answer is simpler than you'd think: because computers are made of switches.
+
+## 2. Why This Matters
+
+Understanding why computers use binary is the key to understanding how computers work at the most fundamental level — from memory to processors to networks.
+
+## 3. Mental Model — The Light Switch
+
+Think of a binary digit (bit) as a **light switch**:
+
+```
+Switch OFF = 0
+Switch ON  = 1
+```
+
+A light switch has exactly two states — on or off. This is binary. A decimal digit would require a switch with 10 positions — much harder to build reliably at microscopic scales.
+
+## 4. Core Concept
+
+### The Switch Metaphor
+
+Computers use **transistors** — tiny electronic switches. A transistor is either open (0, no current) or closed (1, current flowing). Billions of these switches on a chip work together to represent all data.
+
+### Why Not Decimal?
+
+| Aspect | Binary (base-2) | Decimal (base-10) |
+|--------|-----------------|-------------------|
+| **States per digit** | 2 | 10 |
+| **Circuit complexity** | Simple | Complex |
+| **Reliability** | High (noise tolerant) | Low (noise sensitive) |
+| **Physical size** | Small (less circuitry) | Large (10-state circuits) |
+
+## 5. Historical Context
+
+The first electronic computer (ENIAC, 1945) actually used decimal — each digit was represented by a ring of 10 vacuum tubes. It was enormous, power-hungry, and unreliable. Later computers adopted binary because transistors could only reliably represent two states.
+
+## 6. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Binary is just two symbols: 0 and 1
+// We can count in binary just like decimal
+
+function countInBinary(upTo) {
+  for (let i = 0; i <= upTo; i++) {
+    console.log(i.toString(2).padStart(4, &quot;0&quot;));
+  }
+}
+
+countInBinary(7);" />
+
+## 7. Summary
+
+- Computers use **binary** (base-2) because they're built from **switches**
+- Each switch has **two states**: on (1) and off (0)
+- Binary is simpler, more reliable, and more efficient than decimal for electronics
+
+## 8. What's Next
+
+Next: **Understanding Number Systems** — what a number system is and how positional notation works.

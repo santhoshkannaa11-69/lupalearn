@@ -1,0 +1,57 @@
+---
+title: "Binary Division"
+slug: binary-division
+module: "Binary Arithmetic"
+moduleOrder: 4
+lessonOrder: 4
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-multiplication]
+learningObjectives:
+  - Divide binary numbers
+estimatedKnowledgeGain: 6
+tags: [binary, arithmetic, division]
+---
+
+## 1. Hook
+
+Binary division uses the same long-division process you learned in school — just with only 0s and 1s.
+
+## 2. Core Process
+
+```
+         1101  (13 ÷ 3 = 4 remainder 1)
+       ─────
+011 │ 001111
+       011
+       ───
+        011
+        011
+        ───
+         0011
+           11
+          ───
+           0
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function divBinary(a, b) {
+  let quotient = Math.floor(parseInt(a, 2) / parseInt(b, 2)).toString(2);
+  let remainder = parseInt(a, 2) % parseInt(b, 2);
+  console.log(`${a} ÷ ${b} = ${quotient} remainder ${remainder}`);
+}
+divBinary(&quot;1101&quot;, &quot;0011&quot;); // 13÷3=4r1
+divBinary(&quot;1111&quot;, &quot;0011&quot;); // 15÷3=5" />
+
+## 5. Summary
+
+- Binary division uses **the same long-division algorithm** as decimal
+- Each step: does the divisor fit? 1 if yes, 0 if no
+- Much simpler than decimal because each digit is either 0 or 1
+
+## 6. What's Next
+
+Next: **Project: Binary Calculator** — build a tool that performs all four binary operations.

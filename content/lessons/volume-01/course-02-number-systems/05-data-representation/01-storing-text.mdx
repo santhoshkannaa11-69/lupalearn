@@ -1,0 +1,65 @@
+---
+title: "How Computers Store Text"
+slug: storing-text-ascii-unicode
+module: "Data Representation"
+moduleOrder: 5
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-division]
+learningObjectives:
+  - Understand ASCII and Unicode
+  - Explain how text is stored digitally
+estimatedKnowledgeGain: 8
+tags: [text, ascii, unicode, utf-8]
+---
+
+## 1. Hook
+
+When you type the letter 'A', your computer doesn't store the shape of the letter. It stores the number 65 — which in binary is 01000001. Every character you see on screen is a number interpreted as a glyph.
+
+## 2. ASCII
+
+**ASCII** (American Standard Code for Information Interchange) uses 7 bits to represent 128 characters.
+
+| Character | ASCII Code | Binary |
+|-----------|-----------|--------|
+| A | 65 | 01000001 |
+| B | 66 | 01000010 |
+| a | 97 | 01100001 |
+| 0 | 48 | 00110000 |
+| Space | 32 | 00100000 |
+
+## 3. Unicode and UTF-8
+
+**Unicode** supports over 1 million characters — covering every writing system in the world. **UTF-8** is the most common encoding:
+
+| Character | Unicode | UTF-8 Bytes |
+|-----------|---------|-------------|
+| A | U+0041 | 1 byte (01000001) |
+| € | U+20AC | 3 bytes |
+| 🎉 | U+1F389 | 4 bytes |
+| 中 | U+4E2D | 3 bytes |
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function charToBinary(char) {
+  let code = char.charCodeAt(0);
+  return char + &quot; = U+&quot; + code.toString(16).toUpperCase() + &quot; = &quot; + code.toString(2);
+}
+console.log(charToBinary(&quot;A&quot;));
+console.log(charToBinary(&quot;🚀&quot;));
+console.log(charToBinary(&quot;中&quot;));" />
+
+## 5. Summary
+
+- **ASCII** = 128 characters, 7 bits each
+- **Unicode** = 1M+ characters
+- **UTF-8** = variable-length encoding (1-4 bytes per character)
+- Everything you see on screen is numbers → binary
+
+## 6. What's Next
+
+Next: **How Computers Store Images, Audio, and Video**.

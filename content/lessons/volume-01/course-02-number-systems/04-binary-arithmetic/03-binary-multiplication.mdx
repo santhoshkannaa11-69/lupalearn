@@ -1,0 +1,63 @@
+---
+title: "Binary Multiplication"
+slug: binary-multiplication
+module: "Binary Arithmetic"
+moduleOrder: 4
+lessonOrder: 3
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-subtraction]
+learningObjectives:
+  - Multiply binary numbers
+estimatedKnowledgeGain: 6
+tags: [binary, arithmetic, multiplication]
+---
+
+## 1. Hook
+
+Binary multiplication is actually simpler than decimal multiplication — each partial product is either the multiplicand (1) or zero (0). There's no 0-9 multiplication table to memorize.
+
+## 2. Core Rules
+
+```
+0 × 0 = 0
+0 × 1 = 0
+1 × 0 = 0
+1 × 1 = 1
+```
+
+## 3. Example
+
+```
+         1101  (13)
+       × 1011  (11)
+       ------
+         1101  (1 × 1101)
+        1101   (1 × 1101, shifted)
+       0000    (0 × 1101, shifted)
+      1101     (1 × 1101, shifted)
+      ---------
+    10001111   (143)
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function mulBinary(a, b) {
+  let result = (parseInt(a, 2) * parseInt(b, 2)).toString(2);
+  console.log(`${a} × ${b} = ${result}`);
+  console.log(`Decimal: ${parseInt(a,2)} × ${parseInt(b,2)} = ${parseInt(a,2) * parseInt(b,2)}`);
+}
+mulBinary(&quot;1010&quot;, &quot;0011&quot;); // 11110 (10×3=30)
+mulBinary(&quot;0111&quot;, &quot;0010&quot;); // 1110 (7×2=14)" />
+
+## 5. Summary
+
+- Binary multiplication is **shift and add**
+- Each 1 in the multiplier creates a copy of the multiplicand, shifted
+- Much simpler than the decimal multiplication table
+
+## 6. What's Next
+
+Next: **Binary Division**.

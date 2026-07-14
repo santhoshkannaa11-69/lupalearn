@@ -1,0 +1,76 @@
+---
+title: "How Computers Store Images, Audio & Video"
+slug: storing-images-audio-video
+module: "Data Representation"
+moduleOrder: 5
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [storing-text-ascii-unicode]
+learningObjectives:
+  - Understand how images, audio, and video are stored digitally
+estimatedKnowledgeGain: 7
+tags: [images, audio, video, compression]
+---
+
+## 1. Hook
+
+Every photo on your phone is stored as a grid of colored dots (pixels). Every song is stored as a series of snapshots (samples) of sound waves. Every video is a sequence of images played fast enough to create motion.
+
+## 2. Images
+
+An image is a **grid of pixels**. Each pixel has a color value.
+
+| Format | Bits Per Pixel | Colors |
+|--------|---------------|--------|
+| **Grayscale** | 8 | 256 shades |
+| **RGB (True Color)** | 24 | 16.7 million |
+| **RGBA** | 32 | 16.7M + transparency |
+
+### How a 3×3 Image Looks in Memory
+
+```
+Pixel data: [RGB, RGB, RGB, RGB, RGB, RGB, RGB, RGB, RGB]
+Each pixel: [R=8 bits][G=8 bits][B=8 bits]
+Total: 9 × 24 = 216 bits = 27 bytes
+```
+
+## 3. Audio
+
+Audio is stored as **samples** of sound waves:
+
+| Quality | Sample Rate | Bit Depth | Size (per minute) |
+|---------|-------------|-----------|-------------------|
+| **Phone** | 8,000 Hz | 8-bit | ~5 MB |
+| **CD** | 44,100 Hz | 16-bit | ~10 MB |
+| **Studio** | 96,000 Hz | 24-bit | ~35 MB |
+
+### The Nyquist Theorem
+
+You must sample at **at least 2× the highest frequency** to accurately reproduce sound. Human hearing goes up to ~20 kHz, so CDs use 44.1 kHz.
+
+## 4. Video
+
+Video = **images × time**.
+
+A 1080p video at 30 fps needs:
+```
+1,920 × 1,080 = 2,073,600 pixels per frame
+2,073,600 × 24 bits = ~6 MB per frame
+6 MB × 30 fps = ~180 MB per second
+```
+
+Compression (H.264, VP9) reduces this by 100-1000×.
+
+## 5. Summary
+
+- **Images** = grids of colored pixels (RGB values)
+- **Audio** = samples of sound waves (amplitude over time)
+- **Video** = sequences of images (frames per second)
+- **Compression** makes all of these practical for storage and streaming
+
+## 6. What's Next
+
+Next: **Project: Number System Toolkit** — build a complete tool that converts between all number systems.

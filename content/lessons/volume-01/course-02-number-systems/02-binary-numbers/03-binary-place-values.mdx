@@ -1,0 +1,83 @@
+---
+title: "Binary Place Values"
+slug: binary-place-values
+module: "Binary Numbers"
+moduleOrder: 2
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [bytes-and-memory]
+learningObjectives:
+  - Read binary numbers using powers of 2
+  - Use mental shortcuts for binary place values
+estimatedKnowledgeGain: 8
+tags: [binary, place-values, powers-of-two]
+---
+
+## 1. Hook
+
+In decimal, each position is worth 10× the previous. In binary, each position is worth 2× the previous. When you read a binary number, you're just adding powers of 2.
+
+## 2. Core Concept
+
+### Binary Place Values (8-bit)
+
+```
+Bit position:  7   6   5   4   3   2   1   0
+Value:       128  64  32  16   8   4   2   1
+```
+
+Each position is **2 times** the position to its right.
+
+### Reading a Binary Number
+
+```
+Binary:   1   0   1   1   0   0   1   0
+Values: 128  64  32  16   8   4   2   1
+Add:    128 +0  +32 +16 +0  +0  +2  +0  = 178
+```
+
+## 3. Mental Model — Counting Money
+
+Think of binary like coins in different denominations:
+
+```
+£128  £64  £32  £16  £8  £4  £2  £1
+  1    0    1    1    0   0   1   0
+```
+
+You want to make £178. You take one £128 (yes), skip £64 (no), take one £32...
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function readBinary(bin) {
+  let decimal = parseInt(bin, 2);
+  let places = bin.split('').map((b, i) => {
+    let val = Math.pow(2, bin.length - 1 - i);
+    return b + &quot;×&quot; + val;
+  }).join(&quot; + &quot;);
+  console.log(bin + &quot; = &quot; + places + &quot; = &quot; + decimal);
+}
+readBinary(&quot;10110010&quot;);
+readBinary(&quot;01111111&quot;);" />
+
+## 5. Quick Reference
+
+| Shortcut | Value |
+|----------|-------|
+| **Nibble** | 4 bits (half byte) |
+| **Byte max** | 255 (11111111) |
+| **Kilo** | ~1,000 (2¹⁰ = 1,024) |
+| **Mega** | ~1,000,000 (2²⁰) |
+
+## 6. Summary
+
+- Each binary place value is a **power of 2**
+- Read binary by **adding the values** where there's a 1
+- 8 bits can represent **0 to 255**
+
+## 7. What's Next
+
+Next: **Decimal → Binary Conversion** — converting decimal numbers to binary.

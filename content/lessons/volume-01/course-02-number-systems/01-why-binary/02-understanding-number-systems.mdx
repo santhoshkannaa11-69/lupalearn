@@ -1,0 +1,84 @@
+---
+title: "Understanding Number Systems"
+slug: understanding-number-systems
+module: "Why Computers Use Binary"
+moduleOrder: 1
+lessonOrder: 2
+duration: 20
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [why-binary-not-decimal]
+learningObjectives:
+  - Define what a number system is
+  - Understand base/radix and positional notation
+estimatedKnowledgeGain: 7
+tags: [number-systems, base, notation]
+---
+
+## 1. Hook
+
+The number "342" means 3 hundreds, 4 tens, and 2 ones. That seems obvious — but it only works because we agree on base-10. In base-8, "342" means something completely different.
+
+## 2. Core Concept
+
+### What Is a Number System?
+
+A **number system** defines how we represent numbers using digits and positional rules.
+
+Every number system has:
+
+| Property | Definition | Decimal Example |
+|----------|------------|-----------------|
+| **Base (Radix)** | Number of unique digits | 10 (0-9) |
+| **Digits** | The symbols used | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 |
+| **Position** | Each place has a value | Ones, tens, hundreds |
+
+### Positional Notation
+
+In any base, each position represents a **power of the base**:
+
+```
+Decimal 342 = 3×10² + 4×10¹ + 2×10⁰
+                    ↓
+          3 × 100 + 4 × 10 + 2 × 1 = 342
+```
+
+## 3. Mental Model — The Abacus
+
+An abacus uses positional notation. Each column is a power of the base:
+
+```
+ Base-10 Abacus:
+ ┌────┬────┬────┬────┐
+ │10³ │10² │10¹ │10⁰ │
+ │  3 │  4 │  2 │  5 │ = 3,425
+ └────┴────┴────┴────┘
+```
+
+## 4. Real-World Applications
+
+| System | Base | Common Uses |
+|--------|------|-------------|
+| **Decimal** | 10 | Everyday life |
+| **Binary** | 2 | Computers, digital circuits |
+| **Octal** | 8 | Unix file permissions |
+| **Hex** | 16 | Memory addresses, colors |
+
+## 5. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// See how the same digits mean different values in different bases
+let value = &quot;342&quot;;
+console.log(&quot;Base 10:&quot;, parseInt(value, 10));
+console.log(&quot;Base 8:&quot;, parseInt(value, 8));
+console.log(&quot;Base 16:&quot;, parseInt(value, 16));" />
+
+## 6. Summary
+
+- A **number system** uses a base and positional notation
+- Each position represents a **power of the base**
+- The same set of digits can represent different values in different bases
+
+## 7. What's Next
+
+Next: **Counting in Binary** — how to count from 0 to 31 using only 0s and 1s.

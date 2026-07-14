@@ -1,0 +1,75 @@
+---
+title: "Binary to Decimal Conversion"
+slug: binary-to-decimal
+module: "Binary Numbers"
+moduleOrder: 2
+lessonOrder: 5
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [decimal-to-binary]
+learningObjectives:
+  - Convert binary numbers to decimal
+  - Use the positional value method
+estimatedKnowledgeGain: 8
+tags: [conversion, binary, decimal]
+---
+
+## 1. Hook
+
+You've learned to convert decimal to binary. Reversing the process is even simpler — just add up the place values where there's a 1.
+
+## 2. Core Concept
+
+### The Positional Value Method
+
+```
+Binary:  1  1  0  1  0  1  0  0
+Places: 128 64 32 16  8  4  2  1
+Add:   128+64 +0 +16 +0 +4 +0 +0 = 212
+```
+
+### Step-by-Step
+
+```
+Position 7 (128): 1 × 128 = 128
+Position 6  (64): 1 × 64  =  64
+Position 5  (32): 0 × 32  =   0
+Position 4  (16): 1 × 16  =  16
+Position 3   (8): 0 × 8   =   0
+Position 2   (4): 1 × 4   =   4
+Position 1   (2): 0 × 2   =   0
+Position 0   (1): 0 × 1   =   0
+                       Total: 212
+```
+
+## 3. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function binaryToDecimal(bin) {
+  return parseInt(bin, 2);
+}
+
+console.log(&quot;1010 =&quot;, binaryToDecimal(&quot;1010&quot;));
+console.log(&quot;11111111 =&quot;, binaryToDecimal(&quot;11111111&quot;));
+console.log(&quot;11001010 =&quot;, binaryToDecimal(&quot;11001010&quot;));" />
+
+## 4. Quick Conversion Table
+
+| Binary | Decimal |
+|--------|---------|
+| 00000000 | 0 |
+| 00000001 | 1 |
+| 00010000 | 16 |
+| 10000000 | 128 |
+| 11111111 | 255 |
+
+## 5. Summary
+
+- Binary → decimal: **add the place values** where bits are 1
+- Each 1 contributes **2^(position)** to the total
+- The leftmost bit (MSB) has the highest value
+
+## 6. What's Next
+
+Next: **Project: Binary Converter** — build a tool that converts between decimal and binary.

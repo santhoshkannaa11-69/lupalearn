@@ -1,0 +1,69 @@
+---
+title: "Binary ↔ Hexadecimal Conversion"
+slug: binary-hex-conversion
+module: "Other Number Systems"
+moduleOrder: 3
+lessonOrder: 4
+duration: 15
+xp: 25
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-octal-conversion]
+learningObjectives:
+  - Convert between binary and hexadecimal
+estimatedKnowledgeGain: 7
+tags: [conversion, binary, hex]
+---
+
+## 1. Hook
+
+Group binary digits into sets of 4 instead of 3, and you get hexadecimal. This is the most common conversion in computing — used everywhere from HTML colors to machine code.
+
+## 2. Core Concept
+
+### Binary → Hex
+
+Group binary digits into sets of 4, starting from the right:
+
+```
+Binary: 1101 1011 0010 1111
+Hex:    D    B    2    F
+Result: 0xDB2F
+```
+
+### Hex → Binary
+
+Convert each hex digit to 4 binary digits:
+
+```
+Hex:      A    5    3    C
+Binary: 1010 0101 0011 1100
+Result: 1010010100111100₂
+```
+
+## 3. Quick Reference
+
+| Hex | Binary | Hex | Binary |
+|-----|--------|-----|--------|
+| 0 | 0000 | 8 | 1000 |
+| 1 | 0001 | 9 | 1001 |
+| 2 | 0010 | A | 1010 |
+| 3 | 0011 | B | 1011 |
+| 4 | 0100 | C | 1100 |
+| 5 | 0101 | D | 1101 |
+| 6 | 0110 | E | 1110 |
+| 7 | 0111 | F | 1111 |
+
+## 4. Challenge
+
+Find the hex color codes for 5 different colors you like. Convert them to binary to see how the color is represented.
+
+## 5. Summary
+
+- **Group by 4** for binary ↔ hex conversion
+- 2 hex digits = 1 byte (8 bits)
+- Used everywhere in programming
+
+## 6. What's Next
+
+Next module: **Binary Arithmetic** — adding, subtracting, multiplying, and dividing in binary.

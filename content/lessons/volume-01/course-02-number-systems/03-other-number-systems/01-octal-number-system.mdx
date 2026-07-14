@@ -1,0 +1,64 @@
+---
+title: "Octal Number System"
+slug: octal-number-system
+module: "Other Number Systems"
+moduleOrder: 3
+lessonOrder: 1
+duration: 15
+xp: 20
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-to-decimal]
+learningObjectives:
+  - Understand base-8 (octal)
+  - Know where octal is used
+estimatedKnowledgeGain: 6
+tags: [octal, base-8]
+---
+
+## 1. Hook
+
+Octal (base-8) was once a serious competitor to hexadecimal. It was popular in early computing because each octal digit represents exactly 3 binary digits — making conversion simple.
+
+## 2. Core Concept
+
+### Octal Digits
+
+| Octal | Binary |
+|-------|--------|
+| 0 | 000 |
+| 1 | 001 |
+| 2 | 010 |
+| 3 | 011 |
+| 4 | 100 |
+| 5 | 101 |
+| 6 | 110 |
+| 7 | 111 |
+
+### Where Octal Is Used
+
+| Application | Why Octal |
+|-------------|-----------|
+| **Unix file permissions** | `chmod 755` — each digit controls read/write/execute |
+| **Old programming** | Early computers used 12/24/36-bit words (divisible by 3) |
+
+## 3. Real-World Example — File Permissions
+
+```
+chmod 755 script.sh
+  → 7 = owner:    read + write + execute
+  → 5 = group:    read + execute
+  → 5 = others:   read + execute
+```
+
+Each octal digit maps to exactly 3 permission bits.
+
+## 4. Summary
+
+- **Octal** = base-8, digits 0-7
+- 3 binary digits = 1 octal digit
+- Primary modern use: **Unix file permissions**
+
+## 5. What's Next
+
+Next: **Hexadecimal** — the most common alternative number system in computing.

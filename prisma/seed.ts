@@ -186,7 +186,7 @@ async function main() {
       { slug: "welcome-to-cs", title: "Welcome to CS", order: 1 }, { slug: "history-of-computing", title: "History of Computing", order: 2 }, { slug: "understanding-computers", title: "Understanding Computers", order: 3 }, { slug: "inside-computer", title: "Inside a Computer", order: 4 }, { slug: "operating-systems", title: "Operating Systems", order: 5 }, { slug: "networks-internet", title: "Networks & Internet", order: 6 }, { slug: "programming-sdlc", title: "Programming & SDLC", order: 7 }, { slug: "careers-roadmap", title: "Careers & Roadmap", order: 8 },
     ]},
     { slug: "number-systems", title: "Number Systems", order: 2, modules: [
-      { slug: "decimal-system", title: "Decimal System", order: 1 }, { slug: "binary-system", title: "Binary System", order: 2 }, { slug: "octal-system", title: "Octal System", order: 3 }, { slug: "hexadecimal-system", title: "Hexadecimal System", order: 4 }, { slug: "conversions", title: "Conversions Between Bases", order: 5 }, { slug: "binary-arithmetic", title: "Binary Arithmetic", order: 6 },
+      { slug: "why-binary", title: "Why Computers Use Binary", order: 1 }, { slug: "binary-numbers", title: "Binary Numbers", order: 2 }, { slug: "other-num-systems", title: "Other Number Systems", order: 3 }, { slug: "binary-arithmetic", title: "Binary Arithmetic", order: 4 }, { slug: "data-rep", title: "Data Representation", order: 5 },
     ]},
     { slug: "data-representation", title: "Data Representation", order: 3, modules: [
       { slug: "bits-and-bytes", title: "Bits & Bytes", order: 1 }, { slug: "character-encoding", title: "Character Encoding", order: 2 }, { slug: "image-representation", title: "Image Representation", order: 3 }, { slug: "audio-representation", title: "Audio Representation", order: 4 }, { slug: "compression", title: "Compression", order: 5 },
@@ -236,6 +236,7 @@ async function main() {
 
   // All 45 lessons organized by module
   const C1 = "lessons/volume-01/course-01-introduction-to-computing"
+  const C2 = "lessons/volume-01/course-02-number-systems"
   const lessonData = [
     // Module 1: What is Programming? (5)
     { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
@@ -347,9 +348,30 @@ async function main() {
     { slug: "careers-in-cs", title: "Careers in Computer Science", description: "Software engineer, web dev, data science, AI, DevOps, security.", contentPath: `${C1}/08-careers-roadmap/01-careers-in-cs.mdx`, moduleSlug: "careers-roadmap", order: 1, duration: 25, xp: 30, tags: ["careers"], concepts: ["algorithms"] },
     { slug: "your-roadmap-lupalearn", title: "Your Roadmap Through LupaLearn", description: "Knowledge graph, modes, AI Tutor, Playground, progress, certifications.", contentPath: `${C1}/08-careers-roadmap/02-your-roadmap-through-lupalearn.mdx`, moduleSlug: "careers-roadmap", order: 2, duration: 25, xp: 35, tags: ["lupalearn"], concepts: ["algorithms"] },
 
-    // ─── COURSE 2: Number Systems (sample lessons) ───
-    { slug: "binary-numbers-intro", title: "Introduction to Binary", description: "Learn how computers count using only 0s and 1s.", contentPath: "lessons/volume-01/course-02-number-systems/binary-intro.mdx", moduleSlug: "binary-system", order: 1, duration: 20, xp: 30, tags: ["binary"], concepts: ["binary"] },
-    { slug: "hexadecimal-intro", title: "Introduction to Hexadecimal", description: "Understand base-16 numbering used in computing.", contentPath: "lessons/volume-01/course-02-number-systems/hex-intro.mdx", moduleSlug: "hexadecimal-system", order: 1, duration: 20, xp: 30, tags: ["hex"], concepts: ["binary"] },
+    // ─── COURSE 2: Number Systems (18 lessons, 5 modules) ───
+    // Module 1: Why Binary (3)
+    { slug: "why-binary-not-decimal", title: "Why Don't Computers Use Decimal?", description: "Switches and electricity — why computers use binary.", contentPath: `${C2}/01-why-binary/01-why-binary-not-decimal.mdx`, moduleSlug: "why-binary", order: 1, duration: 20, xp: 25, tags: ["binary"], concepts: ["binary"] },
+    { slug: "understanding-number-systems", title: "Understanding Number Systems", description: "Base/radix and positional notation.", contentPath: `${C2}/01-why-binary/02-understanding-number-systems.mdx`, moduleSlug: "why-binary", order: 2, duration: 20, xp: 25, tags: ["number-systems"], concepts: ["binary"] },
+    { slug: "counting-in-binary", title: "Counting in Binary", description: "Binary digits, counting patterns, powers of two.", contentPath: `${C2}/01-why-binary/03-counting-in-binary.mdx`, moduleSlug: "why-binary", order: 3, duration: 20, xp: 30, tags: ["binary"], concepts: ["binary"] },
+    // Module 2: Binary Numbers (5)
+    { slug: "understanding-bits", title: "Understanding Bits", description: "What is a bit, physical representation.", contentPath: `${C2}/02-binary-numbers/01-understanding-bits.mdx`, moduleSlug: "binary-numbers", order: 1, duration: 15, xp: 20, tags: ["bits"], concepts: ["binary"] },
+    { slug: "bytes-and-memory", title: "Bytes and Memory", description: "Storage units KB, MB, GB, TB.", contentPath: `${C2}/02-binary-numbers/02-bytes-and-memory.mdx`, moduleSlug: "binary-numbers", order: 2, duration: 15, xp: 25, tags: ["bytes"], concepts: ["binary"] },
+    { slug: "binary-place-values", title: "Binary Place Values", description: "Reading binary with powers of two.", contentPath: `${C2}/02-binary-numbers/03-binary-place-values.mdx`, moduleSlug: "binary-numbers", order: 3, duration: 20, xp: 30, tags: ["binary"], concepts: ["binary"] },
+    { slug: "decimal-to-binary", title: "Decimal to Binary Conversion", description: "Convert decimal to binary.", contentPath: `${C2}/02-binary-numbers/04-decimal-to-binary.mdx`, moduleSlug: "binary-numbers", order: 4, duration: 20, xp: 30, tags: ["conversion"], concepts: ["binary"] },
+    { slug: "binary-to-decimal", title: "Binary to Decimal Conversion", description: "Convert binary to decimal.", contentPath: `${C2}/02-binary-numbers/05-binary-to-decimal.mdx`, moduleSlug: "binary-numbers", order: 5, duration: 20, xp: 30, tags: ["conversion"], concepts: ["binary"] },
+    // Module 3: Other Number Systems (4)
+    { slug: "octal-number-system", title: "Octal Number System", description: "Base-8, file permissions.", contentPath: `${C2}/03-other-number-systems/01-octal-number-system.mdx`, moduleSlug: "other-num-systems", order: 1, duration: 15, xp: 20, tags: ["octal"], concepts: ["binary"] },
+    { slug: "hexadecimal-system", title: "Hexadecimal Number System", description: "Base-16, colors, memory addresses.", contentPath: `${C2}/03-other-number-systems/02-hexadecimal-system.mdx`, moduleSlug: "other-num-systems", order: 2, duration: 20, xp: 30, tags: ["hex"], concepts: ["binary"] },
+    { slug: "binary-octal-conversion", title: "Binary to Octal Conversion", description: "Group by 3 method.", contentPath: `${C2}/03-other-number-systems/03-binary-octal-conversion.mdx`, moduleSlug: "other-num-systems", order: 3, duration: 15, xp: 25, tags: ["conversion"], concepts: ["binary"] },
+    { slug: "binary-hex-conversion", title: "Binary to Hex Conversion", description: "Group by 4 method.", contentPath: `${C2}/03-other-number-systems/04-binary-hex-conversion.mdx`, moduleSlug: "other-num-systems", order: 4, duration: 15, xp: 25, tags: ["conversion"], concepts: ["binary"] },
+    // Module 4: Binary Arithmetic (4)
+    { slug: "binary-addition", title: "Binary Addition", description: "Add binary numbers with carry.", contentPath: `${C2}/04-binary-arithmetic/01-binary-addition.mdx`, moduleSlug: "binary-arithmetic", order: 1, duration: 20, xp: 30, tags: ["arithmetic"], concepts: ["binary"] },
+    { slug: "binary-subtraction", title: "Binary Subtraction", description: "Subtract binary numbers with borrow.", contentPath: `${C2}/04-binary-arithmetic/02-binary-subtraction.mdx`, moduleSlug: "binary-arithmetic", order: 2, duration: 20, xp: 30, tags: ["arithmetic"], concepts: ["binary"] },
+    { slug: "binary-multiplication", title: "Binary Multiplication", description: "Multiply binary numbers.", contentPath: `${C2}/04-binary-arithmetic/03-binary-multiplication.mdx`, moduleSlug: "binary-arithmetic", order: 3, duration: 15, xp: 25, tags: ["arithmetic"], concepts: ["binary"] },
+    { slug: "binary-division", title: "Binary Division", description: "Divide binary numbers.", contentPath: `${C2}/04-binary-arithmetic/04-binary-division.mdx`, moduleSlug: "binary-arithmetic", order: 4, duration: 15, xp: 25, tags: ["arithmetic"], concepts: ["binary"] },
+    // Module 5: Data Representation (2)
+    { slug: "storing-text-ascii-unicode", title: "How Computers Store Text", description: "ASCII, Unicode, UTF-8.", contentPath: `${C2}/05-data-representation/01-storing-text.mdx`, moduleSlug: "data-rep", order: 1, duration: 20, xp: 30, tags: ["text", "encoding"], concepts: ["binary"] },
+    { slug: "storing-images-audio-video", title: "Images, Audio & Video", description: "Pixels, samples, frames, compression.", contentPath: `${C2}/05-data-representation/02-storing-images-audio-video.mdx`, moduleSlug: "data-rep", order: 2, duration: 20, xp: 30, tags: ["media"], concepts: ["binary"] },
 
     // ─── COURSE 3: Data Representation (sample lessons) ───
     { slug: "bits-and-bytes", title: "Bits & Bytes", description: "Understand the fundamental units of digital data.", contentPath: "lessons/volume-01/course-03-data-representation/bits-bytes.mdx", moduleSlug: "bits-and-bytes", order: 1, duration: 15, xp: 20, tags: ["data"], concepts: ["binary"] },

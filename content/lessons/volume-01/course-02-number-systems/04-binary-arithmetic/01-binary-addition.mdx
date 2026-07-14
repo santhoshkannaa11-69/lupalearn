@@ -1,0 +1,62 @@
+---
+title: "Binary Addition"
+slug: binary-addition
+module: "Binary Arithmetic"
+moduleOrder: 4
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [binary-hex-conversion]
+learningObjectives:
+  - Add binary numbers
+  - Understand carry in binary addition
+estimatedKnowledgeGain: 8
+tags: [binary, arithmetic, addition]
+---
+
+## 1. Hook
+
+Adding binary numbers uses the exact same process as decimal addition — just fewer digits. 1 + 1 = 10 in binary (carry the 1).
+
+## 2. Core Rules
+
+```
+0 + 0 = 0
+0 + 1 = 1
+1 + 0 = 1
+1 + 1 = 0  (carry 1)
+```
+
+## 3. Code Walkthrough
+
+```javascript
+// Binary addition example: 1101 (13) + 1011 (11) = 11000 (24)
+
+function addBinary(a, b) {
+  return (parseInt(a, 2) + parseInt(b, 2)).toString(2);
+}
+
+console.log(addBinary("1101", "1011")); // 11000
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function addBinary(a, b) {
+  let result = (parseInt(a, 2) + parseInt(b, 2)).toString(2);
+  console.log(`${a} + ${b} = ${result}`);
+  console.log(`Decimal: ${parseInt(a,2)} + ${parseInt(b,2)} = ${parseInt(a,2) + parseInt(b,2)}`);
+}
+addBinary(&quot;1010&quot;, &quot;0101&quot;);
+addBinary(&quot;1111&quot;, &quot;0001&quot;);" />
+
+## 5. Summary
+
+- Binary addition works like decimal addition
+- **1 + 1 = 0, carry 1**
+- The carry propagates to the next position
+
+## 6. What's Next
+
+Next: **Binary Subtraction**.

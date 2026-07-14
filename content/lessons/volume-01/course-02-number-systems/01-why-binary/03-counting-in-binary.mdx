@@ -1,0 +1,87 @@
+---
+title: "Counting in Binary"
+slug: counting-in-binary
+module: "Why Computers Use Binary"
+moduleOrder: 1
+lessonOrder: 3
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [binary]
+prerequisites: [understanding-number-systems]
+learningObjectives:
+  - Count from 0 to 31 in binary
+  - Recognize binary patterns and powers of two
+estimatedKnowledgeGain: 8
+tags: [binary, counting, patterns]
+---
+
+## 1. Hook
+
+In decimal, after 9 comes 10. In binary, after 1 comes 10. Same symbol, totally different meaning. Let's learn how to count like a computer.
+
+## 2. Core Concept
+
+### Counting 0 to 7 in Binary
+
+| Decimal | Binary | Why? |
+|---------|--------|------|
+| 0 | 000 | |
+| 1 | 001 | 1 |
+| 2 | 010 | 2 |
+| 3 | 011 | 2 + 1 |
+| 4 | 100 | 4 |
+| 5 | 101 | 4 + 1 |
+| 6 | 110 | 4 + 2 |
+| 7 | 111 | 4 + 2 + 1 |
+
+### Powers of 2 (Memorize These)
+
+```
+2⁰ = 1     2⁴ = 16
+2¹ = 2     2⁵ = 32
+2² = 4     2⁶ = 64
+2³ = 8     2⁷ = 128
+```
+
+## 3. Mental Model — Pattern Recognition
+
+Binary digits follow a predictable rhythm when you count up:
+
+```
+000 → 001 → 010 → 011 → 100 → 101 → 110 → 111
+                                  ↑
+                     The rightmost toggles every step
+                            Second toggles every 2 steps
+                           Third toggles every 4 steps
+```
+
+## 4. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Count 0-15 in binary
+for (let i = 0; i <= 15; i++) {
+  console.log(i.toString(2).padStart(4, &quot;0&quot;) + &quot; = &quot; + i);
+}" />
+
+## 5. Challenge
+
+Count from 0 to 31 manually on paper. Write the binary representation for each number. This builds intuition for how binary works.
+
+## 6. Quiz
+
+<Quiz question="What is the binary representation of 5?"
+  options={["101", "110", "100", "011"]}
+  answer="0"
+  explanation="5 = 4 + 1 = 2² + 2⁰, so binary is 101."
+/>
+
+## 7. Summary
+
+- Binary counting follows the same positional rules as decimal
+- Each binary position represents a **power of 2**
+- The rightmost bit toggles every step, the next every 2 steps, etc.
+- Memorize powers of 2: 1, 2, 4, 8, 16, 32, 64, 128
+
+## 8. What's Next
+
+Next module: **Binary Numbers** — understanding bits, bytes, and conversions.
