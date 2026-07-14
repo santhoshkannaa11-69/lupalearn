@@ -1,5 +1,5 @@
 ---
-title: "Try/Catch"
+title: "Error Handling: Try/Catch"
 slug: try-catch
 module: "Error Handling"
 moduleOrder: 9
@@ -8,35 +8,33 @@ duration: 20
 xp: 30
 difficulty: beginner
 concepts: [error-handling]
-prerequisites: [function-basics-v2]
+prerequisites: [function-challenge]
 learningObjectives:
   - Use try/catch to handle errors gracefully
   - Prevent crashes from unexpected situations
 estimatedKnowledgeGain: 7
-tags: [error-handling, try-catch, debugging]
+tags: [errors, try-catch]
 ---
 
-## 1. Why This Matters
+## 1. Hook
 
-Programs encounter errors: files that don't exist, network failures, invalid input. Without error handling, these crash your program. With try/catch, you handle them gracefully.
+Your program will crash. Not if — when. A network request fails. A file doesn't exist. A user enters invalid data. Error handling is the difference between a program that crashes and one that handles the problem gracefully.
 
-## 2. Explanation
+## 2. Core Concept
 
 ```javascript
 try {
   // Code that might fail
   let result = riskyOperation();
-  console.log(result);
 } catch (error) {
   // Runs if an error occurs
-  console.log("Something went wrong:", error.message);
+  console.log("Caught:", error.message);
 } finally {
   // Always runs (optional)
-  console.log("Cleanup");
 }
 ```
 
-## 3. Code Example
+## 3. Code Walkthrough
 
 ```javascript
 function divide(a, b) {
@@ -48,38 +46,50 @@ function divide(a, b) {
 
 try {
   console.log(divide(10, 2));  // 5
-  console.log(divide(10, 0));  // Throws error
-  console.log("This won't run");  // Skipped
+  console.log(divide(10, 0));  // Error thrown — rest of try skipped
+  console.log("This won't run");
 } catch (error) {
   console.log("Error:", error.message);
-} finally {
-  console.log("Done");  // Always runs
 }
 ```
 
-## 4. Interactive Terminal
+## 4. Execution Visualization
+
+```
+divide(10, 2) → returns 5 → prints "5"
+divide(10, 0) → throws Error
+  → execution jumps to catch block
+  → prints "Error: Division by zero!"
+  → skip rest of try block
+```
+
+## 5. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="function parseJSON(text) {
   try {
     const data = JSON.parse(text);
-    console.log(&quot;Valid JSON:&quot;, data);
+    console.log(&quot;Valid:&quot;, data);
   } catch (error) {
     console.log(&quot;Invalid JSON:&quot;, error.message);
   }
 }
+parseJSON('{&quot;name&quot;: &quot;Alice&quot;}');
+parseJSON('{bad}');" />
 
-parseJSON('{&quot;name&quot;: &quot;Alice&quot;}');  // Valid
-parseJSON('{not json}');               // Invalid" />
+## 6. Common Mistakes
 
-<Quiz question="What happens when an error occurs inside a try block?"
-  options={["The program crashes", "Execution jumps to catch", "The error is ignored", "try retries automatically"]}
-  answer="1"
-  explanation="When an error occurs, execution immediately jumps to the catch block."
-/>
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| Empty catch block | Silently ignores errors | Always log or handle |
+| Throwing non-Error values | Loses stack trace | Always `throw new Error()` |
 
-## 5. Summary
+## 7. Summary
 
-- `try` wraps code that might fail
-- `catch` handles errors if they occur
-- `finally` always runs (cleanup)
+- `try` wraps code that **might fail**
+- `catch` handles errors when they occur
+- `finally` always runs (for cleanup)
 - Use `throw new Error()` to create your own errors
+
+## 8. What's Next
+
+Next: **Error Types** — recognizing different types of JavaScript errors.

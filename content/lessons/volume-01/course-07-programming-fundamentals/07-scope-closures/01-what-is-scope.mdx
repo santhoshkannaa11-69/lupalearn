@@ -1,5 +1,5 @@
 ---
-title: "What Is Scope?"
+title: "Scope & Closures"
 slug: what-is-scope
 module: "Scope & Closures"
 moduleOrder: 7
@@ -8,71 +8,75 @@ duration: 15
 xp: 25
 difficulty: beginner
 concepts: [scope]
-prerequisites: [function-basics-v2]
+prerequisites: [function-challenge]
 learningObjectives:
   - Understand what scope means
-  - Differentiate global vs local scope
-estimatedKnowledgeGain: 6
-tags: [scope, variables, visibility]
+  - Differentiate global and local scope
+estimatedKnowledgeGain: 7
+tags: [scope, variables]
 ---
 
-## 1. Explanation
+## 1. Hook
 
-**Scope** determines where a variable is accessible in your code. Think of it as "visibility" — some variables are visible everywhere, others only in specific blocks.
+You create a variable inside a function, then try to use it outside — and it's gone. Where did it go? It didn't disappear. It was never there to begin with. That's scope.
+
+## 2. Why This Matters
+
+Scope determines where a variable is accessible. Without scope rules, every variable would be visible everywhere — causing chaos when different parts of your code use the same name.
+
+## 3. Mental Model
+
+Think of scope like **rooms in a house**:
+
+- **Global scope** = the living room (everyone can access it)
+- **Function scope** = a bedroom (only accessible from inside)
+- **Block scope** = a closet (only accessible from inside that block)
+
+## 4. Code Walkthrough
 
 ```javascript
-// Global scope — visible everywhere
-let globalVar = "I'm global";
+let global = "I'm everywhere";
 
 function example() {
-  // Local scope — only visible inside this function
-  let localVar = "I'm local";
-  console.log(globalVar);  // ✅ Works
-  console.log(localVar);   // ✅ Works
+  let local = "I'm only inside";
+  console.log(global); // ✅ Works
+  console.log(local);  // ✅ Works
 }
 
-console.log(globalVar);    // ✅ Works
-// console.log(localVar);  // ❌ Error: not defined
+console.log(global);    // ✅ Works
+// console.log(local);  // ❌ ReferenceError
 ```
 
-## 2. Code Example
+## 5. Execution Visualization
 
-```javascript
-let message = "Hello";  // Global scope
+```
+Memory:
+  global → "I'm everywhere"
 
-function greet() {
-  let name = "Alice";   // Local to greet()
-  console.log(message + " " + name);  // Works
-}
+example() runs:
+  Memory:
+    global → "I'm everywhere"
+    local  → "I'm only inside"
 
-greet();                 // Hello Alice
-console.log(message);    // Hello
-// console.log(name);    // ❌ ReferenceError
+After example() ends:
+  Memory:
+    global → "I'm everywhere"
+    local  → (cleaned up)
 ```
 
-## 3. Interactive Terminal
+## 6. Common Mistakes
 
-<Terminal mode="interactive" language="javascript" initialCode="let x = 10;
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| Using a variable before declaration | Hoisting confusion | Declare at the top of scope |
+| Expecting `var` to be block-scoped | `var` ignores `{}` | Use `let` or `const` |
 
-function outer() {
-  let y = 20;
+## 7. Summary
 
-  function inner() {
-    let z = 30;
-    console.log(&quot;Inner:&quot;, x, y, z);  // All visible
-  }
-
-  inner();
-  console.log(&quot;Outer:&quot;, x, y);
-  // console.log(z);  // Would error — z is inside inner
-}
-
-outer();
-console.log(&quot;Global:&quot;, x);" />
-
-## 4. Summary
-
-- Scope determines where variables are accessible
-- Global scope = visible everywhere
-- Local scope = visible only in a specific block/function
+- **Global scope**: visible everywhere
+- **Local scope**: visible only inside a function or block
 - Inner functions can access outer variables, but not vice versa
+
+## 8. What's Next
+
+Next: **Let vs Var vs Const** — the three ways to declare variables and when to use each.

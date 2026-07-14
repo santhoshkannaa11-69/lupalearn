@@ -8,81 +8,86 @@ duration: 25
 xp: 40
 difficulty: intermediate
 concepts: [recursion]
-prerequisites: [function-basics-v2]
+prerequisites: [function-challenge]
 learningObjectives:
-  - Explain what recursion is
-  - Identify the base case and recursive case
-estimatedKnowledgeGain: 7
-tags: [recursion, functions, problem-solving]
+  - Explain recursion
+  - Identify base case and recursive case
+estimatedKnowledgeGain: 8
+tags: [recursion, functions]
 ---
 
-## 1. Why This Matters
+## 1. Hook
 
-Some problems are naturally recursive — the solution contains a smaller version of itself. Recursion lets you solve these problems elegantly.
+Imagine holding up a mirror to another mirror. You see an infinite reflection — reflections within reflections. Recursion is the programming version of that: a function that calls itself.
 
-## 2. Explanation
+## 2. Core Concept
 
-**Recursion** is when a function calls itself. Every recursive function needs two parts:
+Every recursive function needs two parts:
 
-1. **Base case** — the condition that stops the recursion
-2. **Recursive case** — the function calling itself with a smaller input
+| Part | What It Does | Example |
+|------|-------------|---------|
+| **Base case** | Stops the recursion | `if (n <= 1) return 1` |
+| **Recursive case** | Calls itself | `return n * factorial(n - 1)` |
 
-```javascript
-function countdown(n) {
-  // Base case
-  if (n <= 0) {
-    console.log("Done!");
-    return;
-  }
-  // Recursive case
-  console.log(n);
-  countdown(n - 1);
-}
-```
-
-## 3. Code Example
+## 3. Code Walkthrough
 
 ```javascript
-// Factorial: n! = n × (n-1) × (n-2) × ... × 1
 function factorial(n) {
-  // Base case
-  if (n <= 1) return 1;
-  // Recursive case
-  return n * factorial(n - 1);
+  if (n <= 1) return 1;       // Base case
+  return n * factorial(n - 1); // Recursive case
 }
 
-console.log(factorial(5));  // 120 (5×4×3×2×1)
-
-// Visual trace of factorial(5):
-// factorial(5) → 5 * factorial(4)
-//             → 5 * 4 * factorial(3)
-//             → 5 * 4 * 3 * factorial(2)
-//             → 5 * 4 * 3 * 2 * factorial(1)
-//             → 5 * 4 * 3 * 2 * 1 = 120
+console.log(factorial(5)); // 120
 ```
 
-## 4. Interactive Terminal
+### Execution Visualization
+
+```
+factorial(5)
+  → 5 * factorial(4)
+    → 4 * factorial(3)
+      → 3 * factorial(2)
+        → 2 * factorial(1)
+          → 1 (base case reached)
+        → 2 * 1 = 2
+      → 3 * 2 = 6
+    → 4 * 6 = 24
+  → 5 * 24 = 120
+```
+
+## 4. Recursion vs Loops
+
+| Aspect | Recursion | Loop |
+|--------|-----------|------|
+| **Code** | More concise for tree problems | More explicit |
+| **Memory** | Uses call stack (can overflow) | Less memory |
+| **Best for** | Trees, divide-and-conquer | Simple repetitions |
+
+## 5. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="function countdown(n) {
   if (n <= 0) {
-    console.log(&quot;🎉 Done!&quot;);
+    console.log(&quot;Done!&quot;);
     return;
   }
   console.log(n);
   countdown(n - 1);
 }
-
 countdown(5);" />
 
-<Quiz question="What is the base case in the factorial function?"
-  options={["n <= 1", "n * factorial(n-1)", "return", "console.log"]}
-  answer="0"
-  explanation="When n <= 1, the function returns 1 instead of calling itself again. This stops the recursion."
-/>
+## 6. Common Mistakes
 
-## 5. Summary
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| No base case | Infinite recursion → stack overflow | Always define when to stop |
+| Base case never reached | Wrong condition | Test with small values first |
 
-- Recursion = a function calling itself
-- Always need a base case (stops) and recursive case (continues)
+## 7. Summary
+
+- Recursion = a function that **calls itself**
+- Every recursive function needs a **base case** and a **recursive case**
 - Start with the base case when writing recursive functions
-- Recursion is elegant for tree-like problems
+
+## 8. What's Next
+
+Next: **Recursion vs Iteration** — when to use each approach.

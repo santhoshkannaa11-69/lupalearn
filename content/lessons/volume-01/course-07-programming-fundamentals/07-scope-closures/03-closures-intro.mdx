@@ -8,37 +8,42 @@ duration: 25
 xp: 40
 difficulty: intermediate
 concepts: [closures, scope]
-prerequisites: [what-is-scope]
+prerequisites: [let-vs-var-vs-const]
 learningObjectives:
   - Explain what a closure is
-  - Write functions that "remember" their scope
+  - Write functions that remember their scope
 estimatedKnowledgeGain: 8
-tags: [closures, scope, functions]
+tags: [closures, functions]
 ---
 
-## 1. Explanation
+## 1. Hook
 
-A **closure** is a function that "remembers" the variables from where it was defined, even after that scope is gone.
+A function that *remembers* variables from where it was created — even after that outer function has finished running. That's a closure. It's one of JavaScript's most powerful (and confusing) features.
+
+## 2. Core Concept
 
 ```javascript
 function createCounter() {
-  let count = 0;  // This variable "closes over"
-
+  let count = 0;
   return function() {
-    count++;       // Inner function remembers count
+    count++;
     return count;
   };
 }
 
 const counter = createCounter();
-console.log(counter());  // 1
-console.log(counter());  // 2
-console.log(counter());  // 3
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
 ```
 
-The inner function **closes over** the `count` variable, keeping it alive even after `createCounter` has finished running.
+The inner function "closes over" the `count` variable, keeping it alive.
 
-## 2. Code Example
+## 3. Mental Model
+
+Think of a closure as a **backpack**. When you create a function inside another function, the inner function carries a backpack containing all the variables from the outer function — even after the outer function has returned.
+
+## 4. Code Walkthrough
 
 ```javascript
 function createMultiplier(factor) {
@@ -52,44 +57,34 @@ const triple = createMultiplier(3);
 
 console.log(double(5));  // 10
 console.log(triple(5));  // 15
-
-// Practical: create a logger with context
-function createLogger(prefix) {
-  return function(message) {
-    console.log("[" + prefix + "] " + message);
-  };
-}
-
-const warn = createLogger("WARN");
-const info = createLogger("INFO");
-
-warn("Low disk space");  // [WARN] Low disk space
-info("User logged in");  // [INFO] User logged in
 ```
 
-## 3. Interactive Terminal
+Each returned function remembers its own `factor` value.
+
+## 5. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="function makeGreeter(greeting) {
   return function(name) {
     console.log(greeting + &quot;, &quot; + name + &quot;!&quot;);
   };
 }
-
 const sayHello = makeGreeter(&quot;Hello&quot;);
 const sayGoodbye = makeGreeter(&quot;Goodbye&quot;);
-
-sayHello(&quot;Alice&quot;);    // Hello, Alice!
+sayHello(&quot;Alice&quot;);   // Hello, Alice!
 sayGoodbye(&quot;Bob&quot;);    // Goodbye, Bob!" />
 
-<Quiz question="What does this output?\n\nfunction makeCounter() {\n  let n = 0;\n  return () => ++n;\n}\nconst c = makeCounter();\nc(); c(); console.log(c());"
-  options={["0", "1", "2", "3"]}
-  answer="3"
-  explanation="The counter increments each time. Three calls: 1, 2, 3."
-/>
+## 6. Common Mistakes
 
-## 4. Summary
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| Closure capturing loop variable | All iterations reference the same variable | Use `let` instead of `var` |
 
-- A closure is a function that remembers its outer variables
-- Useful for creating private variables
-- Used in factory functions, event handlers, and more
-- Closures are a fundamental JavaScript concept
+## 7. Summary
+
+- A **closure** is a function that remembers its outer variables
+- Useful for creating **private variables** and **factory functions**
+- Closures are everywhere in JavaScript — event handlers, callbacks, hooks
+
+## 8. What's Next
+
+Next: **Scope Challenge** — practice problems to solidify your understanding.

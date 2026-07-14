@@ -10,66 +10,65 @@ difficulty: beginner
 concepts: [scope, variables]
 prerequisites: [what-is-scope]
 learningObjectives:
-  - Understand the differences between let, var, and const
+  - Compare let, var, and const
   - Know which to use and when
 estimatedKnowledgeGain: 7
-tags: [scope, variables, let, var, const]
+tags: [variables, let, const, var]
 ---
 
-## 1. Explanation
+## 1. Hook
 
-JavaScript has three ways to declare variables — each with different scoping rules:
+JavaScript has three ways to declare a variable. Two of them are modern. One is a relic from the early days that causes bugs. Can you guess which?
+
+## 2. Comparison
 
 | Keyword | Scope | Can Reassign? | Hoisted? |
 |---------|-------|---------------|----------|
 | `let` | Block `{}` | Yes | No |
 | `const` | Block `{}` | No | No |
-| `var` | Function | Yes | Yes (undefined) |
+| `var` | Function | Yes | Yes (as undefined) |
 
-## 2. Code Example
+## 3. Code Walkthrough
 
 ```javascript
-// let — block scoped
 if (true) {
   let x = 10;
   const y = 20;
   var z = 30;
 }
-// console.log(x);  // ❌ — x is block scoped
-// console.log(y);  // ❌ — y is block scoped
-console.log(z);      // ✅ — 30 (var ignores blocks!)
+// console.log(x);  // ❌ Block scoped
+// console.log(y);  // ❌ Block scoped
+console.log(z);      // ✅ 30 — var ignores blocks!
 
-// const — cannot reassign
-const PI = 3.14159;
-// PI = 3;          // ❌ — TypeError
+const PI = 3.14;
+// PI = 3;           // ❌ Can't reassign const
 
-// But objects declared with const CAN be modified
+// But objects declared with const CAN be modified:
 const user = { name: "Alice" };
-user.name = "Bob";   // ✅ — object properties can change
-// user = {};        // ❌ — can't reassign the variable
+user.name = "Bob";    // ✅ Allowed
+// user = {};         // ❌ Can't reassign
 ```
 
-## 3. Interactive Terminal
+## 4. Common Mistake
 
-<Terminal mode="interactive" language="javascript" initialCode="// Best practice:
-const SECOND = 1000;      // Constants use const
-let counter = 0;          // Things that change use let
-// var — avoid in modern code
-
-// Block scoping demonstration
-for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(&quot;let:&quot;, i), 100);
-}
-// Outputs: 0, 1, 2 (each i is scoped to the iteration)
-
+```javascript
 for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(&quot;var:&quot;, i), 100);
+  setTimeout(() => console.log(i), 100);
 }
-// Outputs: 3, 3, 3 (single var shared across iterations)" />
+// Outputs: 3, 3, 3 (one shared `var`)
 
-## 4. Summary
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+// Outputs: 0, 1, 2 (each iteration gets its own `let`)
+```
 
-- Use `const` by default — only use `let` when you need to reassign
-- Never use `var` in modern JavaScript
-- `let` and `const` are block scoped, `var` is function scoped
-- `const` prevents reassignment, but object properties can still change
+## 5. Summary
+
+- Use **`const`** by default
+- Use **`let`** when you need to reassign
+- Never use **`var`** in modern JavaScript
+
+## 6. What's Next
+
+Next: **Closures** — functions that remember the variables from where they were created.
