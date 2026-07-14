@@ -8,22 +8,19 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [operators]
-prerequisites: [variables-data-types]
+prerequisites: [thinking-like-a-programmer]
 learningObjectives:
-  - Use arithmetic operators (+, -, *, /)
+  - Use arithmetic operators (+, -, *, /, %)
   - Combine variables and operators into expressions
-  - Understand operator precedence
-estimatedKnowledgeGain: 6
-tags: [operators, expressions, arithmetic]
+estimatedKnowledgeGain: 7
+tags: [operators, arithmetic]
 ---
 
-## 1. Learning Objective
+## 1. Hook
 
-Learn how to perform calculations and combine values using operators.
+Without operators, computers could only store data — not *do* anything with it. Operators are verbs for your data: add, compare, combine, check.
 
-## 2. Explanation
-
-**Operators** are symbols that perform operations on values. The most common are **arithmetic operators**:
+## 2. Core Concept
 
 | Operator | Name | Example | Result |
 |----------|------|---------|--------|
@@ -33,39 +30,33 @@ Learn how to perform calculations and combine values using operators.
 | `/` | Division | `15 / 3` | `5` |
 | `%` | Modulus (remainder) | `10 % 3` | `1` |
 
-An **expression** is any combination of values, variables, and operators that produces a result.
+An **expression** is any combination of values and operators that produces a result.
 
-## 3. Code Example
+## 3. Code Walkthrough
 
 ```javascript
 let a = 10;
 let b = 3;
-
-console.log("Addition:", a + b);      // 13
-console.log("Subtraction:", a - b);   // 7
-console.log("Multiplication:", a * b); // 30
-console.log("Division:", a / b);      // 3.333...
-console.log("Remainder:", a % b);     // 1
-
-// Expressions can use variables
-let total = a * b + 5;
-console.log("Total:", total);         // 35
+console.log(a + b);  // 13 — addition
+console.log(a - b);  // 7  — subtraction
+console.log(a * b);  // 30 — multiplication
+console.log(a / b);  // 3.333... — division
+console.log(a % b);  // 1  — remainder
 ```
 
-## 4. Interactive Terminal
+## 4. Interactive Practice
 
-<Terminal mode="interactive" language="javascript" initialCode="let x = 15;
-let y = 4;
-
-console.log(&quot;x + y =&quot;, x + y);
-console.log(&quot;x - y =&quot;, x - y);
-console.log(&quot;x * y =&quot;, x * y);
-console.log(&quot;x / y =&quot;, x / y);
-console.log(&quot;x % y =&quot;, x % y);" />
+<Terminal mode="interactive" language="javascript" initialCode="let hoursWorked = 40;
+let hourlyRate = 25;
+let pay = hoursWorked * hourlyRate;
+console.log(&quot;Weekly pay: $&quot; + pay);" />
 
 ## 5. Summary
 
-- Operators perform actions on values
+- Operators **perform actions** on values
 - Arithmetic: `+`, `-`, `*`, `/`, `%`
-- An expression combines values and operators
-- You can use variables inside expressions
+- An expression combines values and operators into a result
+
+## 6. What's Next
+
+Next: **Comparison Operators** — comparing values and getting true/false results.

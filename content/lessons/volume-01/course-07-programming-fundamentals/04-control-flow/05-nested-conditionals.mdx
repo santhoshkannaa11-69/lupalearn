@@ -11,76 +11,68 @@ concepts: [control-flow]
 prerequisites: [conditional-chaining]
 learningObjectives:
   - Nest if statements inside other if statements
-  - Keep nested conditionals readable
-estimatedKnowledgeGain: 6
-tags: [control-flow, nested, structure]
+  - Keep nested logic readable
+estimatedKnowledgeGain: 7
+tags: [control-flow, nesting]
 ---
 
-## 1. Explanation
+## 1. Hook
 
-Sometimes you need to check a condition inside another condition. This is called **nesting**.
+Some decisions depend on other decisions. "If you're a member, check if you have enough purchases for a discount." That's nested conditionals — an if inside an if.
 
-```javascript
-if (outerCondition) {
-  if (innerCondition) {
-    // Both conditions are true
-  }
-}
-```
-
-## 2. Code Example
+## 2. Code Walkthrough
 
 ```javascript
-let isAuthenticated = true;
+let isLoggedIn = true;
 let role = "admin";
 
-if (isAuthenticated) {
-  console.log("Welcome!");
-
+if (isLoggedIn) {
   if (role === "admin") {
-    console.log("You have admin access");
-  } else if (role === "editor") {
-    console.log("You can edit content");
+    console.log("Admin dashboard");
   } else {
-    console.log("You can view content");
+    console.log("User dashboard");
   }
 } else {
   console.log("Please log in");
 }
 ```
 
-## 3. Interactive Terminal
+## 3. Execution Visualization
+
+```
+isLoggedIn = true → enter outer if
+  role = "admin" → enter inner if
+    → print "Admin dashboard"
+```
+
+## 4. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="let isMember = true;
-let purchases = 5;
-let hasCoupon = false;
+let purchases = 7;
 
 if (isMember) {
   if (purchases >= 10) {
-    console.log(&quot;Gold member — 20% off!&quot;);
+    console.log(&quot;Gold — 20% off!&quot;);
   } else if (purchases >= 5) {
-    console.log(&quot;Silver member — 10% off!&quot;);
+    console.log(&quot;Silver — 10% off!&quot;);
   } else {
-    console.log(&quot;Bronze member — 5% off!&quot;);
-  }
-
-  if (hasCoupon) {
-    console.log(&quot;Extra 15% off with coupon!&quot;);
+    console.log(&quot;Bronze — 5% off!&quot;);
   }
 } else {
-  console.log(&quot;Sign up for membership benefits!&quot;);
+  console.log(&quot;Become a member for discounts!&quot;);
 }" />
 
-## 4. Challenge
+## 5. Common Mistakes
 
-Write code that checks if a number is positive, negative, or zero. Then, if it's positive, check if it's even or odd.
+- Too many nesting levels (keep to 2-3 max)
+- Forgetting that inner `else` belongs to the inner `if`
 
-<Terminal mode="challenge" language="javascript" initialCode="let num = 7;
+## 6. Summary
 
-// Your code here" />
+- Nested conditionals = **decisions within decisions**
+- Keep nesting **shallow** (2-3 levels max)
+- Combine conditions with `&&` when possible
 
-## 5. Summary
+## 7. What's Next
 
-- Nest if statements to check multiple levels of conditions
-- Keep nesting shallow (max 2-3 levels)
-- Consider combining conditions with `&&` when possible
+Next module: **Loops** — repeating code without writing it multiple times.

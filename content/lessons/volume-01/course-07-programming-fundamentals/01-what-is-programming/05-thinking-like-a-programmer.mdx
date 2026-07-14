@@ -11,73 +11,50 @@ concepts: [algorithms]
 prerequisites: [your-development-environment]
 learningObjectives:
   - Break problems into smaller steps
-  - Recognize patterns in problems
-  - Write step-by-step solutions as comments
-estimatedKnowledgeGain: 7
-tags: [problem-solving, mindset, fundamentals]
+  - Write solutions as code
+estimatedKnowledgeGain: 8
+tags: [problem-solving, mindset]
 ---
 
-## 1. Learning Objective
+## 1. Hook
 
-Programming is 10% typing code and 90% thinking. Learn how to approach problems like a developer.
+Programming is 10% typing and 90% thinking. Most beginners open a code editor and freeze because they try to think in code. Instead, think in steps — then translate those steps into code.
 
-## 2. The Four Steps of Problem Solving
+## 2. The Four Steps
 
-| Step | What It Means | Example: Making Tea |
-|------|---------------|-------------------|
-| **1. Understand** | What exactly is the problem? | "I want a hot cup of tea" |
-| **2. Break Down** | What are the small steps? | Boil water, add tea bag, pour water, steep |
-| **3. Write Steps** | Turn steps into code comments | `// 1. Boil water` `// 2. Add tea bag` |
-| **4. Test** | Does it work? | Is the tea hot? Does it taste right? |
+| Step | Example: Calculate rectangle area |
+|------|-----------------------------------|
+| **1. Understand** | "I need to multiply width × height" |
+| **2. Break down** | Get width, get height, multiply, show result |
+| **3. Write as code** | `let area = width * height` |
+| **4. Test** | Does it give the right answer? |
 
 ## 3. Code Example
 
 ```javascript
 // Problem: Calculate the area of a rectangle
-
-// Step 1: Define the inputs
 let width = 5;
 let height = 10;
-
-// Step 2: Process — calculate
 let area = width * height;
-
-// Step 3: Output — show the result
 console.log("Area:", area);
 ```
 
-## 4. Interactive Terminal
+## 4. Interactive Practice
 
-<Terminal mode="interactive" language="javascript" initialCode="// Try breaking this problem into steps:
-// Calculate how many minutes old you are
-
-// Add your steps as comments, then write the code
+<Terminal mode="interactive" language="javascript" initialCode="// Calculate how many minutes old you are
 let ageInYears = 20;
 let daysPerYear = 365;
 let hoursPerDay = 24;
 let minutesPerHour = 60;
+let totalMinutes = ageInYears * daysPerYear * hoursPerDay * minutesPerHour;
+console.log(&quot;Minutes old:&quot;, totalMinutes);" />
 
-// Calculate and print the result
-let minutes = ageInYears * daysPerYear * hoursPerDay * minutesPerHour;
-console.log(&quot;Minutes old:&quot;, minutes);" />
+## 5. Summary
 
-## 5. Quiz
+- Think in **steps**, not in code
+- **Break problems down** before writing solutions
+- Programming is **problem-solving** — the code is just the final step
 
-<Quiz
-  question="What is the first step in solving a programming problem?"
-  options={[
-    "Write code immediately",
-    "Understand what the problem is asking",
-    "Run the program",
-    "Ask for help"
-  ]}
-  answer="1"
-  explanation="You can't solve a problem you don't understand. First understand, then code."
-/>
+## 6. What's Next
 
-## 6. Summary
-
-- Programming is mostly thinking, not typing
-- Break problems into small steps
-- Write steps as comments before coding
-- Test your solution to verify it works
+Now that you know how to think like a programmer, the next module introduces **Variables & Data Types** — how computers store information.

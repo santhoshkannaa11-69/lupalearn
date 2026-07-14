@@ -10,19 +10,17 @@ difficulty: beginner
 concepts: [loops]
 prerequisites: [if-else-basics]
 learningObjectives:
-  - Use for loops to repeat code a specific number of times
+  - Use for loops to repeat code a set number of times
   - Understand the three parts of a for loop
 estimatedKnowledgeGain: 8
-tags: [loops, iteration, for]
+tags: [loops, for, iteration]
 ---
 
-## 1. Why This Matters
+## 1. Hook
 
-Imagine printing "Hello" 100 times. Without loops, you'd write 100 `console.log` statements. With a loop, you write ONE.
+Print numbers 1 to 100. Without loops, you'd write 100 `console.log` statements. With a loop, you write three lines.
 
-## 2. Explanation
-
-A `for` loop has three parts:
+## 2. Core Concept
 
 ```javascript
 for (initialization; condition; update) {
@@ -32,48 +30,51 @@ for (initialization; condition; update) {
 
 | Part | What It Does | Example |
 |------|-------------|---------|
-| `let i = 0` | Runs once at the start | Sets counter to 0 |
-| `i < 5` | Checked before each iteration | Stops when i reaches 5 |
-| `i++` | Runs after each iteration | Increments counter |
+| `let i = 0` | Runs once at start | Initialize counter |
+| `i < 5` | Checked before each run | Stop when false |
+| `i++` | Runs after each iteration | Increment |
 
-## 3. Code Example
+## 3. Execution Visualization
 
-```javascript
-// Print numbers 0 through 4
-for (let i = 0; i < 5; i++) {
-  console.log("Iteration:", i);
-}
-
-// Sum numbers 1 to 10
-let sum = 0;
-for (let i = 1; i <= 10; i++) {
-  sum += i;
-}
-console.log("Sum 1-10:", sum);
+```
+i = 0 → i < 5? true → run body → i++ (now 1)
+i = 1 → i < 5? true → run body → i++ (now 2)
+i = 2 → i < 5? true → run body → i++ (now 3)
+i = 3 → i < 5? true → run body → i++ (now 4)
+i = 4 → i < 5? true → run body → i++ (now 5)
+i = 5 → i < 5? false → exit loop
 ```
 
-## 4. Interactive Terminal
+## 4. Code Walkthrough
 
-<Terminal mode="interactive" language="javascript" initialCode="// Count from 1 to 5
-for (let count = 1; count <= 5; count++) {
+```javascript
+let sum = 0;
+for (let i = 1; i <= 5; i++) {
+  sum += i;  // same as: sum = sum + i
+}
+console.log(sum); // 15 (1+2+3+4+5)
+```
+
+## 5. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="for (let count = 1; count <= 5; count++) {
   console.log(&quot;Count:&quot;, count);
 }
+console.log(&quot;Done!&quot;);" />
 
-console.log(&quot;---&quot;);
+## 6. Common Mistakes
 
-// Count backwards
-for (let i = 5; i >= 1; i--) {
-  console.log(&quot;T-minus:&quot;, i);
-}" />
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| `for (let i = 0; i <= 5; i++)` | Off by one (runs 6 times) | Use `<` instead of `<=` |
+| `for (;;)` | Infinite loop | Always set a condition |
 
-<Quiz question="How many times does this loop run?\n\nfor (let i = 0; i < 3; i++) { console.log('hi'); }"
-  options={["2", "3", "4", "Infinite"]}
-  answer="1"
-  explanation="i starts at 0 and runs while i < 3: i=0, i=1, i=2. That's 3 iterations."
-/>
+## 7. Summary
 
-## 5. Summary
+- For loops repeat code a **set number** of times
+- Three parts: **initialization, condition, update**
+- The loop stops when the **condition becomes false**
 
-- For loops repeat code a set number of times
-- Three parts: initialization, condition, update
-- The loop stops when the condition becomes false
+## 8. What's Next
+
+Next: **While Loops** — repeating when you don't know the count in advance.

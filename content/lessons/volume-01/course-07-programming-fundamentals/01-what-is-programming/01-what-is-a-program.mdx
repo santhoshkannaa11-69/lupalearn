@@ -8,58 +8,65 @@ duration: 15
 xp: 20
 difficulty: beginner
 concepts: [algorithms]
-prerequisites: []
+prerequisites: [careers-in-cs]
 learningObjectives:
   - Define what a program is
   - Explain the input-process-output model
-  - Identify examples of programs in everyday life
-estimatedKnowledgeGain: 6
-tags: [programming, fundamentals, computers]
+  - Identify programs in everyday life
+estimatedKnowledgeGain: 7
+tags: [programming, fundamentals]
 ---
 
-## 1. Learning Objective
+## 1. Hook
 
-By the end of this lesson, you'll understand what a computer program actually is — and realize you already use dozens of them every day.
+Your microwave has a program. Your car has dozens of programs. This website is a program. Every digital experience you've ever had was created by someone writing a sequence of instructions.
 
 ## 2. Why This Matters
 
-Before you write your first line of code, it helps to know what you're actually creating. A program isn't magic — it's a set of instructions that tells a computer what to do.
+A program is not magic. It's just a list of instructions — like a recipe. Once you understand that, programming stops being mysterious and becomes learnable.
 
-## 3. Explanation
+## 3. Core Concept
 
-A **program** is a sequence of instructions that tells a computer how to perform a specific task. Programs take **input**, **process** it, and produce **output**.
+A **program** is a sequence of instructions that tells a computer how to perform a task.
 
 ### The IPO Model
 
 ```
-Input ──→ Process ──→ Output
+Input → Process → Output
 ```
 
-| Step | Description | Example (Calculator) |
-|------|-------------|---------------------|
-| **Input** | Data the program receives | `5`, `+`, `3` |
-| **Process** | The instructions that run | Add the numbers |
-| **Output** | The result produced | `8` |
+| Step | Description | Example |
+|------|-------------|---------|
+| **Input** | Data the program receives | Numbers to add |
+| **Process** | Instructions that run | Addition operation |
+| **Output** | Result produced | The sum |
 
-Your web browser, phone apps, video games, and even this learning platform are all programs.
-
-## 4. Code Example
+## 4. Code Walkthrough
 
 ```javascript
-// A simple program: input → process → output
-let input = "developer";           // Input
-let output = "Hello, " + input;   // Process
-console.log(output);              // Output
+let input = "developer";
+let output = "Hello, " + input;
+console.log(output);
 ```
 
-## 5. Interactive Terminal
+| Line | What It Does |
+|------|-------------|
+| `let input = "developer"` | Stores the input value |
+| `let output = "Hello, " + input` | Processes it by combining text |
+| `console.log(output)` | Outputs the result |
 
-<Terminal mode="interactive" language="javascript" initialCode="// Your first program!
+## 5. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Your first program
 console.log(&quot;This is a program running!&quot;);
-console.log(&quot;It prints text to the console.&quot;);" />
+console.log(&quot;It follows: input → process → output&quot;);" />
 
 ## 6. Summary
 
-- A program is a set of instructions
-- Every program follows: input → process → output
-- You use programs constantly — browsers, apps, games
+- A program is a **sequence of instructions**
+- Every program follows: **input → process → output**
+- You use dozens of programs every day without thinking about it
+
+## 7. What's Next
+
+Next: **How Computers Execute Code** — what happens when you press "Run."

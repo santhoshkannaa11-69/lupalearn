@@ -11,17 +11,16 @@ concepts: [control-flow]
 prerequisites: [comparison-operators]
 learningObjectives:
   - Use if/else to make decisions in code
-  - Write conditions that evaluate to true or false
-  - Handle multiple conditions with else if
+  - Write boolean conditions
 estimatedKnowledgeGain: 8
-tags: [control-flow, conditionals, decision-making]
+tags: [control-flow, conditionals]
 ---
 
-## 1. Why This Matters
+## 1. Hook
 
-Programs need to make decisions. "If the user is logged in, show the dashboard. Otherwise, show the login page." The `if` statement is how you do this.
+Your phone's alarm checks: "Is it 7 AM?" If yes, ring. Your email filters check: "Is this from my boss?" If yes, mark as important. Every interesting program makes decisions based on conditions.
 
-## 2. Explanation
+## 2. Core Concept
 
 ```javascript
 if (condition) {
@@ -31,58 +30,52 @@ if (condition) {
 }
 ```
 
-The condition is any expression that produces a boolean. If it's `true`, the first block runs. If it's `false`, the `else` block runs.
-
-## 3. Code Example
+## 3. Code Walkthrough
 
 ```javascript
-let age = 20;
-
-if (age >= 18) {
-  console.log("You can vote!");
-} else {
-  console.log("Too young to vote.");
-}
-
-// Multiple conditions with else if
 let score = 85;
-
 if (score >= 90) {
   console.log("Grade: A");
 } else if (score >= 80) {
-  console.log("Grade: B");
-} else if (score >= 70) {
-  console.log("Grade: C");
+  console.log("Grade: B");  // ← This runs (85 >= 80)
 } else {
-  console.log("Grade: F");
+  console.log("Grade: C");
 }
 ```
 
-## 4. Interactive Terminal
+## 4. Execution Visualization
+
+```
+score = 85
+score >= 90? → false (skip)
+score >= 80? → true  (enter)
+  → print "Grade: B"
+```
+
+## 5. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="let temperature = 75;
-
 if (temperature > 80) {
-  console.log(&quot;It's hot outside!&quot;);
+  console.log(&quot;Hot!&quot;);
 } else if (temperature > 60) {
-  console.log(&quot;Perfect weather!&quot;);
-} else if (temperature > 40) {
-  console.log(&quot;A bit chilly.&quot;);
+  console.log(&quot;Perfect weather!&quot;); // This runs
 } else {
-  console.log(&quot;It's cold!&quot;);
-}
+  console.log(&quot;Cold!&quot;);
+}" />
 
-// Try changing the temperature value!" />
+## 6. Common Mistakes
 
-<Quiz question="What will this output?\n\nlet x = 10;\nif (x > 5) {\n  console.log('yes');\n} else {\n  console.log('no');\n}"
-  options={["yes", "no", "undefined", "Error"]}
-  answer="0"
-  explanation="10 > 5 is true, so the if block runs and prints 'yes'."
-/>
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| `if (score = 85)` | `=` assigns, doesn't compare | `if (score === 85)` |
+| Missing `{}` | Only first line runs in the block | Always use braces |
 
-## 5. Summary
+## 7. Summary
 
-- `if` runs code when a condition is true
-- `else` runs when the condition is false
-- `else if` lets you check multiple conditions
-- Conditions are boolean expressions
+- `if` runs code when a condition is **true**
+- `else` runs when it's **false**
+- `else if` checks **additional conditions**
+
+## 8. What's Next
+
+Next: **Conditional Chaining** — combining multiple conditions with logical operators.

@@ -8,23 +8,22 @@ duration: 20
 xp: 35
 difficulty: beginner
 concepts: [functions]
-prerequisites: [for-loops]
+prerequisites: [loop-challenge]
 learningObjectives:
   - Define and call functions
   - Understand parameters and return values
-  - Write reusable code
 estimatedKnowledgeGain: 8
-tags: [functions, reusability, basics]
+tags: [functions, reusability]
 ---
 
-## 1. Why This Matters
+## 1. Hook
 
-Functions are the building blocks of all code. They let you write a piece of logic once and use it everywhere.
+Imagine you're writing a calculator. You need to add numbers in 20 different places. Without functions, you'd write the addition code 20 times. With a function, you write it once and call it by name.
 
-## 2. Explanation
+## 2. Core Concept
 
 ```javascript
-function functionName(parameter1, parameter2) {
+function functionName(parameter) {
   // code to run
   return result;
 }
@@ -32,57 +31,57 @@ function functionName(parameter1, parameter2) {
 
 | Part | Purpose |
 |------|---------|
-| `function` | Keyword that declares a function |
-| `functionName` | How you refer to the function |
-| `parameters` | Inputs the function receives |
-| `body` | The code that runs |
-| `return` | The output value |
+| `function` | Declaration keyword |
+| `name` | How you refer to it |
+| `parameters` | Inputs (optional) |
+| `return` | Output value (optional) |
 
-## 3. Code Example
+## 3. Code Walkthrough
 
 ```javascript
-// Define a function
 function greet(name) {
   return "Hello, " + name + "!";
 }
-
-// Call the function
 let message = greet("Alice");
-console.log(message);  // Hello, Alice!
-
-// Function with multiple parameters
-function add(a, b) {
-  return a + b;
-}
-
-console.log(add(5, 3));  // 8
-console.log(add(10, 20)); // 30
+console.log(message); // "Hello, Alice!"
 ```
 
-## 4. Interactive Terminal
+| Line | What Happens |
+|------|-------------|
+| `function greet(name)` | Creates a function named `greet` that takes a `name` |
+| `return "Hello, " + name` | Combines the greeting with the name |
+| `greet("Alice")` | Calls the function with "Alice" as input |
+
+## 4. Execution Visualization
+
+```
+greet("Alice") → name = "Alice"
+  → return "Hello, Alice!"
+  → message = "Hello, Alice!"
+  → prints "Hello, Alice!"
+```
+
+## 5. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="function double(n) {
   return n * 2;
 }
+console.log(double(7));  // 14
+console.log(double(25)); // 50" />
 
-function isEven(n) {
-  return n % 2 === 0;
-}
+## 6. Common Mistakes
 
-console.log(double(7));
-console.log(double(25));
-console.log(isEven(10));
-console.log(isEven(7));" />
+| Mistake | Why | Fix |
+|---------|-----|-----|
+| `greet()` without `return` | Returns `undefined` | Add `return value` |
+| `greet;` without `()` | Doesn't call the function | Always use `()` to call |
 
-<Quiz question="What does this function return?\n\nfunction square(x) { return x * x; }\nsquare(4);"
-  options={["4", "8", "16", "undefined"]}
-  answer="2"
-  explanation="4 * 4 = 16. The function multiplies x by itself."
-/>
+## 7. Summary
 
-## 5. Summary
+- Functions **group code into reusable blocks**
+- **Parameters** are inputs, **return** is the output
+- Call a function with **name()**
 
-- Functions group code into reusable blocks
-- Parameters are inputs, return is output
-- Call a function by using its name + parentheses
-- Functions make code reusable and testable
+## 8. What's Next
+
+Next: **Parameters and Arguments** — passing data to functions.

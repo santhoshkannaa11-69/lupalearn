@@ -10,30 +10,31 @@ difficulty: beginner
 concepts: [algorithms]
 prerequisites: [what-is-a-program]
 learningObjectives:
-  - Explain the fetch-decode-execute cycle
-  - Understand that code runs line by line
-  - Distinguish between source code and machine code
-estimatedKnowledgeGain: 5
-tags: [programming, computers, execution]
+  - Understand source code vs machine code
+  - Explain how code runs line by line
+estimatedKnowledgeGain: 6
+tags: [execution, compilation, interpretation]
 ---
 
-## 1. Learning Objective
+## 1. Hook
 
-Understand what happens when you press "Run" — how your code becomes action.
+When you write `console.log("Hello")` and press Run, the computer doesn't understand that text. It understands only binary — 0s and 1s. Something has to translate your code into something the computer can execute.
 
-## 2. Explanation
-
-Computers don't understand JavaScript, Python, or any high-level language directly. They understand **machine code** — binary instructions (0s and 1s).
-
-Your code goes through a pipeline:
+## 2. The Translation Pipeline
 
 ```
-Source Code ──→ Compiler/Interpreter ──→ Machine Code ──→ Execution
+Source Code (JavaScript)
+    ↓
+Interpreter (translates line by line)
+    ↓
+Machine Code (binary)
+    ↓
+Execution
 ```
 
-JavaScript uses an **interpreter** (inside your browser or Node.js) that reads your code line by line and executes it immediately.
+JavaScript uses an **interpreter** that reads your code one line at a time and executes it immediately. Other languages use a **compiler** that translates the entire file ahead of time.
 
-### The Execution Order
+## 3. Execution Order
 
 ```javascript
 console.log("First");   // ← Runs first
@@ -41,16 +42,21 @@ console.log("Second");  // ← Runs second
 console.log("Third");   // ← Runs third
 ```
 
-Code runs **top to bottom**, **left to right**.
+Code runs **top to bottom**, one line at a time.
 
-## 3. Interactive Terminal
+## 4. Interactive Practice
 
 <Terminal mode="interactive" language="javascript" initialCode="console.log(&quot;This runs first&quot;);
 console.log(&quot;This runs second&quot;);
 console.log(&quot;This runs third&quot;);" />
 
-## 4. Summary
+## 5. Summary
 
-- Computers understand machine code (binary)
-- JavaScript is interpreted line by line
-- Code executes from top to bottom
+- Computers only understand **binary machine code**
+- **Interpreters** translate code line by line (JavaScript, Python)
+- **Compilers** translate code ahead of time (C, Rust, Go)
+- Code executes **top to bottom**
+
+## 6. What's Next
+
+Next: an overview of the many **programming languages** available and why they exist.
