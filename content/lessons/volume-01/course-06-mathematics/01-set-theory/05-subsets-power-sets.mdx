@@ -1,0 +1,366 @@
+---
+title: "Subsets & Power Sets"
+slug: subsets-power-sets
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 5
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [sets, subsets, power-sets]
+prerequisites: [representing-sets, set-operations]
+learningObjectives:
+  - Determine if one set is a subset of another
+  - Understand the difference between ⊆ and ⊂
+  - List the power set of a small set
+  - Calculate the cardinality of a power set
+estimatedKnowledgeGain: 8
+tags: [mathematics, sets, subsets]
+icon: 🪆
+---
+
+## 1. Hook
+
+Every cat is an animal. Every String in programming is an Object. Every square is a rectangle.
+
+These are statements about **subsets** — one category being entirely contained within another. Understanding subsets is how we organize knowledge, design type systems, and build hierarchies.
+
+## 2. Why This Matters
+
+Subsets are everywhere:
+- **Type systems**: `String ⊆ Object` in Java
+- **Databases**: `WHERE category IN ('A', 'B')` is a subset query
+- **Machine learning**: training data is a subset of all possible data
+- **Security**: permissions are subsets of all possible actions
+- **Inheritance**: every subclass is a subset of its parent class
+
+Power sets (sets of all subsets) help us understand **combinations** — and combinations power everything from password cracking to menu planning.
+
+## 3. Learning Objectives
+
+- Determine whether one set is a subset of another
+- Distinguish between subset (⊆) and proper subset (⊂)
+- List all subsets of a small set
+- Calculate the size of a power set (2^n)
+
+## 4. Core Concept
+
+### Subset
+
+A set A is a **subset** of set B if **every element of A is also in B**.
+
+```
+A ⊆ B  means  "A is a subset of B"
+```
+
+```
+A = {1, 2}
+B = {1, 2, 3, 4, 5}
+A ⊆ B  ✓  (all elements of A are in B)
+
+C = {1, 2, 6}
+C ⊆ B  ✗  (6 is not in B)
+```
+
+### Proper Subset
+
+A is a **proper subset** of B if A ⊆ B **and** A ≠ B.
+
+```
+A ⊂ B  means  "A is a proper subset of B"
+```
+
+```
+A = {1, 2}
+B = {1, 2, 3}
+A ⊂ B  ✓  (A ⊆ B and A ≠ B)
+
+A = {1, 2, 3}
+B = {1, 2, 3}
+A ⊆ B  ✓  (every set is a subset of itself)
+A ⊂ B  ✗  (but not a proper subset — they're equal)
+```
+
+<Callout type="info">
+  Every set is a subset of itself (A ⊆ A). But a set is NOT a proper subset of itself.
+</Callout>
+
+### The Empty Set
+
+The empty set is a subset of **every** set.
+
+```
+∅ ⊆ A  (always true, for any set A)
+∅ ⊆ ∅  (also true)
+```
+
+Why? Because there are no elements in ∅ that could fail to be in A. It's vacuously true.
+
+### Power Set
+
+The **power set** of a set A (written 𝒫(A) or 2^A) is the set of **all subsets** of A.
+
+```
+A = {1, 2}
+𝒫(A) = {∅, {1}, {2}, {1, 2}}
+```
+
+<Callout type="tip">
+  If a set has n elements, its power set has 2^n elements.
+  |𝒫(A)| = 2^|A|
+</Callout>
+
+## 5. Mental Model
+
+Think of **Russian nesting dolls (matryoshka)**.
+
+```
+┌─────────────────┐
+│  ┌───────────┐  │
+│  │  ┌─────┐  │  │
+│  │  │ 🪆  │  │  │
+│  │  └─────┘  │  │
+│  └───────────┘  │
+└─────────────────┘
+```
+
+Each smaller doll fits inside a larger one. That's a subset relationship — every element of the smaller doll is also inside the larger doll.
+
+For power sets, think of a **menu with options**: if a restaurant has 3 toppings, the power set is all possible combinations (no toppings, just one, any two, all three).
+
+## 6. Visualization
+
+### Subset Relationship
+
+```
+UNIVERSE: Animals
+┌─────────────────────────┐
+│                         │
+│  ┌─────────────────┐    │
+│  │   MAMMALS       │    │
+│  │  ┌───────────┐  │    │
+│  │  │  DOGS     │  │    │
+│  │  └───────────┘  │    │
+│  └─────────────────┘    │
+│                         │
+│  Birds, Fish, Reptiles  │
+└─────────────────────────┘
+
+Dogs ⊂ Mammals ⊂ Animals
+(Dogs are a proper subset of Mammals,
+ Mammals are a proper subset of Animals)
+```
+
+### Power Set Construction
+
+```
+Set: {a, b}
+
+All possible subsets:
+--------------------
+{}           — choose nothing
+{a}          — choose a only
+{b}          — choose b only
+{a, b}       — choose both
+
+𝒫({a, b}) = {∅, {a}, {b}, {a, b}}
+Size: 2² = 4
+```
+
+### Three Elements
+
+```
+Set: {1, 2, 3}
+
+𝒫({1, 2, 3}) has 2³ = 8 subsets:
+
+∅
+{1}    {2}    {3}
+{1,2}  {1,3}  {2,3}
+{1,2,3}
+```
+
+## 7. Real-World Examples
+
+| Scenario | Subset Relationship |
+|----------|-------------------|
+| All cats are animals | Cats ⊆ Animals |
+| Admin users are users | Admin ⊆ Users |
+| Paid features are features | Paid ⊆ Features |
+| Square is a rectangle | Square ⊆ Rectangle |
+| Active customers are customers | Active ⊆ Customers |
+| All possible pizza toppings | Power set of toppings |
+
+## 8. Programming Examples
+
+### JavaScript — Checking Subsets
+
+```javascript
+function isSubset(A, B) {
+  return [...A].every(x => B.has(x))
+}
+
+let animals = new Set(['cat', 'dog', 'bird', 'fish'])
+let mammals = new Set(['cat', 'dog'])
+
+console.log(isSubset(mammals, animals))  // true
+console.log(isSubset(animals, mammals))  // false
+```
+
+### Python — Built-in Support
+
+```python
+animals = {'cat', 'dog', 'bird', 'fish'}
+mammals = {'cat', 'dog'}
+
+mammals.issubset(animals)       # True
+animals.issuperset(mammals)     # True
+mammals <= animals              # True (subset)
+mammals < animals               # True (proper subset)
+mammals < mammals               # False (not proper)
+```
+
+### Generating a Power Set
+
+```python
+from itertools import combinations
+
+def power_set(s):
+    elements = list(s)
+    result = []
+    for i in range(len(elements) + 1):
+        for combo in combinations(elements, i):
+            result.append(set(combo))
+    return result
+
+print(power_set({1, 2, 3}))
+# [set(), {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}]
+```
+
+### JavaScript Power Set
+
+```javascript
+function powerSet(arr) {
+  return arr.reduce(
+    (subsets, value) => subsets.concat(
+      subsets.map(set => [...set, value])
+    ),
+    [[]]
+  )
+}
+
+console.log(powerSet([1, 2, 3]))
+// [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+```
+
+<Steps>
+<Step number={1} title="Every set is a subset of itself">
+A = {1, 2, 3}, A ⊆ A is always true.
+All elements of A are in A. Trivially true.
+</Step>
+<Step number={2} title="Empty set is subset of everything">
+∅ ⊆ {1, 2, 3} is true.
+There are no elements to check. Vacuously true.
+</Step>
+<Step number={3} title="Subset ≠ element">
+Don't confuse ⊆ (subset) with ∈ (element of).
+{1} ⊆ {1, 2} — the set {1} is a subset.
+1 ∈ {1, 2} — the element 1 belongs to the set.
+</Step>
+<Step number={4} title="Power set grows exponentially">
+|A| = 3 → |𝒫(A)| = 8
+|A| = 5 → |𝒫(A)| = 32
+|A| = 10 → |𝒫(A)| = 1,024
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Check if one set is a subset of another
+function isSubset(A, B) {
+  return [...A].every(x => B.has(x));
+}
+
+let A = new Set([1, 2]);
+let B = new Set([1, 2, 3, 4, 5]);
+let C = new Set([1, 2, 6]);
+
+console.log('A ⊆ B:', isSubset(A, B));  // true
+console.log('C ⊆ B:', isSubset(C, B));  // false
+
+// Generate power set
+function powerSet(arr) {
+  return arr.reduce(
+    (subsets, value) => subsets.concat(
+      subsets.map(set => [...set, value])
+    ),
+    [[]]
+  );
+}
+
+console.log('Power set of [1,2]:', JSON.stringify(powerSet([1,2])));
+console.log('Size:', powerSet([1,2]).length);  // 2^2 = 4" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Version |
+|---------|---------------|-----------------|
+| "∅ is not a subset" | ∅ has no elements to violate membership | ∅ ⊆ A is always true |
+| "A set is never a subset of itself" | Every set is a subset of itself | A ⊆ A is always true |
+| "⊆ and ∈ mean the same thing" | ⊆ is for sets within sets, ∈ is for elements in sets | {1} ⊆ {1, 2} vs 1 ∈ {1, 2} |
+| "The power set has n² elements" | It's 2^n, not n² | |𝒫({a,b,c})| = 8, not 9 |
+| "The empty set is not in the power set" | ∅ is a valid subset of any set | ∅ ∈ 𝒫(A) for all A |
+
+## 11. Quiz
+
+<Quiz question="If A = {1, 2} and B = {1, 2, 3}, which statement is true?" options={["B ⊆ A", "A ⊆ B", "A ⊂ B is false", "A and B are equal"]} answer="1" explanation="All elements of A (1, 2) are in B, so A ⊆ B is true. B has an extra element (3), so A ⊂ B (proper subset) is also true." />
+
+<Quiz question="How many elements does the power set of {a, b, c, d} have?" options={["4", "8", "16", "2"]} answer="2" explanation="|𝒫({a,b,c,d})| = 2^4 = 16. A set with 4 elements has 16 subsets." />
+
+<Quiz question="Is ∅ ⊆ {1, 2, 3}?" options={["Yes, always", "No, never", "Only if specifically defined", "The empty set is not a subset of non-empty sets"]} answer="0" explanation="The empty set is a subset of every set. Since ∅ has no elements, there's nothing that could violate membership in any set." />
+
+## 12. Challenge
+
+Given a set of available ingredients:
+
+```
+ingredients = {rice, beans, cheese, salsa}
+```
+
+1. How many possible burrito combinations exist? (power set size)
+2. List all combinations with exactly 2 ingredients
+3. Write a function that checks if a combination is valid (is a subset of ingredients)
+
+<Terminal mode="interactive" language="javascript" initialCode="let ingredients = new Set(['rice', 'beans', 'cheese', 'salsa']);
+
+// 1. How many combinations?
+console.log('Total combinations:', 2 ** ingredients.size);
+
+// 2. Generate all subsets of size 2
+let arr = [...ingredients];
+let subsetsOfSize2 = [];
+for (let i = 0; i < arr.length; i++) {
+  for (let j = i + 1; j < arr.length; j++) {
+    subsetsOfSize2.push([arr[i], arr[j]]);
+  }
+}
+console.log('Combinations of 2:', subsetsOfSize2);
+
+// 3. Check if a combo is valid (subset of ingredients)
+let combo = ['rice', 'cheese'];
+let isValid = combo.every(x => ingredients.has(x));
+console.log('Is valid combo:', isValid);" />
+
+## 13. Summary
+
+- **A ⊆ B**: every element of A is in B (A is a subset of B)
+- **A ⊂ B**: A ⊆ B **and** A ≠ B (proper subset)
+- ∅ ⊆ A is **always true** for any set A
+- A ⊆ A is **always true** for any set A
+- **Power set** 𝒫(A) = set of all subsets of A
+- |𝒫(A)| = 2^|A| — power sets grow exponentially
+- Subsets define hierarchies (type systems, inheritance, categories)
+
+## 14. What's Next
+
+Subsets and power sets are about combinations within one set. The next lesson covers **Cartesian Products** — combining elements from **two different sets** to create ordered pairs, the foundation of coordinates, databases, and functions.

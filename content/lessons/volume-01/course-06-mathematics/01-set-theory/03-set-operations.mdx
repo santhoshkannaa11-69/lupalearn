@@ -1,0 +1,348 @@
+---
+title: "Set Operations"
+slug: set-operations
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 3
+duration: 25
+xp: 35
+difficulty: beginner
+concepts: [sets, union, intersection, set-difference, complement]
+prerequisites: [what-is-a-set, representing-sets]
+learningObjectives:
+  - Compute the union of two sets
+  - Compute the intersection of two sets
+  - Compute the difference of two sets
+  - Understand the complement of a set
+  - Write set operations in code
+estimatedKnowledgeGain: 8
+tags: [mathematics, sets, operations]
+icon: 🔗
+---
+
+## 1. Hook
+
+You have a list of friends who like Action movies. Your friend has a list of friends who like Comedy movies.
+
+How do you find:
+- Friends who like **either** Action or Comedy? (union)
+- Friends who like **both**? (intersection)
+- Friends who like Action **but not** Comedy? (difference)
+
+These three questions are everywhere. And sets give you the exact tools to answer them.
+
+## 2. Why This Matters
+
+Set operations are the foundation of:
+- **SQL databases**: UNION, INTERSECT, EXCEPT
+- **Search engines**: find pages containing any/all words
+- **Social networks**: mutual friends, suggested friends
+- **Spam filters**: words in spam but not in legitimate email
+- **Logic gates**: AND, OR, NOT in digital circuits
+
+You use set operations dozens of times a day without realizing it.
+
+## 3. Learning Objectives
+
+- Compute the union (∪) of two sets
+- Compute the intersection (∩) of two sets
+- Compute the difference (−) of two sets
+- Understand the complement (′) of a set
+- Write code that performs set operations
+
+## 4. Core Concept
+
+There are four fundamental set operations.
+
+### Union — "Everything in either set"
+
+```
+A ∪ B = {x | x ∈ A or x ∈ B (or both)}
+```
+
+**Symbol**: ∪ (like a U for Union)
+
+```
+A = {1, 2, 3}
+B = {3, 4, 5}
+A ∪ B = {1, 2, 3, 4, 5}
+```
+
+### Intersection — "Only what's in both"
+
+```
+A ∩ B = {x | x ∈ A and x ∈ B}
+```
+
+**Symbol**: ∩ (like an upside-down U)
+
+```
+A = {1, 2, 3}
+B = {3, 4, 5}
+A ∩ B = {3}
+```
+
+### Difference — "What's in A but not in B"
+
+```
+A − B = {x | x ∈ A and x ∉ B}
+```
+
+**Symbol**: − (minus sign)
+
+```
+A = {1, 2, 3}
+B = {3, 4, 5}
+A − B = {1, 2}
+```
+
+<Callout type="warning">
+  A − B is NOT the same as B − A!
+  A − B = {1, 2}
+  B − A = {4, 5}
+</Callout>
+
+### Complement — "Everything not in the set"
+
+```
+A′ = {x | x ∈ U and x ∉ A}
+```
+
+**Symbol**: ′ (prime) or a bar over the letter
+
+The complement depends on the **universal set** U — everything we're considering.
+
+```
+U = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+A = {1, 2, 3, 4, 5}
+A′ = {6, 7, 8, 9, 10}
+```
+
+## 5. Mental Model
+
+Think of two **hula hoops** on the ground.
+
+```
+      ┌───┐   ┌───┐
+      │ A │   │ B │
+      │   │   │   │
+      └───┘   └───┘
+```
+
+| Operation | What It Means |
+|-----------|--------------|
+| **Union** | Everything inside either hoop |
+| **Intersection** | Only the area where hoops overlap |
+| **Difference** | Inside A's hoop but outside B's |
+| **Complement** | Outside the hoop (but still in the yard) |
+
+## 6. Visualization
+
+```
+A = {🍎, 🍌, 🍇}
+B = {🍇, 🍊, 🍉}
+
+UNION (A ∪ B)
+────────────────
+  {🍎, 🍌, 🍇, 🍊, 🍉}
+  Everything in either set.
+
+INTERSECTION (A ∩ B)
+────────────────
+  {🍇}
+  Only what's in both.
+
+DIFFERENCE (A − B)
+────────────────
+  {🍎, 🍌}
+  In A but not in B.
+
+DIFFERENCE (B − A)
+────────────────
+  {🍊, 🍉}
+  In B but not in A.
+```
+
+## 7. Real-World Examples
+
+| Problem | Set Operation |
+|---------|--------------|
+| Friends who like Action OR Comedy | Union |
+| Mutual friends | Intersection |
+| Subscribers who haven't watched a video | Difference (subscribers − viewers) |
+| Emails not from a known sender | Complement (all emails − known senders) |
+| Products in stock AND on sale | Intersection |
+| Customers who bought A but NOT B | Difference |
+
+## 8. Programming Examples
+
+### JavaScript
+
+```javascript
+let A = new Set([1, 2, 3])
+let B = new Set([3, 4, 5])
+
+// Union
+let union = new Set([...A, ...B])
+// {1, 2, 3, 4, 5}
+
+// Intersection
+let intersection = new Set([...A].filter(x => B.has(x)))
+// {3}
+
+// Difference (A − B)
+let difference = new Set([...A].filter(x => !B.has(x)))
+// {1, 2}
+```
+
+### Python
+
+```python
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+# Union
+A | B  # {1, 2, 3, 4, 5}
+
+# Intersection
+A & B  # {3}
+
+# Difference
+A - B  # {1, 2}
+B - A  # {4, 5}
+
+# Symmetric difference (in either but not both)
+A ^ B  # {1, 2, 4, 5}
+```
+
+### SQL
+
+```sql
+-- Union: all unique customers from both regions
+SELECT name FROM customers_north
+UNION
+SELECT name FROM customers_south;
+
+-- Intersection: customers who bought both products
+SELECT customer_id FROM purchases WHERE product = 'A'
+INTERSECT
+SELECT customer_id FROM purchases WHERE product = 'B';
+
+-- Difference: customers who bought A but not B
+SELECT customer_id FROM purchases WHERE product = 'A'
+EXCEPT
+SELECT customer_id FROM purchases WHERE product = 'B';
+```
+
+<Steps>
+<Step number={1} title="Identify the sets">
+A = {1, 2, 3}, B = {3, 4, 5}
+What elements do they share? 3.
+What's unique to A? 1, 2.
+What's unique to B? 4, 5.
+</Step>
+<Step number={2} title="Union = all elements">
+A ∪ B = {1, 2, 3} + {3, 4, 5} = {1, 2, 3, 4, 5}
+No duplicates, order doesn't matter.
+</Step>
+<Step number={3} title="Intersection = shared elements">
+A ∩ B = {3}
+Only the element that appears in both sets.
+</Step>
+<Step number={4} title="Difference = subtract shared">
+A − B = {1, 2} — remove B's elements from A
+B − A = {4, 5} — remove A's elements from B
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+Try it yourself.
+
+<Terminal mode="interactive" language="javascript" initialCode="let A = new Set([1, 2, 3, 4]);
+let B = new Set([3, 4, 5, 6]);
+
+// Union
+let union = new Set([...A, ...B]);
+console.log('Union:', [...union]);
+
+// Intersection
+let intersection = new Set([...A].filter(x => B.has(x)));
+console.log('Intersection:', [...intersection]);
+
+// Difference (A - B)
+let diffAB = new Set([...A].filter(x => !B.has(x)));
+console.log('A - B:', [...diffAB]);
+
+// Try: what is B - A?" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Version |
+|---------|---------------|-----------------|
+| "A − B = B − A" | Order matters in difference | A − B = {1, 2}, B − A = {4, 5} |
+| "Union just adds elements" | It does, but duplicates are removed | {1, 2} ∪ {2, 3} = {1, 2, 3}, not {1, 2, 2, 3} |
+| "Intersection is the average" | No — it's only what's shared | A ∩ B contains only common elements |
+| "Complement doesn't need a universal set" | You must know what "everything" means | A′ depends on what U is |
+| Confusing ∪ and ∩ | Remember: ∪ looks like a U for Union | ∪ = everything in either, ∩ = only shared |
+
+## 11. Quiz
+
+<Quiz question="If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∪ B?" options={["{3}", "{1, 2, 4, 5}", "{1, 2, 3, 4, 5}", "{1, 2, 3, 3, 4, 5}"]} answer="2" explanation="Union is everything in either set, without duplicates: {1, 2, 3, 4, 5}." />
+
+<Quiz question="What is A ∩ B if A = {1, 2, 3} and B = {3, 4, 5}?" options={["{1, 2, 4, 5}", "{1, 2, 3, 4, 5}", "{3}", "{}"]} answer="2" explanation="Intersection is only the element(s) that appear in both sets. Only 3 is in both A and B." />
+
+<Quiz question="Is A − B the same as B − A?" options={["Yes, always", "No, never", "Sometimes", "Only if A = B"]} answer="1" explanation="A − B removes B's elements from A. B − A removes A's elements from B. These are different unless A = B." />
+
+## 12. Challenge
+
+Given two sets:
+
+```
+all_users = {Alice, Bob, Charlie, David, Eve}
+active_users = {Alice, Charlie, Eve, Frank}
+```
+
+Find:
+1. All users who are **either** in the system or active (union)
+2. Users who are **both** registered and active (intersection)
+3. Registered users who have **never been active** (difference)
+4. Active users who are **not registered** (difference)
+
+Try solving it in code.
+
+<Terminal mode="interactive" language="javascript" initialCode="let all = new Set(['Alice', 'Bob', 'Charlie', 'David', 'Eve']);
+let active = new Set(['Alice', 'Charlie', 'Eve', 'Frank']);
+
+// 1. Union: all users in either set
+let union = new Set([...all, ...active]);
+console.log('Union:', [...union]);
+
+// 2. Intersection: in both
+let intersection = new Set([...all].filter(x => active.has(x)));
+console.log('Intersection:', [...intersection]);
+
+// 3. All − Active: registered but never active
+let neverActive = new Set([...all].filter(x => !active.has(x)));
+console.log('Never active:', [...neverActive]);
+
+// 4. Active − All: active but not registered
+let notRegistered = new Set([...active].filter(x => !all.has(x)));
+console.log('Not registered:', [...notRegistered]);" />
+
+## 13. Summary
+
+| Operation | Symbol | Meaning | Example |
+|-----------|--------|---------|---------|
+| **Union** | ∪ | Everything in either set | {1,2} ∪ {2,3} = {1,2,3} |
+| **Intersection** | ∩ | Only what's in both | {1,2} ∩ {2,3} = {2} |
+| **Difference** | − | First set minus second | {1,2} − {2,3} = {1} |
+| **Complement** | ′ | Everything not in the set | U = {1,2,3}, A = {1}, A′ = {2,3} |
+
+- Union and intersection are **commutative**: A ∪ B = B ∪ A, A ∩ B = B ∩ A
+- Difference is **not** commutative: A − B ≠ B − A
+- These operations are the foundation of SQL, search, and logic
+
+## 14. What's Next
+
+Set operations are powerful, but they're easier to understand with pictures. The next lesson covers **Venn Diagrams** — visual representations that make set operations instantly intuitive.

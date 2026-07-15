@@ -1,0 +1,294 @@
+---
+title: "Venn Diagrams"
+slug: venn-diagrams
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 4
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [sets, venn-diagrams]
+prerequisites: [set-operations]
+learningObjectives:
+  - Draw a Venn diagram for two sets
+  - Identify regions for union, intersection, and difference
+  - Use Venn diagrams to solve problems visually
+estimatedKnowledgeGain: 7
+tags: [mathematics, sets, visualization]
+icon: 🎯
+---
+
+## 1. Hook
+
+You know what union and intersection do. But if someone asked you "what's A ∪ (B ∩ C)?" — would you be able to picture it?
+
+That's why Venn diagrams exist. They turn abstract symbols into something you can see.
+
+## 2. Why This Matters
+
+Venn diagrams aren't just for school. They're used in:
+- **Data analysis**: finding overlapping customer segments
+- **Statistics**: visualizing probability
+- **Logic**: understanding AND, OR, NOT relationships
+- **Search**: visualizing query results
+- **Problem solving**: breaking down complex relationships
+
+When you can see the relationships, you can reason about them faster.
+
+## 3. Learning Objectives
+
+- Draw and label a two-set Venn diagram
+- Shade the region representing any set operation
+- Use Venn diagrams to solve problems
+- Read and interpret existing Venn diagrams
+
+## 4. Core Concept
+
+A Venn diagram uses overlapping circles inside a rectangle.
+
+```
+      ┌─────────────────────┐
+      │       UNIVERSE      │
+      │                     │
+      │  ┌───┐   ┌───┐     │
+      │  │ A │   │ B │     │
+      │  │   │   │   │     │
+      │  └───┘   └───┘     │
+      │                     │
+      └─────────────────────┘
+```
+
+- Each **circle** represents a set
+- The **rectangle** represents the universal set U
+- **Overlapping** area represents elements in both sets
+- **Outside both circles** represents elements in neither
+
+### Two-Set Regions
+
+```
+      ┌─────────────────────┐
+      │                     │
+      │  ┌────┐  ┌────┐    │
+      │  │ A  │  │ B  │    │
+      │  │    │  │    │    │
+      │  │ ┌──┼──┼──┐ │    │
+      │  │ │  │  │  │ │    │
+      │  │ └──┼──┼──┘ │    │
+      │  └────┘  └────┘    │
+      │                     │
+      └─────────────────────┘
+```
+
+| Region | Meaning | Operation |
+|--------|---------|-----------|
+| Only in A | Elements in A but not B | A − B |
+| Only in B | Elements in B but not A | B − A |
+| Overlap | Elements in both A and B | A ∩ B |
+| Outside both | Elements in neither A nor B | (A ∪ B)′ |
+
+## 5. Mental Model
+
+Think of a Venn diagram as a **target with two rings**.
+
+The bullseye (center overlap) is the intersection — elements that hit both targets.
+
+The entire target area is the union — elements that hit either target.
+
+## 6. Visualization
+
+### Union (A ∪ B) — shade everything in either circle
+
+```
+      ┌─────────────────────┐
+      │ ███████████████████ │
+      │ ███████████████████ │
+      │ ███┌────┐██┌────┐███│
+      │ ███│ A  │██│ B  │███│
+      │ ███│ ██ │██│ ██ │███│
+      │ ███│ ██ │██│ ██ │███│
+      │ ███└────┘██└────┘███│
+      │ ███████████████████ │
+      └─────────────────────┘
+```
+
+### Intersection (A ∩ B) — only the overlap
+
+```
+      ┌─────────────────────┐
+      │                     │
+      │                     │
+      │  ┌────┐  ┌────┐    │
+      │  │ A  │  │ B  │    │
+      │  │    │  │    │    │
+      │  │ ┌──┼──┼──┐ │    │
+      │  │ │  │██│  │ │    │
+      │  │ └──┼──┼──┘ │    │
+      │  └────┘  └────┘    │
+      │                     │
+      └─────────────────────┘
+```
+
+### Difference (A − B) — only A's non-overlapping part
+
+```
+      ┌─────────────────────┐
+      │                     │
+      │  ██████████         │
+      │  ██████████ ┌────┐  │
+      │  ███ A  ██ │ B  │  │
+      │  ███    ██ │    │  │
+      │  ██████████ └────┘  │
+      │  ██████████         │
+      │                     │
+      └─────────────────────┘
+```
+
+### Complement (A′) — everything outside A
+
+```
+      ┌─────────────────────┐
+      │ ███████████████████ │
+      │ ███████████████████ │
+      │ ███████┌────┐██████│
+      │ ███████│ A  │██████│
+      │ ███████│    │██████│
+      │ ███████└────┘██████│
+      │ ███████████████████ │
+      │ ███████████████████ │
+      └─────────────────────┘
+```
+
+## 7. Real-World Examples
+
+### Problem: Customer Segments
+
+A store surveys 100 customers:
+
+- 60 bought food (F)
+- 40 bought drinks (D)
+- 20 bought both
+
+```
+      ┌─────────────────────────┐
+      │         ALL 100         │
+      │                         │
+      │  ┌────────┐  ┌────────┐ │
+      │  │ F: 40  │  │ D: 20  │ │
+      │  │        │  │        │ │
+      │  │     ┌──┼──┼──┐     │ │
+      │  │     │  │  │  │     │ │
+      │  │     │20│  │  │     │ │
+      │  │     └──┼──┼──┘     │ │
+      │  └────────┘  └────────┘ │
+      │     Neither: 20         │
+      └─────────────────────────┘
+```
+
+Questions you can answer instantly:
+- How many bought food only? 60 − 20 = **40**
+- How many bought drinks only? 40 − 20 = **20**
+- How many bought at least one? 40 + 20 + 20 = **80**
+- How many bought neither? 100 − 80 = **20**
+
+## 8. Programming Connection
+
+Venn diagrams are built into many data analysis libraries.
+
+```python
+# Using matplotlib_venn in Python
+from matplotlib_venn import venn2
+venn2(subsets=(10, 5, 3), set_labels=('Group A', 'Group B'))
+```
+
+But in practice, you'll most often compute the **regions** in code:
+
+```javascript
+let foodOnly = new Set([...food].filter(x => !drinks.has(x)));
+let drinksOnly = new Set([...drinks].filter(x => !food.has(x)));
+let both = new Set([...food].filter(x => drinks.has(x)));
+let neither = new Set([...allCustomers].filter(x => !food.has(x) && !drinks.has(x)));
+```
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Customer data
+let all = new Set([1,2,3,4,5,6,7,8,9,10]);
+let food = new Set([1,2,3,4,5,6]);
+let drinks = new Set([4,5,6,7,8]);
+
+// Find each Venn region
+let foodOnly = new Set([...food].filter(x => !drinks.has(x)));
+let drinksOnly = new Set([...drinks].filter(x => !food.has(x)));
+let both = new Set([...food].filter(x => drinks.has(x)));
+let neither = new Set([...all].filter(x => !food.has(x) && !drinks.has(x)));
+
+console.log('Food only:', [...foodOnly]);
+console.log('Drinks only:', [...drinksOnly]);
+console.log('Both:', [...both]);
+console.log('Neither:', [...neither]);
+console.log('Total:', foodOnly.size + drinksOnly.size + both.size + neither.size);" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Approach |
+|---------|---------------|-----------------|
+| Forgetting the rectangle (universal set) | Complement has no meaning without it | Always draw U |
+| Labels outside circles | Labels should identify which set is which | Write A and B inside or just outside circles |
+| Circles that don't overlap | Most real sets have some overlap | Always assume possible overlap |
+| Unequal circle sizes | Circles are just containers, size is irrelevant | Circle size doesn't represent set size |
+| More than 3 circles without practice | 4+ circle Venn diagrams are complex | Stick to 2-3 circles for most problems |
+
+## 11. Quiz
+
+<Quiz question="In a two-set Venn diagram, which region represents the intersection?" options={["The left circle only", "The right circle only", "The overlapping area", "The area outside both circles"]} answer="2" explanation="The intersection A ∩ B is represented by the area where the two circles overlap — elements that belong to both sets." />
+
+<Quiz question="If A has 10 elements, B has 8 elements, and they share 3, how many elements are in A ∪ B?" options={["18", "15", "13", "21"]} answer="1" explanation="|A ∪ B| = |A| + |B| − |A ∩ B| = 10 + 8 − 3 = 15. We subtract the overlap because it's counted twice." />
+
+<Quiz question="What does the area outside both circles represent?" options={["Nothing — elements must be in a set", "The universe", "Elements in neither A nor B", "The empty set"]} answer="2" explanation="The area outside both circles (but inside the rectangle) represents elements in the universal set that belong to neither A nor B." />
+
+## 12. Challenge
+
+Draw a Venn diagram (on paper or in your head) for this scenario:
+
+A class of 30 students:
+- 18 play soccer (S)
+- 15 play basketball (B)
+- 10 play both
+
+Find:
+1. Students who play only soccer
+2. Students who play only basketball
+3. Students who play at least one sport
+4. Students who play neither
+
+Then verify with code.
+
+<Terminal mode="interactive" language="javascript" initialCode="let total = 30;
+let soccer = 18;
+let basketball = 15;
+let both = 10;
+
+// Fill in the regions
+let soccerOnly = soccer - both;
+let basketballOnly = basketball - both;
+let atLeastOne = soccerOnly + basketballOnly + both;
+let neither = total - atLeastOne;
+
+console.log('Soccer only:', soccerOnly);
+console.log('Basketball only:', basketballOnly);
+console.log('At least one:', atLeastOne);
+console.log('Neither:', neither);" />
+
+## 13. Summary
+
+- A **Venn diagram** uses overlapping circles inside a rectangle (universal set)
+- Each **region** corresponds to a set operation (union, intersection, difference)
+- **Union** = shade everything in either circle
+- **Intersection** = shade only the overlap
+- **Difference** = shade one circle minus the overlap
+- **Complement** = shade everything outside the circle
+- Formula: `|A ∪ B| = |A| + |B| − |A ∩ B|`
+
+## 14. What's Next
+
+Now that you can visualize set relationships, the next lesson covers **Subsets & Power Sets** — what it means for one set to be contained within another, and how to find every possible combination of elements.

@@ -240,6 +240,7 @@ async function main() {
   const C3 = "lessons/volume-01/course-03-data-representation"
   const C4 = "lessons/volume-01/course-04-logic-boolean-algebra"
   const C5 = "lessons/volume-01/course-05-digital-electronics"
+  const C6 = "lessons/volume-01/course-06-mathematics"
   const lessonData = [
     // Module 1: What is Programming? (5)
     { slug: "what-is-a-program", title: "What Is a Program?", description: "Learn what a computer program actually is.", contentPath: `${BASE_PATH}/01-what-is-programming/01-what-is-a-program.mdx`, moduleSlug: "what-is-programming", order: 1, duration: 15, xp: 20, tags: ["programming", "fundamentals"], concepts: ["algorithms"] },
@@ -481,9 +482,17 @@ async function main() {
     { slug: "gpus-fpgas-asics", title: "GPUs, FPGAs & ASICs", description: "CPU vs GPU vs FPGA vs ASIC.", contentPath: `${C5}/08-modern-systems/01-gpus-fpgas-asics.mdx`, moduleSlug: "modern-systems", order: 1, duration: 20, xp: 30, tags: ["gpu"], concepts: ["boolean-logic"] },
     { slug: "silicon-to-ai", title: "From Silicon to AI", description: "Connecting electrons to intelligence.", contentPath: `${C5}/08-modern-systems/02-silicon-to-ai.mdx`, moduleSlug: "modern-systems", order: 2, duration: 20, xp: 30, tags: ["ai"], concepts: ["boolean-logic"] },
 
-    // ─── COURSE 6: Mathematics (sample lessons) ───
-    { slug: "set-theory-intro", title: "Introduction to Set Theory", description: "Learn about sets, subsets, and set operations.", contentPath: "lessons/volume-01/course-06-mathematics/set-theory.mdx", moduleSlug: "set-theory", order: 1, duration: 20, xp: 30, tags: ["sets"], concepts: ["algorithms"] },
-    { slug: "graph-theory-intro", title: "Introduction to Graph Theory", description: "Understand graphs, trees, and their applications in CS.", contentPath: "lessons/volume-01/course-06-mathematics/graph-theory.mdx", moduleSlug: "graph-theory", order: 1, duration: 25, xp: 35, tags: ["graphs"], concepts: ["graphs"] },
+    // ─── COURSE 6: Mathematics ───
+    // Module 1: Set Theory (7 lessons)
+    { slug: "what-is-a-set", title: "What Is a Set?", description: "Define sets, understand uniqueness and orderlessness, and check membership.", contentPath: `${C6}/01-set-theory/01-what-is-a-set.mdx`, moduleSlug: "set-theory", order: 1, duration: 20, xp: 30, tags: ["sets"], concepts: ["sets"] },
+    { slug: "representing-sets", title: "Representing Sets", description: "Roster notation, set-builder notation, empty set, and cardinality.", contentPath: `${C6}/01-set-theory/02-representing-sets.mdx`, moduleSlug: "set-theory", order: 2, duration: 20, xp: 30, tags: ["sets"], concepts: ["sets"] },
+    { slug: "set-operations", title: "Set Operations", description: "Union, intersection, difference, and complement of sets.", contentPath: `${C6}/01-set-theory/03-set-operations.mdx`, moduleSlug: "set-theory", order: 3, duration: 25, xp: 35, tags: ["sets"], concepts: ["sets"] },
+    { slug: "venn-diagrams", title: "Venn Diagrams", description: "Visualize set relationships with overlapping circles.", contentPath: `${C6}/01-set-theory/04-venn-diagrams.mdx`, moduleSlug: "set-theory", order: 4, duration: 20, xp: 30, tags: ["sets"], concepts: ["sets"] },
+    { slug: "subsets-power-sets", title: "Subsets & Power Sets", description: "Subset relationships, proper subsets, and generating all possible subsets.", contentPath: `${C6}/01-set-theory/05-subsets-power-sets.mdx`, moduleSlug: "set-theory", order: 5, duration: 25, xp: 35, tags: ["sets"], concepts: ["sets"] },
+    { slug: "cartesian-products", title: "Cartesian Products", description: "All possible ordered pairs from two sets — the foundation of coordinates and databases.", contentPath: `${C6}/01-set-theory/06-cartesian-products.mdx`, moduleSlug: "set-theory", order: 6, duration: 20, xp: 30, tags: ["sets"], concepts: ["sets"] },
+    { slug: "sets-in-programming", title: "Sets in Programming", description: "Use Sets vs Arrays for deduplication, fast membership checks, and set operations in code.", contentPath: `${C6}/01-set-theory/07-sets-in-programming.mdx`, moduleSlug: "set-theory", order: 7, duration: 25, xp: 40, tags: ["sets", "programming"], concepts: ["sets"] },
+    // Module 5: Graph Theory (sample — to be expanded)
+    { slug: "graph-theory-intro", title: "Introduction to Graph Theory", description: "Understand graphs, trees, and their applications in CS.", contentPath: `${C6}/graph-theory.mdx`, moduleSlug: "graph-theory", order: 1, duration: 25, xp: 35, tags: ["graphs"], concepts: ["graphs"] },
 
     // ─── COURSE 8: Problem Solving (sample lessons) ───
     { slug: "computational-thinking", title: "Computational Thinking", description: "Learn the four pillars of computational thinking.", contentPath: "lessons/volume-01/course-08-problem-solving/computational-thinking.mdx", moduleSlug: "computational-thinking", order: 1, duration: 20, xp: 25, tags: ["thinking"], concepts: ["algorithms"] },

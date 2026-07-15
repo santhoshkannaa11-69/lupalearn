@@ -1,0 +1,309 @@
+---
+title: "Cartesian Products"
+slug: cartesian-products
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 6
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [sets, cartesian-products]
+prerequisites: [representing-sets]
+learningObjectives:
+  - Define the Cartesian product of two sets
+  - Compute A × B for small sets
+  - Understand why ordered pairs matter
+  - Recognize Cartesian products in programming
+estimatedKnowledgeGain: 7
+tags: [mathematics, sets, coordinates]
+icon: 📐
+---
+
+## 1. Hook
+
+Every time you see a point on a map, a cell in a spreadsheet, or a pixel on a screen — you're looking at a Cartesian product.
+
+(X, Y) coordinates. (Row, Column) in a table. (Latitude, Longitude) on a map. All of them are **ordered pairs** from the Cartesian product of two sets.
+
+## 2. Why This Matters
+
+Cartesian products are the foundation of:
+
+- **Coordinates and graphics**: every pixel is an (x, y) pair
+- **Databases**: every row is a combination of column values
+- **Functions**: input-output pairs
+- **Matrices**: arranged in rows × columns
+- **Relationships**: (student, course) pairs in enrollment data
+- **Grids**: any 2D structure in programming
+
+## 3. Learning Objectives
+
+- Compute the Cartesian product A × B
+- Understand why (a, b) ≠ (b, a)
+- Calculate the size of a Cartesian product
+- Identify Cartesian products in real-world data
+
+## 4. Core Concept
+
+The **Cartesian product** of two sets A and B (written A × B) is the set of **all possible ordered pairs** where the first element comes from A and the second from B.
+
+```
+A × B = {(a, b) | a ∈ A, b ∈ B}
+```
+
+### Example
+
+```
+A = {1, 2}
+B = {x, y}
+
+A × B = {(1, x), (1, y), (2, x), (2, y)}
+```
+
+Each element of A pairs with each element of B. Like a multiplication table.
+
+### Size
+
+```
+|A × B| = |A| × |B|
+```
+
+If A has 3 elements and B has 4:
+|A × B| = 3 × 4 = 12 ordered pairs
+
+### Order Matters
+
+```
+(1, x) is NOT the same as (x, 1)
+```
+
+The first element comes from A, the second from B. Swap them and you get a different pair.
+
+```
+A × B ≠ B × A  (unless A = B)
+```
+
+### More Than Two Sets
+
+You can take the Cartesian product of any number of sets:
+
+```
+A × B × C = {(a, b, c) | a ∈ A, b ∈ B, c ∈ C}
+```
+
+## 5. Mental Model
+
+Think of a **restaurant menu**.
+
+```
+Appetizers: {Soup, Salad}
+Mains: {Pasta, Steak, Fish}
+```
+
+All possible meals: every appetizer paired with every main.
+
+```
+Soup + Pasta    Soup + Steak    Soup + Fish
+Salad + Pasta   Salad + Steak   Salad + Fish
+```
+
+That's Appetizers × Mains. 2 × 3 = 6 possible meals.
+
+## 6. Visualization
+
+### A × B as a Grid
+
+```
+A = {1, 2, 3}
+B = {a, b}
+
+A × B as a table:
+
+     a      b
+1  (1,a)  (1,b)
+2  (2,a)  (2,b)
+3  (3,a)  (3,b)
+```
+
+Like a multiplication table or spreadsheet.
+
+### As Ordered Pairs
+
+```
+A = {🍎, 🍌}
+B = {🍦, 🍩, 🍪}
+
+A × B:
+(🍎,🍦)  (🍎,🍩)  (🍎,🍪)
+(🍌,🍦)  (🍌,🍩)  (🍌,🍪)
+```
+
+Every fruit paired with every dessert. 2 × 3 = 6 combinations.
+
+## 7. Real-World Examples
+
+| Application | Cartesian Product |
+|------------|------------------|
+| Chess board | Files × Ranks (8 × 8 = 64 squares) |
+| Spreadsheet | Rows × Columns |
+| Screen pixels | X-coordinates × Y-coordinates |
+| Deck of cards | Suits × Ranks (4 × 13 = 52 cards) |
+| T-shirt sizes | Colors × Sizes |
+| Time slots | Days × Hours |
+| Student enrollment | Students × Courses |
+
+### The Card Deck Example
+
+```
+Suits = {♠, ♥, ♦, ♣}
+Ranks = {A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K}
+
+Suits × Ranks = all 52 cards
+(♠, A), (♠, 2), ..., (♣, K)
+```
+
+## 8. Programming Examples
+
+### JavaScript — Cartesian Product
+
+```javascript
+function cartesianProduct(A, B) {
+  let result = []
+  for (let a of A) {
+    for (let b of B) {
+      result.push([a, b])
+    }
+  }
+  return result
+}
+
+let sizes = ['S', 'M', 'L']
+let colors = ['Red', 'Blue']
+console.log(cartesianProduct(sizes, colors))
+// [['S','Red'], ['S','Blue'], ['M','Red'], ['M','Blue'], ['L','Red'], ['L','Blue']]
+```
+
+### Python — Using itertools
+
+```python
+from itertools import product
+
+sizes = ['S', 'M', 'L']
+colors = ['Red', 'Blue']
+
+list(product(sizes, colors))
+# [('S','Red'), ('S','Blue'), ('M','Red'), ('M','Blue'), ('L','Red'), ('L','Blue')]
+
+# Three sets
+list(product([1, 2], ['a', 'b'], ['x', 'y']))
+# (1,'a','x'), (1,'a','y'), (1,'b','x') ...
+```
+
+### SQL — CROSS JOIN
+
+```sql
+SELECT * FROM colors CROSS JOIN sizes;
+-- Returns every color paired with every size
+```
+
+<Steps>
+<Step number={1} title="Pick one element from A">
+From A = {1, 2}, pick 1.
+</Step>
+<Step number={2} title="Pair with every element of B">
+1 pairs with x, then 1 pairs with y.
+(1, x), (1, y)
+</Step>
+<Step number={3} title="Repeat for remaining elements of A">
+2 pairs with x, then 2 pairs with y.
+(2, x), (2, y)
+</Step>
+<Step number={4} title="Collect all pairs">
+A × B = {(1, x), (1, y), (2, x), (2, y)}
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="function cartesianProduct(A, B) {
+  let result = [];
+  for (let a of A) {
+    for (let b of B) {
+      result.push(`(${a}, ${b})`);
+    }
+  }
+  return result;
+}
+
+let toppings = ['cheese', 'pepperoni', 'mushrooms'];
+let sizes = ['small', 'large'];
+
+console.log('All pizza combos:');
+console.log(cartesianProduct(toppings, sizes));
+
+console.log('Total:', toppings.length * sizes.length);" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Version |
+|---------|---------------|-----------------|
+| "A × B = B × A" | Ordered pairs make (1, x) different from (x, 1) | A × B ≠ B × A unless A = B |
+| "Cartesian product is like union" | Union combines elements, product pairs them | |A × B| = |A| × |B|, not |A| + |B| |
+| "(a, b) is the same as {a, b}" | (a, b) is an ordered pair; {a, b} is a set | Order matters in pairs, not in sets |
+| "Empty set × A has elements" | If either set is empty, the product is empty | ∅ × A = ∅ |
+
+## 11. Quiz
+
+<Quiz question="If A = {1, 2} and B = {a, b, c}, what is |A × B|?" options={["5", "6", "8", "3"]} answer="1" explanation="|A × B| = |A| × |B| = 2 × 3 = 6 ordered pairs." />
+
+<Quiz question="Is (1, a) the same as (a, 1) in a Cartesian product?" options={["Yes, order doesn't matter", "No, the first element must come from A, the second from B", "Depends on the sets", "Only if A and B have the same elements"]} answer="1" explanation="In A × B, the first element always comes from A and the second from B. Swapping them gives a different pair." />
+
+<Quiz question="What is ∅ × {1, 2, 3}?" options={["{1, 2, 3}", "∅", "{(∅,1), (∅,2), (∅,3)}", "Undefined"]} answer="1" explanation="If either set in a Cartesian product is empty, the result is the empty set. There are no elements to pair." />
+
+## 12. Challenge
+
+A restaurant offers:
+
+```
+proteins = {chicken, beef, tofu}
+sauces = {teriyaki, garlic, bbq}
+sides = {rice, noodles}
+```
+
+1. How many possible meals (protein + sauce + side)?
+2. List all meals with beef
+3. If you don't like garlic, how many meals are still available?
+
+<Terminal mode="interactive" language="javascript" initialCode="let proteins = ['chicken', 'beef', 'tofu'];
+let sauces = ['teriyaki', 'garlic', 'bbq'];
+let sides = ['rice', 'noodles'];
+
+// 1. Total combinations
+let total = proteins.length * sauces.length * sides.length;
+console.log('Total meals:', total);
+
+// 2. Meals with beef
+let beefMeals = [];
+for (let s of sauces) {
+  for (let side of sides) {
+    beefMeals.push(`beef + ${s} + ${side}`);
+  }
+}
+console.log('Beef meals:', beefMeals);
+
+// 3. Meals without garlic
+let noGarlic = proteins.length * (sauces.length - 1) * sides.length;
+console.log('Meals without garlic:', noGarlic);" />
+
+## 13. Summary
+
+- **A × B** = all ordered pairs (a, b) where a ∈ A and b ∈ B
+- **|A × B|** = |A| × |B|
+- **(a, b) ≠ (b, a)** — order matters in pairs
+- **A × B ≠ B × A** in general
+- If **either set is empty**, the product is empty
+- Cartesian products are the foundation of coordinates, spreadsheets, databases, and combinations
+
+## 14. What's Next
+
+You now understand the mathematical theory of sets. The final lesson in this module — **Sets in Programming** — shows you how to apply everything you've learned to write better, faster, and cleaner code.

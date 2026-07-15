@@ -1,0 +1,326 @@
+---
+title: "Sets in Programming"
+slug: sets-in-programming
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 7
+duration: 25
+xp: 40
+difficulty: beginner
+concepts: [sets, programming, data-structures]
+prerequisites: [what-is-a-set, set-operations]
+learningObjectives:
+  - Choose between a Set and an Array for different problems
+  - Use Sets for deduplication and membership checks
+  - Perform set operations in code
+  - Build real programs using Sets
+estimatedKnowledgeGain: 8
+tags: [programming, data-structures, sets]
+icon: 💻
+---
+
+## 1. Hook
+
+You've learned the math. Now here's the secret: every time a senior developer writes cleaner, faster code than a junior, there's a good chance they're using a Set instead of an Array.
+
+A junior writes:
+
+```javascript
+let unique = []
+for (let item of list) {
+  if (!unique.includes(item)) unique.push(item)
+}
+```
+
+A senior writes:
+
+```javascript
+let unique = [...new Set(list)]
+```
+
+One line. Faster. Clearer. That's the power of Sets in programming.
+
+## 2. Why This Matters
+
+Sets aren't just math — they're a practical tool that makes your code:
+
+- **Faster**: `set.has()` is O(1), `array.includes()` is O(n)
+- **Cleaner**: one line instead of loops with conditions
+- **Safer**: no accidental duplicates, no index confusion
+- **More expressive**: your code says exactly what it means
+
+## 3. Learning Objectives
+
+- Choose when to use a Set vs an Array
+- Use Sets for deduplication and membership checks
+- Perform union, intersection, and difference in code
+- Build practical programs using Sets
+
+## 4. Core Concept
+
+### Set vs Array — When to Use Which
+
+| Need | Use | Why |
+|------|-----|-----|
+| Unique items | **Set** | Automatically rejects duplicates |
+| Fast membership check | **Set** | O(1) vs O(n) for arrays |
+| Order matters | **Array** | Sets have no order |
+| Need index/position | **Array** | `array[2]` works, `set[2]` doesn't |
+| Duplicates allowed | **Array** | Sets reject duplicates |
+| Need both unique + ordered | **Array** + validate uniqueness | Or use a Set then convert to Array |
+
+### The Golden Rule
+
+> If you only need to know "is this in the collection?" — use a Set.
+> If you need to know "where is it in the collection?" — use an Array.
+
+### Performance Comparison
+
+Searching for an item in a collection of 10,000 items:
+
+| Data Structure | Operation | Time |
+|---------------|-----------|------|
+| Array | `array.includes(x)` | ~10,000 checks (slow) |
+| Set | `set.has(x)` | ~1 check (instant) |
+
+The difference grows as your data grows. At 100,000 items, an array search takes 100,000 steps. A Set still takes 1.
+
+## 5. Mental Model
+
+Think of a **VIP list for a club**.
+
+The VIP list is a Set — the bouncer checks names instantly, no duplicates.
+
+The general waiting list is an Array — order matters, duplicates possible (same name entered twice).
+
+```
+VIP List (Set):      {Alice, Bob, Charlie}
+  → "Is Alice here?"      → Yes (instant)
+  → "Is David here?"      → No (instant)
+
+Waiting List (Array): [Alice, Bob, Alice, David, Eve]
+  → "Is Alice here?"      → Yes (but had to scan through!)
+  → "Where is Alice?"     → Position 0 (possible!)
+```
+
+## 6. Visualization
+
+```
+ARRAY                           SET
+┌────┬────┬────┬────┐           ┌─────────────┐
+│ 🍎 │ 🍌 │ 🍇 │ 🍎 │           │  🍎 🍌 🍇   │
+├────┼────┼────┼────┤           └─────────────┘
+│ 0  │ 1  │ 2  │ 3  │           No indices
+│    │    │    │    │           No duplicates
+│Order matters  │               Membership check
+│Duplicates OK  │               is O(1)
+└───────────────┘
+```
+
+## 7. Real-World Use Cases
+
+| Problem | Solution |
+|---------|----------|
+| Remove duplicate emails from a list | `[...new Set(emails)]` |
+| Check if username is taken | `takenUsernames.has(newUser)` |
+| Track page visitors (unique) | Add each visitor ID to a Set |
+| Find common friends between two users | Intersection of friend Sets |
+| Block spam words | Set of blocked words, check each word |
+| Track completed levels in a game | Set of completed level IDs |
+| Filter unique tags from blog posts | Union of all tag Sets |
+
+## 8. Programming Examples
+
+### JavaScript — Practical Patterns
+
+```javascript
+// 1. Deduplication
+let withDupes = [1, 2, 2, 3, 3, 3, 4]
+let unique = [...new Set(withDupes)]
+// [1, 2, 3, 4]
+
+// 2. Fast membership check
+let blockedIps = new Set(['192.168.1.1', '10.0.0.5'])
+function isBlocked(ip) {
+  return blockedIps.has(ip)  // O(1)
+}
+
+// 3. Set operations
+let A = new Set([1, 2, 3, 4])
+let B = new Set([3, 4, 5, 6])
+
+let union = new Set([...A, ...B])                    // {1,2,3,4,5,6}
+let intersection = new Set([...A].filter(x => B.has(x)))  // {3,4}
+let difference = new Set([...A].filter(x => !B.has(x)))   // {1,2}
+
+// 4. Track unique visitors
+let visitors = new Set()
+function visit(userId) {
+  visitors.add(userId)
+  return visitors.size  // total unique visitors
+}
+```
+
+### Python — Practical Patterns
+
+```python
+# 1. Deduplication
+with_dupes = [1, 2, 2, 3, 3, 3, 4]
+unique = list(set(with_dupes))
+# [1, 2, 3, 4]
+
+# 2. Fast membership
+blocked_ips = {'192.168.1.1', '10.0.0.5'}
+def is_blocked(ip):
+    return ip in blocked_ips  # O(1)
+
+# 3. Set operations (built-in!)
+A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+A | B  # union: {1,2,3,4,5,6}
+A & B  # intersection: {3,4}
+A - B  # difference: {1,2}
+A ^ B  # symmetric difference: {1,2,5,6}
+
+# 4. Unique word counter
+def unique_words(text):
+    return len(set(text.lower().split()))
+
+print(unique_words("the cat and the dog and the bird"))
+# 5 (the, cat, and, dog, bird)
+```
+
+<Steps>
+<Step number={1} title="Identify the problem">
+Do I need fast membership checks? → Set
+Do I need to remove duplicates? → Set
+Do I need order or indices? → Array
+</Step>
+<Step number={2} title="Create the Set">
+Wrap your array: `new Set(array)` or use a literal: `{1, 2, 3}`
+</Step>
+<Step number={3} title="Use it">
+Add: `set.add(x)`, Check: `set.has(x)`, Remove: `set.delete(x)`
+</Step>
+<Step number={4} title="Convert back if needed">
+`[...set]` in JS, `list(set)` in Python
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Challenge: Track unique page views
+let pageViews = new Set();
+
+function trackPage(userId) {
+  pageViews.add(userId);
+  console.log(`Unique visitors: ${pageViews.size}`);
+}
+
+// Simulate visits (some returning users)
+trackPage('user-1');  // 1
+trackPage('user-2');  // 2
+trackPage('user-1');  // 2 (returning — still unique)
+trackPage('user-3');  // 3
+trackPage('user-2');  // 3 (returning)
+
+// Check if a user has visited
+console.log('Has user-1 visited?', pageViews.has('user-1'));  // true
+console.log('Has user-4 visited?', pageViews.has('user-4'));  // false" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Approach |
+|---------|---------------|-----------------|
+| Using an array for membership checks | O(n) instead of O(1) for large data | Use `Set.has()` |
+| Using a Set when order matters | Sets don't preserve insertion order reliably | Use an Array (or convert Set → Array) |
+| Forgetting to convert Set to Array | Many APIs expect arrays | `[...mySet]` in JS |
+| Using a Set for everything | Sets can't do indexing, sorting, or duplicates | Choose the right tool for each job |
+| Not knowing Set operations exist | Writing manual loops instead of one-liners | Use `filter` with `has` for intersection |
+
+## 11. Quiz
+
+<Quiz question="Which is faster for checking if an item exists: set.has(x) or array.includes(x)?" options={["set.has(x)", "array.includes(x)", "They are the same", "Depends on the browser"]} answer="0" explanation="set.has(x) is O(1) — it uses a hash table internally. array.includes(x) is O(n) — it has to scan through every element." />
+
+<Quiz question="When should you use an Array instead of a Set?" options={["When you need unique items", "When order matters", "When checking membership", "When deduplicating data"]} answer="1" explanation="Use an Array when order matters, when you need indices, or when duplicates are allowed. Use a Set for uniqueness and fast membership checks." />
+
+<Quiz question="What does [...new Set([1, 2, 2, 3, 3, 3])] return?" options={["[1, 2, 2, 3, 3, 3]", "[1, 2, 3]", "new Set([1, 2, 3])", "Error"]} answer="1" explanation="The Set removes duplicates, and the spread operator converts it back to an array: [1, 2, 3]." />
+
+## 12. Challenge
+
+Build a simple **spam word filter** using a Set.
+
+```javascript
+// Blocked spam words
+let spamWords = new Set(['win', 'free', 'click', 'now', 'urgent'])
+
+function checkSpam(message) {
+  // TODO: Check if any spam word appears in the message
+  // Return true if spam is detected, false otherwise
+}
+
+console.log(checkSpam('Click now to win a free prize!'))  // should be true
+console.log(checkSpam('Hey, how are you?'))               // should be false
+```
+
+<Terminal mode="interactive" language="javascript" initialCode="let spamWords = new Set(['win', 'free', 'click', 'now', 'urgent']);
+
+function checkSpam(message) {
+  let words = message.toLowerCase().split(' ');
+  return words.some(word => spamWords.has(word));
+}
+
+// Test it
+console.log(checkSpam('Click now to win a free prize!'));  // true
+console.log(checkSpam('Hey, how are you?'));               // false
+console.log(checkSpam('URGENT: limited time offer'));      // true
+
+// Try your own messages with the terminal below" />
+
+## 13. Mini Project — Unique Username Checker
+
+Build a simple username registration system:
+
+```javascript
+let existingUsers = new Set(['alice', 'bob', 'charlie'])
+
+function register(username) {
+  let name = username.toLowerCase().trim()
+  // TODO: Check if username exists
+  // If not, add it and return success
+  // If yes, return error message
+}
+```
+
+<Terminal mode="interactive" language="javascript" initialCode="let existingUsers = new Set(['alice', 'bob', 'charlie']);
+
+function register(username) {
+  let name = username.toLowerCase().trim();
+  if (existingUsers.has(name)) {
+    return `❌ Username '${username}' is already taken.`;
+  }
+  existingUsers.add(name);
+  return `✅ '${username}' registered successfully!`;
+}
+
+console.log(register('Alice'));    // taken
+console.log(register('david'));    // success
+console.log(register('Bob'));      // taken
+console.log(register('eve'));      // success
+console.log('Total users:', existingUsers.size);" />
+
+## 14. Summary
+
+- Use **Sets** for: uniqueness, membership checks, deduplication, set operations
+- Use **Arrays** for: ordered data, indexed access, duplicates allowed
+- `set.has(x)` is **O(1)** — instant, even for millions of items
+- `array.includes(x)` is **O(n)** — gets slower as data grows
+- Common patterns: `[...new Set(arr)]` (dedup), `arr.filter(x => set.has(x))` (intersection)
+- Set operations in code: union (spread + new Set), intersection (filter + has), difference (filter + !has)
+
+## 15. What's Next
+
+This completes the **Set Theory** module. You now have a solid foundation in one of the most important concepts in Computer Science.
+
+Next module: **Graph Theory** — where sets become the building blocks of networks, relationships, and connections. Everything you've learned about sets will be used directly.

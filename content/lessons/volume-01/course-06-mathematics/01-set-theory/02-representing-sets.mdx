@@ -1,0 +1,254 @@
+---
+title: "Representing Sets"
+slug: representing-sets
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 2
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [sets, set-notation]
+prerequisites: [what-is-a-set]
+learningObjectives:
+  - Write a set using roster notation
+  - Write a set using set-builder notation
+  - Understand the empty set symbol
+  - Find the cardinality of a set
+estimatedKnowledgeGain: 7
+tags: [mathematics, sets, notation]
+icon: ✍️
+---
+
+## 1. Hook
+
+You know what a set is. Now how do you write one down so another person — or computer — understands exactly what you mean?
+
+Two programmers on different continents need to agree on what `{1, 2, 3}` means. They need a standard way to write sets. That's what this lesson is about.
+
+## 2. Why This Matters
+
+Notation is how we communicate ideas precisely. In math, in code, in documentation — you need to write sets clearly. Every textbook, research paper, and API reference uses the same notation. Learn it once, read it everywhere.
+
+## 3. Learning Objectives
+
+- Write a set using roster notation (listing elements)
+- Write a set using set-builder notation (describing elements)
+- Recognize the empty set symbol (∅)
+- Calculate the cardinality (size) of a set
+
+## 4. Core Concept
+
+There are two main ways to write a set.
+
+### Roster Notation — List Everything
+
+```
+A = {1, 2, 3, 4, 5}
+B = {apple, banana, orange}
+```
+
+Just list the elements inside curly braces `{}`, separated by commas.
+
+<Callout type="tip">
+  Think of roster notation like a grocery list — you write down every item you need.
+</Callout>
+
+### Set-Builder Notation — Describe the Pattern
+
+```
+A = {x | x is an even number between 1 and 10}
+A = {2, 4, 6, 8, 10}
+```
+
+The left side says "all elements x such that" and the right side describes the condition.
+
+```
+{x | condition that x must satisfy}
+```
+
+Read the vertical bar `|` as "such that."
+
+### Empty Set
+
+A set with no elements. Two ways to write it:
+
+```
+∅
+{ }
+```
+
+<Callout type="warning">
+  `{∅}` is NOT the empty set — it's a set containing the empty set, which is a different thing!
+</Callout>
+
+### Cardinality — The Size of a Set
+
+The number of elements in a set is called its **cardinality**.
+
+```
+|{1, 2, 3}|  = 3
+|{a, b, c, d}|  = 4
+|∅|  = 0
+```
+
+## 5. Mental Model
+
+Think of roster notation as a **photo** of the set — you see every element.
+
+Think of set-builder notation as a **description** — "show me everything that matches this description."
+
+```
+Roster:     {2, 4, 6, 8, 10}
+Set-builder: {x | x is even and 1 < x < 11}
+```
+
+Both describe the same set. One shows you. One tells you.
+
+## 6. Visualization
+
+```
+ROSTER NOTATION
+Sets = {🍎, 🍌, 🍇, 🍊, 🍉}
+         ↑    ↑    ↑    ↑    ↑
+      Every element visible
+
+SET-BUILDER NOTATION
+{x | x is a fruit in my kitchen}
+ ↑           ↑
+"All x"    "such that..."
+```
+
+## 7. Real-World Examples
+
+| Situation | Notation | Why It Works |
+|-----------|----------|-------------|
+| All US states | Roster: {AL, AK, AZ, ..., WY} | Finite, known list |
+| Even numbers | Set-builder: {x | x is even} | Infinite, needs description |
+| Students present today | Roster: {Alice, Bob, ...} | Known at runtime |
+| Prime numbers | Set-builder: {x | x has exactly 2 divisors} | Describes a rule |
+
+## 8. Programming Examples
+
+### JavaScript — No "roster" equivalent, but arrays are close
+
+```javascript
+// Roster-like
+let fruits = new Set(['apple', 'banana', 'orange'])
+
+// Cardinality
+fruits.size  // 3
+
+// Empty set
+let empty = new Set()
+empty.size  // 0
+```
+
+### Python
+
+```python
+# Roster-like
+fruits = {'apple', 'banana', 'orange'}
+
+# Cardinality
+len(fruits)  # 3
+
+# Empty set
+empty = set()
+len(empty)  # 0
+```
+
+### The Pattern in Code
+
+```python
+# Roster: list all elements
+students_present = {'Alice', 'Bob', 'Charlie'}
+
+# Set-builder: describe the condition
+# (comprehension syntax)
+even_numbers = {x for x in range(1, 11) if x % 2 == 0}
+# {2, 4, 6, 8, 10}
+```
+
+<Steps>
+<Step number={1} title="Roster notation">
+Just list: `{1, 2, 3}` — simple, direct, all elements visible.
+</Step>
+<Step number={2} title="Set-builder notation">
+Describe: `{x | 1 ≤ x ≤ 3}` — defines the rule for membership.
+</Step>
+<Step number={3} title="Cardinality">
+Count: `|{1, 2, 3}| = 3` — how many elements are in the set.
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+Try writing and measuring sets.
+
+<Terminal mode="interactive" language="javascript" initialCode="// Create a set
+let fruits = new Set(['apple', 'banana', 'orange', 'date']);
+console.log('Cardinality:', fruits.size);
+
+// Create an empty set
+let empty = new Set();
+console.log('Empty set size:', empty.size);
+
+// Can you create a set with 5 elements?
+let mySet = new Set([1, 2, 3, 4, 5]);
+console.log('My set cardinality:', mySet.size);" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Version |
+|---------|---------------|-----------------|
+| `{∅}` is the empty set | `{∅}` contains one element (the empty set) | The empty set is `∅` or `{}` |
+| Using `[]` for sets | Square brackets mean arrays/lists | Sets use braces: `{1, 2, 3}` |
+| `{1, 1, 2, 3}` is valid notation | Duplicates shouldn't be listed | Write `{1, 2, 3}` |
+| "Cardinality is the number of unique vs total elements" | In sets, these are always the same | `|{1, 1, 2}|` = 3 if it were a list, but in a set the 1 is listed once so cardinality is 2 |
+| Confusing ∅ with {∅} | `∅` has 0 elements; `{∅}` has 1 element | They are completely different sets |
+
+## 11. Quiz
+
+<Quiz question="What is the cardinality of {a, b, c, d}?" options={["3", "4", "5", "Depends on order"]} answer="1" explanation="The cardinality is the number of elements. {a, b, c, d} has exactly 4 elements." />
+
+<Quiz question="Which of these represents the empty set?" options={["{∅}", "∅", "{0}", "{ }"]} answer="1" explanation="∅ is the standard symbol for the empty set. {∅} is a set containing one element (the empty set), {0} contains the number 0, and { } also represents the empty set." />
+
+<Quiz question="How would you write 'the set of all even numbers between 1 and 10' in set-builder notation?" options={["Even numbers", "{2, 4, 6, 8, 10}", "{x | x is even and 1 < x < 11}", "Even set"]} answer="2" explanation="Set-builder notation uses the pattern {x | condition}. The condition 'x is even and 1 < x < 11' correctly describes all even numbers between 1 and 10." />
+
+## 12. Challenge
+
+Write the following sets in both roster notation and set-builder notation:
+
+1. All months that start with 'J'
+2. All odd numbers between 1 and 20
+3. The set of primary colors
+
+Then calculate the cardinality of each.
+
+<details>
+<summary>Answers</summary>
+
+1. Roster: {January, June, July} — Set-builder: {m | m is a month starting with J}
+   Cardinality: 3
+
+2. Roster: {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}
+   Set-builder: {x | x is odd and 1 ≤ x ≤ 19}
+   Cardinality: 10
+
+3. Roster: {red, blue, yellow}
+   Set-builder: {c | c is a primary color}
+   Cardinality: 3
+
+</details>
+
+## 13. Summary
+
+- **Roster notation**: `{1, 2, 3}` — list every element
+- **Set-builder notation**: `{x | condition}` — describe the rule
+- **Empty set**: `∅` or `{}` — has zero elements (but `{∅}` is NOT empty!)
+- **Cardinality**: `|A|` — the number of elements in set A
+- Curly braces `{}` for sets, square brackets `[]` for lists/arrays
+
+## 14. What's Next
+
+Now that you can read and write sets, the next lesson covers **Set Operations** — how to combine sets using union, intersection, and difference. This is where sets become a practical tool instead of just a concept.

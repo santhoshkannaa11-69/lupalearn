@@ -1,0 +1,314 @@
+---
+title: "What Is a Set?"
+slug: what-is-a-set
+module: "Set Theory"
+moduleOrder: 1
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [sets, collections]
+learningObjectives:
+  - Define what a set is
+  - Understand that sets have no order and no duplicates
+  - Check membership in a set
+  - Create and use sets in programming
+estimatedKnowledgeGain: 8
+tags: [mathematics, sets, foundations]
+icon: 📦
+---
+
+## 1. Hook
+
+Imagine you just downloaded all your photos from Google Photos and your phone. You have 4,287 photos. But you know many are duplicates — the same photo saved twice, once on each device.
+
+How would you find only the unique photos?
+
+You could scroll through all 4,287 manually. That would take hours.
+
+Or you could use a **set** — and solve it in milliseconds.
+
+<Callout type="info">
+  📦 Sets are one of the most powerful ideas in all of Computer Science. Every database, every programming language, every search engine uses them.
+</Callout>
+
+## 2. Why This Matters
+
+If sets didn't exist, computers couldn't:
+
+- Deduplicate data
+- Check if a username is already taken
+- Find common friends between two people
+- Remove spam addresses from a contact list
+- Optimize database queries
+
+Sets are the foundation of how computers organize and compare collections of things.
+
+## 3. Learning Objectives
+
+- Define what a set is in plain language
+- Explain why order and duplicates don't matter in a set
+- Check whether an item belongs to a set (membership)
+- Write code that uses sets in JavaScript and Python
+- Identify real-world collections that behave like sets
+
+## 4. Core Concept
+
+A **set** is an unordered collection of unique items.
+
+That's it. Three key properties:
+
+| Property | What It Means |
+|----------|---------------|
+| **Collection** | A group of things grouped together |
+| **Unordered** | The order of items doesn't matter |
+| **Unique** | No item appears more than once |
+
+### The Toy Box Analogy
+
+```
+📦 YOUR TOY BOX
+╭──────────────────────╮
+│  🚗  🧸  ⚽  🚁  🎲  │
+╰──────────────────────╯
+```
+
+Your toy box is a set:
+
+| Toy Box Concept | Set Concept |
+|-----------------|-------------|
+| The box itself | The set |
+| A specific toy | An element |
+| Is 🧸 in the box? | Membership check |
+| You never put the same toy twice | No duplicates |
+| Any arrangement is fine | No order |
+
+<Callout type="tip">
+  The next time you look at a collection of anything — apps on your phone, songs in a playlist, contacts in your address book — ask yourself: *Is this a set?*
+</Callout>
+
+## 5. Mental Model — The Membership Checklist
+
+Think of a set as a **bouncer at a club**.
+
+The bouncer has a list. When someone walks up, the bouncer asks one question: *Are you on the list?*
+
+- Yes → You're in.
+- No → You're not.
+
+That's all a set does. It answers one question: **is this item in the collection?**
+
+```
+Set = {🍎, 🍌, 🍇}
+
+Is 🍎 in the set?  →  Yes ✓
+Is 🥝 in the set?  →  No  ✗
+```
+
+There's no "you're third in line" (no order). There's no "you're on the list twice" (no duplicates). Just membership.
+
+## 6. Visualization
+
+```
+        UNIVERSE (All possible things)
+  ┌─────────────────────────────────────┐
+  │                                     │
+  │    ┌───────────────────┐            │
+  │    │   FRUITS (Set)    │            │
+  │    │                   │            │
+  │    │    🍎  🍌  🍇     │            │
+  │    │                   │            │
+  │    └───────────────────┘            │
+  │                                     │
+  │  🥝  🍊  🚗  🧸  📚  are outside   │
+  │                                     │
+  └─────────────────────────────────────┘
+```
+
+A set draws a boundary around a collection. Everything inside is **in** the set. Everything outside is **not**.
+
+## 7. Real-World Sets
+
+Everyday things that behave like sets:
+
+| Real-World Collection | Is It a Set? | Why? |
+|----------------------|-------------|------|
+| Apps on your phone | ✅ | No duplicates, order doesn't matter |
+| Countries in the UN | ✅ | Each country once, no particular order |
+| Installed fonts | ✅ | Unique names, order irrelevant |
+| Students in a class | ✅ | Each student once |
+| A shopping list | ❌ | Order matters, duplicates possible |
+| A top-10 playlist | ❌ | Order matters (rankings) |
+| Photos in a gallery | ❌ | Duplicates possible, order matters (by date) |
+
+## 8. Programming Examples
+
+Sets exist in almost every programming language.
+
+### JavaScript
+
+```javascript
+const fruits = new Set(['apple', 'banana', 'orange'])
+
+fruits.has('banana')   // true  (membership check)
+fruits.has('grape')    // false
+
+fruits.add('banana')   // still 3 items (no duplicates!)
+fruits.size            // 3
+
+fruits.delete('orange')
+fruits.size            // 2
+```
+
+### Python
+
+```python
+fruits = {'apple', 'banana', 'orange'}
+
+'banana' in fruits     # True (membership check)
+'grape' in fruits      # False
+
+fruits.add('banana')   # still 3 items (no duplicates!)
+len(fruits)            # 3
+
+fruits.remove('orange')
+len(fruits)            # 2
+```
+
+### SQL
+
+```sql
+SELECT DISTINCT category FROM products;
+-- Returns a set of unique categories
+```
+
+<Steps>
+<Step number={1} title="Create a set">
+JavaScript: `new Set(['a', 'b', 'c'])` creates a set with three elements.
+
+Python: `{'a', 'b', 'c'}` creates the same set.
+</Step>
+<Step number={2} title="Check membership">
+Ask: does this set contain 'b'?
+
+JavaScript: `set.has('b')` → `true`
+
+Python: `'b' in set` → `true`
+</Step>
+<Step number={3} title="Try adding a duplicate">
+Add 'b' again. What happens?
+
+Nothing. The set stays the same. No duplicates allowed.
+</Step>
+</Steps>
+
+## 9. Interactive Practice
+
+Try it yourself. This code creates a set, checks membership, and shows that duplicates are ignored.
+
+<Terminal mode="interactive" language="javascript" initialCode="// Create a set of fruits
+let fruits = new Set(['apple', 'banana', 'orange']);
+
+// Check membership
+console.log('Has banana?', fruits.has('banana'));
+console.log('Has grape?', fruits.has('grape'));
+
+// Add a duplicate — what happens?
+fruits.add('banana');
+console.log('Size after adding duplicate:', fruits.size);
+
+// Can you add a new fruit?
+fruits.add('grape');
+console.log('Final set:', fruits);" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Understanding |
+|---------|---------------|----------------------|
+| "Sets are ordered like lists" | Sets don't track position | {1, 2, 3} = {3, 2, 1} |
+| "A set can contain duplicates" | Adding a duplicate changes nothing | `set.add(1); set.add(1)` = size stays 1 |
+| "A set is just a list" | Lists have order, indices, and duplicates | Lists are for sequences; sets are for membership |
+| "Sets are only for math class" | Every major language has sets | Sets are used in databases, algorithms, and everyday code |
+| "Empty sets are useless" | Empty sets are valid and common | An empty user list, empty cart — all valid sets |
+
+## 11. Quiz
+
+<Quiz question="What happens when you try to add a duplicate element to a set?" options={["The set now has two copies", "The set rejects it and stays the same", "The set throws an error", "The set is deleted"]} answer="1" explanation="Sets only store unique items. Adding a duplicate has no effect — the set stays exactly as it was." />
+
+<Quiz question="If A = {1, 2, 3} and B = {3, 2, 1}, which is true?" options={["A is larger than B", "B is larger than A", "A and B are the same set", "You cannot compare them"]} answer="2" explanation="Order doesn't matter in sets. {1, 2, 3} and {3, 2, 1} contain exactly the same elements, so they are the same set." />
+
+<Quiz question="Which of these is NOT a valid set?" options={["{apple, banana, orange}", "{1, 1, 2, 3}", "new Set(['a', 'b', 'c'])", "Empty set {}"]} answer="1" explanation="{1, 1, 2, 3} has a duplicate. In proper set notation, duplicates are not listed. It would be written as {1, 2, 3}." />
+
+## 12. Challenge
+
+Given a list of email addresses, some of which are duplicates, write code that returns only the unique addresses.
+
+```javascript
+let emails = [
+  'alice@example.com',
+  'bob@example.com',
+  'alice@example.com',   // duplicate
+  'charlie@example.com',
+  'bob@example.com'      // duplicate
+]
+
+// TODO: Use a Set to get unique emails
+// Hint: new Set(emails) then convert back to an array
+```
+
+**Try to solve it in the terminal below.**
+
+<Terminal mode="interactive" language="javascript" initialCode="let emails = [
+  'alice@example.com',
+  'bob@example.com',
+  'alice@example.com',
+  'charlie@example.com',
+  'bob@example.com'
+]
+
+// Your solution here
+// HINT: Use new Set() and Array.from()" />
+
+<details>
+<summary>Need a hint?</summary>
+
+Use `new Set(emails)` to remove duplicates, then `Array.from()` to convert back to an array.
+
+```javascript
+let unique = Array.from(new Set(emails));
+console.log(unique);
+// ['alice@example.com', 'bob@example.com', 'charlie@example.com']
+```
+
+</details>
+
+## 13. Mini Project — Contact Deduplicator
+
+You have two contact lists (from your old phone and your new phone). Write code to find all unique contacts across both lists.
+
+```javascript
+let oldPhone = ['Mom', 'Dad', 'Alice', 'Bob', 'Charlie']
+let newPhone = ['Alice', 'Bob', 'David', 'Eve', 'Mom']
+
+// TODO: Find all unique contacts across both lists
+```
+
+<Callout type="tip">
+  Combine both arrays into one, then pass them to `new Set()`. This is exactly how real apps deduplicate contacts.
+</Callout>
+
+## 14. Summary
+
+- A **set** is an unordered collection of **unique** items
+- Sets only answer one question: **is this item a member?**
+- **Order doesn't matter** — {1, 2, 3} = {3, 2, 1}
+- **Duplicates don't exist** — adding a duplicate changes nothing
+- Sets are **not** lists — lists have order, indices, and allow duplicates
+- Every major programming language has a Set data structure
+- Sets solve real problems: deduplication, membership checks, and unique collections
+
+## 15. What's Next
+
+Now that you understand *what* a set is, the next lesson covers **Representing Sets** — how we write sets in mathematics and code, and the standard notation used everywhere.
+
+This is your foundation. Everything else — databases, graphs, hash maps, algorithms — builds on this idea.
