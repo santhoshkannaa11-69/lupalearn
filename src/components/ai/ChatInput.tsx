@@ -21,7 +21,7 @@ function ChatInput({ onSend, loading }: { onSend: (msg: string) => void; loading
   }
 
   return (
-    <div className="border-t border-[#1e1e1e] bg-[#0a0a0a] p-4">
+    <div className="border-t border-border bg-bg p-4">
       <div className="max-w-4xl mx-auto flex items-end gap-2">
         <div className="flex-1 relative">
           <textarea
@@ -34,17 +34,17 @@ function ChatInput({ onSend, loading }: { onSend: (msg: string) => void; loading
                 handleSubmit()
               }
             }}
-            placeholder="Ask LupaTutor anything..."
+            placeholder="Ask your mentor anything..."
             rows={1}
-            className="w-full bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 py-2.5 outline-none focus:border-[#00ff41] resize-none placeholder:text-[#606060]"
-            style={{ minHeight: "40px" }}
+            className="w-full bg-surface border border-border text-sm text-text-primary rounded-xl px-4 py-2.5 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none placeholder:text-text-muted transition-all"
+            style={{ minHeight: "44px" }}
             disabled={loading}
           />
         </div>
         <button
           onClick={handleSubmit}
           disabled={!input.trim() || loading}
-          className="h-10 w-10 flex items-center justify-center bg-[#00ff41] text-[#0a0a0a] hover:bg-[#00cc33] transition-colors disabled:opacity-40 disabled:pointer-events-none"
+          className="h-11 w-11 flex items-center justify-center bg-accent text-text-inverse rounded-xl hover:brightness-110 transition-all disabled:opacity-40 disabled:pointer-events-none shrink-0"
         >
           {loading ? <Sparkles size={16} className="animate-spin" /> : <Send size={16} />}
         </button>
