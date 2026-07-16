@@ -93,7 +93,7 @@ function Terminal({
   return (
     <div
       ref={terminalRef}
-      className={cn("border border-[#1e1e1e] overflow-hidden", className)}
+      className={cn("border border-border overflow-hidden", className)}
       style={{ height }}
     />
   )

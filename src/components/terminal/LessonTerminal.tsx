@@ -14,18 +14,18 @@ function LessonTerminal({ code, language = "javascript", mode = "output-only" }:
     : "Ready. Start coding below."
 
   return (
-    <div className="my-4">
-      <div className="flex items-center justify-between px-3 py-1.5 bg-[#121212] border border-b-0 border-[#1e1e1e]">
+    <div className="my-4 rounded-xl overflow-hidden border border-border">
+      <div className="flex items-center justify-between px-3 py-1.5 bg-surface border-b border-border">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-none bg-[#00ff41]" />
-          <span className="w-2 h-2 rounded-none bg-[#ffb000]" />
-          <span className="w-2 h-2 rounded-none bg-[#ff3355]" />
-          <span className="text-[10px] text-[#606060] font-mono ml-2 uppercase tracking-wider">
+          <span className="w-2 h-2 rounded-full bg-text-muted" />
+          <span className="w-2 h-2 rounded-full bg-text-muted/60" />
+          <span className="w-2 h-2 rounded-full bg-text-muted/30" />
+          <span className="text-[10px] text-text-muted font-mono ml-2 uppercase tracking-wider">
             Terminal — {language}
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-[#606060] font-mono">
+          <span className="text-[10px] text-text-muted font-mono">
             {mode === "output-only" ? "OUTPUT" : mode === "interactive" ? "INTERACTIVE" : "CHALLENGE"}
           </span>
         </div>

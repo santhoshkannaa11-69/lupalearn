@@ -20,9 +20,9 @@ function BottomPanel() {
   const setPanelHeight = useEditorStore((s) => s.setBottomPanelHeight)
 
   return (
-    <div className="border-t border-[#1e1e1e] bg-[#0a0a0a] flex flex-col" style={{ height: panelHeight }}>
+    <div className="border-t border-border bg-[#0a0a0a] flex flex-col" style={{ height: panelHeight }}>
       {/* Tab bar */}
-      <div className="flex items-center bg-[#0a0a0a] border-b border-[#1e1e1e] shrink-0">
+      <div className="flex items-center bg-[#0a0a0a] border-b border-border shrink-0">
         {tabs.map((tab) => {
           const Icon = tab.icon
           return (
@@ -32,8 +32,8 @@ function BottomPanel() {
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider transition-colors",
                 activeTab === tab.id
-                  ? "text-[#00ff41] bg-[#121212] border-t-[2px] border-t-[#00ff41]"
-                  : "text-[#606060] hover:text-[#c0c0c0]"
+                  ? "text-accent bg-[#121212] border-t-[2px] border-t-[#00ff41]"
+                  : "text-text-muted hover:text-text-secondary"
               )}
             >
               <Icon size={12} />
@@ -52,12 +52,12 @@ function BottomPanel() {
         {activeTab === "preview" && <LivePreview />}
         {activeTab === "problems" && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-xs text-[#606060] font-mono">No problems detected</p>
+            <p className="text-xs text-text-muted font-mono">No problems detected</p>
           </div>
         )}
         {activeTab === "ai-output" && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-xs text-[#606060] font-mono">Select code and use AI actions from the toolbar</p>
+            <p className="text-xs text-text-muted font-mono">Select code and use AI actions from the toolbar</p>
           </div>
         )}
       </div>
@@ -66,3 +66,4 @@ function BottomPanel() {
 }
 
 export { BottomPanel }
+

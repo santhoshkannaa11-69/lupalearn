@@ -66,9 +66,9 @@ function CommandPalette() {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]">
       <div className="absolute inset-0 bg-[#0a0a0a]/80" onClick={toggle} />
-      <div className="relative w-full max-w-lg bg-[#121212] border border-[#1e1e1e] shadow-2xl animate-fade-in">
-        <div className="flex items-center px-4 py-3 border-b border-[#1e1e1e]">
-          <Search size={14} className="text-[#606060] mr-2" />
+      <div className="relative w-full max-w-lg bg-[#121212] border border-border shadow-2xl animate-fade-in">
+        <div className="flex items-center px-4 py-3 border-b border-border">
+          <Search size={14} className="text-text-muted mr-2" />
           <input
             ref={inputRef}
             type="text"
@@ -76,9 +76,9 @@ function CommandPalette() {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a command..."
-            className="flex-1 bg-transparent text-sm text-[#c0c0c0] font-mono outline-none placeholder:text-[#606060]"
+            className="flex-1 bg-transparent text-sm text-text-secondary font-mono outline-none placeholder:text-text-muted"
           />
-          <span className="text-[10px] text-[#606060] font-mono border border-[#1e1e1e] px-1.5 py-0.5">esc</span>
+          <span className="text-[10px] text-text-muted font-mono border border-border px-1.5 py-0.5">esc</span>
         </div>
         <div className="max-h-72 overflow-y-auto p-2">
           {filtered.map((cmd, i) => {
@@ -88,19 +88,19 @@ function CommandPalette() {
                 key={cmd.id}
                 onClick={cmd.action}
                 className={`w-full flex items-center gap-3 px-3 py-2 text-left transition-colors ${
-                  i === selectedIdx ? "bg-[#1a1a1a] text-[#00ff41]" : "text-[#c0c0c0] hover:bg-[#1a1a1a]"
+                  i === selectedIdx ? "bg-[#1a1a1a] text-accent" : "text-text-secondary hover:bg-[#1a1a1a]"
                 }`}
               >
                 <Icon size={14} className="shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-mono font-bold">{cmd.label}</p>
-                  <p className="text-[10px] text-[#606060] font-mono">{cmd.description}</p>
+                  <p className="text-[10px] text-text-muted font-mono">{cmd.description}</p>
                 </div>
               </button>
             )
           })}
           {filtered.length === 0 && (
-            <p className="text-xs text-[#606060] font-mono text-center py-4">No commands found</p>
+            <p className="text-xs text-text-muted font-mono text-center py-4">No commands found</p>
           )}
         </div>
       </div>
@@ -109,3 +109,4 @@ function CommandPalette() {
 }
 
 export { CommandPalette }
+

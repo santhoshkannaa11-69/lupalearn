@@ -13,14 +13,14 @@ function EditorTabs() {
 
   if (openFiles.length === 0) {
     return (
-      <div className="h-8 flex items-center px-3 bg-[#0a0a0a] border-b border-[#1e1e1e]">
-        <span className="text-[10px] text-[#606060] font-mono">No files open</span>
+      <div className="h-8 flex items-center px-3 bg-[#0a0a0a] border-b border-border">
+        <span className="text-[10px] text-text-muted font-mono">No files open</span>
       </div>
     )
   }
 
   return (
-    <div className="flex items-center bg-[#0a0a0a] border-b border-[#1e1e1e] overflow-x-auto">
+    <div className="flex items-center bg-[#0a0a0a] border-b border-border overflow-x-auto">
       {openFiles.map((path) => {
         const name = path.split("/").pop() || path
         const isActive = path === activeFile
@@ -30,11 +30,11 @@ function EditorTabs() {
             key={path}
             onClick={() => setActiveFile(path)}
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono cursor-pointer border-r border-[#1e1e1e]",
+              "flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono cursor-pointer border-r border-border",
               "transition-colors select-none whitespace-nowrap",
               isActive
-                ? "bg-[#121212] text-[#c0c0c0] border-t-[2px] border-t-[#00ff41]"
-                : "bg-[#0a0a0a] text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212]"
+                ? "bg-[#121212] text-text-secondary border-t-[2px] border-t-[#00ff41]"
+                : "bg-[#0a0a0a] text-text-muted hover:text-text-secondary hover:bg-[#121212]"
             )}
           >
             <span>{name}</span>
@@ -43,7 +43,7 @@ function EditorTabs() {
                 e.stopPropagation()
                 closeFile(path)
               }}
-              className="hover:text-[#ff3355] transition-colors"
+              className="hover:text-danger transition-colors"
             >
               <X size={12} />
             </button>
@@ -55,3 +55,4 @@ function EditorTabs() {
 }
 
 export { EditorTabs }
+

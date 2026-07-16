@@ -85,10 +85,10 @@ function Playground() {
 
           {/* Resize Handle */}
           <div
-            className={`h-2 flex items-center justify-center border-t border-[#1e1e1e] cursor-row-resize hover:bg-[#1a1a1a] transition-colors shrink-0 ${dragging ? "bg-[#1a1a1a]" : "bg-[#0a0a0a]"}`}
+            className={`h-2 flex items-center justify-center border-t border-border cursor-row-resize hover:bg-[#1a1a1a] transition-colors shrink-0 ${dragging ? "bg-[#1a1a1a]" : "bg-[#0a0a0a]"}`}
             onMouseDown={handleMouseDown}
           >
-            <GripHorizontal size={12} className="text-[#606060]" />
+            <GripHorizontal size={12} className="text-text-muted" />
           </div>
 
           <ErrorBoundary>
@@ -104,3 +104,4 @@ function Playground() {
 }
 
 export { Playground }
+

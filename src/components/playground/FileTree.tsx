@@ -21,7 +21,7 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
         <button
           onClick={() => setExpanded(!expanded)}
           className={cn(
-            "w-full flex items-center gap-1.5 px-2 py-1 text-xs font-mono text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212] transition-colors text-left"
+            "w-full flex items-center gap-1.5 px-2 py-1 text-xs font-mono text-text-muted hover:text-text-secondary hover:bg-[#121212] transition-colors text-left"
           )}
         >
           {expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
@@ -29,7 +29,7 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
           <span className="truncate">{node.name}</span>
         </button>
         {expanded && (
-          <div className="ml-3 border-l border-[#1e1e1e] pl-1">
+          <div className="ml-3 border-l border-border pl-1">
             {folder.children.map((child) => (
               <FileTreeItem key={child.path} node={child} path={child.path} />
             ))}
@@ -48,8 +48,8 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
         className={cn(
           "flex-1 flex items-center gap-1.5 px-2 py-1 text-xs font-mono transition-colors text-left min-w-0",
           isActive
-            ? "bg-[#1a1a1a] text-[#00ff41] border-l-2 border-[#00ff41]"
-            : "text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212] border-l-2 border-transparent"
+            ? "bg-[#1a1a1a] text-accent border-l-2 border-[#00ff41]"
+            : "text-text-muted hover:text-text-secondary hover:bg-[#121212] border-l-2 border-transparent"
         )}
       >
         <File size={12} />
@@ -57,7 +57,7 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
       </button>
       <button
         onClick={() => deleteFile(node.path)}
-        className="opacity-0 group-hover:opacity-100 px-1 text-[#606060] hover:text-[#ff3355] transition-all"
+        className="opacity-0 group-hover:opacity-100 px-1 text-text-muted hover:text-danger transition-all"
       >
         <Trash2 size={10} />
       </button>
@@ -74,12 +74,12 @@ function FileTree() {
   if (!sidebarOpen) return null
 
   return (
-    <div className="w-52 bg-[#0a0a0a] border-r border-[#1e1e1e] flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-3 py-2 border-b border-[#1e1e1e]">
-        <span className="text-[10px] text-[#606060] font-mono uppercase tracking-wider">Files</span>
+    <div className="w-52 bg-[#0a0a0a] border-r border-border flex flex-col overflow-hidden">
+      <div className="flex items-center justify-between px-3 py-2 border-b border-border">
+        <span className="text-[10px] text-text-muted font-mono uppercase tracking-wider">Files</span>
         <button
           onClick={toggleNewFileDialog}
-          className="text-[#606060] hover:text-[#00ff41] transition-colors"
+          className="text-text-muted hover:text-accent transition-colors"
           title="New File"
         >
           <Plus size={14} />
@@ -93,3 +93,4 @@ function FileTree() {
 }
 
 export { FileTree }
+

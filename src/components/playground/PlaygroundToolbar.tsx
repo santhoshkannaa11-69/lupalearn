@@ -26,21 +26,21 @@ function PlaygroundToolbar() {
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 border-b border-[#1e1e1e] bg-[#0a0a0a] shrink-0">
+    <div className="flex items-center gap-2 px-3 py-1.5 border-b border-border bg-bg shrink-0">
       <Badge variant="info" className="text-[10px]">Playground</Badge>
-      <span className="text-[10px] text-[#606060] font-mono">lupa@pg:~$</span>
+      <span className="text-[10px] text-text-muted font-mono">lupa@pg:~$</span>
 
-      <div className="w-px h-4 bg-[#1e1e1e] mx-1" />
+      <div className="w-px h-4 bg-border mx-1" />
 
       <button
         onClick={toggleSidebar}
-        className="text-[#606060] hover:text-[#c0c0c0] transition-colors"
+        className="text-text-muted hover:text-text-secondary transition-colors"
         title="Toggle Sidebar"
       >
         <PanelRightOpen size={14} />
       </button>
 
-      <div className="w-px h-4 bg-[#1e1e1e] mx-1" />
+      <div className="w-px h-4 bg-border mx-1" />
 
       <Button variant="default" size="sm" onClick={handleRun} disabled={isRunning}>
         <Play size={12} /> Run
@@ -58,11 +58,11 @@ function PlaygroundToolbar() {
 
       <AIActions />
 
-      <div className="w-px h-4 bg-[#1e1e1e] mx-1" />
+      <div className="w-px h-4 bg-border mx-1" />
 
       <button
         onClick={toggleCommandPalette}
-        className="flex items-center gap-1 text-[10px] text-[#606060] hover:text-[#c0c0c0] font-mono border border-[#1e1e1e] px-2 py-1 bg-[#121212] transition-colors"
+        className="flex items-center gap-1 text-[10px] text-text-muted hover:text-text-secondary font-mono border border-border px-2 py-1 bg-surface transition-colors"
         title="⌘K: Command Palette · ⌘Z: Undo · ⌘⇧Z: Redo"
       >
         <Command size={12} />
@@ -73,3 +73,5 @@ function PlaygroundToolbar() {
 }
 
 export { PlaygroundToolbar }
+
+
