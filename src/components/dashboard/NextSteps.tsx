@@ -35,7 +35,7 @@ function NextSteps() {
     return (
       <Card variant="bordered">
         <CardHeader>
-          <CardTitle className="text-[10px] text-[#606060] uppercase tracking-widest">Continue Learning</CardTitle>
+          <CardTitle className="text-[10px] text-text-muted uppercase tracking-widest">Continue Learning</CardTitle>
         </CardHeader>
         <CardContent>
           <Spinner label="Calculating next steps..." />
@@ -48,14 +48,14 @@ function NextSteps() {
     return (
       <Card variant="bordered">
         <CardHeader>
-          <CardTitle className="text-[10px] text-[#606060] uppercase tracking-widest">Continue Learning</CardTitle>
+          <CardTitle className="text-[10px] text-text-muted uppercase tracking-widest">Continue Learning</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center py-6 text-center">
-            <Target size={32} className="text-[#606060] mb-3" />
-            <p className="text-sm text-[#c0c0c0] font-mono mb-1">No learning path yet</p>
-            <p className="text-xs text-[#606060] font-mono">
-              <Link href="/onboarding" className="text-[#00ff41] hover:underline">Set a goal</Link> to get personalized recommendations.
+            <Target size={32} className="text-text-muted mb-3" />
+            <p className="text-sm text-text-secondary font-mono mb-1">No learning path yet</p>
+            <p className="text-xs text-text-muted font-mono">
+              <Link href="/onboarding" className="text-accent hover:underline">Set a goal</Link> to get personalized recommendations.
             </p>
           </div>
         </CardContent>
@@ -66,7 +66,7 @@ function NextSteps() {
   return (
     <Card variant="bordered">
       <CardHeader>
-        <CardTitle className="text-[10px] text-[#606060] uppercase tracking-widest">Continue Learning</CardTitle>
+        <CardTitle className="text-[10px] text-text-muted uppercase tracking-widest">Continue Learning</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -79,24 +79,24 @@ function NextSteps() {
               }
               className="block"
             >
-              <div className="border border-[#1e1e1e] p-3 hover:border-[#2a2a2a] transition-colors cursor-pointer">
+              <div className="border border-border p-3 hover:border-border-hover transition-colors cursor-pointer">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="flex items-center justify-center w-5 h-5 bg-[#1a1a1a] border border-[#1e1e1e] text-[10px] font-bold text-[#00ff41] font-mono shrink-0">
+                      <span className="flex items-center justify-center w-5 h-5 bg-surface border border-border text-[10px] font-bold text-accent font-mono shrink-0">
                         {step.order}
                       </span>
-                      <p className="text-sm text-[#ffffff] font-mono font-bold truncate">{step.concept.name}</p>
+                      <p className="text-sm text-text-primary font-mono font-bold truncate">{step.concept.name}</p>
                       <Badge variant={step.confidence < 40 ? "error" : step.confidence < 70 ? "warning" : "success"}>
                         {step.confidence}%
                       </Badge>
                     </div>
-                    <p className="text-xs text-[#606060] font-mono mt-1 leading-relaxed">{step.reason}</p>
+                    <p className="text-xs text-text-muted font-mono mt-1 leading-relaxed">{step.reason}</p>
                     {step.unlocks.length > 0 && (
-                      <p className="text-[10px] text-[#00f0ff] font-mono mt-1">Unlocks: {step.unlocks.join(", ")}</p>
+                      <p className="text-[10px] text-info font-mono mt-1">Unlocks: {step.unlocks.join(", ")}</p>
                     )}
                   </div>
-                  <ArrowRight size={14} className="text-[#606060] shrink-0 mt-1" />
+                  <ArrowRight size={14} className="text-text-muted shrink-0 mt-1" />
                 </div>
                 <Progress value={step.confidence} variant={step.confidence < 40 ? "error" : step.confidence < 70 ? "warning" : "success"} className="mt-2" />
               </div>
@@ -109,3 +109,4 @@ function NextSteps() {
 }
 
 export { NextSteps }
+

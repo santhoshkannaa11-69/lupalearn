@@ -76,13 +76,13 @@ function ExploreContent() {
   }, [selectedNode])
 
   const typeColors: Record<string, string> = {
-    concept: "#00ff41",
-    language: "#00f0ff",
-    framework: "#ffb000",
+    concept: "var(--color-accent)",
+    language: "var(--color-info)",
+    framework: "var(--color-warning)",
     tool: "#ff00aa",
-    technology: "#00aaff",
-    paradigm: "#ff3355",
-    lesson: "#00ff41",
+    technology: "var(--color-info)",
+    paradigm: "var(--color-danger)",
+    lesson: "var(--color-accent)",
   }
 
   return (
@@ -91,8 +91,8 @@ function ExploreContent() {
         {/* Search Header */}
         <div className="mb-8">
           <Badge variant="info" className="mb-3">Explorer Mode 🚀</Badge>
-          <h1 className="text-2xl font-bold text-[#ffffff] font-mono mb-2">Search anything</h1>
-          <p className="text-sm text-[#606060] font-mono mb-4">
+          <h1 className="text-2xl font-bold text-text-primary font-mono mb-2">Search anything</h1>
+          <p className="text-sm text-text-muted font-mono mb-4">
             Find lessons, concepts, technologies, and tools — no prerequisites required.
           </p>
 
@@ -119,13 +119,13 @@ function ExploreContent() {
             <div className="md:col-span-1">
               <Card variant="bordered">
                 <CardHeader>
-                  <CardTitle className="text-[10px] text-[#606060] uppercase tracking-widest">
+                  <CardTitle className="text-[10px] text-text-muted uppercase tracking-widest">
                     Results ({nodes.length})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   {nodes.length === 0 ? (
-                    <p className="text-xs text-[#606060] font-mono">No results found.</p>
+                    <p className="text-xs text-text-muted font-mono">No results found.</p>
                   ) : (
                     <div className="space-y-1">
                       {nodes.map((node) => (
@@ -134,8 +134,8 @@ function ExploreContent() {
                           onClick={() => setSelectedNode(node)}
                           className={`w-full text-left px-3 py-2 text-xs font-mono transition-colors flex items-center gap-2 ${
                             selectedNode?.id === node.id
-                              ? "bg-[#1a1a1a] text-[#00ff41] border-l-2 border-[#00ff41]"
-                              : "text-[#c0c0c0] hover:bg-[#121212] border-l-2 border-transparent"
+                              ? "bg-surface text-accent border-l-2 border-accent"
+                              : "text-text-secondary hover:bg-surface border-l-2 border-transparent"
                           }`}
                         >
                           <span
@@ -143,7 +143,7 @@ function ExploreContent() {
                             style={{ backgroundColor: typeColors[node.type] || "#606060" }}
                           />
                           <span className="truncate">{node.name}</span>
-                          <span className="ml-auto text-[10px] text-[#606060] uppercase">{node.type}</span>
+                          <span className="ml-auto text-[10px] text-text-muted uppercase">{node.type}</span>
                         </button>
                       ))}
                     </div>
@@ -168,16 +168,16 @@ function ExploreContent() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-xs text-[#606060] font-mono">{selectedNode.description}</p>
+                      <p className="text-xs text-text-muted font-mono">{selectedNode.description}</p>
                     </CardContent>
                   </Card>
 
-                  <h3 className="text-xs font-bold text-[#ffffff] font-mono uppercase tracking-wider mb-3">
+                  <h3 className="text-xs font-bold text-text-primary font-mono uppercase tracking-wider mb-3">
                     Related Lessons ({lessons.length})
                   </h3>
 
                   {lessons.length === 0 ? (
-                    <p className="text-xs text-[#606060] font-mono">No lessons linked to this concept yet.</p>
+                    <p className="text-xs text-text-muted font-mono">No lessons linked to this concept yet.</p>
                   ) : (
                     <div className="space-y-2">
                       {lessons.map((lesson) => (
@@ -185,21 +185,21 @@ function ExploreContent() {
                           key={lesson.id}
                           href={`/learn/computer-science/programming-fundamentals/${lesson.slug}`}
                         >
-                          <Card variant="bordered" className="hover:border-[#2a2a2a] transition-colors cursor-pointer">
+                          <Card variant="bordered" className="hover:border-border-hover transition-colors cursor-pointer">
                             <CardContent>
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <p className="text-sm text-[#ffffff] font-mono font-bold">{lesson.title}</p>
-                                  <p className="text-xs text-[#606060] font-mono mt-1">{lesson.description}</p>
+                                  <p className="text-sm text-text-primary font-mono font-bold">{lesson.title}</p>
+                                  <p className="text-xs text-text-muted font-mono mt-1">{lesson.description}</p>
                                 </div>
-                                <ArrowRight size={14} className="text-[#606060] shrink-0" />
+                                <ArrowRight size={14} className="text-text-muted shrink-0" />
                               </div>
                               <div className="flex items-center gap-3 mt-2">
                                 <Badge variant={lesson.difficulty === "beginner" ? "success" : lesson.difficulty === "intermediate" ? "warning" : "error"}>
                                   {lesson.difficulty}
                                 </Badge>
-                                <span className="text-[10px] text-[#606060] font-mono">{lesson.duration} min</span>
-                                <span className="text-[10px] text-[#ffb000] font-mono">+{lesson.xpReward} XP</span>
+                                <span className="text-[10px] text-text-muted font-mono">{lesson.duration} min</span>
+                                <span className="text-[10px] text-warning font-mono">+{lesson.xpReward} XP</span>
                               </div>
                             </CardContent>
                           </Card>
@@ -209,8 +209,8 @@ function ExploreContent() {
                   )}
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-64 border border-[#1e1e1e]">
-                  <p className="text-xs text-[#606060] font-mono">
+                <div className="flex items-center justify-center h-64 border border-border">
+                  <p className="text-xs text-text-muted font-mono">
                     Select a result to see related lessons
                   </p>
                 </div>
@@ -221,10 +221,10 @@ function ExploreContent() {
 
         {/* Empty state */}
         {!query && (
-          <div className="flex flex-col items-center justify-center py-20 border border-[#1e1e1e]">
-            <Search size={40} className="text-[#606060] mb-4" />
-            <h2 className="text-lg font-bold text-[#c0c0c0] font-mono mb-2">What do you want to learn?</h2>
-            <p className="text-sm text-[#606060] font-mono text-center max-w-md">
+          <div className="flex flex-col items-center justify-center py-20 border border-border">
+            <Search size={40} className="text-text-muted mb-4" />
+            <h2 className="text-lg font-bold text-text-secondary font-mono mb-2">What do you want to learn?</h2>
+            <p className="text-sm text-text-muted font-mono text-center max-w-md">
               Search for any concept, technology, language, or tool.
               LupaLearn will find every connected lesson, project, and resource.
             </p>
@@ -236,3 +236,6 @@ function ExploreContent() {
 }
 
 export { ExploreContent }
+
+
+

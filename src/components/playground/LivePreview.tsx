@@ -19,12 +19,12 @@ function LivePreview() {
     return `<!DOCTYPE html>
 <html>
 <head>
-  <style>${css || "body { background: #0a0a0a; color: #00ff41; font-family: monospace; padding: 2rem; }"}</style>
+  <style>${css || "body { background: #1C1A17; color: #E8B84B; font-family: monospace; padding: 2rem; }"}</style>
 </head>
 <body>
   <div id="root">
     <h1>LupaLearn Playground</h1>
-    <pre id="output" style="color:#00ff41"></pre>
+    <pre id="output" style="color:#E8B84B"></pre>
   </div>
   <script>
     const output = document.getElementById('output');
@@ -39,8 +39,8 @@ function LivePreview() {
 
   if (!htmlContent) {
     return (
-      <div className="flex items-center justify-center h-full bg-[#0a0a0a]">
-        <p className="text-xs text-[#606060] font-mono">Create an index.html file for live preview</p>
+      <div className="flex items-center justify-center h-full bg-bg">
+        <p className="text-xs text-text-muted font-mono">Create an index.html file for live preview</p>
       </div>
     )
   }
@@ -58,3 +58,4 @@ function LivePreview() {
 }
 
 export { LivePreview }
+

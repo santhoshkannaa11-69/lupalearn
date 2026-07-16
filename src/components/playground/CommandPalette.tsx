@@ -65,8 +65,8 @@ function CommandPalette() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]">
-      <div className="absolute inset-0 bg-[#0a0a0a]/80" onClick={toggle} />
-      <div className="relative w-full max-w-lg bg-[#121212] border border-border shadow-2xl animate-fade-in">
+      <div className="absolute inset-0 bg-bg/80" onClick={toggle} />
+      <div className="relative w-full max-w-lg bg-surface border border-border shadow-2xl animate-fade-in">
         <div className="flex items-center px-4 py-3 border-b border-border">
           <Search size={14} className="text-text-muted mr-2" />
           <input
@@ -88,7 +88,7 @@ function CommandPalette() {
                 key={cmd.id}
                 onClick={cmd.action}
                 className={`w-full flex items-center gap-3 px-3 py-2 text-left transition-colors ${
-                  i === selectedIdx ? "bg-[#1a1a1a] text-accent" : "text-text-secondary hover:bg-[#1a1a1a]"
+                  i === selectedIdx ? "bg-surface text-accent" : "text-text-secondary hover:bg-surface"
                 }`}
               >
                 <Icon size={14} className="shrink-0" />
@@ -109,4 +109,5 @@ function CommandPalette() {
 }
 
 export { CommandPalette }
+
 

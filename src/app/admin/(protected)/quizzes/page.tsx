@@ -61,7 +61,7 @@ export default function QuizzesPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <Badge variant="info" className="mb-2">Content / Quizzes</Badge>
-            <h1 className="text-xl font-bold text-[#ffffff] font-mono">Quiz Builder</h1>
+            <h1 className="text-xl font-bold text-text-primary font-mono">Quiz Builder</h1>
           </div>
           <Button variant="primary" size="sm" onClick={handleSave}><ListChecks size={14} /> Save Quiz</Button>
         </div>
@@ -69,21 +69,21 @@ export default function QuizzesPage() {
         {/* Metadata */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Title</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Title</label>
             <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Quiz title" />
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">
-              Concepts <span className="text-[#606060]">(comma-separated)</span>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">
+              Concepts <span className="text-text-muted">(comma-separated)</span>
             </label>
             <Input value={concepts} onChange={(e) => setConcepts(e.target.value)} placeholder="variables, functions, loops" />
           </div>
         </div>
 
         <div className="mb-4">
-          <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Description</label>
+          <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Description</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)}
-            className="w-full h-16 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 py-2 outline-none focus:border-[#00ff41] resize-none" />
+            className="w-full h-16 bg-surface border border-border text-sm text-text-secondary font-mono px-3 py-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none" />
         </div>
 
         {/* Questions */}
@@ -92,8 +92,8 @@ export default function QuizzesPage() {
             <Card key={q.id} variant="bordered">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-xs text-[#ffffff] font-mono">Question {qi + 1}</CardTitle>
-                  <button onClick={() => removeQuestion(q.id)} className="text-[#606060] hover:text-[#ff3355]">
+                  <CardTitle className="text-xs text-text-primary font-mono">Question {qi + 1}</CardTitle>
+                  <button onClick={() => removeQuestion(q.id)} className="text-text-muted hover:text-danger">
                     <Trash2 size={14} />
                   </button>
                 </div>
@@ -101,9 +101,9 @@ export default function QuizzesPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[10px] text-[#606060] font-mono block mb-1">Question</label>
+                    <label className="text-[10px] text-text-muted font-mono block mb-1">Question</label>
                     <textarea value={q.question} onChange={(e) => updateQuestion(q.id, "question", e.target.value)}
-                      className="w-full h-16 bg-[#1a1a1a] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono px-3 py-2 outline-none focus:border-[#00ff41] resize-none"
+                      className="w-full h-16 bg-surface border border-border text-xs text-text-secondary font-mono px-3 py-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none"
                       placeholder="Write your question..." />
                   </div>
 
@@ -115,13 +115,13 @@ export default function QuizzesPage() {
                           name={`correct-${q.id}`}
                           checked={q.correctIndex === oi}
                           onChange={() => updateQuestion(q.id, "correctIndex", oi)}
-                          className="accent-[#00ff41]"
+                          className="accent-accent"
                         />
                         <input
                           value={opt}
                           onChange={(e) => updateOption(q.id, oi, e.target.value)}
                           placeholder={`Option ${String.fromCharCode(65 + oi)}`}
-                          className="flex-1 h-7 bg-[#1a1a1a] border border-[#1e1e1e] px-2 text-xs text-[#c0c0c0] font-mono outline-none focus:border-[#00ff41] placeholder:text-[#606060]"
+                          className="flex-1 h-7 bg-surface border border-border px-2 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 placeholder:text-text-muted"
                         />
                       </div>
                     ))}
@@ -129,15 +129,15 @@ export default function QuizzesPage() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[10px] text-[#606060] font-mono block mb-1">Explanation</label>
+                      <label className="text-[10px] text-text-muted font-mono block mb-1">Explanation</label>
                       <input value={q.explanation} onChange={(e) => updateQuestion(q.id, "explanation", e.target.value)}
-                        className="w-full h-7 bg-[#1a1a1a] border border-[#1e1e1e] px-2 text-xs text-[#c0c0c0] font-mono outline-none focus:border-[#00ff41]"
+                        className="w-full h-7 bg-surface border border-border px-2 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                         placeholder="Why is this correct?" />
                     </div>
                     <div>
-                      <label className="text-[10px] text-[#606060] font-mono block mb-1">Concept Tag</label>
+                      <label className="text-[10px] text-text-muted font-mono block mb-1">Concept Tag</label>
                       <input value={q.concept} onChange={(e) => updateQuestion(q.id, "concept", e.target.value)}
-                        className="w-full h-7 bg-[#1a1a1a] border border-[#1e1e1e] px-2 text-xs text-[#c0c0c0] font-mono outline-none focus:border-[#00ff41]"
+                        className="w-full h-7 bg-surface border border-border px-2 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                         placeholder="e.g. variables" />
                     </div>
                   </div>
@@ -149,9 +149,12 @@ export default function QuizzesPage() {
 
         <div className="mt-4 flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={addQuestion}><Plus size={14} /> Add Question</Button>
-          <span className="text-[10px] text-[#606060] font-mono">{questions.length} questions</span>
+          <span className="text-[10px] text-text-muted font-mono">{questions.length} questions</span>
         </div>
       </div>
     </div>
   )
 }
+
+
+

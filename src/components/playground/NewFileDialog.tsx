@@ -33,9 +33,9 @@ function NewFileDialog() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/80" onClick={toggle} />
-      <div className="relative bg-[#121212] border border-border p-4 w-full max-w-md animate-fade-in">
-        <h2 className="text-sm font-bold text-[#ffffff] font-mono mb-3 uppercase tracking-wider">New File</h2>
+      <div className="absolute inset-0 bg-bg/80" onClick={toggle} />
+      <div className="relative bg-surface border border-border p-4 w-full max-w-md animate-fade-in">
+        <h2 className="text-sm font-bold text-text-primary font-mono mb-3 uppercase tracking-wider">New File</h2>
 
         <div className="flex items-center gap-2 mb-4">
           <Input
@@ -56,9 +56,9 @@ function NewFileDialog() {
             <button
               key={tpl.name}
               onClick={() => handleCreate(tpl.name)}
-              className="text-left px-2 py-1.5 text-xs font-mono text-text-secondary hover:bg-[#1a1a1a] border border-transparent hover:border-border transition-colors"
+              className="text-left px-2 py-1.5 text-xs font-mono text-text-secondary hover:bg-surface border border-transparent hover:border-border transition-colors"
             >
-              <span className="text-[#00f0ff]">{tpl.name}</span>
+              <span className="text-info">{tpl.name}</span>
               <span className="text-text-muted ml-1">({tpl.language})</span>
             </button>
           ))}
@@ -69,4 +69,5 @@ function NewFileDialog() {
 }
 
 export { NewFileDialog }
+
 

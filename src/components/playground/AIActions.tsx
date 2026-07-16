@@ -5,9 +5,9 @@ import { useEditorStore, getActiveFileContent } from "@/stores/editorStore"
 import { Sparkles, Bug, Zap, Loader2 } from "lucide-react"
 
 const AI_ACTIONS = [
-  { id: "explain", label: "Explain", icon: Sparkles, color: "#00f0ff" },
-  { id: "fix", label: "Fix", icon: Bug, color: "#ffb000" },
-  { id: "optimize", label: "Optimize", icon: Zap, color: "#00ff41" },
+  { id: "explain", label: "Explain", icon: Sparkles, color: "var(--color-info)" },
+  { id: "fix", label: "Fix", icon: Bug, color: "var(--color-warning)" },
+  { id: "optimize", label: "Optimize", icon: Zap, color: "var(--color-accent)" },
 ]
 
 function AIActions() {
@@ -50,7 +50,7 @@ function AIActions() {
             key={action.id}
             onClick={() => handleAction(action.id)}
             disabled={isActive}
-            className="flex items-center gap-1 px-2 py-1 text-[10px] font-mono border border-[#1e1e1e] hover:border-[#2a2a2a] bg-[#121212] hover:bg-[#1a1a1a] transition-colors disabled:opacity-50"
+            className="flex items-center gap-1 px-2 py-1 text-[10px] font-mono border border-border hover:border-border-hover bg-surface hover:bg-surface transition-colors disabled:opacity-50"
             style={{ color: action.color }}
             title={action.label}
           >
@@ -64,3 +64,5 @@ function AIActions() {
 }
 
 export { AIActions, AI_ACTIONS }
+
+

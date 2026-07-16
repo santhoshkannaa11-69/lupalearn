@@ -88,23 +88,23 @@ export function CommandBar({ context, onClose }: CommandBarProps) {
   )
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 bg-[#0a0a0a] border-t border-[#1e1e1e] animate-slide-up">
+    <div className="fixed inset-x-0 bottom-0 z-50 bg-bg border-t border-border animate-slide-up">
       {/* Suggestions */}
       {suggestions.length > 0 && input.startsWith(":") && (
-        <div className="border-b border-[#1e1e1e] bg-[#121212] max-h-32 overflow-y-auto">
+        <div className="border-b border-border bg-surface max-h-32 overflow-y-auto">
           {suggestions.map((s, i) => (
             <div
               key={s.command.id}
-              className="flex items-center gap-3 px-4 py-1.5 text-xs font-mono hover:bg-[#1a1a1a] cursor-pointer"
+              className="flex items-center gap-3 px-4 py-1.5 text-xs font-mono hover:bg-surface cursor-pointer"
               onClick={() => {
                 setInput(`:${s.matchedAlias} `)
                 setSuggestions([])
                 inputRef.current?.focus()
               }}
             >
-              <span className="text-[#00ff41] shrink-0">:{s.matchedAlias}</span>
-              <span className="text-[#606060] flex-1 truncate">{s.command.description}</span>
-              <span className="text-[10px] text-[#606060] uppercase">{s.command.category}</span>
+              <span className="text-accent shrink-0">:{s.matchedAlias}</span>
+              <span className="text-text-muted flex-1 truncate">{s.command.description}</span>
+              <span className="text-[10px] text-text-muted uppercase">{s.command.category}</span>
             </div>
           ))}
         </div>
@@ -112,7 +112,7 @@ export function CommandBar({ context, onClose }: CommandBarProps) {
 
       {/* Input bar */}
       <div className="flex items-center px-4 py-2 gap-3">
-        <span className="text-[#00ff41] text-sm font-mono shrink-0">:</span>
+        <span className="text-accent text-sm font-mono shrink-0">:</span>
         <input
           ref={inputRef}
           type="text"
@@ -120,14 +120,15 @@ export function CommandBar({ context, onClose }: CommandBarProps) {
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="type a command... (Esc to close)"
-          className="flex-1 bg-transparent text-sm text-[#c0c0c0] font-mono outline-none placeholder:text-[#606060]"
+          className="flex-1 bg-transparent text-sm text-text-secondary font-mono outline-none placeholder:text-text-muted"
           spellCheck={false}
           autoComplete="off"
         />
-        <span className="text-[10px] text-[#606060] font-mono">
+        <span className="text-[10px] text-text-muted font-mono">
           {suggestions.length > 0 ? `${suggestions.length} matches` : "⏎ to run"}
         </span>
       </div>
     </div>
   )
 }
+

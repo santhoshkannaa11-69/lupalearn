@@ -113,13 +113,13 @@ concepts: [${meta.concepts.join(", ")}]
 ${content || "*Start typing your lesson content...*"}`
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0a0a]">
+    <div className="flex-1 overflow-y-auto bg-bg">
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
             <Badge variant="info" className="mb-2">Content / Lessons / Editor</Badge>
-            <h1 className="text-xl font-bold text-[#ffffff] font-mono">
+            <h1 className="text-xl font-bold text-text-primary font-mono">
               {meta.title || "New Lesson"}
             </h1>
           </div>
@@ -140,17 +140,17 @@ ${content || "*Start typing your lesson content...*"}`
         {/* Metadata Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Title</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Title</label>
             <Input value={meta.title} onChange={(e) => updateMeta("title", String(e.target.value))} placeholder="Lesson title" />
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Slug</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Slug</label>
             <Input value={meta.slug} onChange={(e) => updateMeta("slug", String(e.target.value))} prefix="> lupa@cms:~$" placeholder="lesson-slug" />
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Difficulty</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Difficulty</label>
             <select value={meta.difficulty} onChange={(e) => updateMeta("difficulty", e.target.value as "beginner" | "intermediate" | "advanced")}
-              className="w-full h-9 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 outline-none focus:border-[#00ff41]">
+              className="w-full h-9 bg-surface border border-border text-sm text-text-secondary font-mono px-3 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20">
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
@@ -158,11 +158,11 @@ ${content || "*Start typing your lesson content...*"}`
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Duration</label>
+              <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Duration</label>
               <Input type="number" value={meta.duration} onChange={(e) => updateMeta("duration", parseInt(e.target.value) || 0)} />
             </div>
             <div>
-              <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">XP</label>
+              <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">XP</label>
               <Input type="number" value={meta.xpReward} onChange={(e) => updateMeta("xpReward", parseInt(e.target.value) || 0)} />
             </div>
           </div>
@@ -170,42 +170,42 @@ ${content || "*Start typing your lesson content...*"}`
 
         {/* Description */}
         <div className="mb-4">
-          <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Description</label>
+          <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Description</label>
           <textarea value={meta.description} onChange={(e) => updateMeta("description", e.target.value || "")}
-            className="w-full h-16 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 py-2 outline-none focus:border-[#00ff41] resize-none" />
+            className="w-full h-16 bg-surface border border-border text-sm text-text-secondary font-mono px-3 py-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none" />
         </div>
 
         {/* Tags + Concepts Row */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Tags</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Tags</label>
             <div className="flex items-center gap-2 mb-1">
               <Input value={tagInput} onChange={(e) => setTagInput(String(e.target.value))}
                 onKeyDown={(e) => e.key === "Enter" && addTag()}
                 placeholder="Add tag..." className="text-xs" />
-              <button onClick={addTag} className="text-[#00ff41] hover:text-[#00cc33]"><Plus size={16} /></button>
+              <button onClick={addTag} className="text-accent hover:text-accent-hover"><Plus size={16} /></button>
             </div>
             <div className="flex flex-wrap gap-1">
               {meta.tags.map((tag) => (
-                <Badge key={tag} variant="info" className="cursor-pointer hover:border-[#ff3355]" onClick={() => removeTag(tag)}>
+                <Badge key={tag} variant="info" className="cursor-pointer hover:border-danger" onClick={() => removeTag(tag)}>
                   {tag} ✕
                 </Badge>
               ))}
             </div>
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">
-              Concepts <span className="text-[#606060]">(from knowledge graph)</span>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">
+              Concepts <span className="text-text-muted">(from knowledge graph)</span>
             </label>
             <div className="relative">
               <Input value={conceptSearch} onChange={(e) => searchConcepts(String(e.target.value))}
                 placeholder="Search concepts..." prefix="> lupa@cms:~$" />
               {conceptResults.length > 0 && (
-                <div className="absolute top-full left-0 right-0 bg-[#121212] border border-[#1e1e1e] z-10 mt-1 max-h-40 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 bg-surface border border-border z-10 mt-1 max-h-40 overflow-y-auto">
                   {conceptResults.map((c) => (
                     <button key={c.slug} onClick={() => addConcept(c.slug)}
-                      className="w-full text-left px-3 py-1.5 text-xs text-[#c0c0c0] font-mono hover:bg-[#1a1a1a] flex items-center gap-2">
-                      <span className="text-[10px] text-[#606060] uppercase">{c.type}</span>
+                      className="w-full text-left px-3 py-1.5 text-xs text-text-secondary font-mono hover:bg-surface flex items-center gap-2">
+                      <span className="text-[10px] text-text-muted uppercase">{c.type}</span>
                       {c.name}
                     </button>
                   ))}
@@ -214,7 +214,7 @@ ${content || "*Start typing your lesson content...*"}`
             </div>
             <div className="flex flex-wrap gap-1 mt-1">
               {meta.concepts.map((slug) => (
-                <Badge key={slug} variant="success" className="cursor-pointer hover:border-[#ff3355]" onClick={() => removeConcept(slug)}>
+                <Badge key={slug} variant="success" className="cursor-pointer hover:border-danger" onClick={() => removeConcept(slug)}>
                   {slug} ✕
                 </Badge>
               ))}
@@ -227,16 +227,16 @@ ${content || "*Start typing your lesson content...*"}`
           {/* Editor */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider">MDX Source</label>
+              <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider">MDX Source</label>
               <div className="flex items-center gap-1">
                 <button onClick={() => handleAIAction("example")}
-                  className="text-[10px] text-[#00f0ff] hover:underline font-mono">[Generate Example]</button>
+                  className="text-[10px] text-info hover:underline font-mono">[Generate Example]</button>
                 <button onClick={() => handleAIAction("quiz")}
-                  className="text-[10px] text-[#ffb000] hover:underline font-mono">[Generate Quiz]</button>
+                  className="text-[10px] text-warning hover:underline font-mono">[Generate Quiz]</button>
               </div>
             </div>
             <textarea value={content} onChange={(e) => setContent(e.target.value)}
-              className="w-full h-[500px] bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono p-3 outline-none focus:border-[#00ff41] resize-none"
+              className="w-full h-[500px] bg-surface border border-border text-sm text-text-secondary font-mono p-3 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none"
               placeholder="Write your MDX content here...
               
 Supports:
@@ -256,8 +256,8 @@ Terminal, Diagram, Quiz, CodeBlock components render in preview."
           {/* Preview */}
           {showPreview && (
             <div>
-              <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-2">Preview</label>
-              <div className="border border-[#1e1e1e] bg-[#121212] p-4 overflow-y-auto h-[500px]">
+              <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-2">Preview</label>
+              <div className="border border-border bg-surface p-4 overflow-y-auto h-[500px]">
                 <div className="prose prose-invert max-w-none text-sm font-mono">
                   <ReactMarkdown
                     components={{
@@ -267,21 +267,21 @@ Terminal, Diagram, Quiz, CodeBlock components render in preview."
                         if (match) {
                           return (
                             <SyntaxHighlighter style={oneDark} language={match[1]} PreTag="div"
-                              customStyle={{ background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 0, fontSize: "12px", fontFamily: "'JetBrains Mono', monospace" }}>
+                              customStyle={{ background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: 0, fontSize: "12px", fontFamily: "'JetBrains Mono', monospace" }}>
                               {codeStr}
                             </SyntaxHighlighter>
                           )
                         }
-                        return <code className="bg-[#1a1a1a] text-[#00ff41] px-1 text-xs" {...props}>{children}</code>
+                        return <code className="bg-surface text-accent px-1 text-xs" {...props}>{children}</code>
                       },
-                      h1: ({ children }) => <h1 className="text-base font-bold text-[#ffffff] font-mono mt-4 mb-2">{children}</h1>,
-                      h2: ({ children }) => <h2 className="text-sm font-bold text-[#ffffff] font-mono mt-3 mb-2">{children}</h2>,
-                      h3: ({ children }) => <h3 className="text-xs font-bold text-[#00ff41] font-mono mt-2 mb-1">{children}</h3>,
-                      p: ({ children }) => <p className="text-[#c0c0c0] leading-relaxed mb-3 text-xs">{children}</p>,
-                      ul: ({ children }) => <ul className="list-disc list-inside text-[#c0c0c0] space-y-1 mb-3">{children}</ul>,
+                      h1: ({ children }) => <h1 className="text-base font-bold text-text-primary font-mono mt-4 mb-2">{children}</h1>,
+                      h2: ({ children }) => <h2 className="text-sm font-bold text-text-primary font-mono mt-3 mb-2">{children}</h2>,
+                      h3: ({ children }) => <h3 className="text-xs font-bold text-accent font-mono mt-2 mb-1">{children}</h3>,
+                      p: ({ children }) => <p className="text-text-secondary leading-relaxed mb-3 text-xs">{children}</p>,
+                      ul: ({ children }) => <ul className="list-disc list-inside text-text-secondary space-y-1 mb-3">{children}</ul>,
                       li: ({ children }) => <li className="text-xs">{children}</li>,
-                      strong: ({ children }) => <strong className="text-[#ffffff] font-bold">{children}</strong>,
-                      a: ({ href, children }) => <a href={href} className="text-[#00f0ff] hover:underline font-mono text-xs">{children}</a>,
+                      strong: ({ children }) => <strong className="text-text-primary font-bold">{children}</strong>,
+                      a: ({ href, children }) => <a href={href} className="text-info hover:underline font-mono text-xs">{children}</a>,
                     }}
                   >
                     {mdxPreview}
@@ -293,13 +293,13 @@ Terminal, Diagram, Quiz, CodeBlock components render in preview."
         </div>
 
         {/* Bottom Actions */}
-        <div className="mt-6 flex items-center gap-3 border-t border-[#1e1e1e] pt-4">
+        <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
           <Button variant="primary" size="sm" onClick={handleSave}>
             <Save size={14} /> Save Draft
           </Button>
           <Button variant="outline" size="sm">Submit for Review</Button>
           <div className="flex-1" />
-          <span className="text-[10px] text-[#606060] font-mono">
+          <span className="text-[10px] text-text-muted font-mono">
             {meta.concepts.length} concepts | {meta.tags.length} tags | {content.length} chars
           </span>
         </div>
@@ -309,3 +309,6 @@ Terminal, Diagram, Quiz, CodeBlock components render in preview."
 }
 
 export { LessonEditor }
+
+
+

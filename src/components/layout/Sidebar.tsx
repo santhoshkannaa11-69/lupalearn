@@ -55,7 +55,7 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "bg-[#0a0a0a] border-r border-[#1e1e1e] flex flex-col transition-all duration-200 overflow-hidden",
+        "bg-bg border-r border-border flex flex-col transition-all duration-200 overflow-hidden",
         collapsed ? "w-0 border-r-0" : "w-64"
       )}
     >
@@ -71,8 +71,8 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 px-3 py-2 text-xs font-mono transition-colors",
                 isActive
-                  ? "text-[#00ff41] bg-[#121212] border-l-2 border-[#00ff41]"
-                  : "text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212] border-l-2 border-transparent"
+                  ? "text-accent bg-surface border-l-2 border-accent"
+                  : "text-text-muted hover:text-text-secondary hover:bg-surface border-l-2 border-transparent"
               )}
             >
               {Icon && <Icon size={14} />}
@@ -83,24 +83,24 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
         {/* Divider */}
         {/* Divider and Admin link */}
-        <div className="my-3 border-t border-[#1e1e1e]" />
+        <div className="my-3 border-t border-border" />
         <Link
           href="/admin"
           className={cn(
             "flex items-center gap-3 px-3 py-2 text-xs font-mono transition-colors",
             pathname.startsWith("/admin")
-              ? "text-[#ffb000] bg-[#121212] border-l-2 border-[#ffb000]"
-              : "text-[#606060] hover:text-[#ffb000] hover:bg-[#121212] border-l-2 border-transparent"
+              ? "text-warning bg-surface border-l-2 border-warning"
+              : "text-text-muted hover:text-warning hover:bg-surface border-l-2 border-transparent"
           )}
         >
           <Shield size={14} />
           <span>Admin Panel</span>
         </Link>
 
-        <div className="my-3 border-t border-[#1e1e1e]" />
+        <div className="my-3 border-t border-border" />
 
         {/* Schools / Volumes */}
-        <div className="px-3 py-1 text-[10px] text-[#606060] uppercase tracking-widest font-mono">
+        <div className="px-3 py-1 text-[10px] text-text-muted uppercase tracking-widest font-mono">
           Schools
         </div>
 
@@ -116,8 +116,8 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
                 className={cn(
                   "flex items-center gap-2 w-full px-3 py-1.5 text-xs font-mono transition-colors group",
                   isActive
-                    ? "text-[#00ff41] bg-[#121212]"
-                    : "text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212]"
+                    ? "text-accent bg-surface"
+                    : "text-text-muted hover:text-text-secondary hover:bg-surface"
                 )}
               >
                 <span
@@ -125,20 +125,20 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
                   style={{ backgroundColor: school.color }}
                 />
                 <span className="flex-1 text-left truncate">
-                  <span className="text-[10px] text-[#606060] mr-1">v{String(school.number).padStart(2, "0")}</span>
+                  <span className="text-[10px] text-text-muted mr-1">v{String(school.number).padStart(2, "0")}</span>
                   {school.title}
                 </span>
                 {isExpanded ? (
-                  <ChevronDown size={12} className="text-[#606060]" />
+                  <ChevronDown size={12} className="text-text-muted" />
                 ) : (
-                  <ChevronRight size={12} className="text-[#606060]" />
+                  <ChevronRight size={12} className="text-text-muted" />
                 )}
               </button>
 
               {/* Categories would go here when expanded — placeholder for now */}
               {isExpanded && (
-                <div className="ml-6 pl-2 border-l border-[#1e1e1e] space-y-0.5 mt-0.5 mb-1">
-                  <div className="px-3 py-1 text-[10px] text-[#606060] italic">Loading categories...</div>
+                <div className="ml-6 pl-2 border-l border-border space-y-0.5 mt-0.5 mb-1">
+                  <div className="px-3 py-1 text-[10px] text-text-muted italic">Loading categories...</div>
                 </div>
               )}
             </div>
@@ -146,11 +146,11 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
         })}
       </div>
 
-      <div className="p-3 border-t border-[#1e1e1e]">
-        <div className="flex items-center gap-2 text-[10px] text-[#606060]">
-          <span className="w-1.5 h-1.5 rounded-none bg-[#00ff41] animate-pulse-glow" />
+      <div className="p-3 border-t border-border">
+        <div className="flex items-center gap-2 text-[10px] text-text-muted">
+          <span className="w-1.5 h-1.5 rounded-none bg-accent animate-pulse-glow" />
           <span className="font-mono">lupa@learn:~/</span>
-          <span className="text-[#00ff41]">$</span>
+          <span className="text-accent">$</span>
           <span className="animate-blink">_</span>
         </div>
       </div>
@@ -160,3 +160,6 @@ function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
 export { Sidebar }
 export type { SidebarProps }
+
+
+

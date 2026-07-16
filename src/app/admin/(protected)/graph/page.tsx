@@ -12,12 +12,12 @@ type GraphEdge = { id: string; sourceId: string; targetId: string; relationType:
 type GraphData = { nodes: GraphNode[]; edges: GraphEdge[] }
 
 const NODE_COLORS: Record<string, string> = {
-  concept: "#00ff41", language: "#00f0ff", framework: "#ffb000",
-  tool: "#ff00aa", lesson: "#606060", technology: "#00aaff",
+  concept: "var(--color-accent)", language: "var(--color-info)", framework: "var(--color-warning)",
+  tool: "#ff00aa", lesson: "#606060", technology: "var(--color-info)",
 }
 
 const EDGE_COLORS: Record<string, string> = {
-  requires: "#ff3355", teaches: "#00ff41", related_to: "#ffb000",
+  requires: "var(--color-danger)", teaches: "var(--color-accent)", related_to: "var(--color-warning)",
 }
 
 const NODE_RADIUS = 28
@@ -73,18 +73,18 @@ export default function GraphPage() {
   if (loading) return <div className="flex-1 flex items-center justify-center"><Spinner label="Loading graph..." /></div>
 
   return (
-    <div className="flex-1 overflow-hidden flex bg-[#0a0a0a]">
+    <div className="flex-1 overflow-hidden flex bg-bg">
       {/* Graph Canvas */}
       <div className="flex-1 relative">
         <div className="absolute top-3 left-3 z-10">
           <Badge variant="info" className="mb-1">Knowledge Graph</Badge>
-          <p className="text-[10px] text-[#606060] font-mono">{data?.nodes.length} nodes · {data?.edges.length} edges</p>
+          <p className="text-[10px] text-text-muted font-mono">{data?.nodes.length} nodes · {data?.edges.length} edges</p>
         </div>
 
         <div className="absolute top-3 right-3 z-10 flex gap-1">
-          <button onClick={zoomIn} className="p-1.5 bg-[#121212] border border-[#1e1e1e] text-[#c0c0c0] hover:text-[#00ff41]"><ZoomIn size={14} /></button>
-          <button onClick={zoomOut} className="p-1.5 bg-[#121212] border border-[#1e1e1e] text-[#c0c0c0] hover:text-[#00ff41]"><ZoomOut size={14} /></button>
-          <button onClick={resetView} className="p-1.5 bg-[#121212] border border-[#1e1e1e] text-[#c0c0c0] hover:text-[#00ff41]"><Maximize size={14} /></button>
+          <button onClick={zoomIn} className="p-1.5 bg-surface border border-border text-text-secondary hover:text-accent"><ZoomIn size={14} /></button>
+          <button onClick={zoomOut} className="p-1.5 bg-surface border border-border text-text-secondary hover:text-accent"><ZoomOut size={14} /></button>
+          <button onClick={resetView} className="p-1.5 bg-surface border border-border text-text-secondary hover:text-accent"><Maximize size={14} /></button>
         </div>
 
         <svg
@@ -105,7 +105,7 @@ export default function GraphPage() {
                 <line
                   key={edge.id}
                   x1={src.x} y1={src.y} x2={tgt.x} y2={tgt.y}
-                  stroke={EDGE_COLORS[edge.relationType] || "#1e1e1e"}
+                  stroke={EDGE_COLORS[edge.relationType] || "var(--color-border)"}
                   strokeWidth={1}
                   strokeDasharray={edge.relationType === "related_to" ? "4,4" : undefined}
                   opacity={0.6}
@@ -122,13 +122,13 @@ export default function GraphPage() {
               return (
                 <g key={node.id} onClick={() => handleNodeClick(node)} className="cursor-pointer">
                   <circle cx={pos.x} cy={pos.y} r={NODE_RADIUS}
-                    fill={isSelected ? color : "#121212"}
+                    fill={isSelected ? color : "var(--color-surface)"}
                     stroke={color}
                     strokeWidth={isSelected ? 3 : 1.5}
                     opacity={isSelected ? 1 : 0.8}
                   />
                   <text x={pos.x} y={pos.y + 4} textAnchor="middle"
-                    fill={isSelected ? "#0a0a0a" : "#c0c0c0"}
+                    fill={isSelected ? "var(--color-bg)" : "var(--color-text-secondary)"}
                     fontSize={8} fontFamily="monospace"
                     className="pointer-events-none"
                   >
@@ -142,13 +142,13 @@ export default function GraphPage() {
       </div>
 
       {/* Node Detail Panel */}
-      <div className="w-64 border-l border-[#1e1e1e] p-4 overflow-y-auto bg-[#0a0a0a]">
+      <div className="w-64 border-l border-border p-4 overflow-y-auto bg-bg">
         {selectedNode ? (
           <div>
-            <p className="text-xs font-bold text-[#ffffff] font-mono mb-1">{selectedNode.name}</p>
-            <p className="text-[10px] text-[#606060] font-mono mb-3">/{selectedNode.slug} · <span style={{ color: NODE_COLORS[selectedNode.type] || "#606060" }}>{selectedNode.type}</span></p>
+            <p className="text-xs font-bold text-text-primary font-mono mb-1">{selectedNode.name}</p>
+            <p className="text-[10px] text-text-muted font-mono mb-3">/{selectedNode.slug} · <span style={{ color: NODE_COLORS[selectedNode.type] || "#606060" }}>{selectedNode.type}</span></p>
 
-            <p className="text-[10px] text-[#606060] font-mono uppercase tracking-wider mb-2">Connections</p>
+            <p className="text-[10px] text-text-muted font-mono uppercase tracking-wider mb-2">Connections</p>
             <div className="space-y-1 mb-4">
               {data?.edges.filter((e) => e.sourceId === selectedNode.id || e.targetId === selectedNode.id).map((edge) => {
                 const otherId = edge.sourceId === selectedNode.id ? edge.targetId : edge.sourceId
@@ -157,33 +157,33 @@ export default function GraphPage() {
                 return (
                   <div key={edge.id} className="text-[10px] font-mono flex items-center gap-1">
                     <span style={{ color: EDGE_COLORS[edge.relationType] || "#606060" }}>{dir}</span>
-                    <span className="text-[#606060]">{edge.relationType}</span>
-                    <span className="text-[#c0c0c0]">{other?.name || "?"}</span>
+                    <span className="text-text-muted">{edge.relationType}</span>
+                    <span className="text-text-secondary">{other?.name || "?"}</span>
                   </div>
                 )
               })}
               {data?.edges.filter((e) => e.sourceId === selectedNode.id || e.targetId === selectedNode.id).length === 0 && (
-                <p className="text-[10px] text-[#606060] font-mono italic">No connections</p>
+                <p className="text-[10px] text-text-muted font-mono italic">No connections</p>
               )}
             </div>
 
             <button
               onClick={() => setSelectedNode(null)}
-              className="text-[10px] text-[#606060] font-mono hover:text-[#c0c0c0]"
+              className="text-[10px] text-text-muted font-mono hover:text-text-secondary"
             >
               [Deselect]
             </button>
           </div>
         ) : (
           <div className="text-center py-10">
-            <p className="text-xs text-[#606060] font-mono">Click a node to see details</p>
-            <p className="text-[10px] text-[#606060] font-mono mt-2">Drag to pan · Scroll to zoom</p>
+            <p className="text-xs text-text-muted font-mono">Click a node to see details</p>
+            <p className="text-[10px] text-text-muted font-mono mt-2">Drag to pan · Scroll to zoom</p>
             <div className="mt-6 text-left space-y-1">
-              <p className="text-[10px] text-[#606060] font-mono uppercase tracking-wider mb-2">Legend</p>
+              <p className="text-[10px] text-text-muted font-mono uppercase tracking-wider mb-2">Legend</p>
               {Object.entries(NODE_COLORS).map(([type, color]) => (
                 <div key={type} className="flex items-center gap-2 text-[10px] font-mono">
                   <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
-                  <span className="text-[#606060]">{type}</span>
+                  <span className="text-text-muted">{type}</span>
                 </div>
               ))}
             </div>
@@ -193,3 +193,5 @@ export default function GraphPage() {
     </div>
   )
 }
+
+

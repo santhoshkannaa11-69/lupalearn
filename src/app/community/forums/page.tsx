@@ -18,16 +18,16 @@ export default function ForumsPage() {
     <Shell>
       <div className="max-w-4xl mx-auto px-6 py-10">
         <Badge variant="info" className="mb-3">Community / Forums</Badge>
-        <h1 className="text-xl font-bold text-[#ffffff] font-mono mb-6">Discussions</h1>
+        <h1 className="text-xl font-bold text-text-primary font-mono mb-6">Discussions</h1>
         <div className="space-y-2">
           {TOPICS.map((t) => (
-            <div key={t.title} className="flex items-center gap-4 px-4 py-3 border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors cursor-pointer">
-              <MessageSquare size={16} className="text-[#606060] shrink-0" />
+            <div key={t.title} className="flex items-center gap-4 px-4 py-3 border border-border hover:border-border-hover transition-colors cursor-pointer">
+              <MessageSquare size={16} className="text-text-muted shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-[#ffffff] font-mono font-bold truncate">{t.title}</p>
-                <p className="text-xs text-[#606060] font-mono">{t.replies} replies · #{t.concept}</p>
+                <p className="text-sm text-text-primary font-mono font-bold truncate">{t.title}</p>
+                <p className="text-xs text-text-muted font-mono">{t.replies} replies · #{t.concept}</p>
               </div>
-              <ArrowRight size={14} className="text-[#606060] shrink-0" />
+              <ArrowRight size={14} className="text-text-muted shrink-0" />
             </div>
           ))}
         </div>
@@ -35,3 +35,4 @@ export default function ForumsPage() {
     </Shell>
   )
 }
+

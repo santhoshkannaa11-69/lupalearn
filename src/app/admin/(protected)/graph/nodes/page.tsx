@@ -37,24 +37,24 @@ export default function NodesPage() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <Badge variant="info" className="mb-2">Knowledge / Nodes</Badge>
-      <h1 className="text-xl font-bold text-[#ffffff] font-mono mb-6">Concept & Node Editor</h1>
+      <h1 className="text-xl font-bold text-text-primary font-mono mb-6">Concept & Node Editor</h1>
 
       <Card variant="bordered" className="mb-6">
-        <CardHeader><CardTitle className="text-xs text-[#ffffff] font-mono">Create New Node</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="text-xs text-text-primary font-mono">Create New Node</CardTitle></CardHeader>
         <CardContent>
           <div className="flex items-end gap-2">
             <div className="flex-1">
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Name</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Name</label>
               <Input value={newName} onChange={(e) => { setNewName(e.target.value); setNewSlug(e.target.value.toLowerCase().replace(/\s+/g, "-")) }} placeholder="Node name" />
             </div>
             <div>
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Slug</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Slug</label>
               <Input value={newSlug} onChange={(e) => setNewSlug(e.target.value)} prefix="/" />
             </div>
             <div>
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Type</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Type</label>
               <select value={newType} onChange={(e) => setNewType(e.target.value)}
-                className="h-9 bg-[#121212] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono px-2 outline-none focus:border-[#00ff41]">
+                className="h-9 bg-surface border border-border text-xs text-text-secondary font-mono px-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20">
                 {["concept","language","framework","tool","technology","paradigm"].map((t) => (<option key={t} value={t}>{t}</option>))}
               </select>
             </div>
@@ -66,10 +66,10 @@ export default function NodesPage() {
       {loading ? <Spinner label="Loading nodes..." /> : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {nodes.sort((a, b) => a.name.localeCompare(b.name)).map((node) => (
-            <div key={node.id} className="p-3 border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors">
-              <p className="text-xs text-[#ffffff] font-mono font-bold truncate">{node.name}</p>
-              <p className="text-[10px] text-[#606060] font-mono truncate">{node.slug}</p>
-              <span className="text-[10px] font-mono uppercase" style={{ color: node.type === "concept" ? "#00ff41" : node.type === "language" ? "#00f0ff" : node.type === "framework" ? "#ffb000" : "#606060" }}>{node.type}</span>
+            <div key={node.id} className="p-3 border border-border hover:border-border-hover transition-colors">
+              <p className="text-xs text-text-primary font-mono font-bold truncate">{node.name}</p>
+              <p className="text-[10px] text-text-muted font-mono truncate">{node.slug}</p>
+              <span className="text-[10px] font-mono uppercase" style={{ color: node.type === "concept" ? "var(--color-accent)" : node.type === "language" ? "var(--color-info)" : node.type === "framework" ? "var(--color-warning)" : "#606060" }}>{node.type}</span>
             </div>
           ))}
         </div>
@@ -77,3 +77,6 @@ export default function NodesPage() {
     </div>
   )
 }
+
+
+

@@ -71,7 +71,7 @@ function Playground() {
   }, [toggleCommandPalette, undo, redo, activeFile])
 
   return (
-    <div ref={containerRef} className="h-full flex flex-col bg-[#0a0a0a] select-none">
+    <div ref={containerRef} className="h-full flex flex-col bg-bg select-none">
       <PlaygroundToolbar />
       <div className="flex flex-1 overflow-hidden">
         <FileTree />
@@ -85,7 +85,7 @@ function Playground() {
 
           {/* Resize Handle */}
           <div
-            className={`h-2 flex items-center justify-center border-t border-border cursor-row-resize hover:bg-[#1a1a1a] transition-colors shrink-0 ${dragging ? "bg-[#1a1a1a]" : "bg-[#0a0a0a]"}`}
+            className={`h-2 flex items-center justify-center border-t border-border cursor-row-resize hover:bg-surface transition-colors shrink-0 ${dragging ? "bg-surface" : "bg-bg"}`}
             onMouseDown={handleMouseDown}
           >
             <GripHorizontal size={12} className="text-text-muted" />
@@ -104,4 +104,5 @@ function Playground() {
 }
 
 export { Playground }
+
 

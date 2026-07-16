@@ -47,7 +47,7 @@ export default function CommunityPage() {
             <Card variant="bordered" className="hover:border-[#2a2a2a] transition-colors cursor-pointer">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <MessageSquare size={16} className="text-[#00f0ff]" />
+                  <MessageSquare size={16} className="text-info" />
                   <CardTitle className="text-xs text-[#ffffff]">Forums</CardTitle>
                 </div>
               </CardHeader>
@@ -60,7 +60,7 @@ export default function CommunityPage() {
             <Card variant="bordered" className="hover:border-[#2a2a2a] transition-colors cursor-pointer">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Code2 size={16} className="text-[#ffb000]" />
+                  <Code2 size={16} className="text-warning" />
                   <CardTitle className="text-xs text-[#ffffff]">Project Showcase</CardTitle>
                 </div>
               </CardHeader>
@@ -100,7 +100,7 @@ export default function CommunityPage() {
                         </div>
                         <p className="text-xs text-[#606060] font-mono line-clamp-2">{post.content}</p>
                         <div className="flex items-center gap-3 mt-2">
-                          {post.tags.map((tag) => (<span key={tag} className="text-[10px] text-[#00f0ff] font-mono">#{tag}</span>))}
+                          {post.tags.map((tag) => (<span key={tag} className="text-[10px] text-info font-mono">#{tag}</span>))}
                         </div>
                       </div>
                       <div className="flex items-center gap-3 text-xs text-[#606060] font-mono shrink-0">
@@ -125,3 +125,4 @@ export default function CommunityPage() {
     </Shell>
   )
 }
+

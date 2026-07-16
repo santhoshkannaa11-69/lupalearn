@@ -13,14 +13,14 @@ function EditorTabs() {
 
   if (openFiles.length === 0) {
     return (
-      <div className="h-8 flex items-center px-3 bg-[#0a0a0a] border-b border-border">
+      <div className="h-8 flex items-center px-3 bg-bg border-b border-border">
         <span className="text-[10px] text-text-muted font-mono">No files open</span>
       </div>
     )
   }
 
   return (
-    <div className="flex items-center bg-[#0a0a0a] border-b border-border overflow-x-auto">
+    <div className="flex items-center bg-bg border-b border-border overflow-x-auto">
       {openFiles.map((path) => {
         const name = path.split("/").pop() || path
         const isActive = path === activeFile
@@ -33,8 +33,8 @@ function EditorTabs() {
               "flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono cursor-pointer border-r border-border",
               "transition-colors select-none whitespace-nowrap",
               isActive
-                ? "bg-[#121212] text-text-secondary border-t-[2px] border-t-[#00ff41]"
-                : "bg-[#0a0a0a] text-text-muted hover:text-text-secondary hover:bg-[#121212]"
+                ? "bg-surface text-text-secondary border-t-2 border-t-accent"
+                : "bg-bg text-text-muted hover:text-text-secondary hover:bg-surface"
             )}
           >
             <span>{name}</span>
@@ -55,4 +55,6 @@ function EditorTabs() {
 }
 
 export { EditorTabs }
+
+
 

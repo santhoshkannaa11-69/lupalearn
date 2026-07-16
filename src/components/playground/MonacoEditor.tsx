@@ -56,8 +56,8 @@ function MonacoEditor() {
 
   if (!activeFile) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-[#0a0a0a]">
-        <p className="text-xs text-[#606060] font-mono">No file open</p>
+      <div className="flex-1 flex items-center justify-center bg-bg">
+        <p className="text-xs text-text-muted font-mono">No file open</p>
       </div>
     )
   }
@@ -74,8 +74,8 @@ function MonacoEditor() {
         onMount={handleMount}
         beforeMount={handleBeforeMount}
         loading={
-          <div className="flex items-center justify-center h-full bg-[#0a0a0a]">
-            <p className="text-xs text-[#606060] font-mono">Loading editor...</p>
+          <div className="flex items-center justify-center h-full bg-bg">
+            <p className="text-xs text-text-muted font-mono">Loading editor...</p>
           </div>
         }
         options={{
@@ -102,3 +102,4 @@ function MonacoEditor() {
 }
 
 export { MonacoEditor }
+

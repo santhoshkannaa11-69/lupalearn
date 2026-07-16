@@ -24,14 +24,14 @@ export default function ShowcasePage() {
             <Card key={p.title} variant="bordered">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Code2 size={14} className="text-[#ffb000]" />
+                  <Code2 size={14} className="text-warning" />
                   <CardTitle className="text-xs text-[#ffffff] font-mono">{p.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-xs text-[#606060] font-mono mb-3">{p.desc}</p>
                 <div className="flex items-center gap-2 mb-3">
-                  {p.tags.map((t) => <span key={t} className="text-[10px] text-[#00f0ff] font-mono">#{t}</span>)}
+                  {p.tags.map((t) => <span key={t} className="text-[10px] text-info font-mono">#{t}</span>)}
                 </div>
                 <div className="flex items-center justify-between text-xs text-[#606060] font-mono">
                   <span>{p.author}</span>
@@ -48,3 +48,4 @@ export default function ShowcasePage() {
     </Shell>
   )
 }
+

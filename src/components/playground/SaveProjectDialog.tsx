@@ -75,16 +75,16 @@ function SaveProjectDialog() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/80" onClick={toggle} />
-      <div className="relative bg-[#121212] border border-border p-4 w-full max-w-md animate-fade-in max-h-[70vh] flex flex-col">
-        <h2 className="text-sm font-bold text-[#ffffff] font-mono mb-3 uppercase tracking-wider">Save Project</h2>
+      <div className="absolute inset-0 bg-bg/80" onClick={toggle} />
+      <div className="relative bg-surface border border-border p-4 w-full max-w-md animate-fade-in max-h-[70vh] flex flex-col">
+        <h2 className="text-sm font-bold text-text-primary font-mono mb-3 uppercase tracking-wider">Save Project</h2>
 
         <div className="flex items-center gap-2 mb-4">
           <input
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}
             placeholder="Project name"
-            className="flex-1 h-8 bg-[#1a1a1a] border border-border px-3 text-xs text-text-secondary font-mono outline-none focus:border-[#00ff41] placeholder:text-text-muted"
+            className="flex-1 h-8 bg-surface border border-border px-3 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 placeholder:text-text-muted"
           />
           <Button variant="primary" size="sm" onClick={handleSave}>
             <Check size={12} /> Save
@@ -96,7 +96,7 @@ function SaveProjectDialog() {
             <p className="text-[10px] text-text-muted font-mono mb-2 uppercase tracking-wider">Saved Projects</p>
             <div className="flex-1 overflow-y-auto space-y-1">
               {savedProjects.sort((a, b) => new Date(b.savedAt).getTime() - new Date(a.savedAt).getTime()).map((p) => (
-                <div key={p.id} className="flex items-center gap-2 px-2 py-1.5 border border-border hover:border-[#2a2a2a] transition-colors group">
+                <div key={p.id} className="flex items-center gap-2 px-2 py-1.5 border border-border hover:border-border-hover transition-colors group">
                   <button onClick={() => handleLoad(p)} className="flex-1 text-left min-w-0">
                     <p className="text-xs text-text-secondary font-mono font-bold truncate">{p.name}</p>
                     <p className="text-[10px] text-text-muted font-mono">
@@ -122,4 +122,6 @@ function SaveProjectDialog() {
 }
 
 export { SaveProjectDialog }
+
+
 

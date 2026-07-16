@@ -26,9 +26,9 @@ export default function OrphansPage() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <Badge variant="warning" className="mb-2">Knowledge / Graph Health</Badge>
-      <h1 className="text-xl font-bold text-[#ffffff] font-mono mb-2">Graph Health & Orphan Detector</h1>
-      <p className="text-sm text-[#606060] font-mono mb-6">
-        Health Score: <span style={{ color: (health?.score || 0) >= 80 ? "#00ff41" : "#ffb000" }}>{health?.score ?? "—"}%</span>
+      <h1 className="text-xl font-bold text-text-primary font-mono mb-2">Graph Health & Orphan Detector</h1>
+      <p className="text-sm text-text-muted font-mono mb-6">
+        Health Score: <span style={{ color: (health?.score || 0) >= 80 ? "var(--color-accent)" : "var(--color-warning)" }}>{health?.score ?? "—"}%</span>
       </p>
 
       <div className="space-y-3">
@@ -36,17 +36,17 @@ export default function OrphansPage() {
           <Card key={check.name} variant="bordered">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-none ${check.status === "pass" ? "bg-[#00ff41]" : check.status === "fail" ? "bg-[#ff3355]" : "bg-[#ffb000]"}`} />
-                <CardTitle className="text-xs text-[#ffffff] font-mono">{check.name}</CardTitle>
-                <span className={`text-[10px] font-mono uppercase ${check.status === "pass" ? "text-[#00ff41]" : check.status === "fail" ? "text-[#ff3355]" : "text-[#ffb000]"}`}>{check.status}</span>
+                <span className={`w-2 h-2 rounded-none ${check.status === "pass" ? "bg-accent" : check.status === "fail" ? "bg-danger" : "bg-warning"}`} />
+                <CardTitle className="text-xs text-text-primary font-mono">{check.name}</CardTitle>
+                <span className={`text-[10px] font-mono uppercase ${check.status === "pass" ? "text-accent" : check.status === "fail" ? "text-danger" : "text-warning"}`}>{check.status}</span>
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-xs text-[#606060] font-mono mb-2">{check.message}</p>
+              <p className="text-xs text-text-muted font-mono mb-2">{check.message}</p>
               {check.items && check.items.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {check.items.map((item) => (
-                    <span key={item.slug} className="text-[10px] text-[#c0c0c0] font-mono border border-[#1e1e1e] px-1.5 py-0.5">
+                    <span key={item.slug} className="text-[10px] text-text-secondary font-mono border border-border px-1.5 py-0.5">
                       {item.name}
                     </span>
                   ))}
@@ -59,3 +59,7 @@ export default function OrphansPage() {
     </div>
   )
 }
+
+
+
+

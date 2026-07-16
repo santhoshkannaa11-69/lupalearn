@@ -57,20 +57,20 @@ function AdminLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="h-screen flex bg-[#0a0a0a]">
+    <div className="h-screen flex bg-bg">
       {/* Sidebar */}
       <aside
         className={cn(
-          "bg-[#0a0a0a] border-r border-[#1e1e1e] flex flex-col transition-all duration-200 overflow-hidden",
+          "bg-bg border-r border-border flex flex-col transition-all duration-200 overflow-hidden",
           collapsed ? "w-0 border-r-0" : "w-56"
         )}
       >
-        <div className="flex items-center justify-between px-3 py-3 border-b border-[#1e1e1e]">
+        <div className="flex items-center justify-between px-3 py-3 border-b border-border">
           <Link href="/admin" className="flex items-center gap-2">
-            <span className="text-[#00ff41] font-bold text-sm font-mono">Lupa</span>
-            <span className="text-[#606060] font-mono text-sm">Admin</span>
+            <span className="text-accent font-bold text-sm font-mono">Lupa</span>
+            <span className="text-text-muted font-mono text-sm">Admin</span>
           </Link>
-          <button onClick={() => setCollapsed(true)} className="text-[#606060] hover:text-[#c0c0c0]">
+          <button onClick={() => setCollapsed(true)} className="text-text-muted hover:text-text-secondary">
             <Menu size={14} />
           </button>
         </div>
@@ -82,7 +82,7 @@ function AdminLayout({ children }: { children: ReactNode }) {
               <div key={section.label}>
                 <button
                   onClick={() => toggleSection(section.label)}
-                  className="flex items-center gap-1 w-full px-2 py-1 text-[10px] text-[#606060] font-mono uppercase tracking-widest hover:text-[#c0c0c0] transition-colors"
+                  className="flex items-center gap-1 w-full px-2 py-1 text-[10px] text-text-muted font-mono uppercase tracking-widest hover:text-text-secondary transition-colors"
                 >
                   {isExpanded ? <ChevronDown size={10} /> : <ChevronRight size={10} />}
                   {section.label}
@@ -99,8 +99,8 @@ function AdminLayout({ children }: { children: ReactNode }) {
                           className={cn(
                             "flex items-center gap-2 px-3 py-1.5 text-xs font-mono transition-colors rounded-sm",
                             isActive
-                              ? "text-[#00ff41] bg-[#121212]"
-                              : "text-[#606060] hover:text-[#c0c0c0] hover:bg-[#121212]"
+                              ? "text-accent bg-surface"
+                              : "text-text-muted hover:text-text-secondary hover:bg-surface"
                           )}
                         >
                           <Icon size={12} />
@@ -115,8 +115,8 @@ function AdminLayout({ children }: { children: ReactNode }) {
           })}
         </div>
 
-        <div className="p-3 border-t border-[#1e1e1e] space-y-2">
-          <Link href="/" className="flex items-center gap-1 text-[10px] text-[#606060] font-mono hover:text-[#c0c0c0] transition-colors">
+        <div className="p-3 border-t border-border space-y-2">
+          <Link href="/" className="flex items-center gap-1 text-[10px] text-text-muted font-mono hover:text-text-secondary transition-colors">
             ← Back to LupaLearn
           </Link>
           <button
@@ -124,7 +124,7 @@ function AdminLayout({ children }: { children: ReactNode }) {
               await ky.post("/api/admin/auth", { json: { action: "logout" } })
               window.location.href = "/admin/login"
             }}
-            className="flex items-center gap-1 text-[10px] text-[#606060] font-mono hover:text-[#ff3355] transition-colors"
+            className="flex items-center gap-1 text-[10px] text-text-muted font-mono hover:text-danger transition-colors"
           >
             ⚡ Logout
           </button>
@@ -140,3 +140,4 @@ function AdminLayout({ children }: { children: ReactNode }) {
 }
 
 export { AdminLayout }
+

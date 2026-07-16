@@ -39,31 +39,31 @@ export default function EdgesPage() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <Badge variant="info" className="mb-2">Knowledge / Relationships</Badge>
-      <h1 className="text-xl font-bold text-[#ffffff] font-mono mb-6">Edge Editor</h1>
+      <h1 className="text-xl font-bold text-text-primary font-mono mb-6">Edge Editor</h1>
 
       <Card variant="bordered" className="mb-6">
-        <CardHeader><CardTitle className="text-xs text-[#ffffff] font-mono">Create New Edge</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="text-xs text-text-primary font-mono">Create New Edge</CardTitle></CardHeader>
         <CardContent>
           <div className="flex items-end gap-2">
             <div>
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Source</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Source</label>
               <select value={sourceId} onChange={(e) => setSourceId(e.target.value)}
-                className="h-9 bg-[#121212] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono px-2 outline-none focus:border-[#00ff41] w-40">
+                className="h-9 bg-surface border border-border text-xs text-text-secondary font-mono px-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 w-40">
                 <option value="">Select...</option>
                 {nodes.sort((a, b) => a.name.localeCompare(b.name)).map((n) => (<option key={n.id} value={n.id}>{n.name}</option>))}
               </select>
             </div>
             <div>
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Relation</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Relation</label>
               <select value={relType} onChange={(e) => setRelType(e.target.value)}
-                className="h-9 bg-[#121212] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono px-2 outline-none focus:border-[#00ff41]">
+                className="h-9 bg-surface border border-border text-xs text-text-secondary font-mono px-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20">
                 {["requires","teaches","related_to","references","part_of","extends","recommends","precedes","alternative_to"].map((t) => (<option key={t} value={t}>{t}</option>))}
               </select>
             </div>
             <div>
-              <label className="text-[10px] text-[#606060] font-mono block mb-1">Target</label>
+              <label className="text-[10px] text-text-muted font-mono block mb-1">Target</label>
               <select value={targetId} onChange={(e) => setTargetId(e.target.value)}
-                className="h-9 bg-[#121212] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono px-2 outline-none focus:border-[#00ff41] w-40">
+                className="h-9 bg-surface border border-border text-xs text-text-secondary font-mono px-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 w-40">
                 <option value="">Select...</option>
                 {nodes.sort((a, b) => a.name.localeCompare(b.name)).map((n) => (<option key={n.id} value={n.id}>{n.name}</option>))}
               </select>
@@ -76,12 +76,12 @@ export default function EdgesPage() {
       {loading ? <Spinner label="Loading edges..." /> : (
         <div className="space-y-1">
           {edges.sort((a, b) => a.relationType.localeCompare(b.relationType)).map((edge) => (
-            <div key={edge.id} className="flex items-center gap-2 px-3 py-1.5 border border-[#1e1e1e] text-xs font-mono">
-              <span className="text-[#c0c0c0]">{nodeName(edge.sourceId)}</span>
-              <span className="text-[10px]" style={{ color: edge.relationType === "requires" ? "#ff3355" : edge.relationType === "teaches" ? "#00ff41" : "#ffb000" }}>
+            <div key={edge.id} className="flex items-center gap-2 px-3 py-1.5 border border-border text-xs font-mono">
+              <span className="text-text-secondary">{nodeName(edge.sourceId)}</span>
+              <span className="text-[10px]" style={{ color: edge.relationType === "requires" ? "var(--color-danger)" : edge.relationType === "teaches" ? "var(--color-accent)" : "var(--color-warning)" }}>
                 ──[{edge.relationType}]──
               </span>
-              <span className="text-[#c0c0c0]">{nodeName(edge.targetId)}</span>
+              <span className="text-text-secondary">{nodeName(edge.targetId)}</span>
             </div>
           ))}
         </div>
@@ -89,3 +89,6 @@ export default function EdgesPage() {
     </div>
   )
 }
+
+
+

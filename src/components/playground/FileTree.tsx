@@ -21,11 +21,11 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
         <button
           onClick={() => setExpanded(!expanded)}
           className={cn(
-            "w-full flex items-center gap-1.5 px-2 py-1 text-xs font-mono text-text-muted hover:text-text-secondary hover:bg-[#121212] transition-colors text-left"
+            "w-full flex items-center gap-1.5 px-2 py-1 text-xs font-mono text-text-muted hover:text-text-secondary hover:bg-surface transition-colors text-left"
           )}
         >
           {expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
-          {expanded ? <FolderOpen size={12} className="text-[#00f0ff]" /> : <Folder size={12} className="text-[#00f0ff]" />}
+          {expanded ? <FolderOpen size={12} className="text-info" /> : <Folder size={12} className="text-info" />}
           <span className="truncate">{node.name}</span>
         </button>
         {expanded && (
@@ -48,8 +48,8 @@ function FileTreeItem({ node, path }: { node: FileNode | FolderNode; path: strin
         className={cn(
           "flex-1 flex items-center gap-1.5 px-2 py-1 text-xs font-mono transition-colors text-left min-w-0",
           isActive
-            ? "bg-[#1a1a1a] text-accent border-l-2 border-[#00ff41]"
-            : "text-text-muted hover:text-text-secondary hover:bg-[#121212] border-l-2 border-transparent"
+            ? "bg-surface text-accent border-l-2 border-accent"
+            : "text-text-muted hover:text-text-secondary hover:bg-surface border-l-2 border-transparent"
         )}
       >
         <File size={12} />
@@ -74,7 +74,7 @@ function FileTree() {
   if (!sidebarOpen) return null
 
   return (
-    <div className="w-52 bg-[#0a0a0a] border-r border-border flex flex-col overflow-hidden">
+    <div className="w-52 bg-bg border-r border-border flex flex-col overflow-hidden">
       <div className="flex items-center justify-between px-3 py-2 border-b border-border">
         <span className="text-[10px] text-text-muted font-mono uppercase tracking-wider">Files</span>
         <button
@@ -93,4 +93,6 @@ function FileTree() {
 }
 
 export { FileTree }
+
+
 

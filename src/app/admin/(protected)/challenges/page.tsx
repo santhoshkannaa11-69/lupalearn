@@ -35,57 +35,57 @@ export default function ChallengesPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <Badge variant="warning" className="mb-2">Content / Challenges</Badge>
-            <h1 className="text-xl font-bold text-[#ffffff] font-mono">Challenge Builder</h1>
+            <h1 className="text-xl font-bold text-text-primary font-mono">Challenge Builder</h1>
           </div>
           <Button variant="primary" size="sm" onClick={handleSave}><Swords size={14} /> Save Challenge</Button>
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Title</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Title</label>
             <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Challenge title" />
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Difficulty</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Difficulty</label>
             <select value={difficulty} onChange={(e) => setDifficulty(e.target.value as typeof difficulty)}
-              className="w-full h-9 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 outline-none focus:border-[#00ff41]">
+              className="w-full h-9 bg-surface border border-border text-sm text-text-secondary font-mono px-3 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20">
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
             </select>
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">
-              Concepts <span className="text-[#606060]">(comma-separated)</span>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">
+              Concepts <span className="text-text-muted">(comma-separated)</span>
             </label>
             <Input value={concepts} onChange={(e) => setConcepts(e.target.value)} placeholder="arrays, loops" />
           </div>
         </div>
 
         <div className="mb-4">
-          <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Description</label>
+          <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Description</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)}
-            className="w-full h-20 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 py-2 outline-none focus:border-[#00ff41] resize-none" />
+            className="w-full h-20 bg-surface border border-border text-sm text-text-secondary font-mono px-3 py-2 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none" />
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">Starter Code</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">Starter Code</label>
             <textarea value={starterCode} onChange={(e) => setStarterCode(e.target.value)}
-              className="w-full h-40 bg-[#121212] border border-[#1e1e1e] text-xs text-[#c0c0c0] font-mono p-3 outline-none focus:border-[#00ff41] resize-none font-mono"
+              className="w-full h-40 bg-surface border border-border text-xs text-text-secondary font-mono p-3 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 resize-none font-mono"
               placeholder="function solution(input) {&#10;  // Your code here&#10;}" />
           </div>
           <div>
-            <label className="text-[10px] text-[#606060] font-mono uppercase tracking-wider block mb-1">XP Reward</label>
+            <label className="text-[10px] text-text-muted font-mono uppercase tracking-wider block mb-1">XP Reward</label>
             <input type="number" value={xpReward} onChange={(e) => setXpReward(parseInt(e.target.value) || 0)}
-              className="w-full h-9 bg-[#121212] border border-[#1e1e1e] text-sm text-[#c0c0c0] font-mono px-3 outline-none focus:border-[#00ff41]" />
+              className="w-full h-9 bg-surface border border-border text-sm text-text-secondary font-mono px-3 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20" />
           </div>
         </div>
 
         <Card variant="bordered">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-xs text-[#ffffff] font-mono">Test Cases ({testCases.length})</CardTitle>
+              <CardTitle className="text-xs text-text-primary font-mono">Test Cases ({testCases.length})</CardTitle>
               <Button variant="ghost" size="sm" onClick={addTestCase}><Plus size={12} /> Add</Button>
             </div>
           </CardHeader>
@@ -93,15 +93,15 @@ export default function ChallengesPage() {
             <div className="space-y-2">
               {testCases.map((tc, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="text-[10px] text-[#606060] font-mono w-6 shrink-0">#{i + 1}</span>
+                  <span className="text-[10px] text-text-muted font-mono w-6 shrink-0">#{i + 1}</span>
                   <input value={tc.input} onChange={(e) => updateTestCase(i, "input", e.target.value)}
-                    className="flex-1 h-7 bg-[#1a1a1a] border border-[#1e1e1e] px-2 text-xs text-[#c0c0c0] font-mono outline-none focus:border-[#00ff41]"
+                    className="flex-1 h-7 bg-surface border border-border px-2 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                     placeholder="Input" />
-                  <span className="text-[#606060] text-xs">→</span>
+                  <span className="text-text-muted text-xs">→</span>
                   <input value={tc.expected} onChange={(e) => updateTestCase(i, "expected", e.target.value)}
-                    className="flex-1 h-7 bg-[#1a1a1a] border border-[#1e1e1e] px-2 text-xs text-[#c0c0c0] font-mono outline-none focus:border-[#00ff41]"
+                    className="flex-1 h-7 bg-surface border border-border px-2 text-xs text-text-secondary font-mono outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                     placeholder="Expected output" />
-                  <button onClick={() => removeTestCase(i)} className="text-[#606060] hover:text-[#ff3355]"><Trash2 size={12} /></button>
+                  <button onClick={() => removeTestCase(i)} className="text-text-muted hover:text-danger"><Trash2 size={12} /></button>
                 </div>
               ))}
             </div>
@@ -111,3 +111,5 @@ export default function ChallengesPage() {
     </div>
   )
 }
+
+

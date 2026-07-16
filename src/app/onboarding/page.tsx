@@ -59,9 +59,9 @@ export default function OnboardingPage() {
   }
 
   const levelColors: Record<string, string> = {
-    beginner: "#00ff41",
-    intermediate: "#ffb000",
-    advanced: "#ff3355",
+    beginner: "var(--color-accent)",
+    intermediate: "var(--color-warning)",
+    advanced: "var(--color-danger)",
   }
 
   return (
@@ -72,10 +72,10 @@ export default function OnboardingPage() {
           <>
             <div className="text-center mb-10">
               <Badge variant="info" className="mb-4">AI Mode 🤖</Badge>
-              <h1 className="text-2xl md:text-3xl font-bold text-[#ffffff] font-mono mb-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-text-primary font-mono mb-3">
                 What do you want to learn?
               </h1>
-              <p className="text-sm text-[#606060] font-mono max-w-lg mx-auto">
+              <p className="text-sm text-text-muted font-mono max-w-lg mx-auto">
                 Tell LupaLearn your goal. I'll generate a personalized learning roadmap
                 from the knowledge graph.
               </p>
@@ -102,7 +102,7 @@ export default function OnboardingPage() {
             </div>
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-xs text-[#606060] font-mono text-center mb-4 uppercase tracking-wider">
+              <p className="text-xs text-text-muted font-mono text-center mb-4 uppercase tracking-wider">
                 Quick goals
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -113,11 +113,11 @@ export default function OnboardingPage() {
                       setGoal(q.label)
                       generateRoadmap(q.label)
                     }}
-                    className="text-left px-3 py-3 border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors bg-[#121212]"
+                    className="text-left px-3 py-3 border border-border hover:border-border-hover transition-colors bg-surface"
                   >
                     <span className="text-lg">{q.icon}</span>
-                    <p className="text-xs text-[#ffffff] font-mono font-bold mt-1">{q.label}</p>
-                    <p className="text-[10px] text-[#606060] font-mono mt-0.5">{q.desc}</p>
+                    <p className="text-xs text-text-primary font-mono font-bold mt-1">{q.label}</p>
+                    <p className="text-[10px] text-text-muted font-mono mt-0.5">{q.desc}</p>
                   </button>
                 ))}
               </div>
@@ -129,14 +129,14 @@ export default function OnboardingPage() {
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <Spinner label="Generating your personalized roadmap..." />
-            <p className="text-xs text-[#606060] font-mono mt-4">Traversing the knowledge graph...</p>
+            <p className="text-xs text-text-muted font-mono mt-4">Traversing the knowledge graph...</p>
           </div>
         )}
 
         {/* Error */}
         {error && (
           <div className="text-center py-10">
-            <p className="text-sm text-[#ff3355] font-mono">{error}</p>
+            <p className="text-sm text-danger font-mono">{error}</p>
             <Button variant="ghost" size="sm" onClick={() => setRoadmap(null)} className="mt-4">
               Try again
             </Button>
@@ -150,7 +150,7 @@ export default function OnboardingPage() {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <Badge variant="success" className="mb-3">Your Personalized Roadmap 🎯</Badge>
-                  <h1 className="text-xl md:text-2xl font-bold text-[#ffffff] font-mono">
+                  <h1 className="text-xl md:text-2xl font-bold text-text-primary font-mono">
                     {roadmap.goal}
                   </h1>
                 </div>
@@ -160,10 +160,10 @@ export default function OnboardingPage() {
               </div>
 
               <div className="flex items-center gap-4 text-xs font-mono">
-                <span className="flex items-center gap-1 text-[#c0c0c0]">
+                <span className="flex items-center gap-1 text-text-secondary">
                   <BookOpen size={12} /> {roadmap.steps.length} concepts
                 </span>
-                <span className="flex items-center gap-1 text-[#c0c0c0]">
+                <span className="flex items-center gap-1 text-text-secondary">
                   <Clock size={12} /> ~{roadmap.estimatedHours}h
                 </span>
                 <Badge
@@ -181,30 +181,30 @@ export default function OnboardingPage() {
                   key={step.node.slug}
                   href={step.lessonSlugs[0] ? `/learn/computer-science/programming-fundamentals/${step.lessonSlugs[0]}` : `/explore?q=${step.node.slug}`}
                 >
-                  <Card variant="bordered" className="hover:border-[#2a2a2a] transition-colors cursor-pointer">
+                  <Card variant="bordered" className="hover:border-border-hover transition-colors cursor-pointer">
                     <CardContent>
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center justify-center w-8 h-8 bg-[#1a1a1a] border border-[#1e1e1e] shrink-0">
-                          <span className="text-xs font-bold text-[#00ff41] font-mono">{step.order}</span>
+                        <div className="flex items-center justify-center w-8 h-8 bg-surface border border-border shrink-0">
+                          <span className="text-xs font-bold text-accent font-mono">{step.order}</span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <p className="text-sm text-[#ffffff] font-mono font-bold">{step.node.name}</p>
-                            <span className="text-[10px] text-[#606060] uppercase">{step.node.type}</span>
+                            <p className="text-sm text-text-primary font-mono font-bold">{step.node.name}</p>
+                            <span className="text-[10px] text-text-muted uppercase">{step.node.type}</span>
                           </div>
                           {step.node.description && (
-                            <p className="text-xs text-[#606060] font-mono mt-0.5 truncate">{step.node.description}</p>
+                            <p className="text-xs text-text-muted font-mono mt-0.5 truncate">{step.node.description}</p>
                           )}
                         </div>
                         {step.prerequisites.length > 0 && (
-                          <div className="hidden md:flex items-center gap-1 text-[10px] text-[#606060] font-mono">
+                          <div className="hidden md:flex items-center gap-1 text-[10px] text-text-muted font-mono">
                             <span>requires:</span>
                             {step.prerequisites.map((p) => (
-                              <span key={p.slug} className="text-[#00f0ff]">{p.name}</span>
+                              <span key={p.slug} className="text-info">{p.name}</span>
                             ))}
                           </div>
                         )}
-                        <ArrowRight size={14} className="text-[#606060] shrink-0" />
+                        <ArrowRight size={14} className="text-text-muted shrink-0" />
                       </div>
                     </CardContent>
                   </Card>
@@ -213,7 +213,7 @@ export default function OnboardingPage() {
             </div>
 
             {/* Start button */}
-            <div className="flex items-center justify-center gap-4 border-t border-[#1e1e1e] pt-6">
+            <div className="flex items-center justify-center gap-4 border-t border-border pt-6">
               <Link href={roadmap.steps[0]?.lessonSlugs[0] ? `/learn/computer-science/programming-fundamentals/${roadmap.steps[0].lessonSlugs[0]}` : "/explore"}>
                 <Button variant="primary" size="lg">
                   <CheckCircle size={16} />
@@ -232,3 +232,5 @@ export default function OnboardingPage() {
     </Shell>
   )
 }
+
+

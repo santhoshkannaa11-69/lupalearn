@@ -20,9 +20,9 @@ function BottomPanel() {
   const setPanelHeight = useEditorStore((s) => s.setBottomPanelHeight)
 
   return (
-    <div className="border-t border-border bg-[#0a0a0a] flex flex-col" style={{ height: panelHeight }}>
+    <div className="border-t border-border bg-bg flex flex-col" style={{ height: panelHeight }}>
       {/* Tab bar */}
-      <div className="flex items-center bg-[#0a0a0a] border-b border-border shrink-0">
+      <div className="flex items-center bg-bg border-b border-border shrink-0">
         {tabs.map((tab) => {
           const Icon = tab.icon
           return (
@@ -32,7 +32,7 @@ function BottomPanel() {
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider transition-colors",
                 activeTab === tab.id
-                  ? "text-accent bg-[#121212] border-t-[2px] border-t-[#00ff41]"
+                  ? "text-accent bg-surface border-t-2 border-t-accent"
                   : "text-text-muted hover:text-text-secondary"
               )}
             >
@@ -66,4 +66,6 @@ function BottomPanel() {
 }
 
 export { BottomPanel }
+
+
 
