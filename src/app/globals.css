@@ -3,71 +3,90 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-bg: #fcfcfd;
-  --color-surface: #f8f8fa;
-  --color-elevated: #ffffff;
-  --color-floating: #ffffff;
+  /* The Lantern — Dark palette (default) */
+  --color-bg: #0F0E0C;
+  --color-surface: #1C1A17;
+  --color-elevated: #262320;
+  --color-floating: #2F2B26;
 
-  --color-text-primary: #18181b;
-  --color-text-secondary: #71717a;
-  --color-text-muted: #a1a1aa;
-  --color-text-inverse: #fafafa;
+  --color-border: #2C2924;
+  --color-border-hover: #3D3932;
 
-  --color-accent: #10b981;
-  --color-accent-hover: #059669;
-  --color-accent-soft: #d1fae5;
+  --color-text-primary: #F0EDE8;
+  --color-text-secondary: #A09B8E;
+  --color-text-muted: #6B675E;
+  --color-text-inverse: #0F0E0C;
 
-  --color-border: #e4e4e7;
-  --color-border-hover: #d4d4d8;
+  /* Active state — single warm glow */
+  --color-accent: #E8B84B;
+  --color-accent-glow: rgba(232, 184, 75, 0.15);
+  --color-accent-soft: #2F2818;
 
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-info: #06b6d4;
+  /* Utility */
+  --color-success: #45B7A0;
+  --color-warning: #D4A534;
+  --color-danger: #D4605A;
 
+  /* Course identity lantern colors */
+  --color-lantern-gold: #E8B84B;
+  --color-lantern-copper: #C87D4B;
+  --color-lantern-blue: #5BA0D9;
+  --color-lantern-violet: #9B7FD4;
+  --color-lantern-amber: #D4943A;
+  --color-lantern-teal: #45B7A0;
+  --color-lantern-emerald: #5BB88B;
+  --color-lantern-magenta: #C76BAE;
+
+  /* Fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-.dark {
-  --color-bg: #0b0b0d;
-  --color-surface: #151517;
-  --color-elevated: #1c1c1f;
-  --color-floating: #252528;
-
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
-  --color-text-inverse: #18181b;
-
-  --color-accent: #34d399;
-  --color-accent-hover: #6ee7b7;
-  --color-accent-soft: #064e3b;
-
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
-
-  --color-warning: #fbbf24;
-  --color-danger: #f87171;
-  --color-info: #22d3ee;
+/* Light mode override — for future use, currently dark-only */
+.light {
+  --color-bg: #F8F6F2;
+  --color-surface: #F0EDE8;
+  --color-elevated: #FFFFFF;
+  --color-floating: #FFFFFF;
+  --color-border: #E2DDD4;
+  --color-border-hover: #D4CDC2;
+  --color-text-primary: #1C1A17;
+  --color-text-secondary: #6B675E;
+  --color-text-muted: #A09B8E;
+  --color-text-inverse: #F0EDE8;
+  --color-accent: #C89B3C;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d4d4d8 #fcfcfd;
-}
-
-.dark * {
-  scrollbar-color: #3f3f46 #0b0b0d;
+  scrollbar-color: #3D3932 #0F0E0C;
 }
 
 ::selection {
-  background: #d1fae5;
-  color: #18181b;
+  background: #2F2818;
+  color: #E8B84B;
 }
 
-.dark ::selection {
-  background: #064e3b;
-  color: #fafafa;
+/* Lantern glow effect */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--color-accent-glow); }
+  50% { box-shadow: 0 0 20px var(--color-accent-glow); }
+}
+
+@keyframes flare {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+@keyframes illuminate {
+  from { opacity: 0.3; filter: brightness(0.5); }
+  to { opacity: 1; filter: brightness(1); }
+}
+
+@keyframes dim-fade {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes fade-in {
@@ -85,13 +104,16 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes progress-fill {
-  from { width: 0%; }
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 
-@keyframes xp-float {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-40px); }
+.animate-flare {
+  animation: flare 0.8s ease-out forwards;
+}
+
+.animate-illuminate {
+  animation: illuminate 0.6s ease-out forwards;
 }
 
 .animate-fade-in {
@@ -104,8 +126,4 @@
 
 .animate-scale-in {
   animation: scale-in 0.2s ease-out forwards;
-}
-
-.animate-xp-float {
-  animation: xp-float 0.8s ease-out forwards;
 }

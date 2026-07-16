@@ -5,7 +5,6 @@ import fs from "fs"
 import { prisma } from "@/lib/db"
 import { getLessonBySlug, getConceptsForLesson } from "@/lib/graph"
 import { LessonViewer } from "@/components/learn/LessonViewer"
-import { ChevronDown } from "lucide-react"
 
 export default async function LessonPage({
   params,
@@ -40,20 +39,21 @@ export default async function LessonPage({
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* Top navigation bar */}
-      <div className="sticky top-0 z-40 border-b border-zinc-100 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-6 h-12 flex items-center gap-2 text-sm">
-          <Link href="/learn" className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">
+    <div className="min-h-screen bg-bg">
+      <div className="border-b border-border bg-surface/50">
+        <div className="max-w-4xl mx-auto px-6 h-10 flex items-center gap-2 text-sm">
+          <Link href="/learn" className="text-text-muted hover:text-text-secondary transition-colors">
             Learn
           </Link>
-          <ChevronDown size={12} className="-rotate-90 text-zinc-400" />
-          <span className="text-zinc-500 dark:text-zinc-400 capitalize">{schoolSlug.replace(/-/g, " ")}</span>
-          <ChevronDown size={12} className="-rotate-90 text-zinc-400" />
-          <span className="text-zinc-700 dark:text-zinc-200 capitalize">{moduleSlug.replace(/-/g, " ")}</span>
+          <span className="text-text-muted mx-1">/</span>
+          <Link href={`/learn/${schoolSlug}`} className="text-text-muted hover:text-text-secondary transition-colors capitalize">
+            {schoolSlug.replace(/-/g, " ")}
+          </Link>
+          <span className="text-text-muted mx-1">/</span>
+          <span className="text-text-secondary capitalize">{moduleSlug.replace(/-/g, " ")}</span>
           <div className="flex-1" />
-          <span className="text-xs text-zinc-400 dark:text-zinc-500">{lesson.duration} min</span>
-          <span className="text-xs text-amber-600 dark:text-amber-400 font-medium">+{lesson.xpReward} XP</span>
+          <span className="text-xs text-text-muted">{lesson.duration} min</span>
+          <span className="text-xs text-accent font-medium">+{lesson.xpReward} XP</span>
         </div>
       </div>
 

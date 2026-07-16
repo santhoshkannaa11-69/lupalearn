@@ -16,13 +16,12 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "LupaLearn — AI-Powered Interactive Learning Platform",
+  title: "LupaLearn — Master Computer Science",
   description:
-    "Learn programming, AI, and software engineering through interactive lessons, live coding, AI mentoring, hands-on projects, and personalized learning roadmaps.",
+    "A learning operating system where every concept becomes part of a living map of your knowledge. Interactive lessons, AI mentor, hands-on projects.",
   keywords: [
-    "programming", "learn to code", "AI tutor", "coding platform",
-    "computer science", "web development", "software engineering",
-    "interactive learning", "coding challenges",
+    "programming", "learn to code", "computer science",
+    "interactive learning", "knowledge graph", "coding",
   ],
 }
 
@@ -32,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-text-primary`}>
         <Providers>{children}</Providers>
       </body>
