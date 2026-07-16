@@ -73,7 +73,7 @@ export default function CommunityPage() {
             <Card variant="bordered" className="hover:border-[#2a2a2a] transition-colors cursor-pointer">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Users size={16} className="text-[#00ff41]" />
+                  <Users size={16} className="text-accent" />
                   <CardTitle className="text-xs text-[#ffffff]">Profiles</CardTitle>
                 </div>
               </CardHeader>
@@ -113,7 +113,7 @@ export default function CommunityPage() {
               </Link>
             ))}
             {posts.length === 0 && (
-              <div className="text-center py-16 border border-[#1e1e1e]">
+              <div className="text-center py-16 border border-border rounded-xl">
                 <MessageSquare size={40} className="mx-auto text-[#606060] mb-3" />
                 <p className="text-sm text-[#c0c0c0] font-mono mb-1">No discussions yet</p>
                 <p className="text-xs text-[#606060] font-mono">Be the first to start a conversation!</p>
