@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import { CheckCircle, AlertCircle, Info, AlertTriangle, X } from "lucide-react"
 
 interface Toast {
   id: string
@@ -14,6 +15,13 @@ let toastListeners: ((toast: Toast) => void)[] = []
 export function showToast(message: string, type: Toast["type"] = "info") {
   const toast: Toast = { id: Date.now().toString(), message, type }
   toastListeners.forEach((fn) => fn(toast))
+}
+
+const iconMap = {
+  info: Info,
+  success: CheckCircle,
+  warning: AlertTriangle,
+  error: AlertCircle,
 }
 
 function ToastContainer() {
@@ -34,21 +42,31 @@ function ToastContainer() {
 
   return (
     <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm">
-      {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className={cn(
-            "px-4 py-2 border text-sm font-mono animate-slide-up",
-            "shadow-lg",
-            toast.type === "info" && "border-[#00f0ff] bg-[#0a0a0a] text-[#00f0ff]",
-            toast.type === "success" && "border-[#00ff41] bg-[#0a0a0a] text-[#00ff41]",
-            toast.type === "warning" && "border-[#ffb000] bg-[#0a0a0a] text-[#ffb000]",
-            toast.type === "error" && "border-[#ff3355] bg-[#0a0a0a] text-[#ff3355]",
-          )}
-        >
-          [{toast.type?.toUpperCase()}] {toast.message}
-        </div>
-      ))}
+      {toasts.map((toast) => {
+        const Icon = iconMap[toast.type || "info"]
+        return (
+          <div
+            key={toast.id}
+            className={cn(
+              "flex items-start gap-3 px-4 py-3 rounded-xl shadow-lg border animate-slide-up",
+              "bg-elevated backdrop-blur-sm",
+              toast.type === "info" && "border-info/30",
+              toast.type === "success" && "border-accent/30",
+              toast.type === "warning" && "border-warning/30",
+              toast.type === "error" && "border-danger/30",
+            )}
+          >
+            <Icon size={16} className={cn(
+              "mt-0.5 shrink-0",
+              toast.type === "info" && "text-info",
+              toast.type === "success" && "text-accent",
+              toast.type === "warning" && "text-warning",
+              toast.type === "error" && "text-danger",
+            )} />
+            <p className="text-sm text-text-primary flex-1">{toast.message}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

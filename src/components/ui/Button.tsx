@@ -14,19 +14,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2 font-mono transition-all duration-150",
+          "inline-flex items-center justify-center gap-2 font-medium transition-all duration-150 rounded-lg",
           "disabled:opacity-40 disabled:pointer-events-none",
-          "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00ff41]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
           {
-            "border border-[#1e1e1e] bg-[#121212] text-[#c0c0c0] hover:bg-[#1a1a1a] hover:border-[#2a2a2a]":
+            "border border-border bg-surface text-text-primary hover:bg-elevated hover:border-border-hover shadow-sm":
               variant === "default",
-            "border border-[#00ff41] bg-[#00ff41] text-[#0a0a0a] hover:bg-[#00cc33] hover:border-[#00cc33] font-bold":
+            "border border-accent bg-accent text-white hover:bg-accent-hover shadow-sm":
               variant === "primary",
-            "bg-transparent text-[#c0c0c0] hover:bg-[#1a1a1a] border border-transparent":
+            "bg-transparent text-text-secondary hover:text-text-primary hover:bg-surface border border-transparent":
               variant === "ghost",
-            "border border-[#ff3355] bg-[#ff3355] text-[#0a0a0a] hover:bg-[#cc2244] hover:border-[#cc2244] font-bold":
+            "border border-danger bg-danger text-white hover:opacity-90":
               variant === "danger",
-            "border border-[#1e1e1e] bg-transparent text-[#c0c0c0] hover:border-[#00ff41] hover:text-[#00ff41]":
+            "border border-border bg-transparent text-text-secondary hover:text-accent hover:border-accent":
               variant === "outline",
           },
           {

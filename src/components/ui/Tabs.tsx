@@ -21,17 +21,16 @@ function Tabs({ tabs, defaultTab, className }: TabsProps) {
 
   return (
     <div className={className}>
-      <div className="flex border-b border-[#1e1e1e] overflow-x-auto">
+      <div className="flex gap-1 p-1 bg-surface rounded-lg w-fit">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider transition-colors",
-              "border-b-2 -mb-[1px]",
+              "flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-md transition-colors",
               active === tab.id
-                ? "border-[#00ff41] text-[#00ff41]"
-                : "border-transparent text-[#606060] hover:text-[#c0c0c0]"
+                ? "bg-elevated text-text-primary shadow-sm"
+                : "text-text-muted hover:text-text-secondary"
             )}
           >
             {tab.icon}

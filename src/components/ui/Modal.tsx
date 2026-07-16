@@ -2,6 +2,7 @@
 
 import { useEffect, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
+import { X } from "lucide-react"
 
 interface ModalProps {
   open: boolean
@@ -14,9 +15,11 @@ interface ModalProps {
 function Modal({ open, onClose, title, children, className }: ModalProps) {
   useEffect(() => {
     if (open) {
-      document.addEventListener("keydown", (e) => {
+      const handler = (e: KeyboardEvent) => {
         if (e.key === "Escape") onClose()
-      })
+      }
+      document.addEventListener("keydown", handler)
+      return () => document.removeEventListener("keydown", handler)
     }
   }, [open, onClose])
 
@@ -24,24 +27,24 @@ function Modal({ open, onClose, title, children, className }: ModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-[#0a0a0a]/80" onClick={onClose} />
+      <div className="absolute inset-0 bg-bg/60 backdrop-blur-sm" onClick={onClose} />
       <div
         className={cn(
-          "relative bg-[#121212] border border-[#1e1e1e] shadow-lg",
+          "relative bg-elevated border border-border shadow-xl rounded-xl",
           "w-full max-w-lg mx-4",
-          "animate-fade-in",
+          "animate-scale-in",
           className
         )}
       >
         {title && (
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[#1e1e1e]">
-            <h2 className="text-sm font-bold text-[#ffffff] uppercase tracking-wider">{title}</h2>
-            <button onClick={onClose} className="text-[#606060] hover:text-[#c0c0c0] text-sm">
-              [x]
+          <div className="flex items-center justify-between px-5 py-4 border-b border-border">
+            <h2 className="text-base font-semibold text-text-primary">{title}</h2>
+            <button onClick={onClose} className="text-text-muted hover:text-text-secondary transition-colors p-1 rounded-md hover:bg-surface">
+              <X size={16} />
             </button>
           </div>
         )}
-        <div className="p-4">{children}</div>
+        <div className="p-5">{children}</div>
       </div>
     </div>
   )

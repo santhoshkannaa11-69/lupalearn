@@ -8,16 +8,16 @@ interface DividerProps {
 function Divider({ className, label }: DividerProps) {
   if (label) {
     return (
-      <div className={cn("flex items-center gap-3 text-xs text-[#606060] font-mono", className)}>
-        <span className="flex-1 border-t border-[#1e1e1e]" />
+      <div className={cn("flex items-center gap-3 text-xs text-text-muted", className)}>
+        <span className="flex-1 border-t border-border" />
         <span>{label}</span>
-        <span className="flex-1 border-t border-[#1e1e1e]" />
+        <span className="flex-1 border-t border-border" />
       </div>
     )
   }
 
   return (
-    <div className={cn("border-t border-[#1e1e1e]", className)} />
+    <div className={cn("border-t border-border", className)} />
   )
 }
 

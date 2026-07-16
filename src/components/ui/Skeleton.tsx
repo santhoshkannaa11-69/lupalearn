@@ -9,10 +9,10 @@ function Skeleton({ className, variant = "text" }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "bg-[#1a1a1a] animate-pulse",
-        variant === "text" && "h-4 w-full rounded-none",
+        "bg-surface animate-pulse rounded-lg",
+        variant === "text" && "h-4 w-full",
         variant === "card" && "h-32 w-full",
-        variant === "avatar" && "h-8 w-8 rounded-none",
+        variant === "avatar" && "h-8 w-8",
         className
       )}
     />

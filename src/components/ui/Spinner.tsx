@@ -5,12 +5,10 @@ interface SpinnerProps {
   label?: string
 }
 
-const FRAMES = ["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"]
-
-function Spinner({ className, label = "Loading" }: SpinnerProps) {
+function Spinner({ className, label }: SpinnerProps) {
   return (
-    <span className={cn("inline-flex items-center gap-2 text-sm text-[#00ff41] font-mono", className)}>
-      <span className="animate-spin-step">{FRAMES[0]}</span>
+    <span className={cn("inline-flex items-center gap-2 text-sm text-text-secondary", className)}>
+      <span className="h-4 w-4 rounded-full border-2 border-accent border-t-transparent animate-spin" />
       {label && <span>{label}</span>}
     </span>
   )

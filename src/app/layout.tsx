@@ -1,7 +1,13 @@
 import type { Metadata } from "next"
-import { JetBrains_Mono } from "next/font/google"
+import { Inter, JetBrains_Mono } from "next/font/google"
 import { Providers } from "./providers"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -26,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${jetbrainsMono.variable} font-mono antialiased bg-[#0a0a0a] text-[#c0c0c0]`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-text-primary`}>
         <Providers>{children}</Providers>
       </body>
     </html>

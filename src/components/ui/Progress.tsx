@@ -13,23 +13,33 @@ interface ProgressProps {
 
 function Progress({ value, max = 100, showLabel = true, size = "sm", className, variant = "default" }: ProgressProps) {
   const pct = Math.min(Math.round((value / max) * 100), 100)
-  const blocks = Math.round(pct / 5)
-  const totalBlocks = 20
-  const filled = "█"
-  const empty = "░"
 
   return (
-    <div className={cn("flex items-center gap-2 font-mono", className)}>
-      <span className="text-[#00ff41] text-xs">
-        [{filled.repeat(blocks)}{empty.repeat(totalBlocks - blocks)}]
-      </span>
+    <div className={cn("flex items-center gap-3", className)}>
+      <div className={cn(
+        "flex-1 rounded-full bg-surface overflow-hidden",
+        size === "sm" && "h-1.5",
+        size === "md" && "h-2",
+        size === "lg" && "h-3",
+      )}>
+        <div
+          className={cn(
+            "h-full rounded-full transition-all duration-500",
+            variant === "success" && "bg-accent",
+            variant === "warning" && "bg-warning",
+            variant === "error" && "bg-danger",
+            variant === "default" && "bg-accent",
+          )}
+          style={{ width: `${pct}%` }}
+        />
+      </div>
       {showLabel && (
         <span className={cn(
-          "text-xs",
-          variant === "success" && "text-[#00ff41]",
-          variant === "warning" && "text-[#ffb000]",
-          variant === "error" && "text-[#ff3355]",
-          variant === "default" && "text-[#c0c0c0]",
+          "text-xs font-medium tabular-nums",
+          variant === "success" && "text-accent",
+          variant === "warning" && "text-warning",
+          variant === "error" && "text-danger",
+          variant === "default" && "text-text-secondary",
         )}>
           {pct}%
         </span>
