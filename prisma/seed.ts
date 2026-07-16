@@ -491,8 +491,8 @@ async function main() {
     { slug: "subsets-power-sets", title: "Subsets & Power Sets", description: "Subset relationships, proper subsets, and generating all possible subsets.", contentPath: `${C6}/01-set-theory/05-subsets-power-sets.mdx`, moduleSlug: "set-theory", order: 5, duration: 25, xp: 35, tags: ["sets"], concepts: ["sets"] },
     { slug: "cartesian-products", title: "Cartesian Products", description: "All possible ordered pairs from two sets — the foundation of coordinates and databases.", contentPath: `${C6}/01-set-theory/06-cartesian-products.mdx`, moduleSlug: "set-theory", order: 6, duration: 20, xp: 30, tags: ["sets"], concepts: ["sets"] },
     { slug: "sets-in-programming", title: "Sets in Programming", description: "Use Sets vs Arrays for deduplication, fast membership checks, and set operations in code.", contentPath: `${C6}/01-set-theory/07-sets-in-programming.mdx`, moduleSlug: "set-theory", order: 7, duration: 25, xp: 40, tags: ["sets", "programming"], concepts: ["sets"] },
-    // Module 5: Graph Theory (sample — to be expanded)
-    { slug: "graph-theory-intro", title: "Introduction to Graph Theory", description: "Understand graphs, trees, and their applications in CS.", contentPath: `${C6}/graph-theory.mdx`, moduleSlug: "graph-theory", order: 1, duration: 25, xp: 35, tags: ["graphs"], concepts: ["graphs"] },
+    // Module 2: Graph Theory (1 lesson — to be expanded)
+    { slug: "what-is-a-graph", title: "What Is a Graph?", description: "Define graphs, vertices, edges, and understand directed vs undirected relationships.", contentPath: `${C6}/02-graph-theory/01-what-is-a-graph.mdx`, moduleSlug: "graph-theory", order: 1, duration: 20, xp: 30, tags: ["graphs"], concepts: ["graphs"] },
 
     // ─── COURSE 8: Problem Solving (sample lessons) ───
     { slug: "computational-thinking", title: "Computational Thinking", description: "Learn the four pillars of computational thinking.", contentPath: "lessons/volume-01/course-08-problem-solving/computational-thinking.mdx", moduleSlug: "computational-thinking", order: 1, duration: 20, xp: 25, tags: ["thinking"], concepts: ["algorithms"] },

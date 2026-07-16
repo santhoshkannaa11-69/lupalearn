@@ -1,0 +1,21 @@
+UNDIRECTED GRAPH
+     ① —— ②
+      |    |
+     ③ —— ④
+
+DIRECTED GRAPH
+     ① → ②
+     ↑    ↓
+     ③ ← ④
+
+TREE (a special graph)
+      ①
+     / \
+    ②   ③
+   / \
+  ④   ⑤
+
+CYCLIC GRAPH
+     ① — ②
+     |    |
+     ④ — ③

@@ -1,0 +1,293 @@
+---
+title: "What Is a Graph?"
+slug: what-is-a-graph
+module: "Graph Theory"
+moduleOrder: 2
+lessonOrder: 1
+duration: 20
+xp: 30
+difficulty: beginner
+concepts: [graphs, vertices, edges]
+prerequisites: [what-is-a-set]
+learningObjectives:
+  - Define what a graph is in plain language
+  - Identify vertices and edges in a graph
+  - Distinguish between directed and undirected graphs
+  - Recognize graphs in the real world
+estimatedKnowledgeGain: 8
+tags: [mathematics, graphs, networks]
+icon: 🌐
+---
+
+## 1. Hook
+
+Open your social media app. Look at your friends list. Now look at mutual friends. Then suggested friends.
+
+Every single one of those is a **graph problem**.
+
+- Friends = vertices
+- Friendships = edges
+- Mutual friends = connected vertices
+- Suggestions = "friends of friends"
+
+Facebook processes this for 3 billion people. Maps do it for roads. Google does it for web pages. All of them use graphs.
+
+## 2. Why This Matters
+
+Without graphs, there would be no:
+- Social networks (no "people you may know")
+- GPS navigation (no shortest route)
+- Internet search (no PageRank)
+- Knowledge graphs (including LupaLearn's own!)
+- Recommendation systems (no "users also bought")
+
+Graphs are the hidden structure behind almost every connected system you use.
+
+## 3. Learning Objectives
+
+- Define a graph in plain language
+- Identify vertices and edges
+- Tell the difference between directed and undirected edges
+- Spot graphs in the real world
+
+## 4. Core Concept
+
+A **graph** is a collection of **vertices** connected by **edges**.
+
+```
+     ① —— ②
+      |    |
+     ③ —— ④
+```
+
+That's it. Two things:
+
+| Part | What It Is | Real-World Example |
+|------|------------|-------------------|
+| **Vertex** (node) | A point or entity | A person, a city, a web page |
+| **Edge** | A connection between two vertices | A friendship, a road, a hyperlink |
+
+The power of graphs comes from how simple this is. With just vertices and edges, you can model almost any relationship.
+
+### Directed vs Undirected
+
+**Undirected** — edges go both ways (like a two-way road)
+
+```
+① —— ②   (① connects to ②, ② connects to ①)
+```
+
+Example: Facebook friends — if Alice is friends with Bob, Bob is friends with Alice.
+
+**Directed** — edges have a direction (like a one-way street)
+
+```
+① → ②   (① connects to ②, but ② does NOT connect to ①)
+```
+
+Example: Twitter follows — Alice can follow Bob without Bob following Alice.
+
+### Degree
+
+The **degree** of a vertex is the number of edges connected to it.
+
+```
+     ① —— ②
+      |    |
+     ③ —— ④
+```
+
+Vertex ① has degree 2 (connected to ② and ③).
+Vertex ④ has degree 2 (connected to ② and ③).
+
+## 5. Mental Model
+
+Think of a **city map**.
+
+```
+      🏠 City A —— 🏠 City B
+           \          /
+            🏠 City C
+           /          \
+      🏠 City D —— 🏠 City E
+```
+
+| Graph Concept | Map Concept |
+|--------------|-------------|
+| Vertex | A city |
+| Edge | A road connecting two cities |
+| Directed edge | A one-way street |
+| Undirected edge | A two-way road |
+| Degree | Number of roads from a city |
+| Weighted edge | Distance between cities |
+
+## 6. Visualization
+
+### Undirected Graph
+
+```
+         ①
+        / \
+       ② — ③
+       |   |
+       ④ — ⑤
+
+Vertices: {1, 2, 3, 4, 5}
+Edges: {1-2, 1-3, 2-3, 2-4, 3-5, 4-5}
+```
+
+### Directed Graph
+
+```
+         ①
+        ↓ ↘
+       ②   ③
+       ↓    ↓
+       ④ ← ⑤
+
+Vertices: {1, 2, 3, 4, 5}
+Edges: {1→2, 1→3, 2→4, 3→5, 5→4}
+```
+
+## 7. Real-World Graphs
+
+| System | Vertices | Edges | Type |
+|--------|----------|-------|------|
+| Facebook | People | Friendships | Undirected |
+| Twitter | People | Follows | Directed |
+| Road map | Cities | Roads | Undirected (usually) |
+| Web | Pages | Hyperlinks | Directed |
+| LupaLearn | Concepts | Prerequisites | Directed |
+| Internet | Computers | Connections | Undirected |
+| Brain | Neurons | Synapses | Directed |
+
+<Callout type="info">
+  LupaLearn's Knowledge Graph is a directed graph where each concept connects to related concepts. When you learn one concept, the graph shows you what you can learn next.
+</Callout>
+
+## 8. Programming Examples
+
+Graphs don't have a built-in type in most languages, but they're easy to build.
+
+### JavaScript — Adjacency List
+
+```javascript
+// A graph as an adjacency list
+const graph = {
+  Alice: ['Bob', 'Charlie'],
+  Bob: ['Alice', 'David'],
+  Charlie: ['Alice', 'David'],
+  David: ['Bob', 'Charlie']
+}
+
+// Check if two people are connected
+function areConnected(graph, person1, person2) {
+  return graph[person1]?.includes(person2)
+}
+
+console.log(areConnected(graph, 'Alice', 'Bob'))    // true
+console.log(areConnected(graph, 'Alice', 'David'))  // false (not directly)
+```
+
+### Python
+
+```python
+# A graph as a dictionary of sets
+graph = {
+    'Alice': {'Bob', 'Charlie'},
+    'Bob': {'Alice', 'David'},
+    'Charlie': {'Alice', 'David'},
+    'David': {'Bob', 'Charlie'}
+}
+
+# Check connection
+'Alice' in graph['Bob']  # True
+'David' in graph['Alice']  # False
+```
+
+## 9. Interactive Practice
+
+<Terminal mode="interactive" language="javascript" initialCode="// Build a simple social network graph
+let graph = {
+  'Alice': ['Bob', 'Charlie'],
+  'Bob': ['Alice', 'David'],
+  'Charlie': ['Alice', 'David'],
+  'David': ['Bob', 'Charlie']
+};
+
+// Count friends (degree) for each person
+for (let person in graph) {
+  console.log(person + ' has ' + graph[person].length + ' friends');
+}
+
+// Check if two people are connected
+function areConnected(g, a, b) {
+  return g[a]?.includes(b) || false;
+}
+
+console.log('Alice and Bob connected:', areConnected(graph, 'Alice', 'Bob'));
+console.log('Alice and David connected:', areConnected(graph, 'Alice', 'David'));" />
+
+## 10. Common Mistakes
+
+| Mistake | Why It's Wrong | Correct Understanding |
+|---------|---------------|----------------------|
+| "A graph is a bar chart" | Bar charts visualize data; graphs model relationships | Graphs are networks of connected things |
+| "All graphs are trees" | Trees are a special type of graph with no cycles | A tree is a graph, but not all graphs are trees |
+| "Edges must have weight" | Weights are optional | Most graphs start unweighted |
+| "A vertex with no edges is useless" | Isolated vertices are still valid | A user with no friends is still a vertex |
+| "Directed means the same as undirected" | Direction fundamentally changes the relationship | `A → B` is not the same as `A ← B` |
+
+## 11. Quiz
+
+<Quiz question="What are the two basic building blocks of a graph?" options={["Nodes and weights", "Vertices and edges", "Points and lines", "Rows and columns"]} answer="1" explanation="A graph is built from vertices (nodes) and edges (connections between them)." />
+
+<Quiz question="Which relationship would be modeled as a directed edge?" options={["Facebook friendship", "A two-way road", "Twitter follow", "Siblings"]} answer="2" explanation="Twitter follows are directed — Alice can follow Bob without Bob following Alice. Facebook friendships are undirected — both must accept." />
+
+<Quiz question="How many edges are connected to vertex ② in this graph: ①—②—③?" options={["1", "2", "3", "0"]} answer="1" explanation="Vertex ② is connected to vertices ① and ③, so it has degree 2." />
+
+## 12. Challenge
+
+Draw a graph representing your immediate family (or a fictional one). Use:
+- Vertices for each person
+- Undirected edges for family relationships
+- Directed edges for "likes" or "follows"
+
+Then represent it as code.
+
+<Terminal mode="interactive" language="javascript" initialCode="// Build a family graph
+let family = {
+  'You': ['Mom', 'Dad'],
+  'Mom': ['You', 'Grandma'],
+  'Dad': ['You', 'Grandpa'],
+  'Grandma': ['Mom'],
+  'Grandpa': ['Dad']
+};
+
+// Find someone's degree (connections)
+function degree(graph, person) {
+  return graph[person]?.length || 0;
+}
+
+console.log('Your degree:', degree(family, 'You'));
+console.log('Grandma degree:', degree(family, 'Grandma'));
+
+// Find mutual connections
+function mutual(graph, a, b) {
+  return graph[a]?.filter(x => graph[b]?.includes(x)) || [];
+}
+
+console.log('Mutual:', mutual(family, 'You', 'Mom'));" />
+
+## 13. Summary
+
+- A **graph** is a collection of **vertices** connected by **edges**
+- **Undirected** edges go both ways (Facebook friends)
+- **Directed** edges go one way (Twitter follows)
+- **Degree** = number of edges connected to a vertex
+- Graphs model relationships: social networks, maps, the web, knowledge graphs
+- You can build a graph with just a dictionary of connections
+
+## 14. What's Next
+
+Now that you understand what a graph is, the next lesson covers **Graph Terminology** — paths, cycles, walks, and the precise language used to describe graph structures. This vocabulary is essential for understanding algorithms like shortest path and network analysis.
