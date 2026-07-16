@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Home, GraduationCap, Swords, Terminal, Bot, User, ChevronRight, Zap } from "lucide-react"
+import { Lantern } from "@/components/icons"
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", icon: Home },
@@ -34,7 +35,7 @@ function NavigationRail() {
         "flex items-center h-14 border-b border-border transition-all duration-200",
         expanded ? "px-4 justify-between" : "justify-center"
       )}>
-        <span className="text-accent font-bold text-lg">🐺</span>
+        <Lantern width={22} height={22} className="text-accent" />
         {expanded && <span className="text-sm font-semibold text-text-primary">LupaLearn</span>}
       </div>
 

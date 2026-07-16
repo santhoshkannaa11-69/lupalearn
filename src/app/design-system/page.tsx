@@ -1,3 +1,5 @@
+import { VariableBox, FunctionArrow, ArrayStack, LoopCycle, TreeHierarchy, GraphNetwork } from "@/components/icons"
+
 export default function DesignSystemPage() {
   return (
     <div className="min-h-screen bg-bg">
@@ -113,7 +115,9 @@ export default function DesignSystemPage() {
           <h2 className="text-lg font-semibold text-text-primary mb-4">Learning Card</h2>
           <div className="max-w-sm p-5 rounded-xl bg-surface border border-border shadow-sm hover:border-accent/30 transition-all group">
             <div className="flex items-start gap-3 mb-3">
-              <span className="text-2xl">📦</span>
+              <div className="w-10 h-10 rounded-xl bg-accent-soft flex items-center justify-center text-accent">
+                <VariableBox width={20} height={20} />
+              </div>
               <div>
                 <h3 className="text-sm font-semibold text-text-primary group-hover:text-accent transition-colors">Variables</h3>
                 <p className="text-xs text-text-muted">18 min · Beginner · +30 XP</p>
