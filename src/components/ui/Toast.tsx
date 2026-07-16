@@ -54,6 +54,7 @@ function ToastContainer() {
               toast.type === "success" && "border-accent/30",
               toast.type === "warning" && "border-warning/30",
               toast.type === "error" && "border-danger/30",
+              toast.type === "success" && "shadow-[0_0_20px_rgba(232,184,75,0.1)]",
             )}
           >
             <Icon size={16} className={cn(

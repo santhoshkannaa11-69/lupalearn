@@ -30,7 +30,7 @@ function Modal({ open, onClose, title, children, className }: ModalProps) {
       <div className="absolute inset-0 bg-bg/60 backdrop-blur-sm" onClick={onClose} />
       <div
         className={cn(
-          "relative bg-elevated border border-border shadow-xl rounded-xl",
+          "relative bg-elevated border border-border shadow-xl rounded-2xl",
           "w-full max-w-lg mx-4",
           "animate-scale-in",
           className
