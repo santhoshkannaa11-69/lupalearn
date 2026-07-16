@@ -8,14 +8,13 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { useRouter } from "next/navigation"
 import { Badge } from "@/components/ui/Badge"
-import { LessonTerminal } from "@/components/terminal/LessonTerminal"
 import { CommandBar } from "@/lib/command-system/CommandBar"
 import { registerLessonCommands } from "@/lib/command-system/commands/lesson-commands"
 import type { CommandContext } from "@/lib/command-system/types"
 import { showToast } from "@/components/ui/Toast"
 import { ReadinessScore, WhyLearnThis } from "@/components/learn/ReadinessScore"
 import Link from "next/link"
-import { BookOpen, ArrowLeft, ArrowRight, CheckCircle, Bookmark, Terminal, Clock, Zap } from "lucide-react"
+import { BookOpen, ArrowLeft, ArrowRight, CheckCircle, Bookmark, Clock, Zap } from "lucide-react"
 
 type NavigationInfo = {
   schoolSlug: string
@@ -297,17 +296,6 @@ function LessonViewer({ lesson, concepts, mdxContent, conceptSlugs, navigation }
             </div>
           </div>
         )}
-
-        {/* Practice Terminal */}
-        <div className="mb-10 rounded-xl border border-border overflow-hidden">
-          <div className="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border">
-            <Terminal size={16} className="text-text-muted" />
-            <span className="text-sm font-medium text-text-secondary">Practice Terminal</span>
-            <span className="text-xs text-text-muted ml-auto">JavaScript</span>
-          </div>
-          <LessonTerminal language="javascript" mode="interactive"
-            code="// Practice what you've learned!\n// Write and run your code here\nconsole.log('Hello from LupaLearn!');" />
-        </div>
 
         {/* Navigation */}
         <div className="flex items-center justify-between pt-6 border-t border-border">
